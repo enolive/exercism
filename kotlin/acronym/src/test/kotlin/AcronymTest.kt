@@ -1,9 +1,8 @@
-import org.junit.Test
 import org.junit.Ignore
+import org.junit.Test
 import kotlin.test.assertEquals
 
 class AcronymTest {
-
 
     @Test
     fun fromTitleCasedPhrases() {
@@ -12,7 +11,6 @@ class AcronymTest {
         assertEquals(expected, Acronym.generate(phrase))
     }
 
-    @Ignore
     @Test
     fun fromOtherTitleCasedPhrases() {
         val phrase = "Ruby on Rails"
