@@ -1,10 +1,10 @@
 fun transcribeToRna(dna: String): String {
     return dna
-            .map { symbol -> convertToRna(symbol) }
+            .map(::transcribeSingle)
             .joinToString(separator = "")
 }
 
-private fun convertToRna(dnaSymbol: Char): Char {
+private fun transcribeSingle(dnaSymbol: Char): Char {
     when (dnaSymbol) {
         'G' -> return 'C'
         'T' -> return 'A'
