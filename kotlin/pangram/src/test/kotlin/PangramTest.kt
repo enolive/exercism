@@ -28,7 +28,6 @@ class PangramTest {
         assertFalse(Pangrams.isPangram("the quick brown fish jumps over the lazy dog"))
     }
 
-    @Ignore
     @Test
     fun withUnderscores() {
         assertTrue(Pangrams.isPangram("the_quick_brown_fox_jumps_over_the_lazy_dog"))
