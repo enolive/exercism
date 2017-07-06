@@ -1,9 +1,8 @@
 # Introduction
 
-my solutions for problems hosted at [exercism.io](http://exercism.io/).
+my solutions for problems hosted at [exercism.io](http://exercism.io/) aka social network for coding katas.
 So far, I am having much fun solving them!
 
-- the CLI client allows you to fetch the whole problem
-- It creates a directory structure
-- It has already a high-quality test suite
-- I encourages the usage of TDD and working with baby steps
+- The CLI client is great 
+  - allows you to download a problem with the whole project structure
+  - submitting your solution allows you to look up other people solutions and gain some insight how it would work as well
