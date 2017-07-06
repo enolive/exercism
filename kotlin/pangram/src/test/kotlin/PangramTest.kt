@@ -38,7 +38,6 @@ class PangramTest {
         assertTrue(Pangrams.isPangram("the 1 quick brown fox jumps over the 2 lazy dogs"))
     }
 
-    @Ignore
     @Test
     fun missingLettersReplacedByNumbers() {
         assertFalse(Pangrams.isPangram("7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog"))
