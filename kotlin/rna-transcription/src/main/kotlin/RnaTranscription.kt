@@ -1,5 +1,7 @@
 fun transcribeToRna(dna: String): String {
-    return dna.map { symbol -> convertToRna(symbol) }.joinToString("")
+    return dna
+            .map { symbol -> convertToRna(symbol) }
+            .joinToString(separator = "")
 }
 
 private fun convertToRna(dnaSymbol: Char): Char {
