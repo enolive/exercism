@@ -3,7 +3,7 @@ object Hamming {
         requireEqualLength(leftStrand, rightStrand)
         return leftStrand
                 .zip(rightStrand)
-                .filter { (left, right) -> left != right }
+                .filter { it.first != it.second }
                 .count()
     }
 
