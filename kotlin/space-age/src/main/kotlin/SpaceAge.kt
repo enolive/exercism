@@ -4,21 +4,21 @@ import java.math.RoundingMode
 
 class SpaceAge(val seconds: Long) {
 
-    fun onEarth(): Double = on(Earth)
+    fun onEarth(): Double = on(EARTH)
 
-    fun onMercury(): Double = on(Mercury)
+    fun onMercury(): Double = on(MERCURY)
 
-    fun onVenus(): Double = on(Venus)
+    fun onVenus(): Double = on(VENUS)
 
-    fun onMars(): Double = on(Mars)
+    fun onMars(): Double = on(MARS)
 
-    fun onJupiter(): Double = on(Jupiter)
+    fun onJupiter(): Double = on(JUPITER)
 
-    fun onSaturn(): Double = on(Saturn)
+    fun onSaturn(): Double = on(SATURN)
 
-    fun onUranus(): Double = on(Uranus)
+    fun onUranus(): Double = on(URANUS)
 
-    fun onNeptune(): Double = on(Planet.Neptune)
+    fun onNeptune(): Double = on(NEPTUNE)
 
     private fun on(planet: Planet): Double = (seconds.yearsOnEarth() / planet.ratio).round(2)
 
