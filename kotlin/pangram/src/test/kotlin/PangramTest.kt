@@ -23,7 +23,6 @@ class PangramTest {
         assertFalse(Pangrams.isPangram("a quick movement of the enemy will jeopardize five gunboats"))
     }
 
-    @Ignore
     @Test
     fun anotherMissingCharacterX() {
         assertFalse(Pangrams.isPangram("the quick brown fish jumps over the lazy dog"))
