@@ -33,13 +33,11 @@ class HammingTest {
         assertEquals(1, Hamming.compute("A", "G"))
     }
 
-    @Ignore
     @Test
     fun completeDistanceInSmallStrand() {
         assertEquals(2, Hamming.compute("AG", "CT"))
     }
 
-    @Ignore
     @Test
     fun smallDistanceInSmallStrand() {
         assertEquals(1, Hamming.compute("AT", "CT"))
