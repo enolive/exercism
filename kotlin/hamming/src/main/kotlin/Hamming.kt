@@ -1,5 +1,5 @@
 object Hamming {
-    fun compute(s: String, s1: String): Int {
+    fun compute(first: String, second: String): Int {
         return 0
     }
 
