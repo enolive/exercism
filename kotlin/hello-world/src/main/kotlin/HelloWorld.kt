@@ -1,7 +1,4 @@
 fun hello(name: String = ""): String {
-   if (name != "") {
-      return "Hello, $name!"
-   }
-   
-   return "Hello, World!"
+    val person = if (!name.isNullOrBlank()) name else "World"
+    return "Hello, $person!"
 }

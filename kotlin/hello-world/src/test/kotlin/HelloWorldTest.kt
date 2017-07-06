@@ -16,7 +16,6 @@ class HelloWorldTest {
     }
 
     @Test
-    @Ignore
     fun helloBlankName() {
         assertEquals("Hello, World!", hello("    "))
     }
