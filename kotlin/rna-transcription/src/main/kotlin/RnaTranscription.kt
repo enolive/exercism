@@ -1,7 +1,8 @@
 fun transcribeToRna(dna: String): String {
-    if (dna == "G") {
-        return "C"
+    when (dna) {
+        "G" -> return "C"
+        "T" -> return "A"
+        else -> return "G"
     }
-    
-    return "G"
+
 }
