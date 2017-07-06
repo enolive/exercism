@@ -14,8 +14,10 @@ object Scrabble {
 class Letter(private val value: Char) {
     fun score(): Int {
         return when (value) {
-            'a', 'e', 'r', 's', 't' -> 1
-            'f' -> 4
+            'a', 'e', 'i', 'r', 's', 't', 'u' -> 1
+            'f', 'y' -> 4
+            'k' -> 5
+            'q' -> 10
             else -> {
                 throw IllegalArgumentException("invalid letter '$value'")
             }
