@@ -1,11 +1,11 @@
 object Raindrops {
-    fun convert(input: Int): String {
-        val rules = sequenceOf(
-                Rule(3 to "Pling"),
-                Rule(5 to "Plang"),
-                Rule(7 to "Plong")
-        )
+    private val rules = sequenceOf(
+            Rule(3 to "Pling"),
+            Rule(5 to "Plang"),
+            Rule(7 to "Plong")
+    )
 
+    fun convert(input: Int): String {
         val result = rules
                 .filter { it.appliesTo(input) }
                 .map { it.result }
@@ -15,11 +15,3 @@ object Raindrops {
 
 }
 
-class Rule(val pair: Pair<Int, String>) {
-    val result = pair.second
-
-    fun appliesTo(input: Int): Boolean {
-        return input.isDivisibleBy(pair.first)
-    }
-    private fun Int.isDivisibleBy(denominator: Int) = this % denominator == 0
-}
