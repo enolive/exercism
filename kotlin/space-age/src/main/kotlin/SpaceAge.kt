@@ -16,14 +16,11 @@ class SpaceAge(val seconds: Long) {
 
     fun onUranus(): Double = on(Uranus)
 
-    private fun on(planet: Planet): Double {
-        val yearsOnEarth = seconds / (365.25 * 24 * 60 * 60)
-        return roundTwoDecimals(yearsOnEarth / planet.ratio)
-    }
+    fun onNeptune(): Double = on(Planet.Neptune)
 
-    fun onNeptune(): Double {
-        return on(Planet.Neptune)
-    }
+    private fun on(planet: Planet): Double = roundTwoDecimals(yearsOnEarth(seconds) / planet.ratio)
+
+    private fun yearsOnEarth(seconds: Long) = seconds / (365.25 * 24 * 60 * 60)
 
     private fun roundTwoDecimals(value: Double) = Math.round(value * 100) / 100.0
 }
