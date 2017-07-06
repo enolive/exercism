@@ -23,13 +23,11 @@ class HammingTest {
         assertEquals(0, Hamming.compute("A", "A"))
     }
 
-    @Ignore
     @Test
     fun noDistanceBetweenLongIdenticalStrands() {
         assertEquals(0, Hamming.compute("GGACTGA", "GGACTGA"))
     }
 
-    @Ignore
     @Test
     fun completeDistanceInSingleNucleotideStrand() {
         assertEquals(1, Hamming.compute("A", "G"))
