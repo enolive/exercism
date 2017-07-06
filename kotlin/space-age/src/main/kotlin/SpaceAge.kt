@@ -7,6 +7,8 @@ class SpaceAge(val seconds: Long) {
 
     fun onVenus(): Double = roundTwoDecimals(earthYears / 0.61519726)
 
+    fun onMars(): Double = roundTwoDecimals(earthYears / 1.8808158)
+
     fun onNeptune(): Double {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -20,10 +22,6 @@ class SpaceAge(val seconds: Long) {
     }
 
     fun onJupiter(): Double {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    fun onMars(): Double {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
