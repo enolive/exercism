@@ -1,9 +1,9 @@
 class SpaceAge(val seconds: Long) {
     private val earthYears = seconds / (365.25 * 24 * 60 * 60)
 
-    fun onEarth(): Double {
-        return roundTwoDecimals(earthYears)
-    }
+    fun onEarth(): Double = roundTwoDecimals(earthYears)
+
+    fun onMercury(): Double = roundTwoDecimals(280.88 / 67.65 * earthYears)
 
     fun onNeptune(): Double {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -23,10 +23,6 @@ class SpaceAge(val seconds: Long) {
 
     fun onMars(): Double {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    fun onMercury(): Double {
-        return roundTwoDecimals(280.88 / 67.65 * earthYears)
     }
 
     fun onVenus(): Double {
