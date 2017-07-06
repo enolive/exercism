@@ -15,6 +15,7 @@ class ScrabbleScoreTest(val input: String, val expectedOutput: Int) {
                 arrayOf(" \t\n", 0),
                 arrayOf("a", 1),
                 arrayOf("f", 4),
+                arrayOf("major", 14),
                 arrayOf("danger", 8),
                 arrayOf("street", 6),
                 arrayOf("quirky", 22),
