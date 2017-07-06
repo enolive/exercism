@@ -22,7 +22,7 @@ class SpaceAge(val seconds: Long) {
     }
 
     fun onNeptune(): Double {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return on(Planet.Neptune)
     }
 
     private fun roundTwoDecimals(value: Double) = Math.round(value * 100) / 100.0

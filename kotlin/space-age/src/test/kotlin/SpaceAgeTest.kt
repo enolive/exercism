@@ -67,7 +67,6 @@ class SpaceAgeTest {
         assertEquals(1.21, age.onUranus())
     }
 
-    @Ignore
     @Test
     fun ageOnNeptune() {
         val age = SpaceAge(8210123456L)
