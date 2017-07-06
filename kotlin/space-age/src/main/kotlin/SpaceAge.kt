@@ -12,7 +12,9 @@ class SpaceAge(val seconds: Long) {
 
     fun onJupiter(): Double = on(Jupiter)
 
-    fun onSaturn(): Double = on(Planet.Saturn)
+    fun onSaturn(): Double = on(Saturn)
+
+    fun onUranus(): Double = on(Uranus)
 
     private fun on(planet: Planet): Double {
         val yearsOnEarth = seconds / (365.25 * 24 * 60 * 60)
@@ -20,10 +22,6 @@ class SpaceAge(val seconds: Long) {
     }
 
     fun onNeptune(): Double {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    fun onUranus(): Double {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

@@ -5,4 +5,5 @@ enum class Planet(val ratio: Double) {
     Mars(1.8808158),
     Jupiter(11.862615),
     Saturn(29.447498),
+    Uranus(84.016846),
 }
