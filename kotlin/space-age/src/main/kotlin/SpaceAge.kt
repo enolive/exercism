@@ -1,13 +1,27 @@
+import Planet.*
+
 class SpaceAge(val seconds: Long) {
-    private val earthYears = seconds / (365.25 * 24 * 60 * 60)
 
-    fun onEarth(): Double = roundTwoDecimals(earthYears)
+    private val planetRatio = hashMapOf(
+        Mercury to 0.2408467,
+        Venus to 0.61519726,
+        Earth to 1.0,
+        Mars to 1.8808158
+    )
+            
+    fun onEarth(): Double = on(Earth)
 
-    fun onMercury(): Double = roundTwoDecimals(earthYears / 0.2408467)
+    fun onMercury(): Double = on(Mercury)
 
-    fun onVenus(): Double = roundTwoDecimals(earthYears / 0.61519726)
+    fun onVenus(): Double = on(Venus)
 
-    fun onMars(): Double = roundTwoDecimals(earthYears / 1.8808158)
+    fun onMars(): Double = on(Mars)
+
+    private fun on(planet: Planet): Double {
+        val ratio = planetRatio.getValue(planet)
+        val yearsOnEarth = seconds / (365.25 * 24 * 60 * 60)
+        return roundTwoDecimals(yearsOnEarth / ratio)
+    }
 
     fun onNeptune(): Double {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -27,3 +41,4 @@ class SpaceAge(val seconds: Long) {
 
     private fun roundTwoDecimals(value: Double) = Math.round(value * 100) / 100.0
 }
+
