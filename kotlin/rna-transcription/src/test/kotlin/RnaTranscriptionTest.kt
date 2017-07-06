@@ -31,7 +31,6 @@ class RnaTranscriptionTest {
         assertEquals("A", transcribeToRna("T"))
     }
 
-    @Ignore
     @Test
     fun adenineComplementIsUracil() {
         assertEquals("U", transcribeToRna("A"))
