@@ -6,12 +6,13 @@ object Raindrops {
     )
 
     fun convert(input: Int): String {
-        val result = rules
+        return rules
                 .filter { it.appliesTo(input) }
                 .map { it.result }
                 .joinToString("")
-        return if (result.isNotEmpty()) result else input.toString()
+                .ifBlank { input.toString() }
     }
 
+    private fun String.ifBlank(alternative: () -> String) = if (isNotEmpty()) this else alternative()
 }
 
