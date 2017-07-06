@@ -3,13 +3,13 @@ class Letter(value: Char) {
 
     fun score(): Int {
         return when (normalizedValue) {
-            'a', 'e', 'i', 'l', 'n', 'o', 'r', 's', 't', 'u' -> 1
-            'd', 'g' -> 2
-            'b', 'c', 'm', 'p' -> 3
-            'f', 'h', 'y' -> 4
-            'k' -> 5
-            'j', 'x' -> 8
-            'q', 'z' -> 10
+            in "aeilnorstu" -> 1
+            in "dg" -> 2
+            in "bcmp" -> 3
+            in "fhy" -> 4
+            in "k" -> 5
+            in "jx" -> 8
+            in "qz" -> 10
             else -> {
                 throw IllegalArgumentException("invalid letter '$normalizedValue'")
             }
