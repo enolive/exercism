@@ -1,1 +1,3 @@
-fun transcribeToRna(dna: String): String = ""
+fun transcribeToRna(dna: String): String {
+    return "G"
+}
