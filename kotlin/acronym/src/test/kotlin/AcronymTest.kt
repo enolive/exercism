@@ -25,7 +25,6 @@ class AcronymTest {
         assertEquals(expected, Acronym.generate(phrase))
     }
 
-    @Ignore
     @Test
     fun fromPhrasesWithPunctuation() {
         val phrase = "First In, First Out"
