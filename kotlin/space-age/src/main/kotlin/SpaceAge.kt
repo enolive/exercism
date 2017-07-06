@@ -1,6 +1,6 @@
 class SpaceAge(val seconds: Long) {
     fun onEarth(): Double {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return Math.round(seconds / (365.25 * 24 * 60 * 60) * 100) / 100.0
     }
 
     fun onNeptune(): Double {
