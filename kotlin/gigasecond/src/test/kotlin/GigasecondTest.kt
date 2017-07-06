@@ -22,7 +22,6 @@ class GigasecondTest {
         assertEquals(LocalDateTime.of(2009, Month.FEBRUARY, 19, 1, 46, 40), gigaSecond.date)
     }
 
-    @Ignore
     @Test
     fun beforeEpochTime() {
         val gigaSecond = Gigasecond(LocalDate.of(1959, Month.JULY, 19))
@@ -30,7 +29,6 @@ class GigasecondTest {
         assertEquals(LocalDateTime.of(1991, Month.MARCH, 27, 1, 46, 40), gigaSecond.date)
     }
 
-    @Ignore
     @Test
     fun withFullTimeSpecified() {
         val gigaSecond = Gigasecond(LocalDateTime.of(2015, Month.JANUARY, 24, 22, 0, 0))
@@ -38,7 +36,6 @@ class GigasecondTest {
         assertEquals(LocalDateTime.of(2046, Month.OCTOBER, 2, 23, 46, 40), gigaSecond.date)
     }
 
-    @Ignore
     @Test
     fun withFullTimeSpecifiedAndDayRollover() {
         val gigaSecond = Gigasecond(LocalDateTime.of(2015, Month.JANUARY, 24, 23, 59, 59))
