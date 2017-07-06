@@ -1,10 +1,7 @@
 object Scrabble {
     fun scoreWord(input: String): Int {
-        if (input.isNullOrBlank()) {
-            return 0
-        }
-
         return input
+                .filter { !it.isWhitespace() }
                 .map { Letter(it).score() }
                 .sum()
     }
