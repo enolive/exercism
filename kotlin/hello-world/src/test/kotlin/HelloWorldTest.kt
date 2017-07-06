@@ -11,11 +11,13 @@ class HelloWorldTest {
     }
 
     @Test
+    @Ignore
     fun helloSampleName() {
         assertEquals("Hello, Alice!", hello("Alice"))
     }
 
     @Test
+    @Ignore
     fun helloBlankName() {
         assertEquals("Hello, World!", hello("    "))
     }
