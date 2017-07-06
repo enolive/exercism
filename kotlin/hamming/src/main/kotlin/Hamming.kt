@@ -1,5 +1,3 @@
-import java.lang.IllegalArgumentException
-
 object Hamming {
     fun compute(leftStrand: String, rightStrand: String): Int {
         throwOnLengthMismatch(leftStrand, rightStrand)
@@ -10,8 +8,8 @@ object Hamming {
     }
 
     private fun throwOnLengthMismatch(leftStrand: String, rightStrand: String) {
-        if (leftStrand.length != rightStrand.length) {
-            throw IllegalArgumentException("leftStrand and rightStrand must be of equal length.")
+        require (leftStrand.length == rightStrand.length) {
+            "leftStrand and rightStrand must be of equal length."
         }
     }
 
