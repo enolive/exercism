@@ -2,7 +2,8 @@ object Raindrops {
     fun convert(input: Int): String {
         val rules = sequenceOf(
                 3 to "Pling",
-                5 to "Plang"
+                5 to "Plang",
+                7 to "Plong"
         )
 
         val result = rules
