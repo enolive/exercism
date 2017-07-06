@@ -21,7 +21,6 @@ class RnaTranscriptionTest {
         assertEquals("G", transcribeToRna("C"))
     }
 
-    @Ignore
     @Test
     fun guanineComplementIsCytosine() {
         assertEquals("C", transcribeToRna("G"))
