@@ -6,5 +6,4 @@ object Hamming {
         return (leftStrand zip rightStrand)
                 .count { it.first != it.second }
     }
-
 }
