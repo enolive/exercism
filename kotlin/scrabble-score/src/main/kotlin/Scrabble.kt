@@ -17,6 +17,7 @@ class Letter(value: Char) {
     fun score(): Int {
         return when (normalizedValue) {
             'a', 'e', 'i', 'l', 'n', 'o', 'r', 's', 't', 'u' -> 1
+            'd', 'g' -> 2
             'b', 'c', 'p' -> 3
             'f', 'h', 'y' -> 4
             'k' -> 5
