@@ -10,7 +10,8 @@ object Acronym {
         if (i == 0) {
             return true
         }
-        if (this[i - 1] == ' ') {
+        val wordBoundaries = arrayOf(' ', '-')
+        if (this[i - 1] in wordBoundaries) {
             return true
         }
         if (this[i].isUpperCase() && this[i - 1].isLowerCase()) {
