@@ -4,13 +4,9 @@ object Scrabble {
             return 0
         }
 
-        return input.map { Letter(it).score() }
+        return input
+                .map { Letter(it).score() }
                 .sum()
-        
-        val letter = Letter(input[0])
-        var score = letter.score()
-
-        return score
     }
 
 }
@@ -18,7 +14,7 @@ object Scrabble {
 class Letter(private val value: Char) {
     fun score(): Int {
         return when (value) {
-            'a', 'e' -> 1
+            'a', 'e', 'r', 's', 't' -> 1
             'f' -> 4
             else -> {
                 throw IllegalArgumentException("invalid letter '$value'")
