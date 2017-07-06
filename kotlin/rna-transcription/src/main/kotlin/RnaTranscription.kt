@@ -1,8 +1,8 @@
 fun transcribeToRna(dna: String): String {
-    return getComplement(dna[0]).toString()
+    return dna.map { symbol -> convertToRna(symbol) }.joinToString("")
 }
 
-private fun getComplement(dnaSymbol: Char): Char {
+private fun convertToRna(dnaSymbol: Char): Char {
     when (dnaSymbol) {
         'G' -> return 'C'
         'T' -> return 'A'

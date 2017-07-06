@@ -36,7 +36,6 @@ class RnaTranscriptionTest {
         assertEquals("U", transcribeToRna("A"))
     }
 
-    @Ignore
     @Test
     fun rnaTranscription() {
         assertEquals("UGCACCAGAAUU", transcribeToRna("ACGTGGTCTTAA"))
