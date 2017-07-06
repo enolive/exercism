@@ -33,7 +33,6 @@ class PangramTest {
         assertTrue(Pangrams.isPangram("the_quick_brown_fox_jumps_over_the_lazy_dog"))
     }
 
-    @Ignore
     @Test
     fun withNumbers() {
         assertTrue(Pangrams.isPangram("the 1 quick brown fox jumps over the 2 lazy dogs"))
