@@ -7,6 +7,8 @@ enum class Planet {
 
     Mars,
 
-    Jupiter
+    Jupiter,
+
+    Saturn
 
 }
