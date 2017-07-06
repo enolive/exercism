@@ -48,7 +48,6 @@ class PangramTest {
         assertTrue(Pangrams.isPangram("\"Five quacking Zephyrs jolt my wax bed.\""))
     }
 
-    @Ignore
     @Test
     fun mixedCaseDuplicatedCharacters() {
         assertFalse(Pangrams.isPangram("the quick brown fox jumps over with lazy FX"))
