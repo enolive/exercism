@@ -78,7 +78,6 @@ class HammingTest {
         assertEquals(9, Hamming.compute("GGACGGATTCTG", "AGGACGGATTCT"))
     }
 
-    @Ignore
     @Test
     fun validatesFirstStrandNotLonger() {
         expectedException.expect(IllegalArgumentException::class.java)
@@ -87,7 +86,6 @@ class HammingTest {
         Hamming.compute("AATG", "AAA")
     }
 
-    @Ignore
     @Test
     fun validatesSecondStrandNotLonger() {
         expectedException.expect(IllegalArgumentException::class.java)
