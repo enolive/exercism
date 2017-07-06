@@ -11,15 +11,19 @@ object Scrabble {
 
 }
 
-class Letter(private val value: Char) {
+class Letter(value: Char) {
+    private val normalizedValue = value.toLowerCase()
+
     fun score(): Int {
-        return when (value) {
-            'a', 'e', 'i', 'r', 's', 't', 'u' -> 1
-            'f', 'y' -> 4
+        return when (normalizedValue) {
+            'a', 'e', 'i', 'o', 'n', 'r', 's', 't', 'u' -> 1
+            'b', 'p' -> 3
+            'f', 'h', 'y' -> 4
             'k' -> 5
-            'q' -> 10
+            'x' -> 8
+            'q', 'z' -> 10
             else -> {
-                throw IllegalArgumentException("invalid letter '$value'")
+                throw IllegalArgumentException("invalid letter '$normalizedValue'")
             }
         }
     }
