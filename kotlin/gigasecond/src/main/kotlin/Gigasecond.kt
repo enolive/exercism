@@ -1,10 +1,12 @@
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.Month
+import java.time.temporal.ChronoUnit.*
 
-class Gigasecond(of: LocalDateTime) {
-    val date: LocalDateTime = LocalDateTime.of(2043, Month.JANUARY, 1, 1, 46, 40)
+class Gigasecond(startTime: LocalDateTime) {
+    private val amount = Math.pow(10.0, 9.0).toLong()
 
-    constructor(onlyDate: LocalDate) : this(onlyDate.atStartOfDay())
+    val date: LocalDateTime = startTime.plus(amount, SECONDS)
+
+    constructor(startDate: LocalDate) : this(startDate.atStartOfDay())
 
 }

@@ -15,7 +15,6 @@ class GigasecondTest {
         assertEquals(LocalDateTime.of(2043, Month.JANUARY, 1, 1, 46, 40), gigaSecond.date)
     }
 
-    @Ignore
     @Test
     fun afterEpochTime() {
         val gigaSecond = Gigasecond(LocalDate.of(1977, Month.JUNE, 13))
