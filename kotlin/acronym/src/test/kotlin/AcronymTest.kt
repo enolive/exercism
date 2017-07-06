@@ -18,7 +18,6 @@ class AcronymTest {
         assertEquals(expected, Acronym.generate(phrase))
     }
 
-    @Ignore
     @Test
     fun fromInconsistentlyCasedPhrases() {
         val phrase = "HyperText Markup Language"

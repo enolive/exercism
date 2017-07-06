@@ -6,5 +6,17 @@ object Acronym {
                 .joinToString("")
     }
 
-    private fun String.wordStartsAt(i: Int) = i == 0 || this[i - 1] == ' '
+    private fun String.wordStartsAt(i: Int): Boolean {
+        if (i == 0) {
+            return true
+        }
+        if (this[i - 1] == ' ') {
+            return true
+        }
+        if (this[i].isUpperCase() && this[i - 1].isLowerCase()) {
+            return true
+        }
+        
+        return false
+    }
 }
