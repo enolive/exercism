@@ -43,25 +43,21 @@ class HammingTest {
         assertEquals(1, Hamming.compute("AT", "CT"))
     }
 
-    @Ignore
     @Test
     fun smallDistanceInMediumStrand() {
         assertEquals(1, Hamming.compute("GGACG", "GGTCG"))
     }
 
-    @Ignore
     @Test
     fun smallDistanceInLongStrand() {
         assertEquals(2, Hamming.compute("ACCAGGG", "ACTATGG"))
     }
 
-    @Ignore
     @Test
     fun nonUniqueCharacterInFirstStrand() {
         assertEquals(1, Hamming.compute("AGA", "AGG"))
     }
 
-    @Ignore
     @Test
     fun nonUniqueCharacterInSecondStrand() {
         assertEquals(1, Hamming.compute("AGG", "AGA"))
