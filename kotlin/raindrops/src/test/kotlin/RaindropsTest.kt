@@ -45,3 +45,4 @@ class RaindropsTest(val input: Int, val expectedOutput: String) {
         assertEquals(expectedOutput, Raindrops.convert(input))
     }
 }
+
