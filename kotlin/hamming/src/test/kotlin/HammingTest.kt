@@ -63,19 +63,16 @@ class HammingTest {
         assertEquals(1, Hamming.compute("AGG", "AGA"))
     }
 
-    @Ignore
     @Test
     fun sameNucleotidesInDifferentPositions() {
         assertEquals(2, Hamming.compute("TAG", "GAT"))
     }
 
-    @Ignore
     @Test
     fun largeDistanceInPermutedStrand() {
         assertEquals(4, Hamming.compute("GATACA", "GCATAA"))
     }
 
-    @Ignore
     @Test
     fun largeDistanceInOffByOneStrand() {
         assertEquals(9, Hamming.compute("GGACGGATTCTG", "AGGACGGATTCT"))
