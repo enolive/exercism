@@ -1,5 +1,5 @@
 object Pangrams {
-    fun isPangram(s: String): Boolean {
+    fun isPangram(sentence: String): Boolean {
         return false
     }
 
