@@ -1,10 +1,8 @@
 object Hamming {
     fun compute(leftStrand: String, rightStrand: String): Int {
         requireEqualLength(leftStrand, rightStrand)
-        return leftStrand
-                .zip(rightStrand)
-                .filter { it.first != it.second }
-                .count()
+        return (leftStrand zip rightStrand)
+                .count { it.first != it.second }
     }
 
     private fun requireEqualLength(leftStrand: String, rightStrand: String) {
