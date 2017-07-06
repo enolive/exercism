@@ -5,6 +5,8 @@ enum class Planet {
 
     Earth,
 
-    Mars
+    Mars,
+
+    Jupiter
 
 }

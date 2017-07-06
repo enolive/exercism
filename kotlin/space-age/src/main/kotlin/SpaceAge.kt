@@ -3,12 +3,13 @@ import Planet.*
 class SpaceAge(val seconds: Long) {
 
     private val yearRatio = hashMapOf(
-        Mercury to 0.2408467,
-        Venus to 0.61519726,
-        Earth to 1.0,
-        Mars to 1.8808158
+            Mercury to 0.2408467,
+            Venus to 0.61519726,
+            Earth to 1.0,
+            Mars to 1.8808158,
+            Jupiter to 11.862615
     )
-            
+
     fun onEarth(): Double = on(Earth)
 
     fun onMercury(): Double = on(Mercury)
@@ -16,6 +17,8 @@ class SpaceAge(val seconds: Long) {
     fun onVenus(): Double = on(Venus)
 
     fun onMars(): Double = on(Mars)
+
+    fun onJupiter(): Double = on(Jupiter)
 
     private fun on(planet: Planet): Double {
         val ratio = yearRatio.getValue(planet)
@@ -32,10 +35,6 @@ class SpaceAge(val seconds: Long) {
     }
 
     fun onSaturn(): Double {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    fun onJupiter(): Double {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
