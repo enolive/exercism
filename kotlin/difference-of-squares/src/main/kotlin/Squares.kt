@@ -1,7 +1,6 @@
 class Squares(private val i: Int) {
     fun squareOfSum(): Int {
-        val sum = (1..i).sum()
-        return sum * sum
+        return (1..i).sum().square()
     }
 
     fun difference(): Int {
@@ -11,5 +10,7 @@ class Squares(private val i: Int) {
     fun sumOfSquares(): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    private fun Int.square() = this * this
 
 }
