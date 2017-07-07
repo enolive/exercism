@@ -1,9 +1,13 @@
 class Squares(private val i: Int) {
-    fun squareOfSum(): Int = (1..i).sum().square()
-
-    fun sumOfSquares(): Int = (1..i).sumBy { it.square() }
-
     fun difference(): Int = squareOfSum() - sumOfSquares()
+
+    fun squareOfSum(): Int = gauss().square()
+
+    fun sumOfSquares(): Int = quadraticPyramidNumber()
+
+    private fun gauss() = (i * (i + 1) / 2)
+
+    private fun quadraticPyramidNumber() = i * (i + 1) * (2 * i + 1) / 6
 
     private fun Int.square() = this * this
 
