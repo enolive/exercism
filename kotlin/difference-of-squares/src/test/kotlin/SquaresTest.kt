@@ -10,7 +10,6 @@ class SquaresTest {
         assertEquals(225, Squares(5).squareOfSum())
     }
 
-    @Ignore
     @Test
     fun squareOfSum10() {
         assertEquals(3025, Squares(10).squareOfSum())
