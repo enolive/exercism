@@ -4,7 +4,7 @@ class Squares(private val i: Int) {
     }
 
     fun difference(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return squareOfSum() - sumOfSquares()
     }
 
     fun sumOfSquares(): Int {
