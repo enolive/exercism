@@ -12,5 +12,9 @@ fun classify(naturalNumber: Int): Classification {
         return Classification.ABUNDANT
     }
     
+    if (aliquot < naturalNumber) {
+        return Classification.DEFICIENT
+    }
+    
     return Classification.PERFECT
 }
