@@ -5,16 +5,15 @@ enum class Classification {
 
 fun classify(naturalNumber: Int): Classification {
     val aliquot = (1..naturalNumber - 1)
-            .filter {  naturalNumber % it == 0 }
+            .filter { naturalNumber.isDivisibleBy(it) }
             .sum()
-    
-    if (aliquot > naturalNumber) {
-        return Classification.ABUNDANT
+
+    when {
+        aliquot > naturalNumber -> return Classification.ABUNDANT
+        aliquot < naturalNumber -> return Classification.DEFICIENT
+        else -> return Classification.PERFECT
     }
-    
-    if (aliquot < naturalNumber) {
-        return Classification.DEFICIENT
-    }
-    
-    return Classification.PERFECT
+
 }
+
+private fun Int.isDivisibleBy(it: Int) = this % it == 0

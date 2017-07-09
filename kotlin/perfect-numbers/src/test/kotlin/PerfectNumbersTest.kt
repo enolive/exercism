@@ -40,7 +40,6 @@ class NaturalNumberTest {
         assertEquals(Classification.DEFICIENT, classify(8))
     }
 
-    @Ignore
     @Test
     fun mediumNumberIsClassifiedCorrectly() {
         assertEquals(Classification.DEFICIENT, classify(31))
