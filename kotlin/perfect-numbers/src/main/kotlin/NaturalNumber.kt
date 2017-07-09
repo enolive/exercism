@@ -4,16 +4,20 @@ enum class Classification {
 }
 
 fun classify(naturalNumber: Int): Classification {
-    val aliquot = (1..naturalNumber - 1)
-            .filter { naturalNumber.isDivisibleBy(it) }
-            .sum()
-
+    require(naturalNumber > 0)
+    val sum = naturalNumber.sumOfQuotients()
     when {
-        aliquot > naturalNumber -> return Classification.ABUNDANT
-        aliquot < naturalNumber -> return Classification.DEFICIENT
+        sum > naturalNumber -> return Classification.ABUNDANT
+        sum < naturalNumber -> return Classification.DEFICIENT
         else -> return Classification.PERFECT
     }
+}
 
+private fun Int.sumOfQuotients(): Int {
+    val aliquot = (1..this - 1)
+            .filter { isDivisibleBy(it) }
+            .sum()
+    return aliquot
 }
 
 private fun Int.isDivisibleBy(it: Int) = this % it == 0
