@@ -20,7 +20,6 @@ class NaturalNumberTest {
         assertEquals(Classification.PERFECT, classify(33550336))
     }
 
-    @Ignore
     @Test
     fun smallAbundantNumberIsClassifiedCorrectly() {
         assertEquals(Classification.ABUNDANT, classify(12))
