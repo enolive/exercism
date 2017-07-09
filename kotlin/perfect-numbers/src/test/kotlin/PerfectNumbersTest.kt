@@ -30,7 +30,6 @@ class NaturalNumberTest {
         assertEquals(Classification.ABUNDANT, classify(24))
     }
 
-    @Ignore
     @Test
     fun largeAbundantNumberIsClassifiedCorrectly() {
         assertEquals(Classification.ABUNDANT, classify(33550335))
