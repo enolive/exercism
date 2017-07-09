@@ -45,7 +45,6 @@ class NaturalNumberTest {
         assertEquals(Classification.DEFICIENT, classify(31))
     }
 
-    @Ignore
     @Test
     fun largeDeficientNumberIsClassifiedCorrectly() {
         assertEquals(Classification.DEFICIENT, classify(33550337))
