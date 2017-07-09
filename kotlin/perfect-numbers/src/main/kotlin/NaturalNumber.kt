@@ -14,10 +14,9 @@ fun classify(naturalNumber: Int): Classification {
 }
 
 private fun Int.sumOfQuotients(): Int {
-    val aliquot = (1..this - 1)
+    return (1..this / 2)
             .filter { isDivisibleBy(it) }
             .sum()
-    return aliquot
 }
 
 private fun Int.isDivisibleBy(it: Int) = this % it == 0
