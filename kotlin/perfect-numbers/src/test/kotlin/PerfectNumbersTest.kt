@@ -10,13 +10,11 @@ class NaturalNumberTest {
         assertEquals(Classification.PERFECT, classify(6))
     }
 
-    @Ignore
     @Test
     fun mediumPerfectNumberIsClassifiedCorrectly() {
         assertEquals(Classification.PERFECT, classify(28))
     }
 
-    @Ignore
     @Test
     fun largePerfectNumberIsClassifiedCorrectly() {
         assertEquals(Classification.PERFECT, classify(33550336))
