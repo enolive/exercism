@@ -1,26 +1,28 @@
 object Luhn {
     fun isValid(numberCode: String): Boolean {
-        val filteredCode = numberCode.filter { !it.isWhitespace() }
-        if (filteredCode.length < 2) {
+        val withoutWhitespaces = numberCode.filter { !it.isWhitespace() }
+        if (withoutWhitespaces.hasLexicalErrors()) {
             return false
         }
-
-        val numberSequence = filteredCode.reversedNumberSequence()
-        if (numberSequence.containsInvalidCharacters()) {
-            return false
-        }
-
-        return numberSequence
-                .mapIndexed(this::doubleEverySecondOne)
-                .map(this::toSingleDigit)
-                .sum()
-                .isDivisibleBy(10)
+        
+        return checkSumOf(withoutWhitespaces).isDivisibleBy(10)
     }
+
+    private fun String.hasLexicalErrors()
+            = hasWrongSize() || containsInvalidCharacters()
+
+    private fun String.hasWrongSize() = length < 2
+
+    private fun String.containsInvalidCharacters() = any { it !in '0'..'9' }
+
+    private fun checkSumOf(code: String): Int 
+            = code.reversedNumberSequence()
+            .mapIndexed(this::doubleEverySecondOne)
+            .map(this::toSingleDigit)
+            .sum()
 
     private fun String.reversedNumberSequence() =
             reversed().map { it.parseCharacter() }
-
-    private fun List<Int>.containsInvalidCharacters() = any { it !in 0..9 }
 
     private fun doubleEverySecondOne(index: Int, digit: Int) =
             if ((index + 1).isDivisibleBy(2)) digit * 2 else digit
@@ -29,5 +31,5 @@ object Luhn {
 
     private fun Int.isDivisibleBy(divisor: Int) = (this) % divisor == 0
 
-    private fun Char.parseCharacter() = toInt() - '0'.toInt()
+    private fun Char.parseCharacter() = "$this".toInt()
 }
