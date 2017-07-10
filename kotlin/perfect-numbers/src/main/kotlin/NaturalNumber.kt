@@ -6,10 +6,10 @@ enum class Classification {
 fun classify(naturalNumber: Int): Classification {
     require(naturalNumber > 0)
     val sum = naturalNumber.sumOfQuotients()
-    when {
-        sum > naturalNumber -> return Classification.ABUNDANT
-        sum < naturalNumber -> return Classification.DEFICIENT
-        else -> return Classification.PERFECT
+    return when {
+        sum > naturalNumber -> Classification.ABUNDANT
+        sum < naturalNumber -> Classification.DEFICIENT
+        else -> Classification.PERFECT
     }
 }
 
