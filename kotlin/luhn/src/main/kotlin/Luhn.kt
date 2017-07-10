@@ -11,8 +11,8 @@ object Luhn {
         }
 
         return numberSequence
-                .mapIndexed { index, digit -> doubleEverySecond(index + 1, digit) }
-                .map { subtractWhenDoubleDigit(it) }
+                .mapIndexed(this::doubleEverySecondOne)
+                .map(this::toSingleDigit)
                 .sum()
                 .isDivisibleBy(10)
     }
@@ -22,13 +22,12 @@ object Luhn {
 
     private fun List<Int>.containsInvalidCharacters() = any { it !in 0..9 }
 
-    private fun doubleEverySecond(index: Int, digit: Int) =
-            if (index.isDivisibleBy(2)) digit * 2 else digit
+    private fun doubleEverySecondOne(index: Int, digit: Int) =
+            if ((index + 1).isDivisibleBy(2)) digit * 2 else digit
+
+    private fun toSingleDigit(it: Int) = if (it > 9) it - 9 else it
 
     private fun Int.isDivisibleBy(divisor: Int) = (this) % divisor == 0
-
-    private fun subtractWhenDoubleDigit(it: Int) =
-            if (it > 9) it - 9 else it
 
     private fun Char.parseCharacter() = toInt() - '0'.toInt()
 }
