@@ -1,7 +1,7 @@
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
-class LuhnTest {
+class `Luhn Checksum` {
 
     @Test
     fun `single digit strings cannot be valid`() {
