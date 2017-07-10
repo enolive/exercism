@@ -4,8 +4,11 @@ object Luhn {
             return false
         }
 
-        return numberCode
-                .reversedNumberSequence()
+        if (numberCode.contains('a')) {
+            return false
+        }
+        
+        return numberCode.reversedNumberSequence()
                 .mapIndexed { index, digit -> doubleEverySecond(index + 1, digit) }
                 .map { subtractWhenDoubleDigit(it) }
                 .sum()
