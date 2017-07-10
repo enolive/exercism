@@ -44,7 +44,6 @@ class LuhnTest {
         assertFalse(Luhn.isValid("8273 1232 7352 0569"))
     }
 
-    @Ignore
     @Test
     fun validStringsWithNonDigitIncludedBecomeInvalid() {
         assertFalse(Luhn.isValid("055a 444 285"))
