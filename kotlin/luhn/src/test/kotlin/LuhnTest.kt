@@ -11,7 +11,6 @@ class LuhnTest {
         assertFalse(Luhn.isValid("1"))
     }
 
-    @Ignore
     @Test
     fun singleZeroIsInvalid() {
         assertFalse(Luhn.isValid("0"))
