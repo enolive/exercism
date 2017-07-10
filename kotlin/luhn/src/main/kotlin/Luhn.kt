@@ -13,17 +13,17 @@ object Luhn {
 
     private fun checkSumOf(code: String): Int 
             = code.reversedNumberSequence()
-            .mapIndexed(this::doubleEverySecondOne)
-            .map(this::toSingleDigit)
+            .mapIndexed(this::double)
+            .map(this::rollOver)
             .sum()
 
     private fun String.reversedNumberSequence() =
             reversed().map { "$it".toInt() }
 
-    private fun doubleEverySecondOne(index: Int, digit: Int) =
+    private fun double(index: Int, digit: Int) =
             if ((index + 1).isDivisibleBy(2)) digit * 2 else digit
 
-    private fun toSingleDigit(it: Int) = if (it > 9) it - 9 else it
+    private fun rollOver(it: Int) = if (it > 9) it - 9 else it
 
     private fun Int.isDivisibleBy(divisor: Int) = (this) % divisor == 0
 
