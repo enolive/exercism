@@ -1,5 +1,6 @@
 import org.junit.Test
 import org.junit.Ignore
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -22,7 +23,6 @@ class LuhnTest {
         assertTrue(Luhn.isValid("950"))
     }
 
-    @Ignore
     @Test
     fun simpleValidSINThatBecomesInvalidIfReversed() {
         assertTrue(Luhn.isValid("59"))
