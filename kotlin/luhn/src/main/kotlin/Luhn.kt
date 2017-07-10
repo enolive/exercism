@@ -4,11 +4,12 @@ object Luhn {
             return false
         }
 
-        if (numberCode.contains('a')) {
+        val numberSequence = numberCode.reversedNumberSequence()
+        if (numberSequence.any { it !in 0..9 }) {
             return false
         }
         
-        return numberCode.reversedNumberSequence()
+        return numberSequence
                 .mapIndexed { index, digit -> doubleEverySecond(index + 1, digit) }
                 .map { subtractWhenDoubleDigit(it) }
                 .sum()
