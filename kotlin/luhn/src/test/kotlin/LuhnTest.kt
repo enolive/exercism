@@ -29,7 +29,6 @@ class LuhnTest {
         assertFalse(Luhn.isValid("95"))
     }
 
-    @Ignore
     @Test
     fun validCanadianSIN() {
         assertTrue(Luhn.isValid("055 444 285"))

@@ -5,6 +5,7 @@ object Luhn {
         }
 
         return numberCode
+                .filter { !it.isWhitespace() }
                 .reversedNumberSequence()
                 .mapIndexed { index, digit -> doubleEverySecond(index + 1, digit) }
                 .map { subtractWhenDoubleDigit(it) }
