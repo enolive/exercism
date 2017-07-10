@@ -20,7 +20,8 @@ class ScrabbleScoreTest(val input: String, val expectedOutput: Int) {
                 arrayOf("street", 6),
                 arrayOf("quirky", 22),
                 arrayOf("OXYPHENBUTAZONE", 41),
-                arrayOf("alacrity", 13)
+                arrayOf("alacrity", 13),
+                arrayOf("preview", 15)
         )
     }
 
