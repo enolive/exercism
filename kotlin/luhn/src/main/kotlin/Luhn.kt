@@ -9,11 +9,7 @@ object Luhn {
     }
 
     private fun String.hasLexicalErrors()
-            = hasWrongSize() || containsInvalidCharacters()
-
-    private fun String.hasWrongSize() = length < 2
-
-    private fun String.containsInvalidCharacters() = any { it !in '0'..'9' }
+            = length < 2 || any { it !in '0'..'9' }
 
     private fun checkSumOf(code: String): Int 
             = code.reversedNumberSequence()
@@ -22,7 +18,7 @@ object Luhn {
             .sum()
 
     private fun String.reversedNumberSequence() =
-            reversed().map { it.parseCharacter() }
+            reversed().map { "$it".toInt() }
 
     private fun doubleEverySecondOne(index: Int, digit: Int) =
             if ((index + 1).isDivisibleBy(2)) digit * 2 else digit
@@ -31,5 +27,4 @@ object Luhn {
 
     private fun Int.isDivisibleBy(divisor: Int) = (this) % divisor == 0
 
-    private fun Char.parseCharacter() = "$this".toInt()
 }
