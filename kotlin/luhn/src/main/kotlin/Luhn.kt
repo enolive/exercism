@@ -1,14 +1,15 @@
 object Luhn {
     fun isValid(numberCode: String): Boolean {
-        if (numberCode.length < 2) {
+        val filteredCode = numberCode.filter { !it.isWhitespace() }
+        if (filteredCode.length < 2) {
             return false
         }
 
-        val numberSequence = numberCode.reversedNumberSequence()
-        if (numberSequence.any { it !in 0..9 }) {
+        val numberSequence = filteredCode.reversedNumberSequence()
+        if (numberSequence.containsInvalidCharacters()) {
             return false
         }
-        
+
         return numberSequence
                 .mapIndexed { index, digit -> doubleEverySecond(index + 1, digit) }
                 .map { subtractWhenDoubleDigit(it) }
@@ -17,9 +18,9 @@ object Luhn {
     }
 
     private fun String.reversedNumberSequence() =
-            filter { !it.isWhitespace() }
-                    .reversed()
-                    .map { it.parseCharacter() }
+            reversed().map { it.parseCharacter() }
+
+    private fun List<Int>.containsInvalidCharacters() = any { it !in 0..9 }
 
     private fun doubleEverySecond(index: Int, digit: Int) =
             if (index.isDivisibleBy(2)) digit * 2 else digit
