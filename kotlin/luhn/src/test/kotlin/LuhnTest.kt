@@ -39,7 +39,6 @@ class LuhnTest {
         assertFalse(Luhn.isValid("055 444 286"))
     }
 
-    @Ignore
     @Test
     fun invalidCreditCard() {
         assertFalse(Luhn.isValid("8273 1232 7352 0569"))
