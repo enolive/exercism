@@ -16,7 +16,6 @@ class LuhnTest {
         assertFalse(Luhn.isValid("0"))
     }
 
-    @Ignore
     @Test
     fun simpleValidSINThatRemainsValidIfReversed() {
         assertTrue(Luhn.isValid("059"))
