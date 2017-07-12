@@ -14,7 +14,9 @@ class Series(private val input: String) {
     private fun multiply() = { a: Long, b: Long -> a * b }
 
     private fun numberSequence(start: Int, length: Int) =
-            sequenceOf(input[start], input[start + 1])
-                    .map { it.toString().toLong() }
+            input.indices
+                    .filter { it >= start }
+                    .take(length)
+                    .map { input[it].toString().toLong() }
 
 }
