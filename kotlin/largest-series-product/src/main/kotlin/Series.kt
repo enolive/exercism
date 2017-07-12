@@ -8,7 +8,7 @@ class Series(private val input: String) {
                 .filter { it <= input.length - span }
                 .map { numberSequence(it, span).reduce(multiply()) }
                 .max()
-        return max!!
+        return max ?: 1
     }
 
     private fun multiply() = { a: Long, b: Long -> a * b }
