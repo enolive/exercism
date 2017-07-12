@@ -10,7 +10,6 @@ class SeriesInvalidInputTest {
         Series("1234a5")
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException::class)
     fun negativeSpan() {
         Series("12345").getLargestProduct(-1)
