@@ -69,9 +69,8 @@ class TriangleTest {
         assertThatThrownBy { Triangle(1, 3, 1) }.isInstanceOf(expectedException)
     }
 
-    @Ignore
     @Test
-    fun isoscelesSidesMayBeFloatingPoint() {
+    fun `isosceles sides may be floating point`() {
         assertThat(Triangle(0.5, 0.4, 0.5).isIsosceles).isTrue()
     }
 
