@@ -46,28 +46,27 @@ class TriangleTest {
         assertThat(Triangle(4, 4, 3).isIsosceles).isTrue()
     }
 
-    @Ignore
     @Test
-    fun isoscelesIfFirstAndLastSidesAreEqual() {
+    fun `isosceles if first and last sides are equal`() {
         assertThat(Triangle(4, 3, 4).isIsosceles).isTrue()
     }
 
-    @Ignore
     @Test
-    fun equilateralIsAlsoIsosceles() {
+    fun `equilateral is also isosceles`() {
         assertThat(Triangle(4, 4, 4).isIsosceles).isTrue()
     }
 
-    @Ignore
     @Test
-    fun notIsoscelesIfNoSidesAreEqual() {
+    fun `not isosceles if no sides are equal`() {
         assertThat(Triangle(2, 3, 4).isIsosceles).isFalse()
     }
 
-    @Ignore
-    @Test(expected = IllegalArgumentException::class)
-    fun sidesViolateTriangleInequalitySoNotIsosceles() {
-        assertThat(Triangle(1, 1, 3).isIsosceles).isFalse()
+    @Test
+    fun `sides violate triangle inequality so not isosceles`() {
+        val expectedException = IllegalArgumentException::class.javaObjectType
+        assertThatThrownBy { Triangle(1, 1, 3) }.isInstanceOf(expectedException)
+        assertThatThrownBy { Triangle(3, 1, 1) }.isInstanceOf(expectedException)
+        assertThatThrownBy { Triangle(1, 3, 1) }.isInstanceOf(expectedException)
     }
 
     @Ignore

@@ -5,6 +5,7 @@ class Triangle {
 
     constructor(first: Double, second: Double, third: Double) {
         require(first > 0.0 && second > 0.0 && third > 0.0)
+        require(first + second >= third && second + third >= first && first + third >= second)
         this.first = first
         this.second = second
         this.third = third
@@ -18,6 +19,9 @@ class Triangle {
             return (first == second && first == third)
         }
     val isScalene: Boolean = false
-    val isIsosceles: Boolean = true
+    val isIsosceles: Boolean
+        get() {
+            return !(first != second && first != third && second != third)
+        }
 
 }
