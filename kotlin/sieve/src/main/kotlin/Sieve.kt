@@ -1,10 +1,17 @@
+
 object Sieve {
+    private val start = 2
+
     fun primesUpTo(limit: Int): List<Int> 
-            = (2..limit).filter { it.isPrime() }
+            = (start..limit).filter { it.isPrime() }
 
     private fun Int.isPrime(): Boolean =
-            (2..Math.sqrt(this.toDouble()).toInt())
-                    .none { this % it == 0 }
+            (start..highestPossiblePrime())
+                    .none { isDivisibleBy(it) }
+
+    private fun Int.highestPossiblePrime() = Math.sqrt(this.toDouble()).toInt()
+
+    private fun Int.isDivisibleBy(it: Int) = this % it == 0
 }
 
 
