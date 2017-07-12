@@ -6,18 +6,17 @@ import kotlin.test.assertTrue
 class TriangleTest {
 
     @Test
-    fun equilateralIfAllSidesAreEqual() {
+    fun `equilateral if all sides are equal`() {
         assertTrue(Triangle(2, 2, 2).isEquilateral)
     }
 
     @Test
-    fun notEquilateralIfAnySideIsUnequal() {
+    fun `not equilateral if any side is unequal`() {
         assertFalse(Triangle(2, 3, 2).isEquilateral)
         assertFalse(Triangle(2, 2, 3).isEquilateral)
         assertFalse(Triangle(3, 2, 2).isEquilateral)
     }
 
-    @Ignore
     @Test
     fun notEquilateralIfNoSidesAreEqual() {
         assertFalse(Triangle(5, 4, 6).isEquilateral)
