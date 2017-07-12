@@ -5,13 +5,16 @@ class Series(private val input: String) {
 
     fun getLargestProduct(span: Int): Long {
         val max = input.indices
-                .filter { it < input.length - 1 }
-                .map { sequenceOf(it) }
-                .map { it.reduce { a, b -> a * b} }
+                .filter { it <= input.length - 2 }
+                .map { numberSequence(it, 2).reduce(multiply()) }
                 .max()
         return max!!
     }
 
-    private fun sequenceOf(it: Int) = sequenceOf(input[it], input[it + 1]).map { it.toString().toLong() }
+    private fun multiply() = { a: Long, b: Long -> a * b }
+
+    private fun numberSequence(start: Int, length: Int) =
+            sequenceOf(input[start], input[start + 1])
+                    .map { it.toString().toLong() }
 
 }
