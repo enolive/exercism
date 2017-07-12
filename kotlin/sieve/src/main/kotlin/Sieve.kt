@@ -1,13 +1,16 @@
 object Sieve {
     fun primesUpTo(limit: Int): List<Int> {
-        val candidates = (2..limit).map { Candidate(it) }
-        candidates.forEach { first ->
-            (first.number.times(2) until limit + 1 step first.number)
-                    .map { number -> candidates.single { number == it.number } }
-                    .forEach { it.notPrime() }
+        val candidates = (2..limit)
+                .map { it to Candidate(it) }
+                .toMap()
+        candidates.keys.forEach { first ->
+            (first * 2 until limit + 1 step first)
+                    .map { candidates.getValue(it) }
+                    .forEach { it.markAsNotPrime() }
         }
         
-        return candidates.filter { it.isPrime }
+        return candidates.values
+                .filter { it.isPrime }
                 .map { it.number }
     }
 
@@ -22,7 +25,7 @@ class Candidate(val number: Int) {
             _isPrime = value
         }
 
-    fun notPrime() {
+    fun markAsNotPrime() {
         isPrime = false
     }
 
