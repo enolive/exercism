@@ -1,24 +1,21 @@
-class Series(private val input: String) {
-    init {
-        require(input.all { it.isDigit() })
+class Series(input: String) {
+    private val digits = input.map {
+        require(it.isDigit())
+        it.toString().toLong()
     }
 
     fun getLargestProduct(span: Int): Long {
         require(span >= 0)
-        require(span <= input.length)
-        val max = input.indices
-                .filter { it <= input.length - span }
-                .map { numberSequence(it, span).reduce(multiply()) }
+        require(span <= digits.size)
+        val max = (1..digits.size - span)
+                .map { numberSequence(it, span).reduce(product()) }
                 .max()
         return max ?: 1
     }
 
-    private fun multiply() = { a: Long, b: Long -> a * b }
+    private fun product() = { a: Long, b: Long -> a * b }
 
     private fun numberSequence(start: Int, length: Int) =
-            input.indices
-                    .filter { it >= start }
-                    .take(length)
-                    .map { input[it].toString().toLong() }
+            digits.slice(start until start + length)
 
 }
