@@ -74,15 +74,13 @@ class TriangleTest {
         assertThat(Triangle(0.5, 0.4, 0.5).isIsosceles).isTrue()
     }
 
-    @Ignore
     @Test
-    fun scaleneIfNoSidesAreEqual() {
+    fun `scalene if no sides are equal`() {
         assertThat(Triangle(5, 4, 6).isScalene).isTrue()
     }
 
-    @Ignore
     @Test
-    fun notScaleneIfAllSidesAreEqual() {
+    fun `not scalene if all sides are equal`() {
         assertThat(Triangle(4, 4, 4).isScalene).isFalse()
     }
 
