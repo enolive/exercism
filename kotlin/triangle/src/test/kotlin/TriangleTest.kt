@@ -18,7 +18,7 @@ class TriangleTest {
     }
 
     @Test
-    fun notEquilateralIfNoSidesAreEqual() {
+    fun `not equilateral if no sides are equal`() {
         assertFalse(Triangle(5, 4, 6).isEquilateral)
     }
 
