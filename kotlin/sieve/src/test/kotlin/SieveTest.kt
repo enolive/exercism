@@ -11,7 +11,6 @@ class SieveTest {
         assertEquals(expectedOutput, Sieve.primesUpTo(2))
     }
 
-    @Ignore
     @Test
     fun findPrimesUpTo10() {
         val expectedOutput = listOf(2, 3, 5, 7)
