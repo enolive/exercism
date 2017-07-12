@@ -6,24 +6,22 @@ class SeriesInvalidInputTest {
 
 
     @Test(expected = IllegalArgumentException::class)
-    fun nonDigitCharacters() {
+    fun `non digit characters`() {
         Series("1234a5")
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun negativeSpan() {
+    fun `negative span`() {
         Series("12345").getLargestProduct(-1)
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException::class)
-    fun spanLargerThanStringSize() {
+    fun `span larger than string size`() {
         Series("123").getLargestProduct(4)
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException::class)
-    fun spanLargerThanStringSizeUsingEmptyString() {
+    fun `span larger than string size using empty string`() {
         Series("").getLargestProduct(1)
     }
 }
