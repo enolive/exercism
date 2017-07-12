@@ -17,7 +17,7 @@ class Triangle(private val first: Double, private val second: Double, private va
             return (first == second && first == third)
         }
     
-    val isScalene: Boolean = !isEquilateral
+    val isScalene: Boolean = !isIsosceles
 
     val isIsosceles: Boolean
         get() {

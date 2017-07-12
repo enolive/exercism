@@ -84,16 +84,14 @@ class TriangleTest {
         assertThat(Triangle(4, 4, 4).isScalene).isFalse()
     }
 
-    @Ignore
     @Test
-    fun notScaleneIfTwoSidesAreEqual() {
+    fun `not scalene if two sides are equal`() {
         assertThat(Triangle(4, 4, 3).isScalene).isFalse()
     }
 
-    @Ignore
-    @Test(expected = IllegalArgumentException::class)
+    @Test
     fun sidesViolateTriangleInequalitySoNotScalene() {
-        assertThat(Triangle(7, 3, 2).isScalene).isFalse()
+        assertThatThrownBy { Triangle(7, 3, 2) }.isInstanceOf(IllegalArgumentException::class.javaObjectType)
     }
 
     @Ignore
