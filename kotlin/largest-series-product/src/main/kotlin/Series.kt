@@ -5,8 +5,8 @@ class Series(private val input: String) {
 
     fun getLargestProduct(span: Int): Long {
         val max = input.indices
-                .filter { it <= input.length - 2 }
-                .map { numberSequence(it, 2).reduce(multiply()) }
+                .filter { it <= input.length - span }
+                .map { numberSequence(it, span).reduce(multiply()) }
                 .max()
         return max!!
     }
