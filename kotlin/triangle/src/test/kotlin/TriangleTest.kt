@@ -1,3 +1,4 @@
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.Ignore
 import org.junit.Test
 import kotlin.test.assertFalse
@@ -22,10 +23,13 @@ class TriangleTest {
         assertFalse(Triangle(5, 4, 6).isEquilateral)
     }
 
-    @Ignore
-    @Test(expected = IllegalArgumentException::class)
-    fun allZeroSidesAreIllegalSoNotEquilateral() {
-        assertFalse(Triangle(0, 0, 0).isEquilateral)
+    @Test
+    fun `all zero sides are illegal so not equilateral`() {
+        val expectedType = IllegalArgumentException::class.javaObjectType
+        assertThatThrownBy({ Triangle(1, 1, 0) }).isInstanceOf(expectedType)
+        assertThatThrownBy({ Triangle(1, 0, 0) }).isInstanceOf(expectedType)
+        assertThatThrownBy({ Triangle(0, 0, 0) }).isInstanceOf(expectedType)
+        assertThatThrownBy({ Triangle(-1, -1, -1) }).isInstanceOf(expectedType)
     }
 
     @Ignore
