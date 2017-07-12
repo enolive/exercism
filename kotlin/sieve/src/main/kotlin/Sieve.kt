@@ -1,18 +1,10 @@
 object Sieve {
-    fun primesUpTo(limit: Int): List<Int> {
-        val candidates = (2..limit)
-                .map { it to Candidate(it) }
-                .toMap()
-        candidates.keys.forEach { first ->
-            (first * 2 until limit + 1 step first)
-                    .map { candidates.getValue(it) }
-                    .forEach { it.markAsNotPrime() }
-        }
-        
-        return candidates.values
-                .filter { it.isPrime }
-                .map { it.number }
-    }
+    fun primesUpTo(limit: Int): List<Int> 
+            = (2..limit).filter { it.isPrime() }
 
+    private fun Int.isPrime(): Boolean =
+            (2..Math.sqrt(this.toDouble()).toInt())
+                    .none { this % it == 0 }
 }
+
 
