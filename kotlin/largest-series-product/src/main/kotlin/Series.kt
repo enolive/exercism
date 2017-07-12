@@ -8,14 +8,13 @@ class Series(input: String) {
         require(span >= 0)
         require(span <= digits.size)
         val max = (1..digits.size - span)
-                .map { numberSequence(it, span).reduce(product()) }
+                .map { product(it, span) }
                 .max()
         return max ?: 1
     }
 
-    private fun product() = { a: Long, b: Long -> a * b }
-
-    private fun numberSequence(start: Int, length: Int) =
-            digits.slice(start until start + length)
+    private fun product(index: Int, length: Int) =
+            digits.slice(index until index + length)
+                    .reduce { product, number -> product * number }
 
 }
