@@ -18,6 +18,6 @@ class Triangle {
             return (first == second && first == third)
         }
     val isScalene: Boolean = false
-    val isIsosceles: Boolean = false
+    val isIsosceles: Boolean = true
 
 }
