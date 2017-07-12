@@ -32,7 +32,6 @@ class TriangleTest {
         assertThatThrownBy({ Triangle(-1, -1, -1) }).isInstanceOf(expectedType)
     }
 
-    @Ignore
     @Test
     fun equilateralSidesMayBeFloatingPoint() {
         assertTrue(Triangle(0.5, 0.5, 0.5).isEquilateral)
