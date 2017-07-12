@@ -5,14 +5,14 @@ import kotlin.test.assertEquals
 class SieveTest {
 
     @Test
-    fun findFirstPrime() {
+    fun `find first prime`() {
         val expectedOutput = listOf(2)
 
         assertEquals(expectedOutput, Sieve.primesUpTo(2))
     }
 
     @Test
-    fun findPrimesUpTo10() {
+    fun `find primes up to 10`() {
         val expectedOutput = listOf(2, 3, 5, 7)
 
         assertEquals(expectedOutput, Sieve.primesUpTo(10))
