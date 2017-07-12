@@ -2,6 +2,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.Ignore
 import org.junit.Test
+import kotlin.reflect.KClass
 
 class TriangleTest {
 
@@ -24,11 +25,11 @@ class TriangleTest {
 
     @Test
     fun `all zero sides are illegal so not equilateral`() {
-        val expectedType = IllegalArgumentException::class.javaObjectType
-        assertThatThrownBy({ Triangle(1, 1, 0) }).isInstanceOf(expectedType)
-        assertThatThrownBy({ Triangle(1, 0, 0) }).isInstanceOf(expectedType)
-        assertThatThrownBy({ Triangle(0, 0, 0) }).isInstanceOf(expectedType)
-        assertThatThrownBy({ Triangle(-1, -1, -1) }).isInstanceOf(expectedType)
+        val expectedException = type(IllegalArgumentException::class)
+        assertThatThrownBy({ Triangle(1, 1, 0) }).isInstanceOf(expectedException)
+        assertThatThrownBy({ Triangle(1, 0, 0) }).isInstanceOf(expectedException)
+        assertThatThrownBy({ Triangle(0, 0, 0) }).isInstanceOf(expectedException)
+        assertThatThrownBy({ Triangle(-1, -1, -1) }).isInstanceOf(expectedException)
     }
 
     @Test
@@ -63,7 +64,7 @@ class TriangleTest {
 
     @Test
     fun `sides violate triangle inequality so not isosceles`() {
-        val expectedException = IllegalArgumentException::class.javaObjectType
+        val expectedException = type(IllegalArgumentException::class)
         assertThatThrownBy { Triangle(1, 1, 3) }.isInstanceOf(expectedException)
         assertThatThrownBy { Triangle(3, 1, 1) }.isInstanceOf(expectedException)
         assertThatThrownBy { Triangle(1, 3, 1) }.isInstanceOf(expectedException)
@@ -90,15 +91,16 @@ class TriangleTest {
     }
 
     @Test
-    fun sidesViolateTriangleInequalitySoNotScalene() {
-        assertThatThrownBy { Triangle(7, 3, 2) }.isInstanceOf(IllegalArgumentException::class.javaObjectType)
+    fun `sides violate triangle inequality so not scalene`() {
+        assertThatThrownBy { Triangle(7, 3, 2) }.isInstanceOf(type(IllegalArgumentException::class))
     }
 
-    @Ignore
     @Test
-    fun scaleneSidesMayBeFloatingPoint() {
+    fun `scalene sides may be floating point`() {
         assertThat(Triangle(0.5, 0.4, 0.6).isScalene).isTrue()
     }
+
+    private fun type(kClass: KClass<IllegalArgumentException>) = kClass.javaObjectType
 
 }
 
