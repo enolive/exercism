@@ -10,7 +10,6 @@ class TriangleTest {
         assertTrue(Triangle(2, 2, 2).isEquilateral)
     }
 
-    @Ignore
     @Test
     fun notEquilateralIfAnySideIsUnequal() {
         assertFalse(Triangle(2, 3, 2).isEquilateral)
@@ -113,7 +112,13 @@ class Triangle(private val first: Double, private val second: Double, private va
             : this(first.toDouble(), second.toDouble(), third.toDouble())
 
     val isEquilateral: Boolean
-        get() = true
+        get() {
+            if (first != second) {
+                return false
+            }
+            
+            return true
+        }
     val isScalene: Boolean = false
     val isIsosceles: Boolean = false
 
