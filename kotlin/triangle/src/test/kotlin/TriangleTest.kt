@@ -1,10 +1,9 @@
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.Ignore
 import org.junit.Test
 import kotlin.reflect.KClass
 
-class TriangleTest {
+class `Triangle Test` {
 
     @Test
     fun `equilateral if all sides are equal`() {
