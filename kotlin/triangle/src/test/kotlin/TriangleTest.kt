@@ -32,18 +32,17 @@ class TriangleTest {
     }
 
     @Test
-    fun equilateralSidesMayBeFloatingPoint() {
+    fun `equilateral sides may be floating point`() {
         assertThat(Triangle(0.5, 0.5, 0.5).isEquilateral).isTrue()
     }
 
     @Test
-    fun isoscelesIfLastTwoSidesAreEqual() {
+    fun `isosceles if last two sides are equal`() {
         assertThat(Triangle(3, 4, 4).isIsosceles).isTrue()
     }
 
-    @Ignore
     @Test
-    fun isoscelesIfFirstTwoSidesAreEqual() {
+    fun `isosceles if first two sides are equal`() {
         assertThat(Triangle(4, 4, 3).isIsosceles).isTrue()
     }
 
