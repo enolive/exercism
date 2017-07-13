@@ -4,7 +4,7 @@ import kotlin.test.assertEquals
 /*
  * version: 1.1.0
  */
-class HandshakeCalculatorTest {
+class `Calculate Handshake` {
 
     @Test
     fun `input 1 yields a wink`() {
