@@ -49,7 +49,6 @@ class BoardTest {
         assertEquals(BigInteger("9223372036854775808"), Board.getGrainCountForSquare(64))
     }
 
-    @Ignore
     @Test
     fun testSquare0IsInvalid() {
         expectedException.expect(IllegalArgumentException::class.java)
