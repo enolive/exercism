@@ -14,7 +14,7 @@ class CollatzCalculatorTest {
     var expectedException: ExpectedException = ExpectedException.none()
 
     @Test
-    fun testZeroStepsRequiredWhenStartingFrom1() {
+    fun `zero steps required when starting from`() {
         assertEquals(0, CollatzCalculator.computeStepCount(1))
     }
 
@@ -57,9 +57,3 @@ class CollatzCalculatorTest {
 }
 
 
-object CollatzCalculator {
-    fun computeStepCount(i: Int) : Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-}
