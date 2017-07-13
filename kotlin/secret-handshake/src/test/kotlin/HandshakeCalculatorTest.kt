@@ -14,9 +14,8 @@ class HandshakeCalculatorTest {
             HandshakeCalculator.calculateHandshake(1))
     }
 
-    @Ignore
     @Test
-    fun testThatInput2YieldsADoubleBlink() {
+    fun `input 2 yields a double blink`() {
         assertEquals(
             listOf(Signal.DOUBLE_BLINK),
             HandshakeCalculator.calculateHandshake(2))
