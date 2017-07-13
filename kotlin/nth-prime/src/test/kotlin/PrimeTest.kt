@@ -7,18 +7,17 @@ class PrimeTest {
 
 
     @Test
-    fun firstPrime() {
+    fun `first prime`() {
         assertEquals(2, Prime.nth(1))
     }
 
     @Test
-    fun secondPrime() {
+    fun `second prime`() {
         assertEquals(3, Prime.nth(2))
     }
 
-    @Ignore
     @Test
-    fun sixthPrime() {
+    fun `sixth prime`() {
         assertEquals(13, Prime.nth(6))
     }
 
