@@ -11,6 +11,6 @@ object Board {
     fun getTotalGrainCount(): BigInteger {
         return (1..64)
                 .map { getGrainCountForSquare(it) }
-                .reduce { sum, number -> sum.plus(number )}
+                .reduce { sum, number -> sum + number }
     }
 }
