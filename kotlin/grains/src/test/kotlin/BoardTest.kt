@@ -15,7 +15,7 @@ class BoardTest {
     var expectedException: ExpectedException = ExpectedException.none()
 
     @Test
-    fun testSquare1ContainsCorrectNumberOfGrains() {
+    fun `square 1 contains correct number of grains`() {
         assertEquals(BigInteger.ONE, Board.getGrainCountForSquare(1))
     }
 
