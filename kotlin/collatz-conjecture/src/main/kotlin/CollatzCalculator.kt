@@ -1,5 +1,9 @@
 object CollatzCalculator {
     tailrec fun computeStepCount(i: Int, count: Int = 0): Int {
+        require(i > 0) {
+            "Only natural numbers are allowed"
+        }
+        
         if (i == 1) {
             return count
         }

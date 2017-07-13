@@ -1,4 +1,3 @@
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
@@ -28,24 +27,21 @@ class CollatzCalculatorTest {
         assertEquals(9, CollatzCalculator.computeStepCount(12))
     }
 
-    @Ignore
     @Test
-    fun testAVeryLargeInput() {
+    fun `a very large input`() {
         assertEquals(152, CollatzCalculator.computeStepCount(1000000))
     }
 
-    @Ignore
     @Test
-    fun testZeroIsConsideredInvalidInput() {
+    fun `zero is considered invalid input`() {
         expectedException.expect(IllegalArgumentException::class.java)
         expectedException.expectMessage("Only natural numbers are allowed")
 
         CollatzCalculator.computeStepCount(0)
     }
 
-    @Ignore
     @Test
-    fun testNegativeIntegerIsConsideredInvalidInput() {
+    fun `negative integer is considered invalid input`() {
         expectedException.expect(IllegalArgumentException::class.java)
         expectedException.expectMessage("Only natural numbers are allowed")
 
