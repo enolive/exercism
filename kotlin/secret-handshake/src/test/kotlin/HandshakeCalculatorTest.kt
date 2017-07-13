@@ -56,9 +56,8 @@ class HandshakeCalculatorTest {
             HandshakeCalculator.calculateHandshake(24))
     }
 
-    @Ignore
     @Test
-    fun testReversingNoActionsYieldsNoActions() {
+    fun `reversing no actions yields no actions`() {
         assertEquals(
             emptyList(),
             HandshakeCalculator.calculateHandshake(16))
