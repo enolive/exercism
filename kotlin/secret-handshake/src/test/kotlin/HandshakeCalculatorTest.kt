@@ -49,9 +49,8 @@ class HandshakeCalculatorTest {
             HandshakeCalculator.calculateHandshake(19))
     }
 
-    @Ignore
     @Test
-    fun testReversingASingleActionYieldsTheSameAction() {
+    fun `a single action yields the same action`() {
         assertEquals(
             listOf(Signal.JUMP),
             HandshakeCalculator.calculateHandshake(24))
