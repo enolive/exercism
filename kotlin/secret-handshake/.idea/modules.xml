@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-secret-handshake.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-secret-handshake.iml" />
       <module fileurl="file://$PROJECT_DIR$/secret-handshake.iml" filepath="$PROJECT_DIR$/secret-handshake.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/secret-handshake_main.iml" filepath="$PROJECT_DIR$/.idea/modules/secret-handshake_main.iml" group="secret-handshake" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/secret-handshake_test.iml" filepath="$PROJECT_DIR$/.idea/modules/secret-handshake_test.iml" group="secret-handshake" />
     </modules>
   </component>
 </project>
