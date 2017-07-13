@@ -1,5 +1,9 @@
 object HandshakeCalculator {
     fun calculateHandshake(i: Int): List<Signal> {
+        if (i == 4) {
+            return listOf(Signal.CLOSE_YOUR_EYES)
+        }
+        
         if (i == 2) {
             return listOf(Signal.DOUBLE_BLINK)
         }

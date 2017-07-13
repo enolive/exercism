@@ -21,9 +21,8 @@ class HandshakeCalculatorTest {
             HandshakeCalculator.calculateHandshake(2))
     }
 
-    @Ignore
     @Test
-    fun testThatInput4YieldsACloseYourEyes() {
+    fun `input 4 yields a close your eyes`() {
         assertEquals(
             listOf(Signal.CLOSE_YOUR_EYES),
             HandshakeCalculator.calculateHandshake(4))
