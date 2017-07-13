@@ -1,18 +1,23 @@
 object HandshakeCalculator {
     fun calculateHandshake(i: Int): List<Signal> {
-        if (i == 8) {
-            return listOf(Signal.JUMP)
+        val list = mutableListOf<Signal>()
+        if (i.and(1) != 0) {
+            list.add(Signal.WINK)
+        }
+        
+        if (i.and(2) != 0) {
+            list.add(Signal.DOUBLE_BLINK)
+        }
+        
+        if (i.and(4) != 0) {
+            list.add(Signal.CLOSE_YOUR_EYES)
         }
 
-        if (i == 4) {
-            return listOf(Signal.CLOSE_YOUR_EYES)
+        if (i.and(8) != 0) {
+            list.add(Signal.JUMP)
         }
         
-        if (i == 2) {
-            return listOf(Signal.DOUBLE_BLINK)
-        }
-        
-        return listOf(Signal.WINK)
+        return list
     }
 
 }
