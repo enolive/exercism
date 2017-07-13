@@ -77,9 +77,8 @@ class HandshakeCalculatorTest {
             HandshakeCalculator.calculateHandshake(31))
     }
 
-    @Ignore
     @Test
-    fun testThatInput0YieldsNoActions() {
+    fun `input 0 yields no actions`() {
         assertEquals(
             emptyList(),
             HandshakeCalculator.calculateHandshake(0))
