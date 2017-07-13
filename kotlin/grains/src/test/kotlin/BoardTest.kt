@@ -90,13 +90,3 @@ class BoardTest {
 
 }
 
-object Board {
-    fun getGrainCountForSquare(i: Int): BigInteger {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    fun getTotalGrainCount(): BigInteger {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-}
