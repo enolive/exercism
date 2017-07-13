@@ -8,11 +8,10 @@ object Prime {
         return generateSequence(2) { it + 1 }
                 .filter { it.isPrime() }
     }
-
 }
 
-private fun Int.isPrime(): Boolean {
-    return (2..upperLimit()).all { this % it != 0 }
-}
+private fun Int.isPrime() = (2..upperLimit()).all { !divisibleBy(it) }
 
 private fun Int.upperLimit() = Math.sqrt(this.toDouble()).toInt()
+
+private infix fun Int.divisibleBy(divisor: Int) = this % divisor == 0
