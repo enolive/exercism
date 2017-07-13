@@ -1,34 +1,34 @@
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.Test
-import org.junit.Ignore
-import kotlin.test.assertEquals
-import kotlin.test.fail
 
 class PrimeTest {
 
-
     @Test
     fun `first prime`() {
-        assertEquals(2, Prime.nth(1))
+        assertThat(Prime.nth(1)).isEqualTo(2)
     }
 
     @Test
     fun `second prime`() {
-        assertEquals(3, Prime.nth(2))
+        assertThat(Prime.nth(2)).isEqualTo(3)
     }
 
     @Test
     fun `sixth prime`() {
-        assertEquals(13, Prime.nth(6))
+        assertThat(Prime.nth(6)).isEqualTo(13)
     }
 
     @Test
     fun `big prime`() {
-        assertEquals(104743, Prime.nth(10001))
+        assertThat(Prime.nth(10001)).isEqualTo(104743)
     }
 
-    @Test(expected = IllegalArgumentException::class)
+    @Test
     fun `undefined prime`() {
-        Prime.nth(0)
+        val which = IllegalArgumentException::class.java
+        assertThatExceptionOfType(which).isThrownBy { Prime.nth(0) }
+        assertThatExceptionOfType(which).isThrownBy { Prime.nth(-1) }
     }
 
 }
