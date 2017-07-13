@@ -50,25 +50,23 @@ class BoardTest {
     }
 
     @Test
-    fun testSquare0IsInvalid() {
+    fun `square 0 is invalid`() {
         expectedException.expect(IllegalArgumentException::class.java)
         expectedException.expectMessage("Only integers between 1 and 64 (inclusive) are allowed")
 
         Board.getGrainCountForSquare(0)
     }
 
-    @Ignore
     @Test
-    fun testNegativeSquareIsInvalid() {
+    fun `negative square is invalid`() {
         expectedException.expect(IllegalArgumentException::class.java)
         expectedException.expectMessage("Only integers between 1 and 64 (inclusive) are allowed")
 
         Board.getGrainCountForSquare(-1)
     }
 
-    @Ignore
     @Test
-    fun testSquareGreaterThan64IsInvalid() {
+    fun `square greater than 64 is invalid`() {
         expectedException.expect(IllegalArgumentException::class.java)
         expectedException.expectMessage("Only integers between 1 and 64 (inclusive) are allowed")
 
