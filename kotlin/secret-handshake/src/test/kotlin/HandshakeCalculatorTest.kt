@@ -8,7 +8,7 @@ import kotlin.test.assertEquals
 class HandshakeCalculatorTest {
 
     @Test
-    fun testThatInput1YieldsAWink() {
+    fun `input 1 yields a wink`() {
         assertEquals(
             listOf(Signal.WINK),
             HandshakeCalculator.calculateHandshake(1))
