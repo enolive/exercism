@@ -1,10 +1,14 @@
+import org.assertj.core.api.Assertions
 import org.junit.Test
-import kotlin.test.assertEquals
 
 /*
  * version: 1.1.0
  */
 class `Calculate Handshake` {
+
+    fun assertEquals(expected: List<Signal>, actual: List<Signal>) {
+        Assertions.assertThat(actual).isEqualTo(expected)
+    }
 
     @Test
     fun `input 1 yields a wink`() {
