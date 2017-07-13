@@ -28,9 +28,8 @@ class HandshakeCalculatorTest {
             HandshakeCalculator.calculateHandshake(4))
     }
 
-    @Ignore
     @Test
-    fun testThatInput8YieldsAJump() {
+    fun `input 8 yields a jump`() {
         assertEquals(
             listOf(Signal.JUMP),
             HandshakeCalculator.calculateHandshake(8))
