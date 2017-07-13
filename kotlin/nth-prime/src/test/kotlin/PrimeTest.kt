@@ -11,7 +11,6 @@ class PrimeTest {
         assertEquals(2, Prime.nth(1))
     }
 
-    @Ignore
     @Test
     fun secondPrime() {
         assertEquals(3, Prime.nth(2))

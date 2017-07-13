@@ -1,6 +1,7 @@
 object Prime {
     fun nth(i: Int): Int {
-        return 2
+        val primes = sequenceOf(2, 3)
+        return primes.elementAt(i - 1)
     }
 
 }
