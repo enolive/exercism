@@ -20,13 +20,12 @@ class BoardTest {
     }
 
     @Test
-    fun `test square 2 contains correct number of grains`() {
+    fun `square 2 contains correct number of grains`() {
         assertEquals(BigInteger.valueOf(2), Board.getGrainCountForSquare(2))
     }
 
-    @Ignore
     @Test
-    fun testSquare3ContainsCorrectNumberOfGrains() {
+    fun `square 3 contains correct number of grains`() {
         assertEquals(BigInteger.valueOf(4), Board.getGrainCountForSquare(3))
     }
 
