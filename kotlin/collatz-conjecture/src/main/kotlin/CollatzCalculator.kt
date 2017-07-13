@@ -5,8 +5,8 @@ object CollatzCalculator {
                 return count
             }
             return computeIt(when {
-                i divisibleBy 2 -> 3 * i + 1
-                else -> i / 2
+                i.isEven() -> i / 2
+                else -> 3 * i + 1
             }, count + 1)
         }
 
@@ -16,7 +16,6 @@ object CollatzCalculator {
 
         return computeIt(i, 0)
     }
-
-    private infix fun Int.divisibleBy(i: Int) = rem(i) != 0
-
+    
+    private fun Int.isEven() = this.rem(2) == 0
 }
