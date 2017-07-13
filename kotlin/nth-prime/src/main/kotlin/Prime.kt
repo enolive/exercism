@@ -1,5 +1,6 @@
 object Prime {
     fun nth(i: Int): Int {
+        require(i != 0)
         return primes().elementAt(i - 1)
     }
 

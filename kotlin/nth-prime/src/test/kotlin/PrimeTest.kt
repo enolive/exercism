@@ -28,7 +28,7 @@ class PrimeTest {
 
     @Ignore
     @Test(expected = IllegalArgumentException::class)
-    fun undefinedPrime() {
+    fun `undefined prime`() {
         Prime.nth(0)
     }
 
