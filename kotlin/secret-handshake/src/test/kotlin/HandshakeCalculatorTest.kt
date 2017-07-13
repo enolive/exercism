@@ -70,9 +70,8 @@ class HandshakeCalculatorTest {
             HandshakeCalculator.calculateHandshake(15))
     }
 
-    @Ignore
     @Test
-    fun testInputThatYieldsAllActionsReversed() {
+    fun `input that yields all actions reversed`() {
         assertEquals(
             listOf(Signal.JUMP, Signal.CLOSE_YOUR_EYES, Signal.DOUBLE_BLINK, Signal.WINK),
             HandshakeCalculator.calculateHandshake(31))
