@@ -84,9 +84,8 @@ class HandshakeCalculatorTest {
             HandshakeCalculator.calculateHandshake(0))
     }
 
-    @Ignore
     @Test
-    fun testThatInputWithLower5BitsNotSetYieldsNoActions() {
+    fun `input with lower 5 bits not set yields no actions`() {
         assertEquals(
             emptyList(),
             HandshakeCalculator.calculateHandshake(32))
