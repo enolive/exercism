@@ -1,11 +1,11 @@
 object Prime {
     fun nth(i: Int): Int {
-        val primes = primesUpto(i)
-        return primes.elementAt(i - 1)
+        return primes().elementAt(i - 1)
     }
 
-    private fun primesUpto(i: Int): List<Int> {
-        return (2..13).filter { it.isPrime() }
+    private fun primes(): Sequence<Int> {
+        return generateSequence(2) { it + 1 }
+                .filter { it.isPrime() }
     }
 
 }

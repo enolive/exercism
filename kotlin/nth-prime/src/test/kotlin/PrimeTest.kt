@@ -21,9 +21,8 @@ class PrimeTest {
         assertEquals(13, Prime.nth(6))
     }
 
-    @Ignore
     @Test
-    fun bigPrime() {
+    fun `big prime`() {
         assertEquals(104743, Prime.nth(10001))
     }
 
