@@ -73,7 +73,6 @@ class BoardTest {
         Board.getGrainCountForSquare(65)
     }
 
-    @Ignore
     @Test
     fun testBoardContainsCorrectNumberOfGrains() {
         assertEquals(BigInteger("18446744073709551615"), Board.getTotalGrainCount())

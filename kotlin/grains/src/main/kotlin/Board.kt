@@ -9,6 +9,8 @@ object Board {
     }
 
     fun getTotalGrainCount(): BigInteger {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return (1..64)
+                .map { getGrainCountForSquare(it) }
+                .reduce { sum, number -> sum.plus(number )}
     }
 }
