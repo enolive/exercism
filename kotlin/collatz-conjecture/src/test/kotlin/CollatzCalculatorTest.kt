@@ -23,9 +23,8 @@ class CollatzCalculatorTest {
         assertEquals(4, CollatzCalculator.computeStepCount(16))
     }
 
-    @Ignore
     @Test
-    fun testCorrectNumberOfStepsWhenBothStepTypesAreNeeded() {
+    fun `correct number of steps when both step types are needed`() {
         assertEquals(9, CollatzCalculator.computeStepCount(12))
     }
 
