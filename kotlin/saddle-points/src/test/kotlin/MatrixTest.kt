@@ -82,7 +82,7 @@ class MatrixTest {
     }
 
     @Test
-    fun testCanIdentifyMultipleSaddlePoints() {
+    fun `can identify multiple saddle points`() {
         val matrix = Matrix(listOf(
                 listOf(4, 5, 4),
                 listOf(3, 5, 5),
@@ -104,9 +104,8 @@ class MatrixTest {
         assertEquals(expectedSaddlePoints, matrix.saddlePoints)
     }
 
-    @Ignore
     @Test
-    fun testCanIdentifySaddlePointInBottomRightCorner() {
+    fun `can identify saddle point in bottom right corner`() {
         val matrix = Matrix(listOf(
                 listOf(8, 7, 9),
                 listOf(6, 7, 6),
