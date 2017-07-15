@@ -44,6 +44,44 @@ class MatrixTest {
     }
 
     @Test
+    fun `matrix should have expected maximum row coordinates`() {
+        val matrix = Matrix(listOf(
+                listOf(4, 5, 4),
+                listOf(3, 5, 5),
+                listOf(1, 5, 4)
+        ))
+
+        val expectedCoordinates = setOf(
+                MatrixCoordinate(0, 1),
+                MatrixCoordinate(1, 1),
+                MatrixCoordinate(1, 2),
+                MatrixCoordinate(2, 1))
+        
+        assertEquals(expectedCoordinates,
+                matrix.maxInRow(matrix.allPoints()))
+    }
+
+    @Test
+    fun `matrix should have expected minimum column coordinates`() {
+        val matrix = Matrix(listOf(
+                listOf(4, 5, 4),
+                listOf(3, 5, 5),
+                listOf(1, 5, 4)
+        ))
+
+        val expectedCoordinates = setOf(
+                MatrixCoordinate(2, 0),
+                MatrixCoordinate(0, 1),
+                MatrixCoordinate(1, 1),
+                MatrixCoordinate(2, 1),
+                MatrixCoordinate(0, 2),
+                MatrixCoordinate(2, 2))
+        
+        assertEquals(expectedCoordinates,
+                matrix.minInColumn(matrix.allPoints()))
+    }
+
+    @Test
     fun testCanIdentifyMultipleSaddlePoints() {
         val matrix = Matrix(listOf(
                 listOf(4, 5, 4),
