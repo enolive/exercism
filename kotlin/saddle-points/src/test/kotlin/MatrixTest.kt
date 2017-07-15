@@ -58,13 +58,11 @@ class MatrixTest {
         )
 
         assertEquals(setOf(
-                MatrixCoordinate(2, 0),
-                MatrixCoordinate(0, 1), 
-                MatrixCoordinate(1, 1), 
-                MatrixCoordinate(2, 1),
-                MatrixCoordinate(0, 2),
-                MatrixCoordinate(2, 2)),
-                matrix.minInColumn(matrix.allPoints()))
+                MatrixCoordinate(0, 1),
+                MatrixCoordinate(1, 1),
+                MatrixCoordinate(1, 2),
+                MatrixCoordinate(2, 1)),
+                matrix.maxInRow(matrix.allPoints()))
         assertEquals(expectedSaddlePoints, matrix.saddlePoints)
     }
 
