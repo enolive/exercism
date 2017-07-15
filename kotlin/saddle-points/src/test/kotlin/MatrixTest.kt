@@ -43,7 +43,6 @@ class MatrixTest {
         assertEquals(expectedSaddlePoints, matrix.saddlePoints)
     }
 
-    @Ignore
     @Test
     fun testCanIdentifyMultipleSaddlePoints() {
         val matrix = Matrix(listOf(
@@ -53,11 +52,19 @@ class MatrixTest {
         ))
 
         val expectedSaddlePoints = setOf(
-            MatrixCoordinate(0, 1),
-            MatrixCoordinate(1, 1),
-            MatrixCoordinate(2, 1)
+                MatrixCoordinate(0, 1),
+                MatrixCoordinate(1, 1),
+                MatrixCoordinate(2, 1)
         )
 
+        assertEquals(setOf(
+                MatrixCoordinate(2, 0),
+                MatrixCoordinate(0, 1), 
+                MatrixCoordinate(1, 1), 
+                MatrixCoordinate(2, 1),
+                MatrixCoordinate(0, 2),
+                MatrixCoordinate(2, 2)),
+                matrix.minInColumn(matrix.allPoints()))
         assertEquals(expectedSaddlePoints, matrix.saddlePoints)
     }
 

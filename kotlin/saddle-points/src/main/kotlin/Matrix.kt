@@ -9,10 +9,17 @@ class Matrix(val points: List<List<Int>>) {
             return maxInRow(allPoints) intersect minInColumn(allPoints)
         }
 
-    fun minInColumn(allPoints: List<Pair<MatrixCoordinate, Int>>) 
-            = allPoints.groupBy { it.first.col }
-            .map { column -> column.value.minBy { it.second }!!.first }
-            .toSet()
+    fun minInColumn(allPoints: List<Pair<MatrixCoordinate, Int>>): Set<MatrixCoordinate> {
+        val columns = allPoints.groupBy { it.first.col }
+        
+        return columns
+                .map { column -> column.value.filter { it.second == minimumValueIn(column) } }
+                .flatMap { it }
+                .map { it.first }
+                .toSet()
+    }
+
+    private fun minimumValueIn(column: Map.Entry<Int, List<Pair<MatrixCoordinate, Int>>>) = column.value.minBy { it.second }!!.second
 
     fun maxInRow(allPoints: List<Pair<MatrixCoordinate, Int>>) 
             = allPoints.groupBy { it.first.row }
