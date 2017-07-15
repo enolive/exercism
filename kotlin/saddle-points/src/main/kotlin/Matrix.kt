@@ -2,13 +2,8 @@ class Matrix(val points: List<List<Int>>) {
     val saddlePoints: Set<MatrixCoordinate>
 
     init {
-        when {
-            points.all { it.isEmpty() } -> saddlePoints = emptySet()
-            else -> {
-                val allPoints = allPoints()
-                saddlePoints = maxInRow(allPoints) intersect minInColumn(allPoints)
-            }
-        }
+        val allPoints = allPoints()
+        saddlePoints = maxInRow(allPoints) intersect minInColumn(allPoints)
     }
 
     fun allPoints(): List<Pair<MatrixCoordinate, Int>> {
