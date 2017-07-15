@@ -1,4 +1,3 @@
-import org.junit.Ignore
 import org.junit.Test
 import java.util.Collections.emptySet
 import kotlin.test.assertEquals
@@ -56,7 +55,7 @@ class MatrixTest {
                 MatrixCoordinate(1, 1),
                 MatrixCoordinate(1, 2),
                 MatrixCoordinate(2, 1))
-        
+
         assertEquals(expectedCoordinates,
                 matrix.maxInRow(matrix.allPoints()))
     }
@@ -76,7 +75,7 @@ class MatrixTest {
                 MatrixCoordinate(2, 1),
                 MatrixCoordinate(0, 2),
                 MatrixCoordinate(2, 2))
-        
+
         assertEquals(expectedCoordinates,
                 matrix.minInColumn(matrix.allPoints()))
     }
