@@ -30,9 +30,8 @@ class MatrixTest {
         assertEquals(expectedSaddlePoints, matrix.saddlePoints)
     }
 
-    @Ignore
     @Test
-    fun testCanIdentifyLackOfSaddlePointsWhenThereAreNone() {
+    fun `can identify lack of saddle points when there are none`() {
         val matrix = Matrix(listOf(
                 listOf(1, 2, 3),
                 listOf(3, 1, 2),
