@@ -21,22 +21,19 @@ class Matrix(val points: List<List<Int>>) {
 
     fun minInColumn(allPoints: List<Pair<MatrixCoordinate, Int>>): Set<MatrixCoordinate> {
         val columns = allPoints.groupBy { it.first.col }
-        return columns
-                .map { column -> Pair(column, minimumValueIn(column)) }
-                .map { (column, minimum) -> column.value.filter { (_, value) -> value == minimum } }
-                .takeCoordinates()
+        return findCoordinates(columns, { column -> minimumValueIn(column) })
     }
 
     fun maxInRow(allPoints: List<Pair<MatrixCoordinate, Int>>): Set<MatrixCoordinate> {
         val rows = allPoints.groupBy { it.first.row }
-        return rows
-                .map { row -> Pair(row, maximumValueIn(row)) }
-                .map { (row, maximum) -> row.value.filter { (_, value) -> value == maximum } }
-                .takeCoordinates()
+        return findCoordinates(rows, { row -> maximumValueIn(row) })
     }
 
-    private fun List<List<Pair<MatrixCoordinate, Int>>>.takeCoordinates(): Set<MatrixCoordinate> {
-        return flatMap { it }
+    private fun findCoordinates(group: Map<Int, List<Pair<MatrixCoordinate, Int>>>, aggregate: (Map.Entry<Int, List<Pair<MatrixCoordinate, Int>>>) -> Int): Set<MatrixCoordinate> {
+        return group
+                .map { items -> Pair(items, aggregate(items)) }
+                .map { (items, aggregatedValue) -> items.value.filter { (_, value) -> value == aggregatedValue } }
+                .flatMap { it }
                 .map { (coordinate, _) -> coordinate }
                 .toSet()
     }
@@ -44,9 +41,7 @@ class Matrix(val points: List<List<Int>>) {
     private fun minimumValueIn(column: Map.Entry<Int, List<Pair<MatrixCoordinate, Int>>>)
             = column.value.minBy { it.second }!!.second
 
-    private fun maximumValueIn(row: Map.Entry<Int, List<Pair<MatrixCoordinate, Int>>>) 
+    private fun maximumValueIn(row: Map.Entry<Int, List<Pair<MatrixCoordinate, Int>>>)
             = row.value.maxBy { it.second }!!.second
-
-
 
 }
