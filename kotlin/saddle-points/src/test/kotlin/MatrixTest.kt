@@ -21,9 +21,8 @@ class MatrixTest {
         assertEquals(expectedSaddlePoints, matrix.saddlePoints)
     }
 
-    @Ignore
     @Test
-    fun testCanIdentifyThatEmptyMatrixHasNoSaddlePoints() {
+    fun `can identify that empty matrix has no saddle points`() {
         val matrix = Matrix(listOf(emptyList()))
 
         val expectedSaddlePoints = emptySet<MatrixCoordinate>()
