@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 class MatrixTest {
 
     @Test
-    fun testCanIdentifySingleSaddlePoint() {
+    fun `can identify single saddle point`() {
         val matrix = Matrix(listOf(
                 listOf(9, 8, 7),
                 listOf(5, 3, 2),
