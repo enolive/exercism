@@ -1,13 +1,15 @@
 class Matrix(val points: List<List<Int>>) {
     val saddlePoints: Set<MatrixCoordinate>
-        get() {
-            if (points.all { it.isEmpty() }) {
-                return emptySet()
-            }
 
-            val allPoints = allPoints()
-            return maxInRow(allPoints) intersect minInColumn(allPoints)
+    init {
+        when {
+            points.all { it.isEmpty() } -> saddlePoints = emptySet()
+            else -> {
+                val allPoints = allPoints()
+                saddlePoints = maxInRow(allPoints) intersect minInColumn(allPoints)
+            }
         }
+    }
 
     fun allPoints(): List<Pair<MatrixCoordinate, Int>> {
         return points.mapIndexed {
@@ -33,7 +35,7 @@ class Matrix(val points: List<List<Int>>) {
         return group
                 .map { items -> Pair(items, aggregate(items)) }
                 .map { (items, aggregatedValue) -> items.value.filter { (_, value) -> value == aggregatedValue } }
-                .flatMap { it }
+                .flatten()
                 .map { (coordinate, _) -> coordinate }
                 .toSet()
     }
