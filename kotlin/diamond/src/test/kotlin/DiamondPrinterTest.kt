@@ -42,9 +42,8 @@ class DiamondPrinterTest {
                 "  A  ")))
     }
 
-    @Ignore
     @Test
-    fun testFiveByFiveDiamond() {
+    fun `five by five diamond`() {
         val output = diamondPrinter.printToList('E')
         assertThat(output, `is`(listOf(
                 "    A    ",
