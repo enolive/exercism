@@ -13,8 +13,8 @@ class DiamondPrinter {
             return edges + current + edges
         }
 
-        val middle = " ".repeat(numberOfMiddleSpaces / 2)
-        val half = edges + current + middle + ' '
-        return half + half.reversed().drop(1)
+        val middle = " ".repeat(numberOfMiddleSpaces / 2 + 1)
+        val lineHalf = edges + current + middle
+        return lineHalf + lineHalf.reversed().drop(1)
     }
 }
