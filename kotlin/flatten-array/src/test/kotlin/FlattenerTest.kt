@@ -17,7 +17,6 @@ class FlattenerTest {
         assertEquals(listOf(1, 2, 3, 4, 5), Flattener.flatten(nestedList))
     }
 
-    @Ignore
     @Test
     fun flattens3LevelNestedList() {
         val nestedList = listOf(1, listOf(2, 3, 4), 5, listOf(6, listOf(7, 8)))
