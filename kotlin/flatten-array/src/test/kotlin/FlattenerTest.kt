@@ -12,20 +12,19 @@ class FlattenerTest {
     }
 
     @Test
-    fun flattens2LevelNestedList() {
+    fun `flattens 2 level nested list`() {
         val nestedList = listOf(1, listOf(2, 3, 4), 5)
         assertEquals(listOf(1, 2, 3, 4, 5), Flattener.flatten(nestedList))
     }
 
     @Test
-    fun flattens3LevelNestedList() {
+    fun `flattens 3 level nested list`() {
         val nestedList = listOf(1, listOf(2, 3, 4), 5, listOf(6, listOf(7, 8)))
         assertEquals(listOf(1, 2, 3, 4, 5, 6, 7, 8), Flattener.flatten(nestedList))
     }
 
-    @Ignore
     @Test
-    fun flattens5LevelNestedList() {
+    fun `flattens 5 level nested list`() {
         val nestedList = listOf(0, 2, listOf(listOf(2, 3), 8, 100, 4, listOf(listOf(listOf(50))), -2))
         assertEquals(listOf(0, 2, 2, 3, 8, 100, 4, 50, -2), Flattener.flatten(nestedList))
     }
