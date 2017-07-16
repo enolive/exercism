@@ -41,9 +41,8 @@ class FlattenerTest {
         assertEquals(listOf(1, 2, 3, 4, 5, 6, 7, 8), Flattener.flatten(nestedList))
     }
 
-    @Ignore
     @Test
-    fun allNullNestedListReturnsEmptyList() {
+    fun `all null nested list returns empty list`() {
         val nestedList = listOf(null, listOf(null, listOf(null), listOf(listOf(listOf(null)))), null)
         assertEquals(emptyList<Any>(), Flattener.flatten(nestedList))
     }
