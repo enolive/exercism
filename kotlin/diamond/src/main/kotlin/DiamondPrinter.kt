@@ -10,7 +10,8 @@ class DiamondPrinter {
         val edges = " ".repeat(numberOfEdgeSpaces)
         
         if (numberOfMiddleSpaces <= 0) {
-            return edges + current + edges
+            val half = edges + current
+            return half + half.reversed().drop(1)
         }
 
         val middle = " ".repeat(numberOfMiddleSpaces / 2 + 1)
