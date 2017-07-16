@@ -17,7 +17,7 @@ class DiamondPrinterTest {
     }
 
     @Test
-    fun testOneByOneDiamond() {
+    fun `one by one diamond`() {
         val output = diamondPrinter.printToList('A')
         assertThat(output, `is`(listOf("A")))
     }
