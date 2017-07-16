@@ -5,7 +5,7 @@ object Isogram {
                 .filter { it !in listOf(' ', '-') }
                 .map { it.toUpperCase() }
                 .groupBy { it }
-        return characterCount.all { it.value.count() == 1 }
+        return characterCount.all { it.value.size == 1 }
     }
 
 }
