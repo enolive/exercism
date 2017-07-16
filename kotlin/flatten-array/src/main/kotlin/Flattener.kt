@@ -5,16 +5,16 @@ object Flattener {
                 return acc
             }
 
-            var howManyToDrop = 0
-            var first: Any?
-            do {
-                first = list.elementAt(howManyToDrop)
-                howManyToDrop++
-            } while (first == null && howManyToDrop < list.size)
-
-            if (first == null) {
+            val nextElement = list
+                    .indices
+                    .filter { list[it] != null }
+                    .map { Pair(it + 1, list[it] as Any) }
+                    .firstOrNull()
+            if (nextElement == null) {
                 return acc
             }
+            
+            val (howManyToDrop, first) = nextElement
             
             if (first is List<*>) {
                 return flattenIt(list.drop(howManyToDrop), acc + flattenIt(first, emptyList()))
