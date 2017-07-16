@@ -5,16 +5,22 @@ object Flattener {
                 return acc
             }
 
-            val first = list.first()
+            var howManyToDrop = 0
+            var first: Any?
+            do {
+                first = list.elementAt(howManyToDrop)
+                howManyToDrop++
+            } while (first == null && howManyToDrop < list.size)
+
             if (first == null) {
                 return acc
             }
             
             if (first is List<*>) {
-                return flattenIt(list.drop(1), acc + flattenIt(first, emptyList()))
+                return flattenIt(list.drop(howManyToDrop), acc + flattenIt(first, emptyList()))
             }
 
-            return flattenIt(list.drop(1), acc + first)
+            return flattenIt(list.drop(howManyToDrop), acc + first)
         }
 
         val result = emptyList<Any>()

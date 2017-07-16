@@ -29,16 +29,14 @@ class FlattenerTest {
         assertEquals(listOf(0, 2, 2, 3, 8, 100, 4, 50, -2), Flattener.flatten(nestedList))
     }
 
-    @Ignore
     @Test
-    fun flattens6LevelNestedList() {
+    fun `flattens 6 level nested list`() {
         val nestedList = listOf(1, listOf(2, listOf(listOf(3)), listOf(4, listOf(listOf(5))), 6, 7), 8)
         assertEquals(listOf(1, 2, 3, 4, 5, 6, 7, 8), Flattener.flatten(nestedList))
     }
 
-    @Ignore
     @Test
-    fun flattens6LevelNestedListWithNulls() {
+    fun `flattens 6 level nested list with nulls`() {
         val nestedList = listOf(1, listOf(2, null, listOf(listOf(3), null), listOf(4, listOf(listOf(5))), 6, 7, listOf(listOf(null))), 8, null)
         assertEquals(listOf(1, 2, 3, 4, 5, 6, 7, 8), Flattener.flatten(nestedList))
     }
