@@ -1,17 +1,8 @@
 class DiamondPrinter {
     fun printToList(c: Char): List<String> {
         if (c == 'E') {
-            return listOf(
-                    line('A', c),
-                    line('B', c),
-                    line('C', c),
-                    line('D', c),
-                    line('E', c),
-                    line('D', c),
-                    line('C', c),
-                    line('B', c),
-                    line('A', c)
-            )
+            return listOf('A', 'B', 'C', 'D', 'E', 'D', 'C', 'B', 'A')
+                    .map { line(it, c) }
         }
         if (c == 'C') {
             return listOf(
