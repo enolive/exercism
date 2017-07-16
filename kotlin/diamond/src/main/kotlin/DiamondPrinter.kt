@@ -5,8 +5,9 @@ class DiamondPrinter {
     }
 
     private fun line(current: Char, limit: Char): String {
-        val edges = " ".repeat(limit - current)
+        val numberOfEdgeSpaces = limit - current
         val numberOfMiddleSpaces = 2 * (current - 'A') - 1
+        val edges = " ".repeat(numberOfEdgeSpaces)
         if (numberOfMiddleSpaces < 0) {
             return edges + current + edges
         }

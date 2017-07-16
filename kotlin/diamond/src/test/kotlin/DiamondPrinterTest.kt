@@ -57,9 +57,8 @@ class DiamondPrinterTest {
                 "    A    ")))
     }
 
-    @Ignore
     @Test
-    fun testFullDiamond() {
+    fun `full diamond`() {
         val output = diamondPrinter.printToList('Z')
         assertThat(output, `is`(listOf(
                 "                         A                         ",
