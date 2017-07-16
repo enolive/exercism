@@ -31,3 +31,4 @@ class IsogramTest(val input: String, val expectedOutput: Boolean) {
         assertEquals(expectedOutput, Isogram.isIsogram(input))
     }
 }
+
