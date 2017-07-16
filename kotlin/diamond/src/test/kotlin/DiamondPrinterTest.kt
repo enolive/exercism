@@ -31,9 +31,8 @@ class DiamondPrinterTest {
                 " A ")))
     }
 
-    @Ignore
     @Test
-    fun testThreeByThreeDiamond() {
+    fun `three by three diamond`() {
         val output = diamondPrinter.printToList('C')
         assertThat(output, `is`(listOf(
                 "  A  ",
