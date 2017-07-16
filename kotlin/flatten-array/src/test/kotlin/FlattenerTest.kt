@@ -6,12 +6,11 @@ class FlattenerTest {
 
 
     @Test
-    fun flattensANestedList() {
+    fun `flattens a nested list`() {
         val nestedList = listOf<Any>(emptyList<Any>())
         assertEquals(emptyList<Any>(), Flattener.flatten(nestedList))
     }
 
-    @Ignore
     @Test
     fun flattens2LevelNestedList() {
         val nestedList = listOf(1, listOf(2, 3, 4), 5)
