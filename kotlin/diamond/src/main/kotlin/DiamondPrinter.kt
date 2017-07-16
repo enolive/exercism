@@ -5,17 +5,16 @@ class DiamondPrinter {
     }
 
     private fun line(current: Char, limit: Char): String {
-        val quadWidth = current - 'A'
         val numberOfEdgeSpaces = limit - current
-        val numberOfMiddleSpaces = 2 * quadWidth - 1
+        val numberOfMiddleSpaces = 2 * (current - 'A') - 1
         val edges = " ".repeat(numberOfEdgeSpaces)
         
         if (numberOfMiddleSpaces <= 0) {
             return edges + current + edges
         }
 
-        val middle = " ".repeat(numberOfMiddleSpaces)
-        val half = edges + current + middle
-        return half + half.reversed().drop(numberOfMiddleSpaces)
+        val middle = " ".repeat(numberOfMiddleSpaces / 2)
+        val half = edges + current + middle + ' '
+        return half + half.reversed().drop(1)
     }
 }
