@@ -1,24 +1,12 @@
 object Flattener {
     fun flatten(list: List<Any?>): List<Any> {
-        fun flattenIt(remainingList: List<Any?>, acc: List<Any>): List<Any> {
-            if (remainingList.isEmpty()) {
-                return acc
-            }
-
-            val (howManyToDrop, firstValue) = remainingList
-                    .indices
-                    .filter { remainingList[it] != null }
-                    .map { Pair(it + 1, remainingList[it] as Any) }
-                    .firstOrNull() ?: return acc
-
-            if (firstValue is List<*>) {
-                return flattenIt(remainingList.drop(howManyToDrop), flattenIt(firstValue, acc))
-            }
-
-            return flattenIt(remainingList.drop(howManyToDrop), acc + firstValue)
+        return list
+                .filterNotNull()
+                .flatMap { 
+            when (it) {
+                is List<*> -> flatten(it)
+                else -> listOf(it)
+             }
         }
-
-        return flattenIt(list, emptyList())
     }
-
 }
