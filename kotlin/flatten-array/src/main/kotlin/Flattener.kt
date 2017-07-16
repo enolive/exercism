@@ -4,8 +4,17 @@ object Flattener {
             if (list.isEmpty()) {
                 return acc
             }
+
+            val first = list.first()
+            if (first == null) {
+                return acc
+            }
             
-            return acc
+            if (first is List<*>) {
+                return flattenIt(list.drop(1), acc + flattenIt(first, emptyList()))
+            }
+
+            return flattenIt(list.drop(1), acc + first)
         }
 
         val result = emptyList<Any>()
