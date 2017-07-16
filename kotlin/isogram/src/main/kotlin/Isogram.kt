@@ -1,6 +1,7 @@
 object Isogram {
     fun isIsogram(input: String): Boolean {
-        return true
+        val characterCount = input.toCharArray().groupBy { it }
+        return characterCount.all { it.value.count() == 1 }
     }
 
 }
