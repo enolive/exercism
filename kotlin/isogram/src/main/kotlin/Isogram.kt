@@ -1,11 +1,11 @@
 object Isogram {
     fun isIsogram(input: String): Boolean {
-        val characterCount = input
+        val characterMap = input
                 .toCharArray()
                 .filter { it.isLetter() }
                 .map { it.toUpperCase() }
                 .groupBy { it }
-        return characterCount.all { it.value.size == 1 }
+        return characterMap.all { it.value.size == 1 }
     }
 
 }
