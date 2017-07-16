@@ -12,7 +12,7 @@ object Flattener {
                     .firstOrNull() ?: return acc
 
             if (firstValue is List<*>) {
-                return flattenIt(remainingList.drop(howManyToDrop), acc + flattenIt(firstValue, emptyList()))
+                return flattenIt(remainingList.drop(howManyToDrop), flattenIt(firstValue, acc))
             }
 
             return flattenIt(remainingList.drop(howManyToDrop), acc + firstValue)
