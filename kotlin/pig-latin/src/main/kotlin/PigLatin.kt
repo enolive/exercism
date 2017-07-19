@@ -4,13 +4,13 @@ object PigLatin {
     val treatLikeConsonant = listOf("ch", "qu", "sch", "squ", "th", "thr")
     val consonants = ('a'..'z')
             .map { it.toString() } - vowels + treatLikeConsonant
+    val wordDelimiter = " "
 
     fun translate(input: String): String {
-        val space = " "
         return input.toLowerCase()
-                .split(space)
+                .split(wordDelimiter)
                 .map(this::translateWord)
-                .joinToString(space)
+                .joinToString(wordDelimiter)
     }
 
     private fun translateWord(input: String): String {
