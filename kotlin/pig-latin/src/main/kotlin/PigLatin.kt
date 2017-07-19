@@ -1,9 +1,6 @@
 object PigLatin {
-    val treatLikeVowel = listOf("yt", "xr")
-    val vowels = listOf("a", "e", "i", "o", "u") + treatLikeVowel
-    val treatLikeConsonant = listOf("ch", "qu", "sch", "squ", "th", "thr")
-    val consonants = ('a'..'z')
-            .map { it.toString() } - vowels + treatLikeConsonant
+    val vowels = listOf("a", "e", "i", "o", "u") + listOf("yt", "xr")
+    val compounds = listOf("ch", "qu", "sch", "squ", "th", "thr").sorted().reversed()
     val wordDelimiter = " "
 
     fun translate(input: String): String {
@@ -14,24 +11,20 @@ object PigLatin {
     }
 
     private fun translateWord(input: String): String {
-        val howMany = howManyCharactersToSwap(input)
-        return "${input.drop(howMany)}${input.take(howMany)}ay"
-    }
-
-    private fun howManyCharactersToSwap(input: String): Int {
-        return when {
-            vowels.any { input.startsWith(it) } -> 0
+        val swapLength = when {
+            input.startsWithAny(vowels) -> 0
             else -> lengthOfStartingConsonant(input)
         }
+        return "${input.drop(swapLength)}${input.take(swapLength)}ay"
     }
 
     private fun lengthOfStartingConsonant(input: String): Int {
-        return consonants
+        return compounds
                 .filter { input.startsWith(it) }
                 .map { it.length }
-                .sorted()
-                .reversed()
-                .first()
+                .firstOrNull() ?: 1
     }
+
+    private fun String.startsWithAny(prefixes: List<String>) = prefixes.any { startsWith(it) }
 
 }
