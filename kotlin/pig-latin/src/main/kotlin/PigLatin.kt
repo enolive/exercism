@@ -12,7 +12,7 @@ object PigLatin {
 
     private fun translateWord(input: String): String {
         val swapLength = when {
-            input.startsWithAny(vowels) -> 0
+            vowels.any { input.startsWith(it) } -> 0
             else -> lengthOfStartingConsonant(input)
         }
         return "${input.drop(swapLength)}${input.take(swapLength)}ay"
@@ -24,7 +24,5 @@ object PigLatin {
                 .map { it.length }
                 .firstOrNull() ?: 1
     }
-
-    private fun String.startsWithAny(prefixes: List<String>) = prefixes.any { startsWith(it) }
 
 }
