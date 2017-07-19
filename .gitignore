@@ -23,6 +23,7 @@
 **/.idea/gradle.xml
 **/.idea/libraries/
 **/build/
+**/out/
 **/gradle/wrapper/
 **/.gradle/
 
