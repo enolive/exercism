@@ -1,16 +1,19 @@
 object PigLatin {
     fun translate(input: String): String {
         val vowels = listOf("a", "e", "i", "o", "u")
-        val specialConsonants = listOf("ch", "qu", "squ", "th")
-        val consonants = ('a'..'z').map { it.toString() }.minus(vowels).plus(specialConsonants)
+        val specialConsonants = listOf("ch", "qu", "sch", "squ", "th", "thr")
+        val consonants = ('a'..'z')
+                .map { it.toString() }
+                .minus(vowels)
+                .plus(specialConsonants)
 
-        val foundConsonant = consonants
+        val startingConsonant = consonants
                 .filter { input.startsWith(it) }
                 .sortedBy { it.length }
                 .reversed()
                 .firstOrNull()
-        if (foundConsonant != null) {
-            return input.drop(foundConsonant.length) + input.take(foundConsonant.length) + "ay"
+        if (startingConsonant != null) {
+            return input.drop(startingConsonant.length) + input.take(startingConsonant.length) + "ay"
         }
 
         return input + "ay"
