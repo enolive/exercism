@@ -7,13 +7,18 @@ object PigLatin {
 
     fun translate(input: String): String {
         val howMany = howManyCharactersToSwap(input)
-        return input.drop(howMany) + input.take(howMany) + "ay"
+        return "${input.drop(howMany)}${input.take(howMany)}ay"
     }
 
     private fun howManyCharactersToSwap(input: String): Int {
-        return if (vowels.any { input.startsWith(it) }) {
-            0
-        } else consonants
+        return when {
+            vowels.any { input.startsWith(it) } -> 0
+            else -> lengthOfStartingConsonant(input)
+        }
+    }
+
+    private fun lengthOfStartingConsonant(input: String): Int {
+        return consonants
                 .filter { input.startsWith(it) }
                 .map { it.length }
                 .sorted()
