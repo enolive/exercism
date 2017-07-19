@@ -1,6 +1,8 @@
 object PigLatin {
     fun translate(input: String): String {
-        if (input.startsWith("p")) {
+        val consonants = listOf("p", "k", "x", "y")
+        
+        if (consonants.any { input.startsWith(it) }) {
             return input.drop(1) + input.take(1) + "ay"
         }
         
