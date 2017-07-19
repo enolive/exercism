@@ -6,6 +6,14 @@ object PigLatin {
             .map { it.toString() } - vowels + treatLikeConsonant
 
     fun translate(input: String): String {
+        val space = " "
+        return input.toLowerCase()
+                .split(space)
+                .map(this::translateWord)
+                .joinToString(space)
+    }
+
+    private fun translateWord(input: String): String {
         val howMany = howManyCharactersToSwap(input)
         return "${input.drop(howMany)}${input.take(howMany)}ay"
     }

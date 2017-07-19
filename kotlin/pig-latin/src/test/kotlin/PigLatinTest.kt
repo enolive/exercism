@@ -48,7 +48,10 @@ class PigLatinTest(val input: String, val expectedOutput: String) {
                 arrayOf("xray", "xrayay"),
 
                 // Phrases are translated
-                arrayOf("quick fast run", "ickquay astfay unray")
+                arrayOf("quick fast run", "ickquay astfay unray"),
+                
+                // Case is ignored
+                arrayOf("Hotel", "otelhay")
         )
     }
 
