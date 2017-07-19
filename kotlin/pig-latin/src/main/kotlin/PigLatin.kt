@@ -1,6 +1,6 @@
 object PigLatin {
     val vowels = listOf("a", "e", "i", "o", "u") + listOf("yt", "xr")
-    val compounds = listOf("ch", "qu", "sch", "squ", "th", "thr").sorted().reversed()
+    val compounds = listOf("ch", "qu", "sch", "squ", "th", "thr").sortedDescending()
     val wordDelimiter = " "
 
     fun translate(input: String): String {
