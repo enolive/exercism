@@ -36,9 +36,8 @@ class PhoneNumberTest {
         fail("IllegalArgumentException should have been thrown")
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException::class)
-    fun invalidWhenOnly11Digits() {
+    fun `invalid when only 11 digits`() {
         PhoneNumber("21234567890")
 
         fail("IllegalArgumentException should have been thrown")

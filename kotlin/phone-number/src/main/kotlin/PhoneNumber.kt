@@ -14,6 +14,13 @@ class PhoneNumber(rawNumber: String) {
         areaCode = rawNumber
     }
 
-    private fun isValid(cleanNumber: String) = cleanNumber.length != 10 || !cleanNumber.startsWith("1")
+    private fun isValid(cleanNumber: String): Boolean {
+        return when {
+            cleanNumber.length == 10 && cleanNumber.startsWith("1") -> false
+            cleanNumber.length == 11 && !cleanNumber.startsWith("1") -> false
+            else -> true
+        }
+
+    }
 
 }
