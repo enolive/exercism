@@ -4,9 +4,9 @@ object Chunks {
     }
 
     class ChunkBuilder internal constructor(private val input: String) {
-        fun withSize(size: Int): List<String> {
+        fun withSize(size: Int): List<Chunk> {
             val numberOfChunks = Math.ceil(input.length.toDouble() / size).toInt()
-            return (0 until numberOfChunks).map { input.getChunk(it, size) }
+            return (0 until numberOfChunks).map { Chunk(input.getChunk(it, size)) }
         }
 
         private fun String.getChunk(indexOfChunk: Int, chunkSize: Int): String {
@@ -20,3 +20,4 @@ object Chunks {
 
     }
 }
+

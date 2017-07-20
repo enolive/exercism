@@ -6,18 +6,11 @@ object Atbash {
     fun encode(input: String): String {
         val sanitizedInput = input.filter { it.isLetterOrDigit() }.toLowerCase()
         return Chunks.of(sanitizedInput).withSize(5)
-                .map { encodeChunk(it) }
+                .map { it.encode() }
                 .joinToString(" ")
     }
 
-    private fun encodeChunk(chunk: String): String {
-        return chunk
-                .toCharArray()
-                .map { encode(it) }
-                .joinToString("")
-    }
-
-    private fun encode(c: Char) = if (!c.isLetter()) c else 'z' - (c - 'a')
+    
 }
 
 
