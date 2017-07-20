@@ -2,7 +2,7 @@ class PhoneNumber(rawNumber: String) {
     val number: String
     val areaCode: String
     private val countryCode = "1"
-    private val stringRepresenation: String
+    private val stringRepresentation: String
 
     init {
         val cleanNumber = rawNumber.filter { it.isDigit() }
@@ -11,17 +11,16 @@ class PhoneNumber(rawNumber: String) {
         number = dropCountryCode(cleanNumber)
         areaCode = number.take(3)
 
-        stringRepresenation = makeString()
+        stringRepresentation = makeString()
     }
 
     private fun makeString(): String {
         val strippedNumber = number.drop(areaCode.length)
-        val theString = "($areaCode) ${strippedNumber.take(3)}-${strippedNumber.drop(3)}"
-        return theString
+        return "($areaCode) ${strippedNumber.take(3)}-${strippedNumber.drop(3)}"
     }
 
     override fun toString(): String {
-        return stringRepresenation
+        return stringRepresentation
     }
 
     private fun isValid(number: String): Boolean {
