@@ -4,9 +4,11 @@ object Atbash {
     }
 
     fun encode(input: String): String {
-        val first = input[0]
-        val second = input[1]
-        return "" + ('z' - (first - 'a')) + ('z' - (second- 'a'))
+        return input.toCharArray()
+                .map { encode(it) }
+                .joinToString("")
     }
+
+    private fun encode(c: Char) = 'z' - (c - 'a')
 
 }
