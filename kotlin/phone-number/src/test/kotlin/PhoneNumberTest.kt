@@ -21,9 +21,8 @@ class PhoneNumberTest {
         assertEquals(expectedNumber, actualNumber)
     }
 
-    @Ignore
     @Test
-    fun validWhen11DigitsAndFirstIs1() {
+    fun `valid when 11 digits and first is 1`() {
         val expectedNumber = "2234567890"
         val actualNumber = PhoneNumber("12234567890").number
 
@@ -32,8 +31,8 @@ class PhoneNumberTest {
 
     @Ignore
     @Test(expected = IllegalArgumentException::class)
-    fun invalidWhen10DigitsAndFirstIs1() {
-        val actualNumber = PhoneNumber("1234567890")
+    fun `invalid when 10 digits and first is 1`() {
+        PhoneNumber("1234567890")
 
         fail("IllegalArgumentException should have been thrown")
     }
@@ -41,7 +40,7 @@ class PhoneNumberTest {
     @Ignore
     @Test(expected = IllegalArgumentException::class)
     fun invalidWhenOnly11Digits() {
-        val actualNumber = PhoneNumber("21234567890")
+        PhoneNumber("21234567890")
 
         fail("IllegalArgumentException should have been thrown")
     }
@@ -49,7 +48,7 @@ class PhoneNumberTest {
     @Ignore
     @Test(expected = IllegalArgumentException::class)
     fun invalidWhen9Digits() {
-        val actualNumber = PhoneNumber("223456789")
+        PhoneNumber("223456789")
 
         fail("IllegalArgumentException should have been thrown")
     }
