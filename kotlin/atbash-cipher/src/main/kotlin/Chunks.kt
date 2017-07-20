@@ -3,7 +3,7 @@ object Chunks {
         return ChunkBuilder(input)
     }
 
-    class ChunkBuilder(private val input: String) {
+    class ChunkBuilder internal constructor(private val input: String) {
         fun withSize(size: Int): List<String> {
             val numberOfChunks = Math.ceil(input.length.toDouble() / size).toInt()
             return (0 until numberOfChunks).map { input.getChunk(it, size) }
