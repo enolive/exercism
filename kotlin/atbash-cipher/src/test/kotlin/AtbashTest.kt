@@ -13,7 +13,7 @@ class AtbashTest {
 
         companion object {
             @JvmStatic
-            @Parameterized.Parameters
+            @Parameterized.Parameters(name = "{index}: encode({0}) = {1}")
             fun data() = listOf(
                     arrayOf("no", "ml"),
                     arrayOf("yes", "bvh"),
@@ -52,3 +52,4 @@ class AtbashTest {
         }
     }
 }
+
