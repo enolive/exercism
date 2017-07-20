@@ -14,11 +14,13 @@ class PhoneNumber(rawNumber: String) {
     private fun String.isValid(): Boolean {
         return when {
             length < 10 -> false
-            length == 10 && startsWith(countryCode) -> false
+            hasNoCountryCode() && startsWith(countryCode) -> false
             hasCountryCode() && !startsWith(countryCode) -> false
             else -> true
         }
     }
+
+    private fun String.hasNoCountryCode() = length == 10
 
     private fun String.dropCountryCode(): String =
             when {
