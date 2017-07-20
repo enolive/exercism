@@ -74,9 +74,8 @@ class PhoneNumberTest {
         assertEquals(expectedtoStringNumber, actualtoStringNumber)
     }
 
-    @Ignore
     @Test
-    fun toStringPrintWithFullUSPhoneNumber() {
+    fun `to string print with full US-Phone number`() {
         val expectedtoStringNumber = "(223) 456-7890"
         val actualtoStringNumber = PhoneNumber("12234567890").toString()
 
