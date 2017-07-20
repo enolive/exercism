@@ -13,7 +13,7 @@ class AtbashTest {
 
         companion object {
             @JvmStatic
-            @Parameterized.Parameters(name = "{index}: encode({0}) = {1}")
+            @Parameterized.Parameters(name = "{index}: transcode({0}) = {1}")
             fun data() = listOf(
                     arrayOf("no", "ml"),
                     arrayOf("yes", "bvh"),
@@ -36,7 +36,7 @@ class AtbashTest {
 
         companion object {
             @JvmStatic
-            @Parameterized.Parameters
+            @Parameterized.Parameters(name = "{index}: decode({0}) = {1}")
             fun data() = listOf(
                     arrayOf("vcvix rhn", "exercism"),
                     arrayOf("zmlyh gzxov rhlug vmzhg vkkrm thglm v", "anobstacleisoftenasteppingstone"),
@@ -44,7 +44,6 @@ class AtbashTest {
             )
         }
 
-        @Ignore
         @Test
         fun test() {
             assertEquals(expectedOutput, Atbash.decode(input))
