@@ -1,5 +1,5 @@
-import org.junit.Test
 import org.junit.Ignore
+import org.junit.Test
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
@@ -24,7 +24,6 @@ class AtbashTest {
                     arrayOf("The quick brown fox jumps over the lazy dog.", "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt")
             )
         }
-
 
         @Test
         fun test() {
