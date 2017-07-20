@@ -5,23 +5,26 @@ class PhoneNumber(rawNumber: String) {
 
     init {
         val cleanNumber = rawNumber.filter { it.isDigit() }
-        require(when {
-            cleanNumber.length < 10 -> false
-            cleanNumber.length == 10 && cleanNumber.startsWith(countryCode) -> false
-            cleanNumber.hasCountryCode() && !cleanNumber.startsWith(countryCode) -> false
-            else -> true
-        })
+        require(cleanNumber.isValid())
 
-        number = dropCountryCode(cleanNumber)
+        number = cleanNumber.dropCountryCode()
         areaCode = rawNumber.take(3)
     }
 
-    private fun dropCountryCode(cleanNumber: String): String {
+    private fun String.isValid(): Boolean {
         return when {
-            cleanNumber.hasCountryCode() -> cleanNumber.drop(countryCode.length)
-            else -> cleanNumber
+            length < 10 -> false
+            length == 10 && startsWith(countryCode) -> false
+            hasCountryCode() && !startsWith(countryCode) -> false
+            else -> true
         }
     }
+
+    private fun String.dropCountryCode(): String =
+            when {
+                hasCountryCode() -> drop(countryCode.length)
+                else -> this
+            }
 
     private fun String.hasCountryCode() = length == 11
 
