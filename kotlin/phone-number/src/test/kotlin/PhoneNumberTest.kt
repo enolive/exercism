@@ -6,16 +6,15 @@ import kotlin.test.fail
 class PhoneNumberTest {
 
     @Test
-    fun cleansNumber() {
+    fun `cleans number`() {
         val expectedNumber = "2234567890"
         val actualNumber = PhoneNumber("(223) 456-7890").number
 
         assertEquals(expectedNumber, actualNumber)
     }
 
-    @Ignore
     @Test
-    fun cleansNumberWithDots() {
+    fun `cleans number with dots`() {
         val expectedNumber = "2234567890"
         val actualNumber = PhoneNumber("223.456.7890").number
 
