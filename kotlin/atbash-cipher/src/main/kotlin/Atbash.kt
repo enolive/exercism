@@ -4,7 +4,9 @@ object Atbash {
     }
 
     fun encode(input: String): String {
-        return "ml"
+        val first = input[0]
+        val second = input[1]
+        return "" + ('z' - (first - 'a')) + ('z' - (second- 'a'))
     }
 
 }
