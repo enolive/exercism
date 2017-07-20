@@ -43,9 +43,8 @@ class PhoneNumberTest {
         fail("IllegalArgumentException should have been thrown")
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException::class)
-    fun invalidWhen9Digits() {
+    fun `invalid when 9 digits`() {
         PhoneNumber("223456789")
 
         fail("IllegalArgumentException should have been thrown")

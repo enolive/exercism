@@ -4,7 +4,12 @@ class PhoneNumber(rawNumber: String) {
 
     init {
         val cleanNumber = rawNumber.filter { it.isDigit() }
-        require(isValid(cleanNumber))
+        require(when {
+            cleanNumber.length < 10 -> false
+            cleanNumber.length == 10 && cleanNumber.startsWith("1") -> false
+            cleanNumber.length == 11 && !cleanNumber.startsWith("1") -> false
+            else -> true
+        })
 
         number = if (cleanNumber.length == 11) {
             cleanNumber.drop(1)
@@ -12,15 +17,6 @@ class PhoneNumber(rawNumber: String) {
             cleanNumber
         }
         areaCode = rawNumber
-    }
-
-    private fun isValid(cleanNumber: String): Boolean {
-        return when {
-            cleanNumber.length == 10 && cleanNumber.startsWith("1") -> false
-            cleanNumber.length == 11 && !cleanNumber.startsWith("1") -> false
-            else -> true
-        }
-
     }
 
 }
