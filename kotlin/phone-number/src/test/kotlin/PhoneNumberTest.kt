@@ -29,7 +29,6 @@ class PhoneNumberTest {
         assertEquals(expectedNumber, actualNumber)
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException::class)
     fun `invalid when 10 digits and first is 1`() {
         PhoneNumber("1234567890")
