@@ -4,8 +4,8 @@ object Atbash {
     }
 
     fun encode(input: String): String {
-        val sanitizedInput = input.filter { it.isLetterOrDigit() }.toLowerCase()
-        return Chunks.of(sanitizedInput).withSize(5)
+        val cleanInput = input.filter { it.isLetterOrDigit() }.toLowerCase()
+        return Chunks.of(cleanInput).withSize(5)
                 .map { it.encode() }
                 .joinToString(" ")
     }
