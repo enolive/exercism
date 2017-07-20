@@ -16,7 +16,7 @@ class PhoneNumber(rawNumber: String) {
         } else {
             cleanNumber
         }
-        areaCode = rawNumber
+        areaCode = rawNumber.take(3)
     }
 
 }

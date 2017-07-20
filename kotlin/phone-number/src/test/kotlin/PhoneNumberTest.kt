@@ -50,9 +50,8 @@ class PhoneNumberTest {
         fail("IllegalArgumentException should have been thrown")
     }
 
-    @Ignore
     @Test
-    fun areaCode() {
+    fun `area code`() {
         val expectedAreaCode = "223"
         val actualAreaCode = PhoneNumber("2234567890").areaCode
 
