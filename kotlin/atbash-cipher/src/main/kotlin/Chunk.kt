@@ -1,10 +1,10 @@
-class Chunk(private val value: String) {
-    fun transcode(): String {
-        return value
+class Chunk(val value: String) {
+    fun swapLetters(): Chunk {
+        return Chunk(value
                 .toCharArray()
-                .map { transcode(it) }
-                .joinToString("")
+                .map { swap(it) }
+                .joinToString(""))
     }
 
-    private fun transcode(c: Char) = if (!c.isLetter()) c else 'z' - (c - 'a')
+    private fun swap(c: Char) = if (!c.isLetter()) c else 'z' - (c - 'a')
 }

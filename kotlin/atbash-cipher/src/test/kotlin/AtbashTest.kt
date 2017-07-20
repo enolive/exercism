@@ -13,7 +13,7 @@ class AtbashTest {
 
         companion object {
             @JvmStatic
-            @Parameterized.Parameters(name = "{index}: transcode({0}) = {1}")
+            @Parameterized.Parameters(name = "{index}: swapLetters({0}) = {1}")
             fun data() = listOf(
                     arrayOf("no", "ml"),
                     arrayOf("yes", "bvh"),
