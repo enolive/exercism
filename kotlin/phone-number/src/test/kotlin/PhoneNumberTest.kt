@@ -58,9 +58,16 @@ class PhoneNumberTest {
         assertEquals(expectedAreaCode, actualAreaCode)
     }
 
-    @Ignore
     @Test
-    fun toStringPrint() {
+    fun `area code for 11 digits`() {
+        val expectedAreaCode = "223"
+        val actualAreaCode = PhoneNumber("12234567890").areaCode
+
+        assertEquals(expectedAreaCode, actualAreaCode)
+    }
+
+    @Test
+    fun `to string print`() {
         val expectedtoStringNumber = "(223) 456-7890"
         val actualtoStringNumber = PhoneNumber("2234567890").toString()
 
