@@ -1,9 +1,7 @@
 import org.junit.Test
-import org.junit.Ignore
 import kotlin.test.assertEquals
 
 class WordCountTest {
-
 
     @Test
     fun `count one word`() {
