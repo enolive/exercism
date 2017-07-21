@@ -4,9 +4,7 @@ object WordCount {
                 .toLowerCase()
                 .filter { it.isRelevant() }
                 .split(Regex(" +"))
-        return words.groupBy { it }
-                .map { it.key to it.value.size }
-                .toMap()
+        return words.groupingBy { it }.eachCount()
     }
 
     private fun Char.isRelevant() = isWhitespace() || isLetterOrDigit() || this == '\''
