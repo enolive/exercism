@@ -41,9 +41,8 @@ class WordCountTest {
         assertEquals(expectedWordCount, WordCount.phrase("testing, 1, 2 testing"))
     }
 
-    @Ignore
     @Test
-    fun normalizeCase() {
+    fun `normalize case`() {
         val expectedWordCount = mapOf("go" to 3)
 
         assertEquals(expectedWordCount, WordCount.phrase("go Go GO"))

@@ -1,6 +1,7 @@
 object WordCount {
     fun phrase(phrase: String): Map<String, Int> {
         val words = phrase
+                .toLowerCase()
                 .filter { it.isWhitespace() || it.isLetterOrDigit() }
                 .split(' ')
                 .filter { !it.isBlank() }
