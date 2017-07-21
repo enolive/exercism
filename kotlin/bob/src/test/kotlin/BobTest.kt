@@ -1,103 +1,101 @@
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import org.junit.Ignore
-import kotlin.test.assertEquals
 
 class `Bob Tests` {
 
-
     @Test
     fun `say something`() {
-        assertEquals("Whatever.", Bob.hey("Tom-ay-to, tom-aaaah-to."))
+        assertThat(Bob.hey("Tom-ay-to, tom-aaaah-to.")).isEqualTo("Whatever.")
     }
 
     @Test
     fun shouting() {
-        assertEquals("Whoa, chill out!", Bob.hey("WATCH OUT!"))
+        assertThat(Bob.hey("WATCH OUT!")).isEqualTo("Whoa, chill out!")
     }
 
     @Test
     fun `asking a question`() {
-        assertEquals("Sure.", Bob.hey("Does this cryogenic chamber make me look fat?"))
+        assertThat(Bob.hey("Does this cryogenic chamber make me look fat?")).isEqualTo("Sure.")
     }
 
     @Test
     fun `asking a numeric question`() {
-        assertEquals("Sure.", Bob.hey("You are, what, like 15?"))
+        assertThat(Bob.hey("You are, what, like 15?")).isEqualTo("Sure.")
     }
 
     @Test
     fun `talking forcefully`() {
-        assertEquals("Whatever.", Bob.hey("Let's go make out behind the gym!"))
+        assertThat(Bob.hey("Let's go make out behind the gym!")).isEqualTo("Whatever.")
     }
 
     @Test
     fun `using acronyms in regular speech`() {
-        assertEquals("Whatever.", Bob.hey("It's OK if you don't want to go to the DMV."))
+        assertThat(Bob.hey("It's OK if you don't want to go to the DMV.")).isEqualTo("Whatever.")
     }
 
     @Test
     fun `forceful questions`() {
-        assertEquals("Whoa, chill out!", Bob.hey("WHAT THE HELL WERE YOU THINKING?"))
+        assertThat(Bob.hey("WHAT THE HELL WERE YOU THINKING?")).isEqualTo("Whoa, chill out!")
     }
 
     @Test
     fun `shouting numbers`() {
-        assertEquals("Whoa, chill out!", Bob.hey("1, 2, 3 GO!"))
+        assertThat(Bob.hey("1, 2, 3 GO!")).isEqualTo("Whoa, chill out!")
     }
 
     @Test
     fun `only numbers`() {
-        assertEquals("Whatever.", Bob.hey("1, 2, 3"))
+        assertThat(Bob.hey("1, 2, 3")).isEqualTo("Whatever.")
     }
 
     @Test
     fun `question with only numbers`() {
-        assertEquals("Sure.", Bob.hey("4?"))
+        assertThat(Bob.hey("4?")).isEqualTo("Sure.")
     }
 
     @Test
     fun `shouting with special characters`() {
-        assertEquals("Whoa, chill out!", Bob.hey("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"))
+        assertThat(Bob.hey("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!")).isEqualTo("Whoa, chill out!")
     }
 
     @Test
     fun `shouting with umlauts`() {
-        assertEquals("Whoa, chill out!", Bob.hey("ÜMLÄÜTS!"))
+        assertThat(Bob.hey("ÜMLÄÜTS!")).isEqualTo("Whoa, chill out!")
     }
 
     @Test
     fun `calmly speaking with umlauts`() {
-        assertEquals("Whatever.", Bob.hey("ÜMLäÜTS!"))
+        assertThat(Bob.hey("ÜMLäÜTS!")).isEqualTo("Whatever.")
     }
 
     @Test
     fun `shouting with no exclamation mark`() {
-        assertEquals("Whoa, chill out!", Bob.hey("I HATE YOU"))
+        assertThat(Bob.hey("I HATE YOU")).isEqualTo("Whoa, chill out!")
     }
 
     @Test
     fun `statement containing question mark`() {
-        assertEquals("Whatever.", Bob.hey("Ending with ? means a question."))
+        assertThat(Bob.hey("Ending with ? means a question.")).isEqualTo("Whatever.")
     }
 
     @Test
     fun `prattling on`() {
-        assertEquals("Sure.", Bob.hey("Wait! Hang on. Are you going to be OK?"))
+        assertThat(Bob.hey("Wait! Hang on. Are you going to be OK?")).isEqualTo("Sure.")
     }
 
     @Test
     fun silence() {
-        assertEquals("Fine. Be that way!", Bob.hey(""))
+        assertThat(Bob.hey("")).isEqualTo("Fine. Be that way!")
     }
 
     @Test
     fun `prolonged silence`() {
-        assertEquals("Fine. Be that way!", Bob.hey("    "))
+        assertThat(Bob.hey("    ")).isEqualTo("Fine. Be that way!")
     }
-    
+
     @Test
     fun `saying nothing`() {
-        assertEquals("Fine. Be that way!", Bob.hey(null))
+        assertThat(Bob.hey(null)).isEqualTo("Fine. Be that way!")
     }
 }
 
