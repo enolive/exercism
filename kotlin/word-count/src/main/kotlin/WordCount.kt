@@ -3,8 +3,7 @@ object WordCount {
         val words = phrase
                 .toLowerCase()
                 .filter { it.isRelevant() }
-                .split(' ')
-                .filter { !it.isBlank() }
+                .split(Regex(" +"))
         return words.groupBy { it }
                 .map { it.key to it.value.size }
                 .toMap()
