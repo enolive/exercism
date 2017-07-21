@@ -1,4 +1,4 @@
-object Bob { 
+object Bob {
     fun hey(statement: String): String {
         if (statement.isYelling()) {
             return "Whoa, chill out!"
@@ -7,12 +7,14 @@ object Bob {
         if (statement.isQuestion()) {
             return "Sure."
         }
-        
+
         return "Whatever."
     }
 
     private fun String.isYelling() = this == "WATCH OUT!"
 
-    private fun String.isQuestion() = this == "Does this cryogenic chamber make me look fat?"
+    private fun String.isQuestion(): Boolean {
+        return this.endsWith("?")
+    }
 
 }
