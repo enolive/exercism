@@ -94,5 +94,10 @@ class `Bob Tests` {
     fun `prolonged silence`() {
         assertEquals("Fine. Be that way!", Bob.hey("    "))
     }
+    
+    @Test
+    fun `saying nothing`() {
+        assertEquals("Fine. Be that way!", Bob.hey(null))
+    }
 }
 
