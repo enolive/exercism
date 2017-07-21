@@ -6,7 +6,7 @@ class DNA(private val value: String) {
     init {
         require(value.all { it.isValid() })
         nucleotideCounts = nucleotides
-                .associateBy({ it }, { nucleotide -> value.count { it == nucleotide } })
+                .associate { nucleotide -> nucleotide to value.count { it == nucleotide } }
     }
     
     fun count(nucleotide: Char): Int {
