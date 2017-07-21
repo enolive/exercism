@@ -90,9 +90,8 @@ class `Bob Tests` {
         assertEquals("Fine. Be that way!", Bob.hey(""))
     }
 
-    @Ignore
     @Test
-    fun prolongedSilence() {
+    fun `prolonged silence`() {
         assertEquals("Fine. Be that way!", Bob.hey("    "))
     }
 }
