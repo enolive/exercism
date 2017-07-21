@@ -6,7 +6,7 @@ class BobTest {
 
 
     @Test
-    fun saySomething() {
+    fun `say something`() {
         assertEquals("Whatever.", Bob.hey("Tom-ay-to, tom-aaaah-to."))
     }
 
@@ -113,9 +113,3 @@ class BobTest {
     }
 }
 
-object Bob {
-    fun hey(s: String): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-}
