@@ -1,6 +1,7 @@
 import org.junit.Assert.assertArrayEquals
 import org.junit.Ignore
 import org.junit.Test
+import kotlin.test.assertEquals
 
 /*
  * version: 1.0.0
@@ -29,13 +30,12 @@ class SpiralMatrixTest {
             intArrayOf(1, 2),
             intArrayOf(4, 3)
         )
-
+        
         assertArrayEquals(expected, SpiralMatrix.ofSize(2))
     }
 
-    @Ignore
     @Test
-    fun testSpiralOfSize3() {
+    fun `spiral of size 3`() {
         val expected = arrayOf(
             intArrayOf(1, 2, 3),
             intArrayOf(8, 9, 4),
