@@ -11,9 +11,8 @@ class NucleotideTest {
         assertEquals(0, dna.count('A'))
     }
 
-    @Ignore
     @Test
-    fun emptyDnaStringHasNoNucleotides() {
+    fun `empty dna string has no nucleotides`() {
         val dna = DNA("")
         val expected = mapOf('A' to 0, 'C' to 0, 'G' to 0, 'T' to 0)
 
@@ -88,9 +87,13 @@ class NucleotideTest {
 class DNA(value: String) {
     fun count(nucleotide: Char): Int {
         return 0
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    val nucleotideCounts: Map<Char, Int> = emptyMap()
+    val nucleotideCounts: Map<Char, Int> = mapOf(
+            'A' to 0,
+            'C' to 0,
+            'G' to 0,
+            'T' to 0
+    )
 
 }
