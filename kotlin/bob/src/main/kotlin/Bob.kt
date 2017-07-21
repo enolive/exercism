@@ -1,6 +1,7 @@
 object Bob {
     fun hey(statement: String): String {
         return when {
+            statement == "" -> "Fine. Be that way!"
             statement.isYelling() -> "Whoa, chill out!"
             statement.isQuestion() -> "Sure."
             else -> "Whatever."

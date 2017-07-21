@@ -50,49 +50,41 @@ class `Bob Tests` {
         assertEquals("Whatever.", Bob.hey("1, 2, 3"))
     }
 
-    @Ignore
     @Test
-    fun questionWithOnlyNumbers() {
+    fun `question with only numbers`() {
         assertEquals("Sure.", Bob.hey("4?"))
     }
 
-    @Ignore
     @Test
-    fun shoutingWithSpecialCharacters() {
+    fun `shouting with special characters`() {
         assertEquals("Whoa, chill out!", Bob.hey("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"))
     }
 
-    @Ignore
     @Test
-    fun shoutingWithUmlauts() {
-        assertEquals("Whoa, chill out!", Bob.hey("\u00dcML\u00c4\u00dcTS!"))
+    fun `shouting with umlauts`() {
+        assertEquals("Whoa, chill out!", Bob.hey("ÜMLÄÜTS!"))
     }
 
-    @Ignore
     @Test
-    fun calmlySpeakingWithUmlauts() {
-        assertEquals("Whatever.", Bob.hey("\u00dcML\u00e4\u00dcTS!"))
+    fun `calmly speaking with umlauts`() {
+        assertEquals("Whatever.", Bob.hey("ÜMLäÜTS!"))
     }
 
-    @Ignore
     @Test
-    fun shoutingWithNoExclamationMark() {
+    fun `shouting with no exclamation mark`() {
         assertEquals("Whoa, chill out!", Bob.hey("I HATE YOU"))
     }
 
-    @Ignore
     @Test
-    fun statementContainingQuestionMark() {
+    fun `statement containing question mark`() {
         assertEquals("Whatever.", Bob.hey("Ending with ? means a question."))
     }
 
-    @Ignore
     @Test
-    fun prattlingOn() {
+    fun `prattling on`() {
         assertEquals("Sure.", Bob.hey("Wait! Hang on. Are you going to be OK?"))
     }
 
-    @Ignore
     @Test
     fun silence() {
         assertEquals("Fine. Be that way!", Bob.hey(""))
