@@ -19,9 +19,8 @@ class WordCountTest {
         assertEquals(expectedWordCount, WordCount.phrase("one of each"))
     }
 
-    @Ignore
     @Test
-    fun countMultipleOccurences() {
+    fun `count multiple occurences`() {
         val expectedWordCount = mapOf("one" to 1, "fish" to 4, "two" to 1, "red" to 1, "blue" to 1)
 
         assertEquals(expectedWordCount, WordCount.phrase("one fish two fish red fish blue fish"))

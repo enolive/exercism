@@ -1,6 +1,9 @@
 object WordCount {
     fun phrase(phrase: String): Map<String, Int> {
-        return phrase.split(' ').associate { it to 1 }
+        val words = phrase.split(' ')
+        return words.groupBy { it }
+                .map { it.key to it.value.size }
+                .toMap()
     }
 
 }
