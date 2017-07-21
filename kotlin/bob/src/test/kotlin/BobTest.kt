@@ -2,7 +2,7 @@ import org.junit.Test
 import org.junit.Ignore
 import kotlin.test.assertEquals
 
-class BobTest {
+class `Bob Tests` {
 
 
     @Test
@@ -15,9 +15,8 @@ class BobTest {
         assertEquals("Whoa, chill out!", Bob.hey("WATCH OUT!"))
     }
 
-    @Ignore
     @Test
-    fun askingAQuestion() {
+    fun `asking a question`() {
         assertEquals("Sure.", Bob.hey("Does this cryogenic chamber make me look fat?"))
     }
 
