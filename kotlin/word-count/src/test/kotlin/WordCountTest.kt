@@ -28,7 +28,7 @@ class WordCountTest {
 
     @Ignore
     @Test
-    fun ignorePunctuation() {
+    fun `ignore punctuation`() {
         val expectedWordCount = mapOf("car" to 1, "carpet" to 1, "as" to 1, "java" to 1, "javascript" to 1)
 
         assertEquals(expectedWordCount, WordCount.phrase("car : carpet as java : javascript!!&@$%^&"))
