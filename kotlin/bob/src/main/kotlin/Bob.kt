@@ -1,4 +1,7 @@
-import rules.*
+import rules.AnythingElse
+import rules.Question
+import rules.Silence
+import rules.Yelling
 
 object Bob {
     private val rules = sequenceOf(
@@ -7,9 +10,9 @@ object Bob {
             Question(),
             AnythingElse()
     )
-    
-    fun hey(statement: String?): String {
-        return rules.filter { it.appliesTo(statement) }.first().answer
-    }
+
+    fun hey(statement: String?): String =
+            rules.filter { it.appliesTo(statement) }
+                    .first().answer
 }
 
