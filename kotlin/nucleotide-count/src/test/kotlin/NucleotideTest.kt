@@ -1,13 +1,12 @@
+import org.junit.Ignore
 import org.junit.Test
-import org.junit.Ignore;
 import kotlin.test.assertEquals
 
 class NucleotideTest {
 
-
     @Test
-    fun emptyDnaStringHasNoAdenosine() {
-        val dna = DNA("");
+    fun `empty dna string has no adenosine`() {
+        val dna = DNA("")
 
         assertEquals(0, dna.count('A'))
     }
@@ -15,7 +14,7 @@ class NucleotideTest {
     @Ignore
     @Test
     fun emptyDnaStringHasNoNucleotides() {
-        val dna = DNA("");
+        val dna = DNA("")
         val expected = mapOf('A' to 0, 'C' to 0, 'G' to 0, 'T' to 0)
 
         assertEquals(expected, dna.nucleotideCounts)
@@ -24,14 +23,14 @@ class NucleotideTest {
     @Ignore
     @Test
     fun repetitiveCytidineGetsCounted() {
-        val dna = DNA("CCCCC");
+        val dna = DNA("CCCCC")
         assertEquals(5, dna.count('C'))
     }
 
     @Ignore
     @Test
     fun repetitiveSequenceWithOnlyGuanosine() {
-        val dna = DNA("GGGGGGGG");
+        val dna = DNA("GGGGGGGG")
         val expected = mapOf('A' to 0, 'C' to 0, 'G' to 8, 'T' to 0)
 
         assertEquals(expected, dna.nucleotideCounts)
@@ -40,7 +39,7 @@ class NucleotideTest {
     @Ignore
     @Test
     fun countsOnlyThymidine() {
-        val dna = DNA("GGGGGTAACCCGG");
+        val dna = DNA("GGGGGTAACCCGG")
 
         assertEquals(1, dna.count('T'))
     }
@@ -48,7 +47,7 @@ class NucleotideTest {
     @Ignore
     @Test
     fun countsANucleotideOnlyOnce() {
-        val dna = DNA("CGATTGGG");
+        val dna = DNA("CGATTGGG")
 
         dna.count('T')
         assertEquals(2, dna.count('T'))
@@ -57,10 +56,10 @@ class NucleotideTest {
     @Ignore
     @Test
     fun dnaCountsDoNotChangeAfterCountingAdenosine() {
-        val dna = DNA("GATTACA");
+        val dna = DNA("GATTACA")
         val expected = mapOf('A' to 3, 'C' to 1, 'G' to 1, 'T' to 2)
 
-        dna.count('A');
+        dna.count('A')
         assertEquals(expected, dna.nucleotideCounts)
     }
 
@@ -73,7 +72,7 @@ class NucleotideTest {
     @Ignore
     @Test(expected = IllegalArgumentException::class)
     fun validatesNucleotidesCountInput() {
-        DNA("GACT").count('X');
+        DNA("GACT").count('X')
     }
 
     @Ignore
@@ -84,4 +83,14 @@ class NucleotideTest {
 
         assertEquals(expected, dna.nucleotideCounts)
     }
+}
+
+class DNA(value: String) {
+    fun count(nucleotide: Char): Int {
+        return 0
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    val nucleotideCounts: Map<Char, Int> = emptyMap()
+
 }
