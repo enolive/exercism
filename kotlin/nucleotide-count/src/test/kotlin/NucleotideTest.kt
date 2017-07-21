@@ -68,7 +68,7 @@ class NucleotideTest {
     }
 
     @Test
-    fun countsAllNucleotides() {
+    fun `counts all nucleotides`() {
         val dna = DNA("AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC")
         val expected = mapOf('A' to 20, 'C' to 12, 'G' to 17, 'T' to 21)
 
