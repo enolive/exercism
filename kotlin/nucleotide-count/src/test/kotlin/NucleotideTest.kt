@@ -63,11 +63,10 @@ class NucleotideTest {
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun validatesNucleotidesCountInput() {
+    fun `validates nucleotides count input`() {
         DNA("GACT").count('X')
     }
 
-    @Ignore
     @Test
     fun countsAllNucleotides() {
         val dna = DNA("AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC")

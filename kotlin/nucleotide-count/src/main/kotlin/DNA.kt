@@ -1,7 +1,7 @@
 class DNA(private val value: String) {
 
     val nucleotideCounts: Map<Char, Int>
-    private val nucleotides: List<Char> = listOf('A', 'C', 'G', 'T')
+    private val nucleotides = setOf('A', 'C', 'G', 'T')
 
     init {
         require(value.all { it.isValid() })
