@@ -6,7 +6,7 @@ class WordCountTest {
 
 
     @Test
-    fun countOneWord() {
+    fun `count one word`() {
         val expectedWordCount = mapOf("word" to 1)
 
         assertEquals(expectedWordCount, WordCount.phrase("word"))
@@ -63,9 +63,3 @@ class WordCountTest {
 
 }
 
-object WordCount {
-    fun phrase(phrase: String): Map<String, Int> {
-        return mapOf(phrase to 1)
-    }
-
-}
