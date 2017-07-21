@@ -33,7 +33,6 @@ class NucleotideTest {
         assertEquals(expected, dna.nucleotideCounts)
     }
 
-    @Ignore
     @Test
     fun countsOnlyThymidine() {
         val dna = DNA("GGGGGTAACCCGG")
