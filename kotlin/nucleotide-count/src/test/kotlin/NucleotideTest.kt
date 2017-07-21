@@ -19,9 +19,8 @@ class NucleotideTest {
         assertEquals(expected, dna.nucleotideCounts)
     }
 
-    @Ignore
     @Test
-    fun repetitiveCytidineGetsCounted() {
+    fun `repetitive cytidine gets counted`() {
         val dna = DNA("CCCCC")
         assertEquals(5, dna.count('C'))
     }

@@ -1,6 +1,6 @@
-class DNA(value: String) {
+class DNA(private val value: String) {
     fun count(nucleotide: Char): Int {
-        return 0
+        return value.count { it == nucleotide }
     }
 
     val nucleotideCounts: Map<Char, Int> = mapOf(
