@@ -112,3 +112,10 @@ class BobTest {
         assertEquals("Fine. Be that way!", Bob.hey("    "))
     }
 }
+
+object Bob {
+    fun hey(s: String): String {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+}
