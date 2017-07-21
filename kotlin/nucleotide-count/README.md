@@ -11,19 +11,19 @@ particular molecules that happen to make up a large part of DNA.
 Shortest intro to biochemistry EVAR:
 
 - twigs are to birds nests as
-- nucleotides are to DNA and RNA as
+- NUCLEOTIDES are to DNA and RNA as
 - amino acids are to proteins as
 - sugar is to starch as
 - oh crap lipids
 
 I'm not going to talk about lipids because they're crazy complex.
 
-So back to nucleotides.
+So back to NUCLEOTIDES.
 
 DNA contains four types of them: adenine (`A`), cytosine (`C`), guanine
 (`G`), and thymine (`T`).
 
-RNA contains a slightly different set of nucleotides, but we don't care
+RNA contains a slightly different set of NUCLEOTIDES, but we don't care
 about that for now.
 
 

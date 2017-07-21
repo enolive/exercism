@@ -1,11 +1,12 @@
+private const val NUCLEOTIDES = "AGCT"
+
 class DNA(private val value: String) {
 
     val nucleotideCounts: Map<Char, Int>
-    private val nucleotides = setOf('A', 'C', 'G', 'T')
 
     init {
         require(value.all { it.isValid() })
-        nucleotideCounts = nucleotides
+        nucleotideCounts = NUCLEOTIDES
                 .associate { nucleotide -> nucleotide to value.count { it == nucleotide } }
     }
     
@@ -14,5 +15,5 @@ class DNA(private val value: String) {
         return nucleotideCounts.getValue(nucleotide)
     }
 
-    private fun Char.isValid() = nucleotides.contains(this)
+    private fun Char.isValid() = this in NUCLEOTIDES
 }
