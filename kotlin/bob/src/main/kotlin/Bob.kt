@@ -1,5 +1,7 @@
+import rules.*
+
 object Bob {
-    private val rules = listOf(
+    private val rules = sequenceOf(
             Silence(),
             Yelling(),
             Question(),

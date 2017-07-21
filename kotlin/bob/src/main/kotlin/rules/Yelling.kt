@@ -1,3 +1,5 @@
+package rules
+
 class Yelling : Rule {
     override val answer: String
         get() = "Whoa, chill out!"

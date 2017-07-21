@@ -1,3 +1,5 @@
+package rules
+
 class Question : Rule {
     override val answer: String
         get() = "Sure."

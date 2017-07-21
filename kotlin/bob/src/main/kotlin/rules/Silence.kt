@@ -1,3 +1,5 @@
+package rules
+
 class Silence : Rule {
     override val answer: String
         get() = "Fine. Be that way!"
