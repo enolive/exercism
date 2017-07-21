@@ -34,9 +34,8 @@ class WordCountTest {
 
     }
 
-    @Ignore
     @Test
-    fun includeNumbers() {
+    fun `include numbers`() {
         val expectedWordCount = mapOf("testing" to 2, "1" to 1, "2" to 1)
 
         assertEquals(expectedWordCount, WordCount.phrase("testing, 1, 2 testing"))
