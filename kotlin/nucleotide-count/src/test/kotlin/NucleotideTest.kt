@@ -34,24 +34,22 @@ class NucleotideTest {
     }
 
     @Test
-    fun countsOnlyThymidine() {
+    fun `counts only thymidine`() {
         val dna = DNA("GGGGGTAACCCGG")
 
         assertEquals(1, dna.count('T'))
     }
 
-    @Ignore
     @Test
-    fun countsANucleotideOnlyOnce() {
+    fun `counts a nucleotide only once`() {
         val dna = DNA("CGATTGGG")
 
         dna.count('T')
         assertEquals(2, dna.count('T'))
     }
 
-    @Ignore
     @Test
-    fun dnaCountsDoNotChangeAfterCountingAdenosine() {
+    fun `dna counts do not change after counting adenosine`() {
         val dna = DNA("GATTACA")
         val expected = mapOf('A' to 3, 'C' to 1, 'G' to 1, 'T' to 2)
 

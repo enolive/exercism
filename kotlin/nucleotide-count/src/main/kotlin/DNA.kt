@@ -1,13 +1,10 @@
 class DNA(private val value: String) {
+    private val nucleotides = listOf('A', 'C', 'G', 'T')
+
+    val nucleotideCounts: Map<Char, Int> = nucleotides
+            .associateBy({ it }, { nucleotide -> value.count { it == nucleotide } })
+    
     fun count(nucleotide: Char): Int {
-        return value.count { it == nucleotide }
+        return nucleotideCounts.getValue(nucleotide)
     }
-
-    val nucleotideCounts: Map<Char, Int> = mapOf(
-            'A' to 0,
-            'C' to 0,
-            'G' to count('G'),
-            'T' to 0
-    )
-
 }
