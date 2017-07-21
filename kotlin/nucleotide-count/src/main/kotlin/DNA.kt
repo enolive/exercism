@@ -6,7 +6,7 @@ class DNA(private val value: String) {
     val nucleotideCounts: Map<Char, Int> = mapOf(
             'A' to 0,
             'C' to 0,
-            'G' to 0,
+            'G' to count('G'),
             'T' to 0
     )
 

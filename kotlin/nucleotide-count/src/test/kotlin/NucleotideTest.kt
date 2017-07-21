@@ -25,9 +25,8 @@ class NucleotideTest {
         assertEquals(5, dna.count('C'))
     }
 
-    @Ignore
     @Test
-    fun repetitiveSequenceWithOnlyGuanosine() {
+    fun `repetitive sequence with only guanosine`() {
         val dna = DNA("GGGGGGGG")
         val expected = mapOf('A' to 0, 'C' to 0, 'G' to 8, 'T' to 0)
 
