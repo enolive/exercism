@@ -3,15 +3,20 @@ object SpiralMatrix {
         if (size == 3) {
             val numbers = (1..(size * size)).toList()
             val result = Array(size) { Array(size) { 0 } }
-            result[0][0] = numbers[0]
-            result[0][1] = numbers[1]
-            result[0][2] = numbers[2]
-            result[1][2] = numbers[3]
-            result[2][2] = numbers[4]
-            result[2][1] = numbers[5]
-            result[2][0] = numbers[6]
-            result[1][0] = numbers[7]
-            result[1][1] = numbers[8]
+            val mappings = listOf(
+                    0 to 0,
+                    0 to 1,
+                    0 to 2,
+                    1 to 2,
+                    2 to 2,
+                    2 to 1,
+                    2 to 0,
+                    1 to 0,
+                    1 to 1
+            )
+            
+            (numbers zip mappings)
+                    .forEach { (number, mapping) -> result[mapping.first][mapping.second] = number }
             return result
         }
         
