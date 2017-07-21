@@ -23,9 +23,8 @@ class SpiralMatrixTest {
         assertArrayEquals(expected, SpiralMatrix.ofSize(1))
     }
 
-    @Ignore
     @Test
-    fun testSpiralOfSize2() {
+    fun `spiral of size 2`() {
         val expected = arrayOf(
             intArrayOf(1, 2),
             intArrayOf(4, 3)
