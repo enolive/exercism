@@ -10,11 +10,7 @@ object Bob {
     }
 
     private fun String.isYelling(): Boolean {
-        if (this.all { !it.isLetter() }) {
-            return false
-        }
-        
-        return this == this.toUpperCase()
+        return this.any { it.isLetter() } && this == this.toUpperCase()
     }
 
     private fun String.isQuestion(): Boolean {
