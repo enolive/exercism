@@ -1,17 +1,20 @@
 object Bob {
     fun hey(statement: String): String {
-        if (statement.isYelling()) {
-            return "Whoa, chill out!"
+        return when {
+            statement.isYelling() -> "Whoa, chill out!"
+            statement.isQuestion() -> "Sure."
+            else -> "Whatever."
         }
 
-        if (statement.isQuestion()) {
-            return "Sure."
-        }
-
-        return "Whatever."
     }
 
-    private fun String.isYelling() = this == "WATCH OUT!"
+    private fun String.isYelling(): Boolean {
+        if (this.all { !it.isLetter() }) {
+            return false
+        }
+        
+        return this == this.toUpperCase()
+    }
 
     private fun String.isQuestion(): Boolean {
         return this.endsWith("?")

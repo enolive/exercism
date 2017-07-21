@@ -25,33 +25,28 @@ class `Bob Tests` {
         assertEquals("Sure.", Bob.hey("You are, what, like 15?"))
     }
 
-    @Ignore
     @Test
-    fun talkingForcefully() {
+    fun `talking forcefully`() {
         assertEquals("Whatever.", Bob.hey("Let's go make out behind the gym!"))
     }
 
-    @Ignore
     @Test
-    fun usingAcronymsInRegularSpeech() {
+    fun `using acronyms in regular speech`() {
         assertEquals("Whatever.", Bob.hey("It's OK if you don't want to go to the DMV."))
     }
 
-    @Ignore
     @Test
-    fun forcefulQuestions() {
+    fun `forceful questions`() {
         assertEquals("Whoa, chill out!", Bob.hey("WHAT THE HELL WERE YOU THINKING?"))
     }
 
-    @Ignore
     @Test
-    fun shoutingNumbers() {
+    fun `shouting numbers`() {
         assertEquals("Whoa, chill out!", Bob.hey("1, 2, 3 GO!"))
     }
 
-    @Ignore
     @Test
-    fun onlyNumbers() {
+    fun `only numbers`() {
         assertEquals("Whatever.", Bob.hey("1, 2, 3"))
     }
 
