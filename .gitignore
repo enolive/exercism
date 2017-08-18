@@ -67,5 +67,9 @@ fabric.properties
 # Sonarlint plugin
 .idea/sonarlint
 
+# Rider
+**/bin/
+**/obj/
+
 # End of https://www.gitignore.io/api/intellij
 
