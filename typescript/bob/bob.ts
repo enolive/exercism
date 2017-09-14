@@ -4,7 +4,7 @@ export default class Bob {
         if (statement.endsWith("?")) {
             return "Sure."
         }
-        if (statement.endsWith("!")) {
+        if (statement.toUpperCase() === statement) {
             return "Whoa, chill out!"
         }
         return "Whatever."
