@@ -1,6 +1,12 @@
 export default class Bob {
 
     hey(statement: string) {
-        return 'Whatever.'
+        if (statement.endsWith("?")) {
+            return "Sure."
+        }
+        if (statement.endsWith("!")) {
+            return "Whoa, chill out!"
+        }
+        return "Whatever."
     }
 }
