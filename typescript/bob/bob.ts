@@ -1,21 +1,17 @@
-export default class Bob {
+import "./extensions"
 
+export default class Bob {
     private saysNothing = (statement: string) =>
-        this.compose(this.isEmpty)(this.trimmed)(statement)
+        statement.trim().isEmpty()
     private isShouting = (statement: string) =>
-        this.containsSomeLetters(statement) ? this.upperCased(statement) === statement : false
+        this.containsSomeLetters(statement) ? statement.toUpperCase() === statement : false
     private everythingElse = (_: string) => true
     private isQuestion = (statement: string) => statement.endsWith("?")
-    private isEmpty = (statement: string) => statement === ""
-    private trimmed = (statement: string) => statement.trim()
     private containsSomeLetters = (statement: string) =>
-        this.compose(this.matches)(this.upperCased)(statement)(/[A-ZÄÖÜ]/)
-    private upperCased = (statement: string) => statement.toUpperCase()
-    private matches = (statement: string) => (regexp: RegExp) => statement.match(regexp)
-
-    private compose = f => g => x => f(g(x))
+        statement.toUpperCase().match(/[A-ZÄÖÜ]/)
 
     hey(statement: string) {
+
         const rules = [
             {appliesTo: this.saysNothing, result: "Fine. Be that way!"},
             {appliesTo: this.isShouting, result: "Whoa, chill out!"},
