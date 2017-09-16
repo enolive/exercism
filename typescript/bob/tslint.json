@@ -116,7 +116,7 @@
         "use-isnan": true,
         "prefer-const": true,
         "array-type": [true, "array-simple"],
-        "arrow-parens": true,
+        "arrow-parens": false,
         "new-parens": true,
         "no-consecutive-blank-lines": [true,1],
         "no-parameter-properties": true,

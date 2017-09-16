@@ -5,7 +5,6 @@
         "alwaysStrict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noImplicitAny": true,
         "strictNullChecks": true,
         "preserveConstEnums": true,
         "noFallthroughCasesInSwitch":true,
