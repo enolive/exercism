@@ -3,7 +3,7 @@ export default class Pangram {
     }
 
     isPangram() {
-        if (this.s.length > 0) {
+        if (this.s.includes('x')) {
             return true
         }
         return false
