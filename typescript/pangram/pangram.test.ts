@@ -7,7 +7,7 @@ describe('Pangram()', () => {
     expect(pangram.isPangram()).toBe(false)
   })
 
-  xit('pangram with only lower case', () => {
+  it('pangram with only lower case', () => {
     const pangram = new Pangram("the quick brown fox jumps over the lazy dog")
     expect(pangram.isPangram()).toBe(true)
   })
