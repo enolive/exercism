@@ -5,8 +5,11 @@ export default class Pangram {
     }
 
     isPangram() {
-        const set = new Set<string>(this.sentence.split('').filter(c => this.isLetter(c)))
-        return set.size === this.alphabet.size
+        const presentCharacters = new Set<string>(this.sentence
+            .toLowerCase()
+            .split('')
+            .filter(c => this.isLetter(c)))
+        return presentCharacters.size === this.alphabet.size
     }
 
     private isLetter(character: string) {

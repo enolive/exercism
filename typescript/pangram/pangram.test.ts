@@ -32,12 +32,12 @@ describe('Pangram()', () => {
         expect(pangram.isPangram()).toBe(true)
     })
 
-    xit('missing letters replaced by numbers', () => {
+    it('missing letters replaced by numbers', () => {
         const pangram = new Pangram('7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog')
         expect(pangram.isPangram()).toBe(false)
     })
 
-    xit('pangram with mixed case and punctuation', () => {
+    it('pangram with mixed case and punctuation', () => {
         const pangram = new Pangram('"Five quacking Zephyrs jolt my wax bed."')
         expect(pangram.isPangram()).toBe(true)
     })
