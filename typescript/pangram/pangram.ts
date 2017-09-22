@@ -3,9 +3,8 @@ export default class Pangram {
     }
 
     isPangram() {
-        if (this.s.includes('x')) {
-            return true
-        }
-        return false
+        const alphabet = new Set<string>('abcdefghijklmnopqrstuvwxyz'.split(''))
+        const set = new Set<string>(this.s.split('').filter(c => alphabet.has(c)))
+        return set.size === alphabet.size
     }
 }
