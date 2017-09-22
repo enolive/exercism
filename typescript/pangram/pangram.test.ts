@@ -42,7 +42,7 @@ describe('Pangram()', () => {
         expect(pangram.isPangram()).toBe(true)
     })
 
-    xit('pangram with non-ascii characters', () => {
+    it('pangram with non-ascii characters', () => {
         const pangram = new Pangram('Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.')
         expect(pangram.isPangram()).toBe(true)
     })
