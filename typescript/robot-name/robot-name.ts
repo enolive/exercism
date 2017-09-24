@@ -1,7 +1,7 @@
 import * as _ from "lodash"
 
 export default class RobotName {
-    private existingNames = new Set()
+    private static existingNames = new Set<string>()
 
     constructor() {
         this.resetName()
@@ -14,20 +14,22 @@ export default class RobotName {
     }
 
     resetName() {
-        this._name = _.times(2, () => this.randomCharacter()).join("") +
-            _.times(3, () => this.randomNumberUpTo(10)).join("")
-        if (this.existingNames.has(this._name)) {
-            this.resetName()
-        }
-
-        this.existingNames.add(this.name)
+        do {
+            this._name = this.generateName()
+        } while (RobotName.existingNames.has(this.name))
+        RobotName.existingNames.add(this.name)
     }
 
-    private randomNumberUpTo(x: number) {
-        return Math.floor(Math.random() * x)
+    generateName() {
+        return _.times(2, () => this.randomCharacter()).join("") +
+            _.times(3, () => this.randomNumberUpTo(9)).join("")
     }
 
-    private randomCharacter() {
-        return String.fromCharCode(this.randomNumberUpTo(27) + "A".charCodeAt(0))
+    randomNumberUpTo(x: number) {
+        return Math.round(Math.random() * x)
+    }
+
+    randomCharacter() {
+        return String.fromCharCode(this.randomNumberUpTo("Z".charCodeAt(0) - "A".charCodeAt(0)) + "A".charCodeAt(0))
     }
 }
