@@ -30,7 +30,7 @@ describe("Robot", () => {
         expect(originalName).not.toEqual(newName)
     })
 
-    xit("should set a unique name after reset", () => {
+    it("should set a unique name after reset", () => {
         const NUMBER_OF_ROBOTS = 10000
         const usedNames = new Set()
 
