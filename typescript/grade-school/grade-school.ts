@@ -2,19 +2,18 @@ export default class GradeSchool {
     private map = new Map<string, string[]>()
 
     studentRoster() {
-        return this.map
+        return new Map([...this.map.entries()].sort())
     }
 
     addStudent(name: string, grade: number) {
         const entry = this.entry(grade)
         entry.push(name)
+        entry.sort()
         this.map.set(this.key(grade), entry)
     }
 
     studentsInGrade(grade: number) {
-        const entry = this.entry(grade)
-        entry.sort()
-        return entry
+        return this.entry(grade)
     }
 
     private entry(grade: number) {

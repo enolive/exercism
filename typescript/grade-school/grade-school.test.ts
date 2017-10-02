@@ -49,7 +49,7 @@ describe("School", () => {
         expect(gradeSchool.studentsInGrade(1)).toEqual([])
     })
 
-    xit("the students names in each grade in the roster are sorted", () => {
+    it("the students names in each grade in the roster are sorted", () => {
         gradeSchool.addStudent("Jennifer", 4)
         gradeSchool.addStudent("Kareem", 6)
         gradeSchool.addStudent("Christopher", 4)
