@@ -6,9 +6,22 @@ export default class GradeSchool {
     }
 
     addStudent(name: string, grade: number) {
-        const key = grade.toString()
-        const entry = this.map.get(key) || []
+        const entry = this.entry(grade)
         entry.push(name)
-        this.map.set(key, entry)
+        this.map.set(this.key(grade), entry)
+    }
+
+    studentsInGrade(grade: number) {
+        const entry = this.entry(grade)
+        entry.sort()
+        return entry
+    }
+
+    private entry(grade: number) {
+        return this.map.get(this.key(grade)) || []
+    }
+
+    private key(grade: number) {
+        return grade.toString()
     }
 }
