@@ -1,21 +1,15 @@
-class Result {
-    constructor(readonly remainingInput: number, readonly currentFactor: number = 2, readonly found: number[] = []) {
-    }
-
-    next() {
-        if (this.remainingInput % this.currentFactor === 0) {
-            return new Result(this.remainingInput / this.currentFactor, 2, this.found.concat(this.currentFactor))
-        }
-        return new Result(this.remainingInput, this.currentFactor + 1, this.found)
-    }
-
+export default function calculatePrimeFactors(limit: number) {
+    return factor(limit)
 }
 
-export default function calculatePrimeFactors(limit: number) {
-    let result = new Result(limit)
-
-    while (result.remainingInput !== 1) {
-        result = result.next()
+function factor(remaining: number, found: number[] = []): number[] {
+    if (remaining === 1) {
+        return found
     }
-    return result.found
+    let tryFactor: number = found.length > 0 ? found[found.length - 1] : 2
+    while (remaining % tryFactor !== 0) {
+        tryFactor++
+    }
+    found.push(tryFactor)
+    return factor(remaining / tryFactor, found)
 }
