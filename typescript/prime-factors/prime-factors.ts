@@ -1,14 +1,13 @@
 export default function calculatePrimeFactors(limit: number) {
     let result: number[] = []
+    const primes = [2, 3]
     while (limit > 1) {
-        if (limit % 2 === 0) {
-            result = result.concat(2)
-            limit /= 2
-        }
-        if (limit % 3 === 0) {
-            result = result.concat(3)
-            limit /= 3
-        }
+        primes.forEach((p) => {
+            if (limit % p === 0) {
+                result = result.concat(p)
+                limit /= p
+            }
+        })
     }
     return result
 }
