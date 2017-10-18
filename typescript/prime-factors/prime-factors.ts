@@ -1,22 +1,22 @@
 class Result {
-    constructor(readonly currentFactor: number, readonly remainingInput: number, readonly found: number[]) {
+    constructor(readonly remainingInput: number, readonly currentFactor: number, readonly found: number[]) {
     }
 
+    next() {
+        if (this.remainingInput % this.currentFactor === 0) {
+            return new Result(this.remainingInput / this.currentFactor, 2, this.found.concat(this.currentFactor))
+        }
+        return new Result(this.remainingInput, this.currentFactor + 1, this.found)
+    }
 
 }
 
 function next(result: Result) {
-    if (result.remainingInput % result.currentFactor === 0) {
-        result = new Result(2, result.remainingInput / result.currentFactor, result.found.concat(result.currentFactor))
-    }
-    else {
-        result = new Result(result.currentFactor + 1, result.remainingInput, result.found)
-    }
-    return result
+    return result.next()
 }
 
 export default function calculatePrimeFactors(limit: number) {
-    let result = new Result(2, limit, [])
+    let result = new Result(limit, 2, [])
 
     while (result.remainingInput !== 1) {
         result = next(result)
