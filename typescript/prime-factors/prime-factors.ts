@@ -1,15 +1,24 @@
 export default function calculatePrimeFactors(limit: number) {
-    return factor(limit)
+    return factorize(limit)
 }
 
-function factor(remaining: number, found: number[] = []): number[] {
+function factorize(remaining: number, found: number[] = []): number[] {
     if (remaining === 1) {
         return found
     }
-    let tryFactor: number = found.length > 0 ? found[found.length - 1] : 2
+    const tryFactor = getNextFactor(found, remaining)
+    return factorize(remaining / tryFactor, found.concat(tryFactor))
+}
+
+function getNextFactor(found: number[], remaining: number) {
+    let tryFactor = lastInOr(found, 2)
     while (remaining % tryFactor !== 0) {
         tryFactor++
     }
-    found.push(tryFactor)
-    return factor(remaining / tryFactor, found)
+    return tryFactor
+}
+
+function lastInOr(found: number[], orValue: number) {
+    const [tryFactor] = found.slice(-1)
+    return tryFactor || orValue
 }
