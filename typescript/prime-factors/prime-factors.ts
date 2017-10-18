@@ -1,39 +1,25 @@
-import * as _ from "lodash"
-
 class Result {
-    constructor(private readonly limit: number, readonly primes: number[] = []) {
+    constructor(readonly currentFactor: number, readonly remainingInput: number, readonly found: number[]) {
     }
 
-    next(prime: number): Result {
-        return new Result(this.limit / prime, this.primes.concat(prime))
-    }
 
-    isAtEnd() {
-        return this.limit === 1
-    }
 }
 
-export function isPrime(candidate: number): boolean {
-    const upperLimit = Math.floor(Math.sqrt(candidate))
-    const numbers = _.range(2, upperLimit + 1)
-    return !numbers.some((n) => candidate % n === 0)
-}
-
-export function letThereBePrimes(limit: number) {
-    const numbers = _.range(2, limit + 1)
-    return numbers.filter((primeCandidate) => isPrime(primeCandidate))
+function next(result: Result) {
+    if (result.remainingInput % result.currentFactor === 0) {
+        result = new Result(2, result.remainingInput / result.currentFactor, result.found.concat(result.currentFactor))
+    }
+    else {
+        result = new Result(result.currentFactor + 1, result.remainingInput, result.found)
+    }
+    return result
 }
 
 export default function calculatePrimeFactors(limit: number) {
-    const result = new Result(limit)
-    const primes = letThereBePrimes(limit).filter((p) => limit % p === 0)
+    let result = new Result(2, limit, [])
 
-    function calculateTailRec(result: Result): Result {
-        if (result.isAtEnd()) {
-            return result
-        }
-        return calculateTailRec(primes.reduce((acc, prime) => acc.next(prime), result))
+    while (result.remainingInput !== 1) {
+        result = next(result)
     }
-
-    return calculateTailRec(result).primes
+    return result.found
 }

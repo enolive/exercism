@@ -1,26 +1,6 @@
-import calculatePrimeFactors, {isPrime, letThereBePrimes} from "./prime-factors"
+import calculatePrimeFactors from "./prime-factors"
 
 describe("prime factors", () => {
-    describe("primes", () => {
-        it("2 is a prime", () => expect(isPrime(2)).toEqual(true))
-
-        it("3 is a prime", () => expect(isPrime(3)).toEqual(true))
-
-        it("4 is not a prime", () => expect(isPrime(4)).toEqual(false))
-
-        it("returns an empty array for 1", () => expect(letThereBePrimes(1)).toEqual([]))
-
-        it("returns 2 for 2", () => expect(letThereBePrimes(2)).toEqual([2]))
-
-        it("returns 2,3 for 3", () => expect(letThereBePrimes(3)).toEqual([2, 3]))
-
-        it("returns 2,3,5 for 5", () => expect(letThereBePrimes(5)).toEqual([2, 3, 5]))
-
-        it("returns 2,3,5,7 for 7", () => expect(letThereBePrimes(7)).toEqual([2, 3, 5, 7]))
-
-        it("returns 2,3,5,7,11,13 for 16", () => expect(letThereBePrimes(16)).toEqual([2, 3, 5, 7, 11, 13]))
-    })
-
     describe("calculate", () => {
         it("returns an empty array for 1", () => expect(calculatePrimeFactors(1)).toEqual([]))
 
@@ -40,8 +20,8 @@ describe("prime factors", () => {
 
         it("factors 625", () => expect(calculatePrimeFactors(625)).toEqual([5, 5, 5, 5]))
 
-        xit("factors 901255", () => expect(calculatePrimeFactors(901255)).toEqual([5, 17, 23, 461]))
+        it("factors 901255", () => expect(calculatePrimeFactors(901255)).toEqual([5, 17, 23, 461]))
 
-        xit("factors 93819012551", () => expect(calculatePrimeFactors(93819012551)).toEqual([11, 9539, 894119]))
+        it("factors 93819012551", () => expect(calculatePrimeFactors(93819012551)).toEqual([11, 9539, 894119]))
     })
 })
