@@ -1,12 +1,7 @@
 import calculatePrimeFactors, {isPrime, letThereBePrimes} from "./prime-factors"
-import * as _ from "lodash"
 
 describe("calculatePrimeFactors", () => {
     fdescribe("primes", () => {
-        it("wtf", () => {
-            expect(_.range(2, Math.sqrt(4) + 1)).toEqual([2])
-        })
-        
         it("2 is a prime", () => expect(isPrime(2)).toEqual(true))
 
         it("3 is a prime", () => expect(isPrime(3)).toEqual(true))
@@ -22,6 +17,8 @@ describe("calculatePrimeFactors", () => {
         it("returns 2,3,5 for 5", () => expect(letThereBePrimes(5)).toEqual([2, 3, 5]))
 
         it("returns 2,3,5,7 for 7", () => expect(letThereBePrimes(7)).toEqual([2, 3, 5, 7]))
+
+        it("returns 2,3,5,7,11,13 for 16", () => expect(letThereBePrimes(16)).toEqual([2, 3, 5, 7, 11, 13]))
     })
 
     it("returns an empty array for 1", () => expect(calculatePrimeFactors(1)).toEqual([]))
