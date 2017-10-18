@@ -1,5 +1,5 @@
 class Result {
-    constructor(readonly limit: number, readonly primes: number[] = []) {
+    constructor(private readonly limit: number, readonly primes: number[] = []) {
     }
 
     next(prime: number): Result {
@@ -20,9 +20,8 @@ export default function calculatePrimeFactors(limit: number) {
     const primes = [2, 3].filter((p) => result.isDivisibleBy(p))
 
     while (!result.isAtEnd()) {
-        primes.forEach((p) => {
-            result = result.next(p)
-        })
+        result = primes.reduce((acc, prime) => acc.next(prime), result)
     }
+    
     return result.primes
 }
