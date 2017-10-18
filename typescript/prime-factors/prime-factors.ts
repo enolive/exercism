@@ -6,11 +6,11 @@ function factorize(remaining: number, found: number[] = []): number[] {
     if (remaining === 1) {
         return found
     }
-    const nextFactor = getNextFactor(found, remaining)
+    const nextFactor = getNextFactor(remaining, found)
     return factorize(remaining / nextFactor, found.concat(nextFactor))
 }
 
-function getNextFactor(found: number[], remaining: number) {
+function getNextFactor(remaining: number, found: number[]) {
     let tryFactor = lastInOr(found, 2)
     while (remaining % tryFactor !== 0) {
         tryFactor++
