@@ -11,7 +11,7 @@ describe('calculatePrimeFactors', () => {
 
   it('factors 6', () => expect(calculatePrimeFactors(6)).toEqual([2, 3]))
 
-  xit('factors 8', () => expect(calculatePrimeFactors(8)).toEqual([2, 2, 2]))
+  it('factors 8', () => expect(calculatePrimeFactors(8)).toEqual([2, 2, 2]))
 
   xit('factors 9', () => expect(calculatePrimeFactors(9)).toEqual([3, 3]))
 
