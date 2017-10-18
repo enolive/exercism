@@ -5,11 +5,7 @@ class Result {
     next(prime: number): Result {
         return new Result(this.limit / prime, this.primes.concat(prime))
     }
-
-    isDivisibleBy(prime: number) {
-        return this.limit % prime === 0
-    }
-
+    
     isAtEnd() {
         return this.limit === 1
     }
