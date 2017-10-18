@@ -7,9 +7,9 @@ describe('calculatePrimeFactors', () => {
 
   it('factors 3', () => expect(calculatePrimeFactors(3)).toEqual([3]))
 
-  xit('factors 4', () => expect(calculatePrimeFactors(4)).toEqual([2, 2]))
+  it('factors 4', () => expect(calculatePrimeFactors(4)).toEqual([2, 2]))
 
-  xit('factors 6', () => expect(calculatePrimeFactors(6)).toEqual([2, 3]))
+  it('factors 6', () => expect(calculatePrimeFactors(6)).toEqual([2, 3]))
 
   xit('factors 8', () => expect(calculatePrimeFactors(8)).toEqual([2, 2, 2]))
 
