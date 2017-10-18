@@ -1,22 +1,21 @@
-function next(result: { limit: number; primes: number[] }, p) {
-    return {
-        limit: result.limit / p,
-        primes: result.primes.concat(p)
+class Result {
+    constructor(readonly limit: number, readonly primes: number[] = []) {
+    }
+
+    next(prime: number): Result {
+        return new Result(this.limit / prime, this.primes.concat(prime))
     }
 }
 
 export default function calculatePrimeFactors(limit: number) {
-    let result = {
-        limit: limit,
-        primes: [],
-    }
+    let result = new Result(limit)
     const primes = [2, 3]
 
     while (result.limit > 1) {
         primes
             .filter((p) => result.limit % p === 0)
             .forEach((p) => {
-                result = next(result, p)
+                result = result.next(p)
             })
     }
     return result.primes
