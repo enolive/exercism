@@ -3,7 +3,7 @@ import calculatePrimeFactors from './prime-factors'
 describe('calculatePrimeFactors', () => {
   it('returns an empty array for 1', () => expect(calculatePrimeFactors(1)).toEqual([]))
 
-  xit('factors 2', () => expect(calculatePrimeFactors(2)).toEqual([2]))
+  it('factors 2', () => expect(calculatePrimeFactors(2)).toEqual([2]))
 
   xit('factors 3', () => expect(calculatePrimeFactors(3)).toEqual([3]))
 
