@@ -17,7 +17,7 @@ class Result {
 
 export default function calculatePrimeFactors(limit: number) {
     const result = new Result(limit)
-    const primes = [2, 3].filter((p) => result.isDivisibleBy(p))
+    const primes = [2, 3, 5].filter((p) => result.isDivisibleBy(p))
 
     function calculateTailRec(result: Result): Result {
         if (result.isAtEnd()) {
