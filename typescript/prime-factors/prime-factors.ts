@@ -1,5 +1,5 @@
 class Result {
-    constructor(readonly remainingInput: number, readonly currentFactor: number, readonly found: number[]) {
+    constructor(readonly remainingInput: number, readonly currentFactor: number = 2, readonly found: number[] = []) {
     }
 
     next() {
@@ -11,15 +11,11 @@ class Result {
 
 }
 
-function next(result: Result) {
-    return result.next()
-}
-
 export default function calculatePrimeFactors(limit: number) {
-    let result = new Result(limit, 2, [])
+    let result = new Result(limit)
 
     while (result.remainingInput !== 1) {
-        result = next(result)
+        result = result.next()
     }
     return result.found
 }
