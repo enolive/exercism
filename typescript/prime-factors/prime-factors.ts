@@ -15,9 +15,13 @@ class Result {
     }
 }
 
+function letThereBePrimes(limit: number) {
+    return [2, 3, 5].filter((p) => limit % p === 0)
+}
+
 export default function calculatePrimeFactors(limit: number) {
     const result = new Result(limit)
-    const primes = [2, 3, 5].filter((p) => result.isDivisibleBy(p))
+    const primes = letThereBePrimes(limit)
 
     function calculateTailRec(result: Result): Result {
         if (result.isAtEnd()) {
@@ -25,5 +29,6 @@ export default function calculatePrimeFactors(limit: number) {
         }
         return calculateTailRec(primes.reduce((acc, prime) => acc.next(prime), result))
     }
+
     return calculateTailRec(result).primes
 }
