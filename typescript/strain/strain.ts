@@ -1,7 +1,7 @@
-const keep = <T>(array: T[], predicate: (item: T) => boolean): T[] =>
+export const keep = <T>(array: T[], predicate: (item: T) => boolean): T[] =>
     filter(array, predicate)
 
-const discard = <T>(array: T[], predicate: (item: T) => boolean): T[] =>
+export const discard = <T>(array: T[], predicate: (item: T) => boolean): T[] =>
     filter(array, (item) => !predicate(item))
 
 const filter = <T>(array: T[], predicate: (item: T) => boolean): T[] =>
@@ -15,5 +15,3 @@ const filterRec = <T>(array: T[], acc: T[], predicate: (item: T) => boolean): T[
     const newAcc = predicate(head) ? [...acc, head] : acc
     return filterRec(tail, newAcc, predicate)
 }
-
-export {keep, discard}
