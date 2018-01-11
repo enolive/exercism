@@ -1,14 +1,19 @@
-export function keep<Type>(array: Type[], predicate: (item: Type) => boolean): Type[] {
-    const newArray = []
-    for (const item of array) {
-        if (!predicate(item)) {
-            continue
-        }
-        newArray.push(item)
+const keep = <T>(array: T[], predicate: (item: T) => boolean): T[] =>
+    filter(array, predicate)
+
+const discard = <T>(array: T[], predicate: (item: T) => boolean): T[] =>
+    filter(array, (item) => !predicate(item))
+
+const filter = <T>(array: T[], predicate: (item: T) => boolean): T[] =>
+    filterRec(array, [], predicate)
+
+const filterRec = <T>(array: T[], acc: T[], predicate: (item: T) => boolean): T[] => {
+    if (array.length === 0) {
+        return acc
     }
-    return newArray
+    const [head, ...tail] = array
+    const newAcc = predicate(head) ? [...acc, head] : acc
+    return filterRec(tail, newAcc, predicate)
 }
 
-export function discard<Type>(array: Type[], predicate: (item: Type) => boolean): Type[] {
-    return keep(array, (item) => !predicate(item))
-}
+export {keep, discard}
