@@ -10,12 +10,5 @@ export function keep<Type>(array: Type[], predicate: (item: Type) => boolean): T
 }
 
 export function discard<Type>(array: Type[], predicate: (item: Type) => boolean): Type[] {
-    const newArray = []
-    for (const item of array) {
-        if (predicate(item)) {
-            continue
-        }
-        newArray.push(item)
-    }
-    return newArray
+    return keep(array, (item) => !predicate(item))
 }
