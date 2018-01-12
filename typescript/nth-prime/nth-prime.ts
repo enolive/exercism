@@ -1,11 +1,12 @@
 export default class Prime {
     nth(which: number): number {
         Prime.throwIfInvalid(which)
-        let result = 2
-        while (which-- > 1) {
-            result = Prime.next(result)
+        const alreadyFoundPrimes = [2, 3, 5, 7]
+        while (alreadyFoundPrimes.length < which) {
+            const nextPrime = Prime.next(alreadyFoundPrimes)
+            alreadyFoundPrimes.push(nextPrime)
         }
-        return result
+        return alreadyFoundPrimes[which - 1]
     }
 
     private static throwIfInvalid(which: number) {
@@ -14,20 +15,15 @@ export default class Prime {
         }
     }
 
-    private static isOnlyDivisibleByItself(test: number) {
-        for (let i = 2; i <= Math.sqrt(test); i++) {
-            if (test !== i && test % i === 0) {
-                return false
-            }
+    private static next(alreadyFoundPrimes: number[]) {
+        let result = this.last(alreadyFoundPrimes) + 1
+        while (alreadyFoundPrimes.some((p) => result % p === 0)) {
+            result++
         }
-        return true
+        return result
     }
 
-    private static next(previous: number) {
-        let newTest = previous + 1
-        while (!Prime.isOnlyDivisibleByItself(newTest)) {
-            newTest++
-        }
-        return newTest
+    private static last(list: number[]) {
+        return list[list.length - 1]
     }
 }
