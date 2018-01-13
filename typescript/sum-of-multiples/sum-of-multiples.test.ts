@@ -5,7 +5,7 @@ describe('SumOfMultiples', () => {
     expect(SumOfMultiples([3, 5]).to(1)).toBe(0)
   })
 
-  xit('to 3', () => {
+  it('to 3', () => {
     expect(SumOfMultiples([3, 5]).to(4)).toBe(3)
   })
 

@@ -1,13 +1,20 @@
+import * as _ from "lodash"
+
 class Sum {
-    private array: number[]
+    private multiples: number[]
 
-    constructor(array: number[]) {
-        this.array = array
-
+    constructor(multiples: number[]) {
+        this.multiples = multiples
     }
 
     to(end: number): number {
-        return 0
+        return _.range(1, end)
+            .filter((n) => this.multiples.some((multiple) => this.isDivisibleBy(n, multiple)))
+            .reduce((a, b) => a + b, 0)
+    }
+
+    private isDivisibleBy(n: number, denominator: number) {
+        return n % denominator === 0
     }
 }
 
