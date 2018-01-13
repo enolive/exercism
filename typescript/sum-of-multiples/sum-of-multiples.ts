@@ -9,11 +9,11 @@ class Sum {
 
     to(end: number): number {
         return _.range(1, end)
-            .filter((n) => this.multiples.some((multiple) => this.isDivisibleBy(n, multiple)))
+            .filter((n) => this.multiples.some((multiple) => Sum.isDivisibleBy(n, multiple)))
             .reduce((a, b) => a + b, 0)
     }
 
-    private isDivisibleBy(n: number, denominator: number) {
+    private static isDivisibleBy(n: number, denominator: number) {
         return n % denominator === 0
     }
 }
