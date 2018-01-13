@@ -14,27 +14,12 @@ class Sum {
     to(end: number): number {
         return _.range(1, end)
             .filter((n) => Sum.is(n).multipleOf(this.multiples))
-            .reduce((a, b) => a + b, 0)
+            .reduce((sum, n) => sum + n, 0)
     }
 
     private static is(n: number) {
-        return new Is(n)
+        return {
+            multipleOf: (multiples: number[]) => multiples.some((m) => n % m === 0)
+        }
     }
-}
-
-class Is {
-    private n: number
-
-    constructor(n: number) {
-        this.n = n
-    }
-
-    multipleOf(multiples: number[]): boolean {
-        return multiples.some(this.areMultiples())
-    }
-
-    private areMultiples() {
-        return (multiple: number) => this.n % multiple === 0
-    }
-
 }
