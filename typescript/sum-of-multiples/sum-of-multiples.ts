@@ -1,8 +1,6 @@
 import * as _ from "lodash"
 
-export default (multiples: number[]) => {
-    return new SumOfMultiples(multiples)
-}
+export default (multiples: number[]) => new SumOfMultiples(multiples)
 
 class SumOfMultiples {
     private multiples: number[]
