@@ -1,10 +1,10 @@
 import * as _ from "lodash"
 
-export default function SumOfMultiples(array: number[]) {
-    return new Sum(array)
+export default (multiples: number[]) => {
+    return new SumOfMultiples(multiples)
 }
 
-class Sum {
+class SumOfMultiples {
     private multiples: number[]
 
     constructor(multiples: number[]) {
@@ -13,7 +13,7 @@ class Sum {
 
     to(end: number): number {
         return _.range(1, end)
-            .filter((n) => Sum.is(n).multipleOf(this.multiples))
+            .filter((n) => SumOfMultiples.is(n).multipleOf(this.multiples))
             .reduce((sum, n) => sum + n, 0)
     }
 
