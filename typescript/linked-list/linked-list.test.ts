@@ -58,7 +58,7 @@ describe('LinkedList', () => {
         expect(list.count()).toBe(2)
     })
 
-    xit('sets head/tail after popping last element', () => {
+    it('sets head/tail after popping last element', () => {
         list.push(10)
         list.pop()
         list.unshift(20)

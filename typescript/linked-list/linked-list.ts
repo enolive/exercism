@@ -1,6 +1,6 @@
 export default class LinkedList<T> {
     private last: Node<T>
-    private first: Node<T>
+    private first: Node<T> | undefined
 
     shift(): T {
         const firstItem = this.first.value
@@ -9,7 +9,7 @@ export default class LinkedList<T> {
     }
 
     count(): number {
-        const countNodes = (current: Node<T>, count: number): number =>
+        const countNodes = (current: Node<T> | undefined, count: number): number =>
             !current
                 ? count
                 : countNodes(current.next, count + 1)
@@ -43,6 +43,9 @@ export default class LinkedList<T> {
     pop(): T {
         const lastItem = this.last.value
         this.last = this.last.previous
+        if (!this.last) {
+            this.first = undefined
+        }
         return lastItem
     }
 }
