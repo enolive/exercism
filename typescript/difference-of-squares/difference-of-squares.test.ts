@@ -9,11 +9,11 @@ describe('Squares', () => {
             expect(squares.squareOfSums).toBe(225)
         })
 
-        xit('gets the sum of squares', () => {
+        it('gets the sum of squares', () => {
             expect(squares.sumOfSquares).toBe(55)
         })
 
-        xit('gets the difference', () => {
+        it('gets the difference', () => {
             expect(squares.difference).toBe(170)
         })
 
