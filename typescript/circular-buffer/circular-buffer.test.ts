@@ -59,7 +59,7 @@ describe('CircularBuffer', () => {
     expect(() => buffer.write('A')).toThrow(BufferOverflowError)
   })
 
-  xit('forced writes over write oldest item in a full buffer', () => {
+  it('forced writes over write oldest item in a full buffer', () => {
     const buffer = new CircularBuffer<string>(2)
     buffer.write('1')
     buffer.write('2')
@@ -69,7 +69,7 @@ describe('CircularBuffer', () => {
     expect(() => buffer.read()).toThrow(BufferEmptyError)
   })
 
-  xit('forced writes act like write in a non-full buffer', () => {
+  it('forced writes act like write in a non-full buffer', () => {
     const buffer = new CircularBuffer<string>(2)
     buffer.write('1')
     buffer.forceWrite('2')
@@ -78,7 +78,7 @@ describe('CircularBuffer', () => {
     expect(() => buffer.read()).toThrow(BufferEmptyError)
   })
 
-  xit('alternate force write and read into full buffer', () => {
+  it('alternate force write and read into full buffer', () => {
     const buffer = new CircularBuffer<string>(5)
     buffer.write('1')
     buffer.write('2')

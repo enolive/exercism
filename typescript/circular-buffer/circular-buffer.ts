@@ -11,18 +11,33 @@ export default class CircularBuffer<T> {
     }
 
     read() {
-        if (this.data.length === 0) {
+        if (this.isEmpty()) {
             throw new BufferEmptyError()
         }
         const [item] = this.data.splice(0, 1)
         return item
     }
 
+    forceWrite(item: T) {
+        if (this.isFull()) {
+            this.read()
+        }
+        this.write(item)
+    }
+
     write(item: T) {
-        if (this.data.length >= this.capacity) {
+        if (this.isFull()) {
             throw new BufferOverflowError()
         }
         this.data.push(item)
+    }
+
+    private isEmpty() {
+        return this.data.length === 0
+    }
+
+    private isFull() {
+        return this.data.length >= this.capacity
     }
 }
 
