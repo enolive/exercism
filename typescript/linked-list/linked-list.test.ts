@@ -123,14 +123,13 @@ describe('LinkedList', () => {
         expect(list.shift()).toBe(undefined)
     })
 
-    xit('deletes the only element', () => {
+    it('deletes the only element', () => {
         list.push(10)
         list.delete(10)
         expect(list.count()).toBe(0)
     })
 
-    xit('delete does not modify the list if the element is not found', () => {
-        const list = new LinkedList<number>()
+    it('delete does not modify the list if the element is not found', () => {
         list.push(10)
         list.delete(20)
         expect(list.count()).toBe(1)
