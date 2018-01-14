@@ -3,6 +3,12 @@ export default class BinarySearchTree {
         this._data = data
     }
 
+    private _right: BinarySearchTree
+
+    get right(): BinarySearchTree {
+        return this._right
+    }
+
     private _left: BinarySearchTree
 
     get left(): BinarySearchTree {
@@ -16,6 +22,11 @@ export default class BinarySearchTree {
     }
 
     insert(data: number) {
-        this._left = new BinarySearchTree(data)
+        if (data > this.data) {
+            this._right = new BinarySearchTree(data)
+        }
+        else {
+            this._left = new BinarySearchTree(data)
+        }
     }
 }

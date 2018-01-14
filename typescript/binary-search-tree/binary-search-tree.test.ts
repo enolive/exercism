@@ -19,7 +19,7 @@ describe('BinarySearchTree', () => {
     expect(four.left.data).toEqual(2)
   })
 
-  xit('should insert the same number to the left', () => {
+  it('should insert the same number to the left', () => {
     const four = new BinarySearchTree(4)
     four.insert(4)
 
@@ -27,11 +27,12 @@ describe('BinarySearchTree', () => {
     expect(four.left.data).toEqual(4)
   })
 
-  xit('should insert a greater number to the right', () => {
+  it('should insert a greater number to the right', () => {
     const four = new BinarySearchTree(4)
     four.insert(5)
 
     expect(four.data).toEqual(4)
+    expect(four.left).toEqual(undefined)
     expect(four.right.data).toEqual(5)
   })
 
