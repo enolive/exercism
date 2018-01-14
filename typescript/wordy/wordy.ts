@@ -9,15 +9,23 @@ export class ArgumentError implements Error {
 
 export class WordProblem {
     private question: string
+    private operations = [
+        {word: 'plus', compute: (a: number, b: number) => a + b},
+        {word: 'minus', compute: (a: number, b: number) => a - b},
+        {word: 'multiplied by', compute: (a: number, b: number) => a * b},
+        {word: 'divided by', compute: (a: number, b: number) => a / b},
+    ]
 
     constructor(question: string) {
         this.question = question
     }
 
     answer() {
-        const match = this.question.match(/What is ([^ ]+) ((plus|minus|multiplied by|divided by) ([^ ]+))\?/)
+        const allowedOperations = this.operations.map((o) => o.word).join('|')
+        const regExp = new RegExp(`What is (-?\\d+) ((${allowedOperations}) (-?\\d+))\\?`)
+        const match = this.question.match(regExp)
         if (!match) {
-            return 42
+            throw new ArgumentError(`I don't understand the given question ${this.question}`)
         }
         const firstNumber = this.toDecimal(match[1])
         const secondNumber = this.toDecimal(match[4])
@@ -29,17 +37,9 @@ export class WordProblem {
     }
 
     private getOperation(operationCode: string) {
-        switch (operationCode) {
-            case "plus":
-                return (a: number, b: number) => a + b
-            case "minus":
-                return (a: number, b: number) => a - b
-            case "multiplied by":
-                return (a: number, b: number) => a * b
-            case "divided by":
-                return (a: number, b: number) => a / b
-            default:
-                throw new ArgumentError(`unknown operation code ${operationCode}`)
-        }
+        const [operation] = this.operations
+            .filter((o) => o.word === operationCode)
+            .map((o) => o.compute)
+        return operation
     }
 }

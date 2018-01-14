@@ -72,14 +72,14 @@ describe('Word Problem', () => {
         expect(new WordProblem(question).answer()).toEqual(2)
     })
 
-    xit('too advanced', () => {
+    it('too advanced', () => {
         const question = 'What is 53 cubed?'
         const problem = new WordProblem(question)
 
         expect(problem.answer.bind(problem)).toThrowError(ArgumentError)
     })
 
-    xit('irrelevant', () => {
+    it('irrelevant', () => {
         const question = 'Who is the president of the United States?'
         const problem = new WordProblem(question)
 
