@@ -11,7 +11,7 @@ describe('BinarySearchTree', () => {
     expect(new BinarySearchTree(4).data).toEqual(4)
   })
 
-  xit('should insert a lesser number to the left', () => {
+  it('should insert a lesser number to the left', () => {
     const four = new BinarySearchTree(4)
     four.insert(2)
 
