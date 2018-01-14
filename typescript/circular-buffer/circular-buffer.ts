@@ -40,12 +40,8 @@ export default class CircularBuffer<T> {
     }
 }
 
-export class BufferOverflowError implements Error {
-    readonly name: string = 'BufferOverflow'
-    readonly message: string = 'buffer is full'
+export class BufferOverflowError extends Error {
 }
 
-export class BufferEmptyError implements Error {
-    readonly name: string = 'BufferEmpty'
-    readonly message: string = 'buffer is empty'
+export class BufferEmptyError extends Error {
 }
