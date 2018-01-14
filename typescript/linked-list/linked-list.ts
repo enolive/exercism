@@ -1,8 +1,22 @@
 export default class LinkedList<T> {
     private last: Node<T>
+    private first: Node<T>
+
+    shift(): T {
+        const firstItem = this.first.value
+        this.first = this.first.next
+        return firstItem
+    }
 
     push(item: T) {
-        this.last = new Node<T>(item, this.last)
+        const node = new Node<T>(item, this.last)
+        if (this.last) {
+            this.last.next = node
+        }
+        this.last = node
+        if (!this.first) {
+            this.first = node
+        }
     }
 
     pop(): T {
@@ -22,6 +36,16 @@ class Node<T> {
 
     get value(): T {
         return this._value
+    }
+
+    private _next: Node<T>
+
+    get next(): Node<T> {
+        return this._next
+    }
+
+    set next(value: Node<T>) {
+        this._next = value
     }
 
     private _previous: Node<T>

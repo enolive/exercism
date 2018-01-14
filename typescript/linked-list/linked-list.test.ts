@@ -14,11 +14,13 @@ describe('LinkedList', () => {
         expect(list.pop()).toBe(10)
     })
 
-    xit('extract elements from the beginning of the list with shift', () => {
+    it('extract elements from the beginning of the list with shift', () => {
         list.push(10)
         list.push(20)
+        list.push(30)
         expect(list.shift()).toBe(10)
         expect(list.shift()).toBe(20)
+        expect(list.shift()).toBe(30)
     })
 
     xit('add/extract elements from the beginning of the list with unshift/shift', () => {
