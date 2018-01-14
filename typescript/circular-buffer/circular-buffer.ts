@@ -8,7 +8,7 @@ export default class CircularBuffer<T> {
         if (this.data.length === 0) {
             throw new BufferEmptyError()
         }
-        const [item] = this.data.splice(0)
+        const [item] = this.data.splice(0, 1)
         return item
     }
 
