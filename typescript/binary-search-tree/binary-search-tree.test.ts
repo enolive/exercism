@@ -72,7 +72,7 @@ describe('BinarySearchTree', () => {
     expect(recordAllData(four)).toEqual([4, 5])
   })
 
-  xit('should iterate over complex tree', () => {
+  it('should iterate over complex tree', () => {
     const four = new BinarySearchTree(4)
     four.insert(2)
     four.insert(1)
