@@ -88,7 +88,7 @@ describe('LinkedList', () => {
         expect(list.count()).toBe(0)
     })
 
-    xit('deletes the element with the specified value from the list', () => {
+    it('deletes the element with the specified value from the list', () => {
         list.push(10)
         list.push(20)
         list.push(30)
@@ -98,8 +98,32 @@ describe('LinkedList', () => {
         expect(list.shift()).toBe(10)
     })
 
+    it('deletes element at the start of the list', () => {
+        list.push(20)
+        list.push(30)
+        list.delete(20)
+        expect(list.count()).toBe(1)
+    })
+
+    it('deletes element at the end of the list', () => {
+        list.push(20)
+        list.push(30)
+        list.delete(30)
+        expect(list.count()).toBe(1)
+        expect(list.pop()).toBe(20)
+    })
+
+    it('deletes multiple occurrences of an element', () => {
+        list.push(20)
+        list.push(20)
+        list.unshift(20)
+        list.delete(20)
+        expect(list.count()).toBe(0)
+        expect(list.pop()).toBe(undefined)
+        expect(list.shift()).toBe(undefined)
+    })
+
     xit('deletes the only element', () => {
-        const list = new LinkedList<number>()
         list.push(10)
         list.delete(10)
         expect(list.count()).toBe(0)

@@ -2,6 +2,11 @@ export default class LinkedList<T> {
     private last: Node<T> | undefined
     private first: Node<T> | undefined
 
+    delete(item: T) {
+        this.findNodesHavingValue(item)
+            .forEach((n) => this.deleteNode(n))
+    }
+
     shift(): T | undefined {
         if (!this.first) {
             return undefined
@@ -56,6 +61,36 @@ export default class LinkedList<T> {
             this.first = undefined
         }
         return lastItem
+    }
+
+    private findNodesHavingValue(value: T): Array<Node<T>> {
+        const findNodes = (current: Node<T> | undefined, found: Array<Node<T>> = []): Array<Node<T>> => {
+            if (!current) {
+                return found
+            }
+            const newFound = current.value === value
+                ? [...found, current]
+                : found
+            return findNodes(current.next, newFound)
+        }
+        return findNodes(this.first, [])
+    }
+
+    private deleteNode(current: Node<T>) {
+        const previousNode = current.previous
+        const nextNode = current.next
+        if (previousNode) {
+            previousNode.next = nextNode
+        }
+        else {
+            this.first = nextNode
+        }
+        if (nextNode) {
+            nextNode.previous = previousNode
+        }
+        else {
+            this.last = previousNode
+        }
     }
 }
 
