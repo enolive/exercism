@@ -23,10 +23,18 @@ export default class BinarySearchTree {
 
     insert(data: number) {
         if (data > this.data) {
-            this._right = new BinarySearchTree(data)
+            this._right = this.insertOrCreate(data, this._right)
         }
         else {
-            this._left = new BinarySearchTree(data)
+            this._left = this.insertOrCreate(data, this._left)
         }
+    }
+
+    private insertOrCreate(data: number, node: BinarySearchTree) {
+        if (!node) {
+            return new BinarySearchTree(data)
+        }
+        node.insert(data)
+        return node
     }
 }

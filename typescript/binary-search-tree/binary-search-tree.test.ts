@@ -36,7 +36,7 @@ describe('BinarySearchTree', () => {
     expect(four.right.data).toEqual(5)
   })
 
-  xit('should deal with a complex tree', () => {
+  it('should deal with a complex tree', () => {
     const four = new BinarySearchTree(4)
     four.insert(2)
     four.insert(6)
