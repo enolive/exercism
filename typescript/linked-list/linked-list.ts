@@ -95,6 +95,9 @@ export default class LinkedList<T> {
 }
 
 class Node<T> {
+    public next: Node<T>
+    public previous: Node<T>
+
     constructor(value: T) {
         this._value = value
     }
@@ -103,25 +106,5 @@ class Node<T> {
 
     get value(): T {
         return this._value
-    }
-
-    private _next: Node<T>
-
-    get next(): Node<T> {
-        return this._next
-    }
-
-    set next(value: Node<T>) {
-        this._next = value
-    }
-
-    private _previous: Node<T>
-
-    get previous(): Node<T> {
-        return this._previous
-    }
-
-    set previous(value: Node<T>) {
-        this._previous = value
     }
 }
