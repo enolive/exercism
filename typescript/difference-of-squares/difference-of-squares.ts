@@ -9,12 +9,12 @@ export default class DifferenceOfSquares {
         this.difference = this.squareOfSums - this.sumOfSquares
     }
 
-    private static arithmeticSum(end: number) {
+    private static arithmeticSum(end: number): number {
         // see https://en.wikipedia.org/wiki/Arithmetic_progression#Sum
         return (1 + end) * end / 2
     }
 
-    private static squarePyramidalNumber(end: number) {
+    private static squarePyramidalNumber(end: number): number {
         // see https://en.wikipedia.org/wiki/Square_pyramidal_number
         return end * (end + 1) * (2 * end + 1) / 6
     }
