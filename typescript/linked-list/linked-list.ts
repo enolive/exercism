@@ -8,10 +8,23 @@ export default class LinkedList<T> {
         return firstItem
     }
 
+    unshift(item: T) {
+        const node = new Node<T>(item)
+        if (this.first) {
+            this.first.previous = node
+            node.next = this.first
+        }
+        this.first = node
+        if (!this.last) {
+            this.last = node
+        }
+    }
+
     push(item: T) {
-        const node = new Node<T>(item, this.last)
+        const node = new Node<T>(item)
         if (this.last) {
             this.last.next = node
+            node.previous = this.last
         }
         this.last = node
         if (!this.first) {
@@ -27,9 +40,8 @@ export default class LinkedList<T> {
 }
 
 class Node<T> {
-    constructor(value: T, previous: Node<T>) {
+    constructor(value: T) {
         this._value = value
-        this._previous = previous
     }
 
     private _value: T
@@ -52,5 +64,9 @@ class Node<T> {
 
     get previous(): Node<T> {
         return this._previous
+    }
+
+    set previous(value: Node<T>) {
+        this._previous = value
     }
 }

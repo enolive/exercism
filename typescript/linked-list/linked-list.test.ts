@@ -23,7 +23,7 @@ describe('LinkedList', () => {
         expect(list.shift()).toBe(30)
     })
 
-    xit('add/extract elements from the beginning of the list with unshift/shift', () => {
+    it('add/extract elements from the beginning of the list with unshift/shift', () => {
         list.unshift(10)
         list.unshift(20)
         expect(list.shift()).toBe(20)
