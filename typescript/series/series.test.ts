@@ -1,4 +1,4 @@
-import Series from './series'
+import Series, {IllegalArgumentError} from './series'
 
 describe('Series', () => {
   it('has digits (short)', () => {
@@ -35,24 +35,24 @@ describe('Series', () => {
       .toEqual([[0, 1, 2], [1, 2, 3], [2, 3, 4]])
   })
 
-  xit('can slice by 3 with duplicate digits', () => {
+  it('can slice by 3 with duplicate digits', () => {
     expect(new Series('31001').slices(3))
       .toEqual([[3, 1, 0], [1, 0, 0], [0, 0, 1]])
   })
 
-  xit('can slice by 4', () => {
+  it('can slice by 4', () => {
     expect(new Series('91274').slices(4))
       .toEqual([[9, 1, 2, 7], [1, 2, 7, 4]])
   })
 
-  xit('can slice by 5', () => {
+  it('can slice by 5', () => {
     expect(new Series('81228').slices(5))
       .toEqual([[8, 1, 2, 2, 8]])
   })
 
-  xit('throws an error if not enough digits to slice', () => {
+  it('throws an error if not enough digits to slice', () => {
     expect(() => {
       new Series('01032987583').slices(12)
-    }).toThrow()
+    }).toThrow(IllegalArgumentError)
   })
 })
