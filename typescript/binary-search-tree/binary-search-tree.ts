@@ -23,24 +23,26 @@ export default class BinarySearchTree {
 
     insert(data: number) {
         if (data > this.data) {
-            this._right = this.insertOrCreate(data, this._right)
+            this._right = BinarySearchTree.insertOrCreate(data, this._right)
         }
         else {
-            this._left = this.insertOrCreate(data, this._left)
+            this._left = BinarySearchTree.insertOrCreate(data, this._left)
         }
     }
 
     each(action: (data: number) => void) {
-        if (this._left) {
-            this._left.each(action)
-        }
+        BinarySearchTree.callEachOn(this._left, action)
         action(this.data)
-        if (this._right) {
-            this._right.each(action)
+        BinarySearchTree.callEachOn(this._right, action)
+    }
+
+    private static callEachOn(node: BinarySearchTree, action: (data: number) => void) {
+        if (node) {
+            node.each(action)
         }
     }
 
-    private insertOrCreate(data: number, node: BinarySearchTree) {
+    private static insertOrCreate(data: number, node: BinarySearchTree) {
         if (!node) {
             return new BinarySearchTree(data)
         }
