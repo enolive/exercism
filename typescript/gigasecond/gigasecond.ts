@@ -6,8 +6,8 @@ export default class Gigasecond {
     }
 
     date() {
-        const billionSeconds = Math.pow(10, 9)
         const currentMilliseconds = this.start.getTime()
+        const billionSeconds = 10 ** 9
         return new Date(currentMilliseconds + billionSeconds * 1000)
     }
 }
