@@ -6,7 +6,7 @@ describe('CircularBuffer', () => {
     expect(() => buffer.read()).toThrow(BufferEmptyError)
   })
 
-  xit('write and read back one item', () => {
+  it('write and read back one item', () => {
     const buffer = new CircularBuffer<string>(1)
     buffer.write('1')
     expect(buffer.read()).toBe('1')
