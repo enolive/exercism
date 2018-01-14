@@ -1,8 +1,8 @@
 import BinarySearchTree from './binary-search-tree'
 
-function recordAllData(bst: BinarySearchTree) {
+function recordAllData(binarySearchTree: BinarySearchTree) {
   const out: number[] = []
-  bst.each((data: number) => out.push(data))
+  binarySearchTree.each((data: number) => out.push(data))
   return out
 }
 
@@ -54,18 +54,18 @@ describe('BinarySearchTree', () => {
     expect(four.right.right.data).toEqual(7)
   })
 
-  xit('should iterate over one element', () => {
+  it('should iterate over one element', () => {
     expect(recordAllData(new BinarySearchTree(4))).toEqual([4])
   })
 
-  xit('should iterate over smaller element', () => {
+  it('should iterate over smaller element', () => {
     const four = new BinarySearchTree(4)
     four.insert(2)
 
     expect(recordAllData(four)).toEqual([2, 4])
   })
 
-  xit('should iterate over larger element', () => {
+  it('should iterate over larger element', () => {
     const four = new BinarySearchTree(4)
     four.insert(5)
 

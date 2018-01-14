@@ -30,6 +30,16 @@ export default class BinarySearchTree {
         }
     }
 
+    each(action: (data: number) => void) {
+        if (this._left) {
+            this._left.each(action)
+        }
+        action(this.data)
+        if (this._right) {
+            this._right.each(action)
+        }
+    }
+
     private insertOrCreate(data: number, node: BinarySearchTree) {
         if (!node) {
             return new BinarySearchTree(data)
