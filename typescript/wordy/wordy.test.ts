@@ -7,7 +7,7 @@ describe('Word Problem', () => {
     expect(new WordProblem(question).answer()).toEqual(2)
   })
 
-  xit('add 2', () => {
+  it('add 2', () => {
     const question = 'What is 53 plus 2?'
     expect(new WordProblem(question).answer()).toEqual(55)
   })
