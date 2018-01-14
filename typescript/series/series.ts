@@ -1,31 +1,35 @@
 export default class Series {
-    readonly digits: number[]
-
     constructor(digits: string) {
-        this.digits = digits
+        this._digits = digits
             .split('')
             .map((d) => +d)
     }
 
+    private _digits: number[]
+
+    get digits(): number[] {
+        return [...this._digits]
+    }
+
     slices(length: number) {
         this.throwIfInvalid(length)
-        return this.digits
+        return this._digits
             .map((_, index) => this.slice(index, length))
             .filter((slice) => slice.length > 0)
     }
 
     private throwIfInvalid(length: number) {
-        if (length > this.digits.length) {
+        if (length > this._digits.length) {
             throw new IllegalArgumentError(
-                `the specified length ${length} is greater than the number of digits ${this.digits.length}`)
+                `the specified length ${length} is greater than the number of digits ${this._digits.length}`)
         }
     }
 
     private slice(index: number, length: number) {
         const end = index + length
-        return this.digits.length < end
+        return this._digits.length < end
             ? []
-            : this.digits.slice(index, end)
+            : this._digits.slice(index, end)
     }
 }
 
