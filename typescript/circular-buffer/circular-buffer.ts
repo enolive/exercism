@@ -14,7 +14,7 @@ export default class CircularBuffer<T> {
         if (this.isEmpty()) {
             throw new BufferEmptyError()
         }
-        return this.data.shift()! // we are smarter than the compiler here
+        return this.data.shift()! // HINT: we are smarter than the compiler here
     }
 
     forceWrite(item: T) {
