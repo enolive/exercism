@@ -4,7 +4,7 @@ export default class Series {
     constructor(digits: string) {
         this.digits = digits
             .split('')
-            .map((d) => parseInt(d, 10))
+            .map((d) => +d)
     }
 
     slices(length: number) {
