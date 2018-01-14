@@ -30,14 +30,14 @@ describe('LinkedList', () => {
         expect(list.shift()).toBe(10)
     })
 
-    xit('unshift/pop', () => {
+    it('unshift/pop', () => {
         list.unshift(10)
         list.unshift(20)
         expect(list.pop()).toBe(10)
         expect(list.pop()).toBe(20)
     })
 
-    xit('example', () => {
+    it('example', () => {
         list.push(10)
         list.push(20)
         expect(list.pop()).toBe(20)
@@ -50,7 +50,7 @@ describe('LinkedList', () => {
         expect(list.shift()).toBe(30)
     })
 
-    xit('can count its elements', () => {
+    it('can count its elements', () => {
         expect(list.count()).toBe(0)
         list.push(10)
         expect(list.count()).toBe(1)

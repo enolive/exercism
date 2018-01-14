@@ -8,6 +8,14 @@ export default class LinkedList<T> {
         return firstItem
     }
 
+    count(): number {
+        const countNodes = (current: Node<T>, count: number): number =>
+            !current
+                ? count
+                : countNodes(current.next, count + 1)
+        return countNodes(this.first, 0)
+    }
+
     unshift(item: T) {
         const node = new Node<T>(item)
         if (this.first) {
