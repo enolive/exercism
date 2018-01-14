@@ -13,7 +13,6 @@ export default class Words {
 
     private static countOccurrences(acc: Map<string, number>, word: string) {
         const count = acc.get(word) || 0
-        acc.set(word, count + 1)
-        return acc
+        return acc.set(word, count + 1)
     }
 }
