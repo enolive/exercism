@@ -3,7 +3,9 @@ import Squares from './difference-of-squares'
 describe('Squares', () => {
 
     describe('up to 5', () => {
-        const squares = new Squares(5)
+        let squares: Squares
+
+        beforeEach(() => squares = new Squares(5))
 
         it('gets the square of sums', () => {
             expect(squares.squareOfSums).toBe(225)
@@ -20,37 +22,40 @@ describe('Squares', () => {
     })
 
     describe('up to 10', () => {
-        const squares = new Squares(10)
+        let squares: Squares
 
-        xit('gets the square of sums', () => {
+        beforeEach(() => squares = new Squares(10))
+
+        it('gets the square of sums', () => {
             expect(squares.squareOfSums).toBe(3025)
         })
 
-        xit('gets the sum of squares', () => {
+        it('gets the sum of squares', () => {
             expect(squares.sumOfSquares).toBe(385)
         })
 
-        xit('gets the difference', () => {
+        it('gets the difference', () => {
             expect(squares.difference).toBe(2640)
         })
 
     })
 
     describe('up to 100', () => {
-        const squares = new Squares(100)
+        let squares: Squares
 
-        xit('gets the square of sums', () => {
+        beforeEach(() => squares = new Squares(100))
+
+        it('gets the square of sums', () => {
             expect(squares.squareOfSums).toBe(25502500)
         })
 
-        xit('gets the sum of squares', () => {
+        it('gets the sum of squares', () => {
             expect(squares.sumOfSquares).toBe(338350)
         })
 
-        xit('gets the difference', () => {
+        it('gets the difference', () => {
             expect(squares.difference).toBe(25164150)
         })
-
     })
 
 })
