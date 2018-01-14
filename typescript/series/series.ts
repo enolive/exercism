@@ -8,4 +8,9 @@ export default class Series {
     }
 
 
+    slices(length: number) {
+        return this.digits
+            .map((_, index) => this.digits.slice(index, index + length))
+            .filter((slice) => slice.length === length)
+    }
 }

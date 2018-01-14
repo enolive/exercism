@@ -20,17 +20,17 @@ describe('Series', () => {
       .toEqual([9, 3, 6, 9, 2, 3, 4, 6, 8])
   })
 
-  xit('can slice by 1', () => {
+  it('can slice by 1', () => {
     expect(new Series('01234').slices(1))
       .toEqual([[0], [1], [2], [3], [4]])
   })
 
-  xit('can slice by 2', () => {
+  it('can slice by 2', () => {
     expect(new Series('98273463').slices(2))
       .toEqual([[9, 8], [8, 2], [2, 7], [7, 3], [3, 4], [4, 6], [6, 3]])
   })
 
-  xit('can slice by 3', () => {
+  it('can slice by 3', () => {
     expect(new Series('01234').slices(3))
       .toEqual([[0, 1, 2], [1, 2, 3], [2, 3, 4]])
   })
