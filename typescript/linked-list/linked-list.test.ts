@@ -66,12 +66,26 @@ describe('LinkedList', () => {
         expect(list.pop()).toBe(20)
     })
 
-    xit('sets head/tail after shifting last element', () => {
+    it('returns undefined on shifting/popping empty list', () => {
+        expect(list.shift()).toBe(undefined)
+        expect(list.pop()).toBe(undefined)
+    })
+
+    it('returns undefined on pop after shifting the last element', () => {
+        list.push(10)
+        list.push(20)
+        list.shift()
+        list.shift()
+        expect(list.pop()).toBe(undefined)
+    })
+
+    it('sets head/tail after shifting last element', () => {
         list.unshift(10)
         list.shift()
         list.push(20)
         expect(list.count()).toBe(1)
         expect(list.shift()).toBe(20)
+        expect(list.count()).toBe(0)
     })
 
     xit('deletes the element with the specified value from the list', () => {

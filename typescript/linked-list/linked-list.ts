@@ -1,10 +1,16 @@
 export default class LinkedList<T> {
-    private last: Node<T>
+    private last: Node<T> | undefined
     private first: Node<T> | undefined
 
-    shift(): T {
+    shift(): T | undefined {
+        if (!this.first) {
+            return undefined
+        }
         const firstItem = this.first.value
         this.first = this.first.next
+        if (!this.first) {
+            this.last = undefined
+        }
         return firstItem
     }
 
@@ -40,7 +46,10 @@ export default class LinkedList<T> {
         }
     }
 
-    pop(): T {
+    pop(): T | undefined {
+        if (!this.last) {
+            return undefined
+        }
         const lastItem = this.last.value
         this.last = this.last.previous
         if (!this.last) {
