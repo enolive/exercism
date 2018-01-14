@@ -37,37 +37,37 @@ describe('Word Problem', () => {
         expect(new WordProblem(question).answer()).toEqual(-11)
     })
 
-    xit('add twice', () => {
-        const question = 'What is 1 plus 1 plus 1?'
-        expect(new WordProblem(question).answer()).toEqual(3)
+    it('add twice', () => {
+        const question = 'What is 1 plus 2 plus 3?'
+        expect(new WordProblem(question).answer()).toEqual(6)
     })
 
-    xit('add then subtract', () => {
+    it('add then subtract', () => {
         const question = 'What is 1 plus 5 minus -2?'
         expect(new WordProblem(question).answer()).toEqual(8)
     })
 
-    xit('subtract twice', () => {
+    it('subtract twice', () => {
         const question = 'What is 20 minus 4 minus 13?'
         expect(new WordProblem(question).answer()).toEqual(3)
     })
 
-    xit('subtract then add', () => {
+    it('subtract then add', () => {
         const question = 'What is 17 minus 6 plus 3?'
         expect(new WordProblem(question).answer()).toEqual(14)
     })
 
-    xit('multiply twice', () => {
+    it('multiply twice', () => {
         const question = 'What is 2 multiplied by -2 multiplied by 3?'
         expect(new WordProblem(question).answer()).toEqual(-12)
     })
 
-    xit('add then multiply', () => {
+    it('add then multiply', () => {
         const question = 'What is -3 plus 7 multiplied by -2?'
         expect(new WordProblem(question).answer()).toEqual(-8)
     })
 
-    xit('divide twice', () => {
+    it('divide twice', () => {
         const question = 'What is -12 divided by 2 divided by -3?'
         expect(new WordProblem(question).answer()).toEqual(2)
     })
