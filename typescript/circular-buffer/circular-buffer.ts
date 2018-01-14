@@ -10,12 +10,11 @@ export default class CircularBuffer<T> {
         this.data.splice(0)
     }
 
-    read() {
+    read(): T {
         if (this.isEmpty()) {
             throw new BufferEmptyError()
         }
-        const [item] = this.data.splice(0, 1)
-        return item
+        return this.data.shift()! // we are smarter than the compiler here
     }
 
     forceWrite(item: T) {
