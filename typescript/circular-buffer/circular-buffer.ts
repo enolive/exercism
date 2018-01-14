@@ -1,7 +1,9 @@
 export default class CircularBuffer<T> {
     private data: T[] = []
+    private capacity: number
 
     constructor(capacity: number) {
+        this.capacity = capacity
     }
 
     clear() {
@@ -17,11 +19,19 @@ export default class CircularBuffer<T> {
     }
 
     write(item: T) {
+        if (this.data.length >= this.capacity) {
+            throw new BufferOverflowError()
+        }
         this.data.push(item)
     }
 }
 
+export class BufferOverflowError implements Error {
+    readonly name: string = 'BufferOverflow'
+    readonly message: string = 'buffer is full'
+}
+
 export class BufferEmptyError implements Error {
-    readonly name: string = 'BufferEmptyError'
+    readonly name: string = 'BufferEmpty'
     readonly message: string = 'buffer is empty'
 }

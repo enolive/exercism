@@ -34,7 +34,7 @@ describe('CircularBuffer', () => {
     expect(buffer.read()).toBe('4')
   })
 
-  xit('alternate write and read', () => {
+  it('alternate write and read', () => {
     const buffer = new CircularBuffer<string>(2)
     buffer.write('1')
     expect(buffer.read()).toBe('1')
@@ -42,7 +42,7 @@ describe('CircularBuffer', () => {
     expect(buffer.read()).toBe('2')
   })
 
-  xit('reads back oldest item', () => {
+  it('reads back oldest item', () => {
     const buffer = new CircularBuffer<string>(3)
     buffer.write('1')
     buffer.write('2')
@@ -52,7 +52,7 @@ describe('CircularBuffer', () => {
     expect(buffer.read()).toBe('3')
   })
 
-  xit('writing to a full buffer throws a BufferOverflowError', () => {
+  it('writing to a full buffer throws a BufferOverflowError', () => {
     const buffer = new CircularBuffer<string>(2)
     buffer.write('1')
     buffer.write('2')
