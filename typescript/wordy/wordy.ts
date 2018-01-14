@@ -22,47 +22,52 @@ export class WordProblem {
     }
 
     answer() {
-        return this.processOperations(this.determineFirstNumber())
+        const firstOperand = this.getFirstOperand()
+        return this.processOperations(firstOperand)
     }
 
-    private secondTerm() {
+    private static operand() {
+        return `-?\\d+`
+    }
+
+    private static toDecimal(value: string) {
+        return parseInt(value, 10)
+    }
+
+    private operatorOperand() {
         const allowedOperations = this.operations
             .map((o) => o.code)
             .join('|')
-        return `((${allowedOperations}) (-?\\d+))`
+        return `((${allowedOperations}) (${WordProblem.operand()}))`
     }
 
-    private processOperations(initialValue: number) {
-        const operationPattern = new RegExp(this.secondTerm(), 'g')
-        let result = initialValue
-        let matchOperation: RegExpExecArray | null
+    private processOperations(firstOperand: number) {
+        const pattern = new RegExp(this.operatorOperand(), 'g')
+        let result = firstOperand
+        let match: RegExpExecArray | null
         do {
-            matchOperation = operationPattern.exec(this.question)
-            result = this.processOperation(matchOperation, result)
-        } while (matchOperation)
+            match = pattern.exec(this.question)
+            result = this.processOperation(match, result)
+        } while (match)
         return result
     }
 
     private processOperation(matchOperation: RegExpExecArray | null, result: number) {
         if (matchOperation) {
             const operation = this.getOperation(matchOperation[2])
-            const secondNumber = WordProblem.toDecimal(matchOperation[3])
-            result = operation(result, secondNumber)
+            const operand = WordProblem.toDecimal(matchOperation[3])
+            result = operation(result, operand)
         }
         return result
     }
 
-    private determineFirstNumber() {
-        const wholePattern = new RegExp(`What is (-?\\d+)( ${this.secondTerm()})+\\?`)
-        const matchWhole = wholePattern.exec(this.question)
-        if (!matchWhole) {
+    private getFirstOperand() {
+        const pattern = new RegExp(`What is (${WordProblem.operand()})( ${this.operatorOperand()})+\\?`)
+        const match = pattern.exec(this.question)
+        if (!match) {
             throw new ArgumentError(`I don't understand the given question ${this.question}`)
         }
-        return WordProblem.toDecimal(matchWhole[1])
-    }
-
-    private static toDecimal(value: string) {
-        return parseInt(value, 10)
+        return WordProblem.toDecimal(match[1])
     }
 
     private getOperation(operationCode: string) {
