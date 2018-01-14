@@ -1,7 +1,11 @@
 export default class CircularBuffer<T> {
     private data: T[] = []
-    constructor(capacity: number) {
 
+    constructor(capacity: number) {
+    }
+
+    clear() {
+        this.data.splice(0)
     }
 
     read() {
@@ -18,6 +22,6 @@ export default class CircularBuffer<T> {
 }
 
 export class BufferEmptyError implements Error {
-    name: string = 'BufferEmptyError'
-    message: string = 'buffer is empty'
+    readonly name: string = 'BufferEmptyError'
+    readonly message: string = 'buffer is empty'
 }

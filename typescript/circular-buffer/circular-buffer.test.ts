@@ -22,7 +22,7 @@ describe('CircularBuffer', () => {
     expect(() => buffer.read()).toThrow(BufferEmptyError)
   })
 
-  xit('clearing a buffer', () => {
+  it('clearing a buffer', () => {
     const buffer = new CircularBuffer<string>(2)
     buffer.write('1')
     buffer.write('2')
