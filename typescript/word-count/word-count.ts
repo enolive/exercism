@@ -16,8 +16,8 @@ export default class Words {
     }
 
     private static countOccurrences(acc: Map<string, number>, word: string) {
-        const count = acc.has(word) ? acc.get(word)! + 1 : 1
-        acc.set(word, count)
+        const count = acc.get(word) || 0
+        acc.set(word, count + 1)
         return acc
     }
 }
