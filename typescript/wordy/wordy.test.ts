@@ -22,17 +22,17 @@ describe('Word Problem', () => {
         expect(new WordProblem(question).answer()).toEqual(45801)
     })
 
-    xit('subtract', () => {
+    it('subtract', () => {
         const question = 'What is 4 minus -12?'
         expect(new WordProblem(question).answer()).toEqual(16)
     })
 
-    xit('multiply', () => {
+    it('multiply', () => {
         const question = 'What is -3 multiplied by 25?'
         expect(new WordProblem(question).answer()).toEqual(-75)
     })
 
-    xit('divide', () => {
+    it('divide', () => {
         const question = 'What is 33 divided by -3?'
         expect(new WordProblem(question).answer()).toEqual(-11)
     })

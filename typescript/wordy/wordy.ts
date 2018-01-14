@@ -15,7 +15,7 @@ export class WordProblem {
     }
 
     answer() {
-        const match = this.question.match(/What is ([^ ]+) ((plus) ([^ ]+))\?/)
+        const match = this.question.match(/What is ([^ ]+) ((plus|minus|multiplied by|divided by) ([^ ]+))\?/)
         if (!match) {
             return 42
         }
@@ -32,6 +32,12 @@ export class WordProblem {
         switch (operationCode) {
             case "plus":
                 return (a: number, b: number) => a + b
+            case "minus":
+                return (a: number, b: number) => a - b
+            case "multiplied by":
+                return (a: number, b: number) => a * b
+            case "divided by":
+                return (a: number, b: number) => a / b
             default:
                 throw new ArgumentError(`unknown operation code ${operationCode}`)
         }
