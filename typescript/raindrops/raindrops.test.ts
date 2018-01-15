@@ -19,7 +19,7 @@ describe('Raindrops', () => {
 
   it('converts 14', () => expect(drops.convert(14)).toEqual('Plong'))
 
-  xit('converts 15', () => expect(drops.convert(15)).toEqual('PlingPlang'))
+  it('converts 15', () => expect(drops.convert(15)).toEqual('PlingPlang'))
 
   xit('converts 21', () => expect(drops.convert(21)).toEqual('PlingPlong'))
 

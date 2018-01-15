@@ -7,9 +7,10 @@ export default class Raindrops {
     ]
 
     convert(input: number) {
-        const [match] = this.rules
+        const match = this.rules
             .filter((r) => r.appliesTo(input))
             .map((r) => r.result)
+            .join('')
         return match || '1'
     }
 
