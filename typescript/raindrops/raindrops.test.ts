@@ -11,13 +11,13 @@ describe('Raindrops', () => {
 
   it('converts 7', () => expect(drops.convert(7)).toEqual('Plong'))
 
-  xit('converts 6', () => expect(drops.convert(6)).toEqual('Pling'))
+  it('converts 6', () => expect(drops.convert(6)).toEqual('Pling'))
 
-  xit('converts 9', () => expect(drops.convert(9)).toEqual('Pling'))
+  it('converts 9', () => expect(drops.convert(9)).toEqual('Pling'))
 
-  xit('converts 10', () => expect(drops.convert(10)).toEqual('Plang'))
+  it('converts 10', () => expect(drops.convert(10)).toEqual('Plang'))
 
-  xit('converts 14', () => expect(drops.convert(14)).toEqual('Plong'))
+  it('converts 14', () => expect(drops.convert(14)).toEqual('Plong'))
 
   xit('converts 15', () => expect(drops.convert(15)).toEqual('PlingPlang'))
 
