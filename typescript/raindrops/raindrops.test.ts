@@ -21,18 +21,18 @@ describe('Raindrops', () => {
 
   it('converts 15', () => expect(drops.convert(15)).toEqual('PlingPlang'))
 
-  xit('converts 21', () => expect(drops.convert(21)).toEqual('PlingPlong'))
+  it('converts 21', () => expect(drops.convert(21)).toEqual('PlingPlong'))
 
-  xit('converts 25', () => expect(drops.convert(25)).toEqual('Plang'))
+  it('converts 25', () => expect(drops.convert(25)).toEqual('Plang'))
 
-  xit('converts 35', () => expect(drops.convert(35)).toEqual('PlangPlong'))
+  it('converts 35', () => expect(drops.convert(35)).toEqual('PlangPlong'))
 
-  xit('converts 49', () => expect(drops.convert(49)).toEqual('Plong'))
+  it('converts 49', () => expect(drops.convert(49)).toEqual('Plong'))
 
-  xit('converts 52', () => expect(drops.convert(52)).toEqual('52'))
+  it('converts 52', () => expect(drops.convert(52)).toEqual('52'))
 
-  xit('converts 105', () => expect(drops.convert(105)).toEqual('PlingPlangPlong'))
+  it('converts 105', () => expect(drops.convert(105)).toEqual('PlingPlangPlong'))
 
-  xit('converts 12121', () => expect(drops.convert(12121)).toEqual('12121'))
+  it('converts 12121', () => expect(drops.convert(12121)).toEqual('12121'))
 
 })

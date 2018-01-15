@@ -1,5 +1,5 @@
 export default class Raindrops {
-
+    private isDivisibleBy = (divisor: number) => (input: number) => input % divisor === 0
     private rules = [
         {appliesTo: this.isDivisibleBy(3), result: 'Pling'},
         {appliesTo: this.isDivisibleBy(5), result: 'Plang'},
@@ -7,16 +7,9 @@ export default class Raindrops {
     ]
 
     convert(input: number) {
-        const match = this.rules
+        return this.rules
             .filter((r) => r.appliesTo(input))
             .map((r) => r.result)
-            .join('')
-        return match || '1'
-    }
-
-    private isDivisibleBy(divisor: number) {
-        return (input: number) => {
-            return input % divisor === 0
-        }
+            .join('') || input.toString()
     }
 }
