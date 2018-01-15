@@ -5,7 +5,7 @@ describe('Raindrops', () => {
 
   it('converts 1', () => expect(drops.convert(1)).toEqual('1'))
 
-  xit('converts 3', () => expect(drops.convert(3)).toEqual('Pling'))
+  it('converts 3', () => expect(drops.convert(3)).toEqual('Pling'))
 
   xit('converts 5', () => expect(drops.convert(5)).toEqual('Plang'))
 
