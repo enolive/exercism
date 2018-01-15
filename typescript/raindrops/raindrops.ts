@@ -6,10 +6,8 @@ export default class Raindrops {
         {appliesTo: this.isDivisibleBy(7), result: 'Plong'},
     ]
 
-    convert(input: number) {
-        return this.rules
-            .filter((r) => r.appliesTo(input))
-            .map((r) => r.result)
-            .join('') || input.toString()
-    }
+    convert = (input: number) => this.rules
+        .filter((r) => r.appliesTo(input))
+        .map((r) => r.result)
+        .join('') || input.toString()
 }
