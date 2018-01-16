@@ -5,8 +5,8 @@ export default (word: string | undefined) =>
 
 const lettersOf = (word: string | undefined) =>
     (word || '')
+        .toLowerCase()
         .split('')
-        .map((letter) => letter.toLowerCase())
         .filter((letter) => letter.match(/\w/))
 
 const scoreForLetter = (letter: string) => {
