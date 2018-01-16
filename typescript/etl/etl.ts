@@ -14,31 +14,31 @@ class NewStructureBuilder {
     }
 
     add(entry: OldEntry) {
-        entry.forEachValue((key, value) => this.addToResult(value, key))
+        entry.forEachValue(this.addToResult())
         return this
     }
 
-    private addToResult(value: string, key: number) {
-        return this.result[value] = key
+    private addToResult() {
+        return (key: number, value: string) => this.result[value] = key
     }
 }
 
 class OldEntry {
-    readonly key: number
+    private readonly key: number
 
     constructor(key: string, private values: string[]) {
         this.key = +key
     }
 
     forEachValue(callback: (key: number, value: string) => void) {
-        this.values.map((value) => value.toLowerCase())
+        this.values
+            .map((value) => value.toLowerCase())
             .forEach((value) => callback(this.key, value))
     }
 }
 
-export default (old: OldStructure) => {
-    return Object.entries(old)
+export default (old: OldStructure) =>
+    Object.entries(old)
         .map(([key, values]) => new OldEntry(key, values))
         .reduce((acc: NewStructureBuilder, entry) => acc.add(entry), new NewStructureBuilder())
         .build()
-}
