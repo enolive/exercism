@@ -1,28 +1,44 @@
 interface OldStructure {
     [p: string]: string[]
 }
+
 interface NewStructure {
     [p: string]: number
 }
 
-const transform = (old: OldStructure) => {
-    const result: NewStructure = {}
-    const keys = Object.keys(old)
-    keys.forEach(processKey(old, fill(result)))
-    return result
+class NewStructureBuilder {
+    private result: NewStructure = {}
+
+    build(): NewStructure {
+        return this.result
+    }
+
+    add(entry: OldEntry) {
+        entry.forEachValue((key, value) => this.addToResult(value, key))
+        return this
+    }
+
+    private addToResult(value: string, key: number) {
+        return this.result[value] = key
+    }
 }
 
-export default transform
+class OldEntry {
+    readonly key: number
 
-const processKey = (old: OldStructure, fillWith: (key: string) => (value: string) => void) => (key: string) => {
-    const values = old[key]
-    values
-        .map(transformValue)
-        .forEach(fillWith(key))
+    constructor(key: string, private values: string[]) {
+        this.key = +key
+    }
+
+    forEachValue(callback: (key: number, value: string) => void) {
+        this.values.map((value) => value.toLowerCase())
+            .forEach((value) => callback(this.key, value))
+    }
 }
 
-const transformValue = (value: string) => value.toLowerCase()
-
-const fill = (result: NewStructure) => (key: string) => (value: string) => {
-    result[value] = +key
+export default (old: OldStructure) => {
+    return Object.entries(old)
+        .map(([key, values]) => new OldEntry(key, values))
+        .reduce((acc: NewStructureBuilder, entry) => acc.add(entry), new NewStructureBuilder())
+        .build()
 }
