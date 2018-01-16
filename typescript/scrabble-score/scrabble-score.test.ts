@@ -14,4 +14,6 @@ describe('Scrabble', () => {
     it('scores case insensitive words', () => expect(score('OXYPHENBUTAZONE')).toEqual(41))
 
     it('scores the whole alphabet', () => expect(score('abcdefghijklmnopqrstuvwxyz')).toEqual(87))
+
+    it('fails on invalid characters', () => expect(score('$§%&&$%!!!')).toEqual(0))
 })
