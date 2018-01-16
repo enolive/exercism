@@ -1,15 +1,28 @@
-export default function transform(old: { [p: string]: string[] }) {
-    const result: {[key: string]: number} = {}
+interface OldStructure {
+    [p: string]: string[]
+}
+interface NewStructure {
+    [p: string]: number
+}
+
+const transform = (old: OldStructure) => {
+    const result: NewStructure = {}
     const keys = Object.keys(old)
-    const key = keys[0]
-    processKey(old, key, result)
+    keys.forEach(processKey(old, fill(result)))
     return result
 }
-const processKey = (old: { [p: string]: string[] }, key: string, result: { [p: string]: number }) => {
+
+export default transform
+
+const processKey = (old: OldStructure, fillWith: (key: string) => (value: string) => void) => (key: string) => {
     const values = old[key]
-    const value = values[0].toLowerCase()
-    fill(result, value, key)
+    values
+        .map(transformValue)
+        .forEach(fillWith(key))
 }
-const fill = (result: { [p: string]: number }, value: string, key: string) => {
+
+const transformValue = (value: string) => value.toLowerCase()
+
+const fill = (result: NewStructure) => (key: string) => (value: string) => {
     result[value] = +key
 }
