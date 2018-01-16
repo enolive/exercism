@@ -1,3 +1,5 @@
+import './extensions'
+
 export default (word: string | undefined) =>
     lettersOf(word)
         .map(scoreForLetter)
@@ -9,12 +11,11 @@ const lettersOf = (word: string | undefined) =>
         .split('')
         .filter((letter) => letter.match(/\w/))
 
-const scoreForLetter = (letter: string) => {
-    const [score] = scoringRules
+const scoreForLetter = (letter: string) =>
+    scoringRules
         .filter((rule) => rule.appliesTo(letter))
         .map((rule) => rule.score)
-    return score
-}
+        .head()
 
 const letters = (...applyingLetters: string[]) =>
     (letter: string) => applyingLetters.some((w) => w === letter)
