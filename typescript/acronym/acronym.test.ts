@@ -13,11 +13,11 @@ describe('Acronym are produced from', () => {
     expect(Acronym.parse('HyperText Markup Language')).toEqual('HTML')
   })
 
-  xit('phrases with punctuation', () => {
+  it('phrases with punctuation', () => {
     expect(Acronym.parse('First In, First Out')).toEqual('FIFO')
   })
 
-  xit('other phrases with punctuation', () => {
+  it('other phrases with punctuation', () => {
     expect(Acronym.parse('PHP: Hypertext Preprocessor')).toEqual('PHP')
   })
 

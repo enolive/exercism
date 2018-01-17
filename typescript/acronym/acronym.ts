@@ -2,12 +2,23 @@ export default class Acronym {
     static parse(phrase: string): string {
         return phrase
             .split('')
-            .filter((letter, index) => this.startsNewWord(phrase, letter, index))
+            .filter((_, index) => this.startsNewWord(phrase, index))
             .map((word) => word.toUpperCase())
             .join('')
     }
 
-    private static startsNewWord(phrase: string, letter: string, index: number) {
-        return letter.match(/[A-Z]/) || phrase.charAt(index - 1) === ' '
+    private static startsNewWord(phrase: string, index: number) {
+        if (index === 0) {
+            return true
+        }
+        const formerLetter = phrase.charAt(index - 1)
+        const currentLetter = phrase.charAt(index)
+        if (currentLetter.match(/[A-Z]/) && (formerLetter.match(/[a-z]/))) {
+            return true
+        }
+        if (formerLetter === ' ') {
+            return true
+        }
+        return false
     }
 }
