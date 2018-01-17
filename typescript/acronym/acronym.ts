@@ -1,19 +1,17 @@
 export default class Acronym {
+    static parse = (phrase: string): string =>
+        phrase.split('')
+            .filter((_, index) => Acronym.startsNewWord(phrase, index))
+            .map((word) => word.toUpperCase())
+            .join('')
+
     private static ruleChain: [(phrase: string, index: number) => boolean] = [
         Acronym.isStartOfSentence,
         Acronym.isUpperCaseFollowingLowerCase,
         Acronym.isFormerWhitespaceOrHyphen
     ]
 
-    static parse = (phrase: string): string => {
-        return phrase
-            .split('')
-            .filter((_, index) => Acronym.startsNewWord(phrase, index))
-            .map((word) => word.toUpperCase())
-            .join('')
-    }
-
-    private static startsNewWord(phrase: string, index: number) {
+    private static startsNewWord = (phrase: string, index: number) => {
         return Acronym.ruleChain.some((rule) => rule(phrase, index))
     }
 
