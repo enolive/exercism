@@ -21,7 +21,7 @@ describe('Acronym are produced from', () => {
     expect(Acronym.parse('PHP: Hypertext Preprocessor')).toEqual('PHP')
   })
 
-  xit('phrases with punctuation and sentence casing', () => {
+  it('phrases with punctuation and sentence casing', () => {
     expect(Acronym.parse('Complementary metal-oxide semiconductor')).toEqual('CMOS')
   })
 })

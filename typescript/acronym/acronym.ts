@@ -16,7 +16,7 @@ export default class Acronym {
         if (currentLetter.match(/[A-Z]/) && (formerLetter.match(/[a-z]/))) {
             return true
         }
-        if (formerLetter === ' ') {
+        if (formerLetter === ' ' || formerLetter === '-') {
             return true
         }
         return false
