@@ -42,12 +42,12 @@ describe('PhoneNumber()', () => {
     expect(phone.number()).toEqual(undefined)
   })
 
-  xit('invalid with punctuations', () => {
+  it('invalid with punctuations', () => {
     const phone = new PhoneNumber('123-@:!-7890')
     expect(phone.number()).toEqual(undefined)
   })
 
-  xit('invalid with right number of digits but letters mixed in', () => {
+  it('invalid with right number of digits but letters mixed in', () => {
     const phone = new PhoneNumber('1a2b3c4d5e6f7g8h9i0j')
     expect(phone.number()).toEqual(undefined)
   })
