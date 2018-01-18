@@ -1,35 +1,21 @@
 export default class Anagram {
     private word: string
-    private lettersFromWord: string[]
+    private orderedWord: string
 
     constructor(word: string) {
         this.word = word.toLowerCase()
-        this.lettersFromWord = Anagram.orderedLettersFrom(this.word)
+        this.orderedWord = Anagram.ordered(this.word)
     }
 
     matches(...candidates: string[]) {
-        return candidates.filter((candidate) => this.hasSameLetters(candidate))
+        return candidates.filter((candidate) => this.hasSameLetters(candidate.toLowerCase()))
     }
 
-    private static orderedLettersFrom(word: string) {
-        return word.split('').sort()
+    private static ordered(word: string) {
+        return word.split('').sort().join('')
     }
 
-    private static zip(a: string[], b: string[]) {
-        return a.map((value, index) => [value, b[index]])
-    }
-
-    private hasSameLetters(other: string) {
-        const candidate = other.toLowerCase()
-        if (this.word === candidate) {
-            return false
-        }
-        if (candidate.length !== this.word.length) {
-            return false
-        }
-        return Anagram
-            .zip(this.lettersFromWord,
-                Anagram.orderedLettersFrom(candidate))
-            .every(([c, w]) => c === w)
+    private hasSameLetters(candidate: string) {
+        return candidate !== this.word && Anagram.ordered(candidate) === this.orderedWord
     }
 }
