@@ -4,7 +4,7 @@ describe('Anagram', () => {
 
   it("no matches", () => {
     const subject = new Anagram("diaper")
-    const matches = subject.matches(...[ "hello", "world", "zombies", "pants"])
+    const matches = subject.matches("hello", "world", "zombies", "pants")
 
     expect(matches).toEqual([])
   })
