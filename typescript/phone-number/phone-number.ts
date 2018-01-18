@@ -26,6 +26,6 @@ export default class PhoneNumber {
     }
 
     private valid() {
-        return this.phone.length > 9 && this.phone.length < 11
+        return this.phone.length > 9 && this.phone.length < 11 && this.phone.match(/^\d+$/)
     }
 }

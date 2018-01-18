@@ -32,12 +32,12 @@ describe('PhoneNumber()', () => {
     expect(phone.number()).toEqual('1234567890')
   })
 
-  xit('invalid when 12 digits', () => {
+  it('invalid when 12 digits', () => {
     const phone = new PhoneNumber('321234567890')
     expect(phone.number()).toEqual(undefined)
   })
 
-  xit('invalid with letters', () => {
+  it('invalid with letters', () => {
     const phone = new PhoneNumber('123-abc-7890')
     expect(phone.number()).toEqual(undefined)
   })
