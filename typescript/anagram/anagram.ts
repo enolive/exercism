@@ -9,8 +9,8 @@ export default class Anagram {
         return candidates.filter((candidate) => this.hasSameLetters(candidate))
     }
 
-    private static orderedLettersFrom(candidate: string) {
-        return candidate.split('').sort()
+    private static orderedLettersFrom(word: string) {
+        return word.toLowerCase().split('').sort()
     }
 
     private static zip(a: string[], b: string[]) {

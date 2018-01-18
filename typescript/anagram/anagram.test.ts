@@ -37,21 +37,21 @@ describe('Anagram', () => {
     expect(matches).toEqual([])
   })
 
-  xit("detects anagram", () => {
+  it("detects anagram", () => {
     const subject = new Anagram("listen")
     const matches = subject.matches(...['enlists', 'google', 'inlets', 'banana'])
 
     expect(matches).toEqual(['inlets'])
   })
 
-  xit("detects multiple anagrams", () => {
+  it("detects multiple anagrams", () => {
     const subject = new Anagram("allergy")
     const matches = subject.matches(...['gallery', 'ballerina', 'regally', 'clergy', 'largely', 'leading'])
 
     expect(matches).toEqual(['gallery', 'regally', 'largely'])
   })
 
-  xit("detects anagrams case-insensitively", () => {
+  it("detects anagrams case-insensitively", () => {
     const subject = new Anagram("Orchestra")
     const matches = subject.matches(...['cashregister', 'Carthorse', 'radishes'])
 
