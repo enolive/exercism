@@ -9,7 +9,7 @@ describe('Anagram', () => {
     expect(matches).toEqual([])
   })
 
-  xit("detects simple anagram", () => {
+  it("detects simple anagram", () => {
     const subject = new Anagram("ant")
     const matches = subject.matches(...['tan', 'stand', 'at'])
 
