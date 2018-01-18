@@ -16,7 +16,7 @@ describe('Anagram', () => {
     expect(matches).toEqual(['tan'])
   })
 
-  xit("does not detect false positives", () => {
+  it("does not detect false positives", () => {
     const subject = new Anagram("galea")
     const matches = subject.matches(...["eagle"])
 
