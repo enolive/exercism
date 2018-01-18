@@ -1,25 +1,31 @@
 export default class PhoneNumber {
-    private phone: string
+    private phone: string | undefined
 
     constructor(phone: string) {
         this.phone = PhoneNumber
             .apply(
                 PhoneNumber.removePunctuation,
-                PhoneNumber.removeCountryCode)
+                PhoneNumber.removeCountryCode,
+                PhoneNumber.invalidateIncorrect)
             .to(phone)
     }
 
     number(): string | undefined {
-        return !this.valid()
-            ? undefined
-            : this.phone
+        return this.phone
     }
 
-    private static apply(...functions: Array<(phone: string) => string>) {
+    private static apply(...functions: Array<(phone: string) => string | undefined>) {
         return {
             to: (phone: string) =>
-                functions.reduce((current, func) => func(current), phone)
+                functions.reduce(
+                    (current, func) => PhoneNumber.callOnDefinedValue(func, current),
+                    phone)
         }
+    }
+
+    private static callOnDefinedValue(func: (phone: string) => string | undefined,
+                                      current: string | undefined): string | undefined {
+        return current !== undefined ? func(current) : undefined
     }
 
     private static removeCountryCode(phone: string) {
@@ -32,11 +38,9 @@ export default class PhoneNumber {
         return phone.replace(/[()\- .]/g, '')
     }
 
-    private valid() {
-        return this.invalidateIncorrect(this.phone)
-    }
-
-    private invalidateIncorrect(phone: string) {
+    private static invalidateIncorrect(phone: string) {
         return phone.length > 9 && phone.length < 11 && phone.match(/^\d+$/)
+            ? phone
+            : undefined
     }
 }
