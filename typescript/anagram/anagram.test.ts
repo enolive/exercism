@@ -65,14 +65,14 @@ describe('Anagram', () => {
     expect(matches).toEqual([])
   })
 
-  xit("matches() accepts string arguments", () => {
+  it("matches() accepts string arguments", () => {
     const subject = new Anagram("ant")
     const matches = subject.matches("stand", "tan", "at")
 
     expect(matches).toEqual(["tan"])
   })
 
-  xit("matches() accepts single string argument", () => {
+  it("matches() accepts single string argument", () => {
     const subject = new Anagram("ant")
     const matches = subject.matches("tan")
 
