@@ -17,6 +17,7 @@ export default class Acronym {
         return Acronym.startNewWordRules.some((rule) => rule(phrase, index))
     }
 
+    // noinspection JSUnusedLocalSymbols
     private static isStartOfSentence(_: string, index: number): boolean {
         return index === 0
     }
