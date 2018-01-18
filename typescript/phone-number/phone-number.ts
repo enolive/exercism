@@ -6,9 +6,12 @@ export default class PhoneNumber {
     }
 
     number(): string | undefined {
-        if (this.phone.length === 9) {
-            return undefined
-        }
-        return this.phone
+        return !this.valid()
+            ? undefined
+            : this.phone
+    }
+
+    private valid() {
+        return this.phone.length > 9 && this.phone.length < 11
     }
 }

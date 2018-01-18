@@ -22,7 +22,7 @@ describe('PhoneNumber()', () => {
     expect(phone.number()).toEqual(undefined)
   })
 
-  xit('invalid when 11 digits', () => {
+  it('invalid when 11 digits', () => {
     const phone = new PhoneNumber('21234567890')
     expect(phone.number()).toEqual(undefined)
   })
