@@ -1,18 +1,20 @@
 export default class Acronym {
-    static parse = (phrase: string): string =>
-        phrase.split('')
+    private static startNewWordRules: [(phrase: string, index: number) => boolean] = [
+        Acronym.isStartOfSentence,
+        Acronym.isUpperCaseFollowingLowerCase,
+        Acronym.isFormerOneOf(' ', '-')
+    ]
+
+    static parse(phrase: string): string {
+        return phrase
+            .split('')
             .filter((_, index) => Acronym.startsNewWord(phrase, index))
             .map((word) => word.toUpperCase())
             .join('')
+    }
 
-    private static ruleChain: [(phrase: string, index: number) => boolean] = [
-        Acronym.isStartOfSentence,
-        Acronym.isUpperCaseFollowingLowerCase,
-        Acronym.isFormerWhitespaceOrHyphen
-    ]
-
-    private static startsNewWord = (phrase: string, index: number) => {
-        return Acronym.ruleChain.some((rule) => rule(phrase, index))
+    private static startsNewWord(phrase: string, index: number) {
+        return Acronym.startNewWordRules.some((rule) => rule(phrase, index))
     }
 
     private static isStartOfSentence(_: string, index: number): boolean {
@@ -23,8 +25,10 @@ export default class Acronym {
         return Acronym.isCurrentUpperCase(phrase, index) && Acronym.isFormerLowerCase(phrase, index)
     }
 
-    private static isFormerWhitespaceOrHyphen(phrase: string, index: number): boolean {
-        return [' ', '-'].some((c) => Acronym.formerLetter(phrase, index) === c)
+    private static isFormerOneOf(...characters: string[]) {
+        return (phrase: string, index: number): boolean => {
+            return characters.some((c) => Acronym.formerLetter(phrase, index) === c)
+        }
     }
 
     private static isFormerLowerCase(phrase: string, index: number): boolean {
