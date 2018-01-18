@@ -58,7 +58,7 @@ describe('Anagram', () => {
     expect(matches).toEqual(['Carthorse'])
   })
 
-  xit("does not detect a word as its own anagram", () => {
+  it("does not detect a word as its own anagram", () => {
     const subject = new Anagram("banana")
     const matches = subject.matches(...['Banana'])
 
