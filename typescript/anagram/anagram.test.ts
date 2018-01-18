@@ -23,14 +23,14 @@ describe('Anagram', () => {
     expect(matches).toEqual([])
   })
 
-  xit("detects multiple anagrams", () => {
+  it("detects multiple anagrams", () => {
     const subject = new Anagram("master")
     const matches = subject.matches(...['stream', 'pigeon', 'maters'])
 
     expect(matches).toEqual(['stream', 'maters'])
   })
 
-  xit("does not detect anagram subsets", () => {
+  it("does not detect anagram subsets", () => {
     const subject = new Anagram("good")
     const matches = subject.matches(...['dog', 'goody'])
 
