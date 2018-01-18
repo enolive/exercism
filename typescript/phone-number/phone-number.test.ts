@@ -12,12 +12,12 @@ describe('PhoneNumber()', () => {
     expect(phone.number()).toEqual('1234567890')
   })
 
-  xit('cleans numbers with multiple spaces', () => {
+  it('cleans numbers with multiple spaces', () => {
     const phone = new PhoneNumber('123 456   7890   ')
     expect(phone.number()).toEqual('1234567890')
   })
 
-  xit('invalid when 9 digits', () => {
+  it('invalid when 9 digits', () => {
     const phone = new PhoneNumber('123456789')
     expect(phone.number()).toEqual(undefined)
   })
