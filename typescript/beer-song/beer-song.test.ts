@@ -45,7 +45,7 @@ Take one down and pass it around, 5 bottles of beer on the wall.
     expect(Beer.sing(8, 6)).toEqual(expected)
   })
 
-  xit('sings the rest of the verses', () => {
+  it('sings the rest of the verses', () => {
     const expected = `3 bottles of beer on the wall, 3 bottles of beer.
 Take one down and pass it around, 2 bottles of beer on the wall.
 
