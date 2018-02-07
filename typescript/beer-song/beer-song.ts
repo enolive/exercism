@@ -1,6 +1,10 @@
+const MAX_BOTTLES = 99
+const SINGLE_BOTTLE = 1
+const NO_BOTTLES = 0
+
 export default class Beer {
 
-    static sing(start: number = 99, end: number = 0) {
+    static sing(start: number = MAX_BOTTLES, end: number = NO_BOTTLES) {
         return this.from(start)
             .to(end)
             .map((i) => this.verse(i))
@@ -14,34 +18,29 @@ export default class Beer {
             .join('\n') + '\n'
     }
 
-    private static firstSentence(verseNumber: number) {
-        const currentBottles = this.bottles(verseNumber)
+    private static firstSentence(bottles: number) {
+        const currentBottles = this.bottles(bottles)
         return this.capitalizeFirstLetter(`${currentBottles} on the wall, ${currentBottles}.`)
     }
 
-    private static secondSentence(verseNumber: number) {
-        return verseNumber === 0
-            ? `Go to the store and buy some more, ${this.bottles(99)} on the wall.`
-            : `Take ${this.takeIt(verseNumber)} down and pass it around, ${this.bottles(verseNumber - 1)} on the wall.`
+    private static secondSentence(bottles: number) {
+        return bottles === NO_BOTTLES
+            ? `Go to the store and buy some more, ${this.bottles(MAX_BOTTLES)} on the wall.`
+            : `Take ${this.takeItOrOne(bottles)} down and pass it around, ${this.bottles(bottles - 1)} on the wall.`
     }
 
     private static capitalizeFirstLetter(sentence: string) {
         return sentence.charAt(0).toUpperCase() + sentence.slice(1)
     }
 
-    private static takeIt(verseNumber: number) {
-        return verseNumber === 1 ? 'it' : `one`
+    private static takeItOrOne(bottles: number) {
+        return bottles === SINGLE_BOTTLE ? 'it' : `one`
     }
 
-    private static bottles(numberOfBottles: number) {
-        switch (numberOfBottles) {
-            case 0:
-                return 'no more bottles of beer'
-            case 1:
-                return '1 bottle of beer'
-            default:
-                return `${numberOfBottles} bottles of beer`
-        }
+    private static bottles(count: number) {
+        const howMany = count === NO_BOTTLES ? 'no more' : count
+        const pluralNoun = count === SINGLE_BOTTLE ? '' : 's'
+        return `${howMany} bottle${pluralNoun} of beer`
     }
 
     private static from(start: number) {
