@@ -7,19 +7,14 @@ ${this.secondSentence(verseNumber)}.
     }
 
     private static secondSentence(verseNumber: number) {
-        if (verseNumber === 0) {
-            return `Go to the store and buy some more, ${this.bottles(99)} on the wall`
-        }
-        const remainingBottles = this.bottles(verseNumber - 1)
-        const takeIt = this.takeIt(verseNumber)
-        const secondSentence = `Take ${takeIt} down and pass it around, ${remainingBottles} on the wall`
-        return secondSentence
+        return verseNumber === 0
+            ? `Go to the store and buy some more, ${this.bottles(99)} on the wall`
+            : `Take ${this.takeIt(verseNumber)} down and pass it around, ${this.bottles(verseNumber - 1)} on the wall`
     }
 
     private static firstSentence(verseNumber: number) {
         const currentBottles = this.bottles(verseNumber)
-        const firstSentence = `${currentBottles} on the wall, ${currentBottles}.`
-        return this.capitalizeFirstLetter(firstSentence)
+        return this.capitalizeFirstLetter(`${currentBottles} on the wall, ${currentBottles}.`)
     }
 
     private static capitalizeFirstLetter(sentence: string) {
