@@ -1,6 +1,6 @@
 export default class Beer {
 
-    static sing(start: number, end: number = 0) {
+    static sing(start: number = 99, end: number = 0) {
         return this.from(start)
             .to(end)
             .map((i) => this.verse(i))
