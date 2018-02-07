@@ -32,7 +32,7 @@ Go to the store and buy some more, 99 bottles of beer on the wall.
     expect(Beer.verse(0)).toEqual(expected)
   })
 
-  xit('sings several verses', () => {
+  it('sings several verses', () => {
     const expected = `8 bottles of beer on the wall, 8 bottles of beer.
 Take one down and pass it around, 7 bottles of beer on the wall.
 

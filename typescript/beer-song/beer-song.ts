@@ -1,5 +1,12 @@
 export default class Beer {
 
+    static sing(start: number, end: number) {
+        return this.from(start)
+            .to(end)
+            .map((verse) => this.verse(verse))
+            .join('\n')
+    }
+
     static verse(verseNumber: number) {
         return `${this.firstSentence(verseNumber)}
 ${this.secondSentence(verseNumber)}.
@@ -33,5 +40,11 @@ ${this.secondSentence(verseNumber)}.
             return '1 bottle of beer'
         }
         return `${numberOfBottles} bottles of beer`
+    }
+
+    private static from(start: number) {
+        return {
+            to: (end: number) => Array.from({length: start - end + 1}, (_, i) => start - i)
+        }
     }
 }
