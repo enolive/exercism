@@ -10,6 +10,14 @@ Take one down and pass it around, 7 bottles of beer on the wall.
     expect(Beer.verse(8)).toEqual(expected)
   })
 
+  it('prints another arbitrary verse', () => {
+    const expected = `5 bottles of beer on the wall, 5 bottles of beer.
+Take one down and pass it around, 4 bottles of beer on the wall.
+`
+
+    expect(Beer.verse(5)).toEqual(expected)
+  })
+
   xit('handles 1 bottle', () => {
     const expected = `1 bottle of beer on the wall, 1 bottle of beer.
 Take it down and pass it around, no more bottles of beer on the wall.

@@ -1,8 +1,10 @@
 export default class Beer {
 
     static verse(verseNumber: number) {
-        return `8 bottles of beer on the wall, 8 bottles of beer.
-Take one down and pass it around, 7 bottles of beer on the wall.
+        const currentBottles = verseNumber
+        const remainingBottles = currentBottles - 1
+        return `${currentBottles} bottles of beer on the wall, ${currentBottles} bottles of beer.
+Take one down and pass it around, ${remainingBottles} bottles of beer on the wall.
 `
     }
 }
