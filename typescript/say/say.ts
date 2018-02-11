@@ -46,12 +46,12 @@ export default class Say {
     }
 
     private small(translation: { remainingInput: number, result: string[] }) {
-        let {remainingInput, result} = translation
-        if (remainingInput > 0) {
-            const singleNumber = this.getNumberName(remainingInput)
-            result = result.concat(singleNumber.name)
-            remainingInput = 0
+        if (translation.remainingInput <= 0) {
+            return translation
         }
+        const singleNumber = this.getNumberName(translation.remainingInput)
+        const result = translation.result.concat(singleNumber.name)
+        const remainingInput = 0
         return {remainingInput, result}
     }
 
