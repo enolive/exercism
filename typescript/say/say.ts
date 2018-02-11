@@ -1,3 +1,8 @@
+interface Translation {
+    result: string[]
+    remainingInput: number
+}
+
 export default class Say {
     private numberNames = [
         {value: 12, name: 'twelve', ty: '', teen: ''},
@@ -14,7 +19,7 @@ export default class Say {
         {value: 1, name: 'one', ty: '', teen: ''},
     ]
 
-    private transforms = [
+    private transformations: Array<((translation: Translation) => Translation)> = [
         this.higher(1000 * 1000 * 1000, 'billion'),
         this.higher(1000 * 1000, 'million'),
         this.higher(1000, 'thousand'),
@@ -24,28 +29,27 @@ export default class Say {
         this.lower(1, this.getSmallNumberName),
     ]
 
-    inEnglish(input: number) {
-        const translation = this.transforms.reduce(
+    inEnglish(input: number): string {
+        const translation = this.transformations.reduce(
             (translation, transform) => transform(translation),
             {remainingInput: input, result: []})
         return translation.result.join(' ') || 'zero'
     }
 
     private higher(multiplier: number, multiplierName: string) {
-        return (translation: { remainingInput: number; result: string[] }) => {
-            let {remainingInput, result} = translation
-            if (remainingInput < multiplier) {
+        return (translation: Translation): Translation => {
+            if (translation.remainingInput < multiplier) {
                 return translation
             }
-            const numberName = this.inEnglish(remainingInput / multiplier)
-            result = result.concat(`${numberName} ${multiplierName}`)
-            remainingInput %= multiplier
+            const numberName = this.inEnglish(translation.remainingInput / multiplier)
+            const result = translation.result.concat(`${numberName} ${multiplierName}`)
+            const remainingInput = translation.remainingInput % multiplier
             return {remainingInput, result}
         }
     }
 
     private lower(minimum: number, getNameFunc: (input: number) => string) {
-        return (translation: { remainingInput: number; result: string[] }) => {
+        return (translation: Translation): Translation => {
             if (translation.remainingInput < minimum) {
                 return translation
             }
@@ -78,7 +82,7 @@ export default class Say {
         const integerInput = Math.trunc(input)
         const [numberName] = this.numberNames
             .filter((n) => n.value === integerInput)
-        if (numberName === undefined) {
+        if (!numberName) {
             throw `could not find number for ${integerInput}.`
         }
         return numberName
