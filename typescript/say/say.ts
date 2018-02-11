@@ -39,6 +39,9 @@ export default class Say {
     ]
 
     inEnglish(input: number): string {
+        if (input < 0) {
+            throw 'Number must be between 0 and 999,999,999,999.'
+        }
         const translation = this.transformations.reduce(
             (translation, transform) => transform(translation),
             {remainingInput: input, result: []})

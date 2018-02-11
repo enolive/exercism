@@ -100,7 +100,7 @@ describe('say', () => {
         expect(say.inEnglish(987654321123)).toBe(expected)
     })
 
-    xit('raises an error below zero', () => {
+    it('raises an error below zero', () => {
         expect(() => {
             say.inEnglish(-1)
         }).toThrowError('Number must be between 0 and 999,999,999,999.')
