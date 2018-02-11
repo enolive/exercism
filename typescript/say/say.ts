@@ -16,6 +16,7 @@ export default class Say {
 
     inEnglish(input: number) {
         const empty: string[] = []
+
         let translation = {remainingInput: input, result: empty}
 
         translation = this.higher(1000000, 'million')(translation)
@@ -23,7 +24,7 @@ export default class Say {
         translation = this.higher(100, 'hundred')(translation)
         translation = this.tens(translation)
         translation = this.teens(translation)
-        translation = this.lowNumbers(translation)
+        translation = this.small(translation)
 
         return translation.result.join(' ') || 'zero'
     }
@@ -40,7 +41,7 @@ export default class Say {
         }
     }
 
-    private lowNumbers(translation: { remainingInput: number, result: string[] }) {
+    private small(translation: { remainingInput: number, result: string[] }) {
         let {remainingInput, result} = translation
         if (remainingInput > 0) {
             const singleNumber = this.getNumberName(remainingInput)
