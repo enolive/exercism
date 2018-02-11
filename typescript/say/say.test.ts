@@ -18,6 +18,12 @@ describe('say', () => {
         expect(say.inEnglish(9)).toBe('nine')
     })
 
+    it('numbers between 10 and 12', () => {
+        expect(say.inEnglish(10)).toBe('ten')
+        expect(say.inEnglish(11)).toBe('eleven')
+        expect(say.inEnglish(12)).toBe('twelve')
+    })
+
     it('numbers between 13 and 19', () => {
         expect(say.inEnglish(13)).toBe('thirteen')
         expect(say.inEnglish(14)).toBe('fourteen')
