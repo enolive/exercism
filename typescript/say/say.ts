@@ -16,33 +16,33 @@ export default class Say {
 
     inEnglish(input: number) {
         let result: string[] = []
-        if (input >= 100) {
-            const [hundredNumber] = this.numberNames
-                .filter((n) => n.value === Math.floor(input / 100))
+        let remainingInput = input
+
+        if (remainingInput >= 100) {
+            const hundredNumber = this.getNumberName(remainingInput / 100)
             result = result.concat(hundredNumber.name + ' hundred')
-            input -= hundredNumber.value * 100
+            remainingInput -= hundredNumber.value * 100
         }
 
-        if (input >= 20) {
-            const [tenNumber] = this.numberNames
-                .filter((n) => n.value === Math.floor(input / 10))
-            const singleNumber = this.getNumberName(input % 10)
+        if (remainingInput >= 20) {
+            const tenNumber = this.getNumberName(remainingInput / 10)
+            const singleNumber = this.getNumberName(remainingInput % 10)
             let ten = [tenNumber.ty + 'ty']
             if (singleNumber) {
                 ten = ten.concat(singleNumber.name)
             }
             result = result.concat(ten.join('-'))
-            input = 0
+            remainingInput = 0
         }
 
-        if (input >= 13) {
-            const teenNumber = this.getNumberName(input % 10)
+        if (remainingInput >= 13) {
+            const teenNumber = this.getNumberName(remainingInput % 10)
             result = result.concat(teenNumber.teen + 'teen')
-            input = 0
+            remainingInput = 0
         }
 
-        if (input > 0) {
-            const singleNumber = this.getNumberName(input)
+        if (remainingInput > 0) {
+            const singleNumber = this.getNumberName(remainingInput)
             result = result.concat(singleNumber.name)
             input = 0
         }
@@ -50,8 +50,9 @@ export default class Say {
     }
 
     private getNumberName(input: number) {
+        const integerInput = Math.trunc(input)
         const [singleNumber] = this.numberNames
-            .filter((n) => n.value === input)
+            .filter((n) => n.value === integerInput)
         return singleNumber
     }
 }
