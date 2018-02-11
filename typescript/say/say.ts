@@ -12,6 +12,8 @@ interface NumberName {
 
 type Transformation = ((translation: Translation) => Translation)
 
+class ArgumentError extends Error {}
+
 export default class Say {
     private numberNames: NumberName[] = [
         {value: 12, name: 'twelve', nameTen: '', nameTeen: ''},
@@ -40,7 +42,7 @@ export default class Say {
 
     inEnglish(input: number): string {
         if (input < 0 || input > 10 ** 12 - 1) {
-            throw 'Number must be between 0 and 999,999,999,999.'
+            throw new ArgumentError('Number must be between 0 and 999,999,999,999.')
         }
         const translation = this.transformations.reduce(
             (translation, transform) => transform(translation),
