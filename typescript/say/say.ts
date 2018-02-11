@@ -7,10 +7,10 @@ export default class Say {
             {value: 7, name: 'seven', ty: 'seven', teen: 'seven'},
             {value: 6, name: 'six', ty: 'six', teen: 'six'},
             {value: 5, name: 'five', ty: 'fif', teen: 'fif'},
-            {value: 4, name: 'four', ty: 'for', teen: 'for'},
-            {value: 3, name: 'three', ty: 'thir'},
-            {value: 2, name: 'two', ty: 'twen'},
-            {value: 1, name: 'one', ty: ''},
+            {value: 4, name: 'four', ty: 'for', teen: 'four'},
+            {value: 3, name: 'three', ty: 'thir', teen: 'thir'},
+            {value: 2, name: 'two', ty: 'twen', teen: ''},
+            {value: 1, name: 'one', ty: '', teen: ''},
         ]
         let result: string[] = []
         if (input >= 20) {
@@ -19,8 +19,11 @@ export default class Say {
             result = result.concat(tenNumber.ty + 'ty')
             input -= tenNumber.value * 10
         }
-        if (input === 14) {
-            return 'fourteen'
+        if (input >= 13) {
+            const [teenNumber] = numbers
+                .filter((n) => n.value === input % 10)
+            result = result.concat(teenNumber.teen + 'teen')
+            input = 0
         }
 
         if (input > 0) {

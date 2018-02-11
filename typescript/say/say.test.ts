@@ -18,8 +18,14 @@ describe('say', () => {
         expect(say.inEnglish(9)).toBe('nine')
     })
 
-    it('fourteen', () => {
+    it('numbers between 13 and 19', () => {
+        expect(say.inEnglish(13)).toBe('thirteen')
         expect(say.inEnglish(14)).toBe('fourteen')
+        expect(say.inEnglish(15)).toBe('fifteen')
+        expect(say.inEnglish(16)).toBe('sixteen')
+        expect(say.inEnglish(17)).toBe('seventeen')
+        expect(say.inEnglish(18)).toBe('eighteen')
+        expect(say.inEnglish(19)).toBe('nineteen')
     })
 
     it('multiples of ten', () => {
