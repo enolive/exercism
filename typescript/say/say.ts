@@ -3,6 +3,8 @@ interface Translation {
     remainingInput: number
 }
 
+type Transformation = ((translation: Translation) => Translation)
+
 export default class Say {
     private numberNames = [
         {value: 12, name: 'twelve', ty: '', teen: ''},
@@ -19,7 +21,7 @@ export default class Say {
         {value: 1, name: 'one', ty: '', teen: ''},
     ]
 
-    private transformations: Array<((translation: Translation) => Translation)> = [
+    private transformations: Transformation[] = [
         this.higher(1000 * 1000 * 1000, 'billion'),
         this.higher(1000 * 1000, 'million'),
         this.higher(1000, 'thousand'),
