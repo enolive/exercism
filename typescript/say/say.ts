@@ -19,16 +19,19 @@ export default class Say {
 
         let translation = {remainingInput: input, result: empty}
 
-        translation = this.higher(1000 * 1000 * 1000, 'billion', translation)
-        translation = this.higher(1000 * 1000, 'million', translation)
-        translation = this.higher(1000, 'thousand', translation)
-        translation = this.higher(100, 'hundred', translation)
-        translation = this.lower(translation)
+        translation = this.higher(1000 * 1000 * 1000, 'billion')(translation)
+        translation = this.higher(1000 * 1000, 'million')(translation)
+        translation = this.higher(1000, 'thousand')(translation)
+        translation = this.higher(100, 'hundred')(translation)
+        translation = this.small(20, this.getTenName, translation)
+        translation = this.small(13, this.getTeenName, translation)
+        translation = this.small(1, this.getSmallNumberName, translation)
 
         return translation.result.join(' ') || 'zero'
     }
 
-    private higher(multiplier: number, multiplierName: string, translation: { remainingInput: number; result: string[] }) {
+    private higher(multiplier: number, multiplierName: string) {
+        return (translation: { remainingInput: number; result: string[] }) => {
         let {remainingInput, result} = translation
         if (remainingInput >= multiplier) {
             const numberName = this.inEnglish(remainingInput / multiplier)
@@ -36,50 +39,43 @@ export default class Say {
             remainingInput %= multiplier
         }
         return {remainingInput, result}
-    }
+    }}
 
-    private lower(translation: { remainingInput: number; result: string[] }) {
-        translation = this.tens(translation)
-        translation = this.teens(translation)
-        translation = this.small(translation)
-        return translation
-    }
-
-    private small(translation: { remainingInput: number, result: string[] }) {
-        if (translation.remainingInput < 1) {
+    private small(minimum: number, getNameFunc: (input: number) => string, translation: { remainingInput: number; result: string[] }) {
+        if (translation.remainingInput < minimum) {
             return translation
         }
-        const singleNumber = this.getNumberName(translation.remainingInput)
-        const result = translation.result.concat(singleNumber.name)
+        const name = getNameFunc.bind(this)(translation.remainingInput)
+        const result = translation.result.concat(name)
         return {remainingInput: 0, result}
     }
 
-    private teens(translation: { remainingInput: number, result: string[] }) {
-        if (translation.remainingInput < 13) {
-            return translation
-        }
-        const teenNumber = this.getNumberName(translation.remainingInput % 10)
-        const result = translation.result.concat(teenNumber.teen + 'teen')
-        return {remainingInput: 0, result}
+    private getSmallNumberName(input: number) {
+        const singleNumber = this.getNumberName(input)
+        return singleNumber.name
     }
 
-    private tens(translation: { remainingInput: number, result: string[] }) {
-        if (translation.remainingInput < 20) {
-            return translation
-        }
-        const tenNumber = this.getNumberName(translation.remainingInput / 10)
+    private getTeenName(input: number) {
+        const teenNumber = this.getNumberName(input % 10)
+        return teenNumber.teen + 'teen'
+    }
+
+    private getTenName(input: number) {
+        const tenNumber = this.getNumberName(input / 10)
         let ten = [tenNumber.ty + 'ty']
-        if (translation.remainingInput % 10 !== 0) {
-            ten = ten.concat(this.inEnglish(translation.remainingInput % 10))
+        if (input % 10 !== 0) {
+            ten = ten.concat(this.inEnglish(input % 10))
         }
-        const result = translation.result.concat(ten.join('-'))
-        return {remainingInput: 0, result}
+        return ten.join('-')
     }
 
     private getNumberName(input: number) {
         const integerInput = Math.trunc(input)
-        const [singleNumber] = this.numberNames
+        const [numberName] = this.numberNames
             .filter((n) => n.value === integerInput)
-        return singleNumber
+        if (numberName === undefined) {
+            throw `could not find number for ${integerInput}.`
+        }
+        return numberName
     }
 }
