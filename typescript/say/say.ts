@@ -18,14 +18,24 @@ export default class Say {
         const empty: string[] = []
         let translation = {remainingInput: input, result: empty}
 
-        translation = this.higher(translation, 1000000, 'million')
-        translation = this.higher(translation, 1000, 'thousand')
-        translation = this.higher(translation, 100, 'hundred')
+        translation = this.higher(1000000, 'million', translation)
+        translation = this.higher(1000, 'thousand', translation)
+        translation = this.higher(100, 'hundred', translation)
         translation = this.tens(translation)
         translation = this.teens(translation)
         translation = this.small(translation)
 
         return translation.result.join(' ') || 'zero'
+    }
+
+    private higher(multiplier: number, multiplierName: string, translation: { remainingInput: number; result: string[] }) {
+        let {remainingInput, result} = translation
+        if (remainingInput >= multiplier) {
+            const numberName = this.getNumberName(remainingInput / multiplier)
+            result = result.concat(`${numberName.name} ${multiplierName}`)
+            remainingInput -= numberName.value * multiplier
+        }
+        return {remainingInput, result}
     }
 
     private small(translation: { remainingInput: number, result: string[] }) {
@@ -59,16 +69,6 @@ export default class Say {
             }
             result = result.concat(ten.join('-'))
             remainingInput = 0
-        }
-        return {remainingInput, result}
-    }
-
-    private higher(parameters: { remainingInput: number, result: string[] }, multiplier: number, multiplierName: string) {
-        let {remainingInput, result} = parameters
-        if (remainingInput >= multiplier) {
-            const thousandNumber = this.getNumberName(remainingInput / multiplier)
-            result = result.concat(`${thousandNumber.name} ${multiplierName}`)
-            remainingInput -= thousandNumber.value * multiplier
         }
         return {remainingInput, result}
     }
