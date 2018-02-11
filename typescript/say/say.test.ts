@@ -57,8 +57,9 @@ describe('say', () => {
         expect(say.inEnglish(300)).toBe('three hundred')
     })
 
-    it('one hundred twenty-three', () => {
+    it('combined hundreds with lower numbers', () => {
         expect(say.inEnglish(123)).toBe('one hundred twenty-three')
+        expect(say.inEnglish(897)).toBe('eight hundred ninety-seven')
     })
 
     xit('one thousand', () => {
