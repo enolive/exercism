@@ -79,6 +79,10 @@ describe('say', () => {
         expect(say.inEnglish(1000002)).toBe('one million two')
     })
 
+    it('many millions', () => {
+        expect(say.inEnglish(999000000)).toBe('nine hundred ninety-nine million')
+    })
+
     it('one million two thousand three hundred forty-five', () => {
         expect(say.inEnglish(1002345))
             .toBe('one million two thousand three hundred forty-five')

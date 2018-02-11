@@ -19,27 +19,30 @@ export default class Say {
 
         let translation = {remainingInput: input, result: empty}
 
-        translation = this.higher(1000 * 1000 * 1000, 'billion')(translation)
-        translation = this.higher(1000 * 1000, 'million')(translation)
-        translation = this.higher(1000, 'thousand')(translation)
-        translation = this.higher(100, 'hundred')(translation)
-        translation = this.tens(translation)
-        translation = this.teens(translation)
-        translation = this.small(translation)
+        translation = this.higher(1000 * 1000 * 1000, 'billion', translation)
+        translation = this.higher(1000 * 1000, 'million', translation)
+        translation = this.higher(1000, 'thousand', translation)
+        translation = this.higher(100, 'hundred', translation)
+        translation = this.lower(translation)
 
         return translation.result.join(' ') || 'zero'
     }
 
-    private higher(multiplier: number, multiplierName: string) {
-        return (translation: { remainingInput: number; result: string[] }) => {
-            let {remainingInput, result} = translation
-            if (remainingInput >= multiplier) {
-                const numberName = this.getNumberName(remainingInput / multiplier)
-                result = result.concat(`${numberName.name} ${multiplierName}`)
-                remainingInput -= numberName.value * multiplier
-            }
-            return {remainingInput, result}
+    private higher(multiplier: number, multiplierName: string, translation: { remainingInput: number; result: string[] }) {
+        let {remainingInput, result} = translation
+        if (remainingInput >= multiplier) {
+            const numberName = this.inEnglish(remainingInput / multiplier)
+            result = result.concat(`${numberName} ${multiplierName}`)
+            remainingInput %= multiplier
         }
+        return {remainingInput, result}
+    }
+
+    private lower(translation: { remainingInput: number; result: string[] }) {
+        translation = this.tens(translation)
+        translation = this.teens(translation)
+        translation = this.small(translation)
+        return translation
     }
 
     private small(translation: { remainingInput: number, result: string[] }) {
