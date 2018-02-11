@@ -17,12 +17,11 @@ export default class Say {
     inEnglish(input: number) {
         let result: string[] = []
         let remainingInput = input
+        let translation = {remainingInput, result}
 
-        if (remainingInput >= 1000) {
-            const thousandNumber = this.getNumberName(remainingInput / 1000)
-            result = result.concat(`${thousandNumber.name} thousand`)
-            remainingInput -= thousandNumber.value * 1000
-        }
+        translation = this.apply(translation, 1000, 'thousand')
+        remainingInput = translation.remainingInput
+        result = translation.result
 
         if (remainingInput >= 100) {
             const hundredNumber = this.getNumberName(remainingInput / 100)
@@ -53,6 +52,16 @@ export default class Say {
             input = 0
         }
         return result.join(' ') || 'zero'
+    }
+
+    private apply(parameters: { remainingInput: number, result: string[] }, multiplier: number, multiplierName: string) {
+        let {remainingInput, result} = parameters
+        if (remainingInput >= multiplier) {
+            const thousandNumber = this.getNumberName(remainingInput / multiplier)
+            result = result.concat(`${thousandNumber.name} ${multiplierName}`)
+            remainingInput -= thousandNumber.value * multiplier
+        }
+        return {remainingInput, result}
     }
 
     private getNumberName(input: number) {
