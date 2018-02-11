@@ -3,22 +3,29 @@ interface Translation {
     remainingInput: number
 }
 
+interface NumberName {
+    value: number
+    name: string
+    nameTen: string
+    nameTeen: string
+}
+
 type Transformation = ((translation: Translation) => Translation)
 
 export default class Say {
-    private numberNames = [
-        {value: 12, name: 'twelve', ty: '', teen: ''},
-        {value: 11, name: 'eleven', ty: '', teen: ''},
-        {value: 10, name: 'ten', ty: '', teen: ''},
-        {value: 9, name: 'nine', ty: 'nine', teen: 'nine'},
-        {value: 8, name: 'eight', ty: 'eigh', teen: 'eigh'},
-        {value: 7, name: 'seven', ty: 'seven', teen: 'seven'},
-        {value: 6, name: 'six', ty: 'six', teen: 'six'},
-        {value: 5, name: 'five', ty: 'fif', teen: 'fif'},
-        {value: 4, name: 'four', ty: 'for', teen: 'four'},
-        {value: 3, name: 'three', ty: 'thir', teen: 'thir'},
-        {value: 2, name: 'two', ty: 'twen', teen: ''},
-        {value: 1, name: 'one', ty: '', teen: ''},
+    private numberNames: NumberName[] = [
+        {value: 12, name: 'twelve', nameTen: '', nameTeen: ''},
+        {value: 11, name: 'eleven', nameTen: '', nameTeen: ''},
+        {value: 10, name: 'ten', nameTen: '', nameTeen: ''},
+        {value: 9, name: 'nine', nameTen: 'nine', nameTeen: 'nine'},
+        {value: 8, name: 'eight', nameTen: 'eigh', nameTeen: 'eigh'},
+        {value: 7, name: 'seven', nameTen: 'seven', nameTeen: 'seven'},
+        {value: 6, name: 'six', nameTen: 'six', nameTeen: 'six'},
+        {value: 5, name: 'five', nameTen: 'fif', nameTeen: 'fif'},
+        {value: 4, name: 'four', nameTen: 'for', nameTeen: 'four'},
+        {value: 3, name: 'three', nameTen: 'thir', nameTeen: 'thir'},
+        {value: 2, name: 'two', nameTen: 'twen', nameTeen: ''},
+        {value: 1, name: 'one', nameTen: '', nameTeen: ''},
     ]
 
     private transformations: Transformation[] = [
@@ -38,7 +45,7 @@ export default class Say {
         return translation.result.join(' ') || 'zero'
     }
 
-    private higher(multiplier: number, multiplierName: string) {
+    private higher(multiplier: number, multiplierName: string): Transformation {
         return (translation: Translation): Translation => {
             if (translation.remainingInput < multiplier) {
                 return translation
@@ -50,7 +57,7 @@ export default class Say {
         }
     }
 
-    private lower(minimum: number, getNameFunc: (input: number) => string) {
+    private lower(minimum: number, getNameFunc: (input: number) => string): Transformation {
         return (translation: Translation): Translation => {
             if (translation.remainingInput < minimum) {
                 return translation
@@ -61,26 +68,26 @@ export default class Say {
         }
     }
 
-    private getSmallNumberName(input: number) {
+    private getSmallNumberName(input: number): string {
         const singleNumber = this.getNumberName(input)
         return singleNumber.name
     }
 
-    private getTeenName(input: number) {
+    private getTeenName(input: number): string {
         const teenNumber = this.getNumberName(input % 10)
-        return teenNumber.teen + 'teen'
+        return teenNumber.nameTeen + 'teen'
     }
 
-    private getTenName(input: number) {
+    private getTenName(input: number): string {
         const tenNumber = this.getNumberName(input / 10)
-        let ten = [tenNumber.ty + 'ty']
+        let ten = [tenNumber.nameTen + 'ty']
         if (input % 10 !== 0) {
             ten = ten.concat(this.inEnglish(input % 10))
         }
         return ten.join('-')
     }
 
-    private getNumberName(input: number) {
+    private getNumberName(input: number): NumberName {
         const integerInput = Math.trunc(input)
         const [numberName] = this.numberNames
             .filter((n) => n.value === integerInput)
