@@ -18,27 +18,29 @@ export default class Say {
         const empty: string[] = []
         let translation = {remainingInput: input, result: empty}
 
-        translation = this.higher(1000000, 'million', translation)
-        translation = this.higher(1000, 'thousand', translation)
-        translation = this.higher(100, 'hundred', translation)
+        translation = this.higher(1000000, 'million')(translation)
+        translation = this.higher(1000, 'thousand')(translation)
+        translation = this.higher(100, 'hundred')(translation)
         translation = this.tens(translation)
         translation = this.teens(translation)
-        translation = this.small(translation)
+        translation = this.lowNumbers(translation)
 
         return translation.result.join(' ') || 'zero'
     }
 
-    private higher(multiplier: number, multiplierName: string, translation: { remainingInput: number; result: string[] }) {
-        let {remainingInput, result} = translation
-        if (remainingInput >= multiplier) {
-            const numberName = this.getNumberName(remainingInput / multiplier)
-            result = result.concat(`${numberName.name} ${multiplierName}`)
-            remainingInput -= numberName.value * multiplier
+    private higher(multiplier: number, multiplierName: string) {
+        return (translation: { remainingInput: number; result: string[] }) => {
+            let {remainingInput, result} = translation
+            if (remainingInput >= multiplier) {
+                const numberName = this.getNumberName(remainingInput / multiplier)
+                result = result.concat(`${numberName.name} ${multiplierName}`)
+                remainingInput -= numberName.value * multiplier
+            }
+            return {remainingInput, result}
         }
-        return {remainingInput, result}
     }
 
-    private small(translation: { remainingInput: number, result: string[] }) {
+    private lowNumbers(translation: { remainingInput: number, result: string[] }) {
         let {remainingInput, result} = translation
         if (remainingInput > 0) {
             const singleNumber = this.getNumberName(remainingInput)
