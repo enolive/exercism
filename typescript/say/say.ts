@@ -29,8 +29,8 @@ export default class Say {
     ]
 
     private transformations: Transformation[] = [
-        this.higher(1000 * 1000 * 1000, 'billion'),
-        this.higher(1000 * 1000, 'million'),
+        this.higher(10 ** 9, 'billion'),
+        this.higher(10 ** 6, 'million'),
         this.higher(1000, 'thousand'),
         this.higher(100, 'hundred'),
         this.lower(20, this.getTenName),
@@ -39,7 +39,7 @@ export default class Say {
     ]
 
     inEnglish(input: number): string {
-        if (input < 0) {
+        if (input < 0 || input > 10 ** 12 - 1) {
             throw 'Number must be between 0 and 999,999,999,999.'
         }
         const translation = this.transformations.reduce(
