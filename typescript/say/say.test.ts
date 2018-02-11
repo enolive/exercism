@@ -57,7 +57,7 @@ describe('say', () => {
         expect(say.inEnglish(300)).toBe('three hundred')
     })
 
-    xit('one hundred twenty-three', () => {
+    it('one hundred twenty-three', () => {
         expect(say.inEnglish(123)).toBe('one hundred twenty-three')
     })
 

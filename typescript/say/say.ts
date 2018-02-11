@@ -26,23 +26,32 @@ export default class Say {
         if (input >= 20) {
             const [tenNumber] = this.numberNames
                 .filter((n) => n.value === Math.floor(input / 10))
-            result = result.concat(tenNumber.ty + 'ty')
-            input -= tenNumber.value * 10
+            const singleNumber = this.getNumberName(input % 10)
+            let ten = [tenNumber.ty + 'ty']
+            if (singleNumber) {
+                ten = ten.concat(singleNumber.name)
+            }
+            result = result.concat(ten.join('-'))
+            input = 0
         }
 
         if (input >= 13) {
-            const [teenNumber] = this.numberNames
-                .filter((n) => n.value === input % 10)
+            const teenNumber = this.getNumberName(input % 10)
             result = result.concat(teenNumber.teen + 'teen')
-            input -= teenNumber.value + 10
+            input = 0
         }
 
         if (input > 0) {
-            const [singleNumber] = this.numberNames
-                .filter((n) => n.value === input)
+            const singleNumber = this.getNumberName(input)
             result = result.concat(singleNumber.name)
-            input -= singleNumber.value
+            input = 0
         }
-        return result.join('-') || 'zero'
+        return result.join(' ') || 'zero'
+    }
+
+    private getNumberName(input: number) {
+        const [singleNumber] = this.numberNames
+            .filter((n) => n.value === input)
+        return singleNumber
     }
 }
