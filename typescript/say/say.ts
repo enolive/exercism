@@ -3,31 +3,20 @@ interface Translation {
     remainingInput: number
 }
 
-interface NumberName {
-    value: number
-    name: string
-    nameTen: string
-    nameTeen: string
-}
-
 type Transformation = ((translation: Translation) => Translation)
 
-class ArgumentError extends Error {}
+class ArgumentError extends Error {
+}
 
 export default class Say {
-    private numberNames: NumberName[] = [
-        {value: 12, name: 'twelve', nameTen: '', nameTeen: ''},
-        {value: 11, name: 'eleven', nameTen: '', nameTeen: ''},
-        {value: 10, name: 'ten', nameTen: '', nameTeen: ''},
-        {value: 9, name: 'nine', nameTen: 'nine', nameTeen: 'nine'},
-        {value: 8, name: 'eight', nameTen: 'eigh', nameTeen: 'eigh'},
-        {value: 7, name: 'seven', nameTen: 'seven', nameTeen: 'seven'},
-        {value: 6, name: 'six', nameTen: 'six', nameTeen: 'six'},
-        {value: 5, name: 'five', nameTen: 'fif', nameTeen: 'fif'},
-        {value: 4, name: 'four', nameTen: 'for', nameTeen: 'four'},
-        {value: 3, name: 'three', nameTen: 'thir', nameTeen: 'thir'},
-        {value: 2, name: 'two', nameTen: 'twen', nameTeen: ''},
-        {value: 1, name: 'one', nameTen: '', nameTeen: ''},
+    private below20: string[] = [
+        'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+        'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen',
+        'seventeen', 'eighteen', 'nineteen'
+    ]
+
+    private tens: string[] = [
+        'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'
     ]
 
     private transformations: Transformation[] = [
@@ -36,8 +25,7 @@ export default class Say {
         this.higher(1000, 'thousand'),
         this.higher(100, 'hundred'),
         this.lower(20, this.getTenName),
-        this.lower(13, this.getTeenName),
-        this.lower(1, this.getSmallNumberName),
+        this.lower(1, this.getBelow20Name),
     ]
 
     inEnglish(input: number): string {
@@ -73,32 +61,14 @@ export default class Say {
         }
     }
 
-    private getSmallNumberName(input: number): string {
-        const singleNumber = this.getNumberName(input)
-        return singleNumber.name
-    }
-
-    private getTeenName(input: number): string {
-        const teenNumber = this.getNumberName(input % 10)
-        return teenNumber.nameTeen + 'teen'
+    private getBelow20Name(input: number): string {
+        return this.below20[Math.trunc(input) - 1]
     }
 
     private getTenName(input: number): string {
-        const tenNumber = this.getNumberName(input / 10)
-        let ten = [tenNumber.nameTen + 'ty']
-        if (input % 10 !== 0) {
-            ten = ten.concat(this.inEnglish(input % 10))
-        }
-        return ten.join('-')
-    }
-
-    private getNumberName(input: number): NumberName {
-        const integerInput = Math.trunc(input)
-        const [numberName] = this.numberNames
-            .filter((n) => n.value === integerInput)
-        if (!numberName) {
-            throw `could not find number for ${integerInput}.`
-        }
-        return numberName
+        const tenNumber = this.tens[Math.trunc(input / 10) - 2]
+        return input % 10 !== 0
+            ? [tenNumber].concat(this.inEnglish(input % 10)).join('-')
+            : tenNumber
     }
 }
