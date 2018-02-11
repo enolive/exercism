@@ -14,36 +14,32 @@ export default class Say {
         {value: 1, name: 'one', ty: '', teen: ''},
     ]
 
+    private transforms = [
+        this.higher(1000 * 1000 * 1000, 'billion'),
+        this.higher(1000 * 1000, 'million'),
+        this.higher(1000, 'thousand'),
+        this.higher(100, 'hundred'),
+        this.lower(20, this.getTenName),
+        this.lower(13, this.getTeenName),
+        this.lower(1, this.getSmallNumberName),
+    ]
+
     inEnglish(input: number) {
-        const empty: string[] = []
-
-        const transforms = [
-            this.higher(1000 * 1000 * 1000, 'billion'),
-            this.higher(1000 * 1000, 'million'),
-            this.higher(1000, 'thousand'),
-            this.higher(100, 'hundred'),
-            this.lower(20, this.getTenName),
-            this.lower(13, this.getTeenName),
-            this.lower(1, this.getSmallNumberName),
-        ]
-
-        let translation = {remainingInput: input, result: empty}
-
-        for (const transform of transforms) {
-            translation = transform(translation)
-        }
-
+        const translation = this.transforms.reduce(
+            (translation, transform) => transform(translation),
+            {remainingInput: input, result: []})
         return translation.result.join(' ') || 'zero'
     }
 
     private higher(multiplier: number, multiplierName: string) {
         return (translation: { remainingInput: number; result: string[] }) => {
             let {remainingInput, result} = translation
-            if (remainingInput >= multiplier) {
-                const numberName = this.inEnglish(remainingInput / multiplier)
-                result = result.concat(`${numberName} ${multiplierName}`)
-                remainingInput %= multiplier
+            if (remainingInput < multiplier) {
+                return translation
             }
+            const numberName = this.inEnglish(remainingInput / multiplier)
+            result = result.concat(`${numberName} ${multiplierName}`)
+            remainingInput %= multiplier
             return {remainingInput, result}
         }
     }
