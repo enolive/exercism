@@ -75,16 +75,16 @@ describe('say', () => {
         expect(say.inEnglish(1000000)).toBe('one million')
     })
 
-    xit('one million two', () => {
+    it('one million two', () => {
         expect(say.inEnglish(1000002)).toBe('one million two')
     })
 
-    xit('one million two thousand three hundred forty-five', () => {
+    it('one million two thousand three hundred forty-five', () => {
         expect(say.inEnglish(1002345))
             .toBe('one million two thousand three hundred forty-five')
     })
 
-    xit('one billion', () => {
+    it('one billion', () => {
         expect(say.inEnglish(1000000000)).toBe('one billion')
     })
 

@@ -19,7 +19,8 @@ export default class Say {
 
         let translation = {remainingInput: input, result: empty}
 
-        translation = this.higher(1000000, 'million')(translation)
+        translation = this.higher(1000 * 1000 * 1000, 'billion')(translation)
+        translation = this.higher(1000 * 1000, 'million')(translation)
         translation = this.higher(1000, 'thousand')(translation)
         translation = this.higher(100, 'hundred')(translation)
         translation = this.tens(translation)
