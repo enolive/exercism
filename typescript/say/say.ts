@@ -46,38 +46,34 @@ export default class Say {
     }
 
     private small(translation: { remainingInput: number, result: string[] }) {
-        if (translation.remainingInput <= 0) {
+        if (translation.remainingInput < 1) {
             return translation
         }
         const singleNumber = this.getNumberName(translation.remainingInput)
         const result = translation.result.concat(singleNumber.name)
-        const remainingInput = 0
-        return {remainingInput, result}
+        return {remainingInput: 0, result}
     }
 
     private teens(translation: { remainingInput: number, result: string[] }) {
-        let {remainingInput, result} = translation
-        if (remainingInput >= 13) {
-            const teenNumber = this.getNumberName(remainingInput % 10)
-            result = result.concat(teenNumber.teen + 'teen')
-            remainingInput = 0
+        if (translation.remainingInput < 13) {
+            return translation
         }
-        return {remainingInput, result}
+        const teenNumber = this.getNumberName(translation.remainingInput % 10)
+        const result = translation.result.concat(teenNumber.teen + 'teen')
+        return {remainingInput: 0, result}
     }
 
     private tens(translation: { remainingInput: number, result: string[] }) {
-        let {remainingInput, result} = translation
-        if (remainingInput >= 20) {
-            const tenNumber = this.getNumberName(remainingInput / 10)
-            const singleNumber = this.getNumberName(remainingInput % 10)
-            let ten = [tenNumber.ty + 'ty']
-            if (singleNumber) {
-                ten = ten.concat(singleNumber.name)
-            }
-            result = result.concat(ten.join('-'))
-            remainingInput = 0
+        if (translation.remainingInput < 20) {
+            return translation
         }
-        return {remainingInput, result}
+        const tenNumber = this.getNumberName(translation.remainingInput / 10)
+        let ten = [tenNumber.ty + 'ty']
+        if (translation.remainingInput % 10 !== 0) {
+            ten = ten.concat(this.inEnglish(translation.remainingInput % 10))
+        }
+        const result = translation.result.concat(ten.join('-'))
+        return {remainingInput: 0, result}
     }
 
     private getNumberName(input: number) {
