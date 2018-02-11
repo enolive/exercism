@@ -23,31 +23,34 @@ export default class Say {
         translation = this.higher(1000 * 1000, 'million')(translation)
         translation = this.higher(1000, 'thousand')(translation)
         translation = this.higher(100, 'hundred')(translation)
-        translation = this.small(20, this.getTenName, translation)
-        translation = this.small(13, this.getTeenName, translation)
-        translation = this.small(1, this.getSmallNumberName, translation)
+        translation = this.lower(20, this.getTenName)(translation)
+        translation = this.lower(13, this.getTeenName)(translation)
+        translation = this.lower(1, this.getSmallNumberName)(translation)
 
         return translation.result.join(' ') || 'zero'
     }
 
     private higher(multiplier: number, multiplierName: string) {
         return (translation: { remainingInput: number; result: string[] }) => {
-        let {remainingInput, result} = translation
-        if (remainingInput >= multiplier) {
-            const numberName = this.inEnglish(remainingInput / multiplier)
-            result = result.concat(`${numberName} ${multiplierName}`)
-            remainingInput %= multiplier
+            let {remainingInput, result} = translation
+            if (remainingInput >= multiplier) {
+                const numberName = this.inEnglish(remainingInput / multiplier)
+                result = result.concat(`${numberName} ${multiplierName}`)
+                remainingInput %= multiplier
+            }
+            return {remainingInput, result}
         }
-        return {remainingInput, result}
-    }}
+    }
 
-    private small(minimum: number, getNameFunc: (input: number) => string, translation: { remainingInput: number; result: string[] }) {
-        if (translation.remainingInput < minimum) {
-            return translation
+    private lower(minimum: number, getNameFunc: (input: number) => string) {
+        return (translation: { remainingInput: number; result: string[] }) => {
+            if (translation.remainingInput < minimum) {
+                return translation
+            }
+            const name = getNameFunc.bind(this)(translation.remainingInput)
+            const result = translation.result.concat(name)
+            return {remainingInput: 0, result}
         }
-        const name = getNameFunc.bind(this)(translation.remainingInput)
-        const result = translation.result.concat(name)
-        return {remainingInput: 0, result}
     }
 
     private getSmallNumberName(input: number) {
