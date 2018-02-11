@@ -17,15 +17,21 @@ export default class Say {
     inEnglish(input: number) {
         const empty: string[] = []
 
+        const transforms = [
+            this.higher(1000 * 1000 * 1000, 'billion'),
+            this.higher(1000 * 1000, 'million'),
+            this.higher(1000, 'thousand'),
+            this.higher(100, 'hundred'),
+            this.lower(20, this.getTenName),
+            this.lower(13, this.getTeenName),
+            this.lower(1, this.getSmallNumberName),
+        ]
+
         let translation = {remainingInput: input, result: empty}
 
-        translation = this.higher(1000 * 1000 * 1000, 'billion')(translation)
-        translation = this.higher(1000 * 1000, 'million')(translation)
-        translation = this.higher(1000, 'thousand')(translation)
-        translation = this.higher(100, 'hundred')(translation)
-        translation = this.lower(20, this.getTenName)(translation)
-        translation = this.lower(13, this.getTeenName)(translation)
-        translation = this.lower(1, this.getSmallNumberName)(translation)
+        for (const transform of transforms) {
+            translation = transform(translation)
+        }
 
         return translation.result.join(' ') || 'zero'
     }
