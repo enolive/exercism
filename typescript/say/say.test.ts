@@ -22,8 +22,15 @@ describe('say', () => {
         expect(say.inEnglish(14)).toBe('fourteen')
     })
 
-    it('twenty', () => {
+    it('multiples of ten', () => {
         expect(say.inEnglish(20)).toBe('twenty')
+        expect(say.inEnglish(30)).toBe('thirty')
+        expect(say.inEnglish(40)).toBe('forty')
+        expect(say.inEnglish(50)).toBe('fifty')
+        expect(say.inEnglish(60)).toBe('sixty')
+        expect(say.inEnglish(70)).toBe('seventy')
+        expect(say.inEnglish(80)).toBe('eighty')
+        expect(say.inEnglish(90)).toBe('ninety')
     })
 
     it('twenty-two', () => {
