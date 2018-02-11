@@ -15,16 +15,41 @@ export default class Say {
     ]
 
     inEnglish(input: number) {
-        let result: string[] = []
-        let remainingInput = input
-        let translation = {remainingInput, result}
+        const empty: string[] = []
+        let translation = {remainingInput: input, result: empty}
 
-        translation = this.apply(translation, 1000000, 'million')
-        translation = this.apply(translation, 1000, 'thousand')
-        translation = this.apply(translation, 100, 'hundred')
-        remainingInput = translation.remainingInput
-        result = translation.result
+        translation = this.higher(translation, 1000000, 'million')
+        translation = this.higher(translation, 1000, 'thousand')
+        translation = this.higher(translation, 100, 'hundred')
+        translation = this.tens(translation)
+        translation = this.teens(translation)
+        translation = this.small(translation)
 
+        return translation.result.join(' ') || 'zero'
+    }
+
+    private small(translation: { remainingInput: number, result: string[] }) {
+        let {remainingInput, result} = translation
+        if (remainingInput > 0) {
+            const singleNumber = this.getNumberName(remainingInput)
+            result = result.concat(singleNumber.name)
+            remainingInput = 0
+        }
+        return {remainingInput, result}
+    }
+
+    private teens(translation: { remainingInput: number, result: string[] }) {
+        let {remainingInput, result} = translation
+        if (remainingInput >= 13) {
+            const teenNumber = this.getNumberName(remainingInput % 10)
+            result = result.concat(teenNumber.teen + 'teen')
+            remainingInput = 0
+        }
+        return {remainingInput, result}
+    }
+
+    private tens(translation: { remainingInput: number, result: string[] }) {
+        let {remainingInput, result} = translation
         if (remainingInput >= 20) {
             const tenNumber = this.getNumberName(remainingInput / 10)
             const singleNumber = this.getNumberName(remainingInput % 10)
@@ -35,22 +60,10 @@ export default class Say {
             result = result.concat(ten.join('-'))
             remainingInput = 0
         }
-
-        if (remainingInput >= 13) {
-            const teenNumber = this.getNumberName(remainingInput % 10)
-            result = result.concat(teenNumber.teen + 'teen')
-            remainingInput = 0
-        }
-
-        if (remainingInput > 0) {
-            const singleNumber = this.getNumberName(remainingInput)
-            result = result.concat(singleNumber.name)
-            input = 0
-        }
-        return result.join(' ') || 'zero'
+        return {remainingInput, result}
     }
 
-    private apply(parameters: { remainingInput: number, result: string[] }, multiplier: number, multiplierName: string) {
+    private higher(parameters: { remainingInput: number, result: string[] }, multiplier: number, multiplierName: string) {
         let {remainingInput, result} = parameters
         if (remainingInput >= multiplier) {
             const thousandNumber = this.getNumberName(remainingInput / multiplier)
