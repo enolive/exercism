@@ -20,14 +20,9 @@ export default class Say {
         let translation = {remainingInput, result}
 
         translation = this.apply(translation, 1000, 'thousand')
+        translation = this.apply(translation, 100, 'hundred')
         remainingInput = translation.remainingInput
         result = translation.result
-
-        if (remainingInput >= 100) {
-            const hundredNumber = this.getNumberName(remainingInput / 100)
-            result = result.concat(hundredNumber.name + ' hundred')
-            remainingInput -= hundredNumber.value * 100
-        }
 
         if (remainingInput >= 20) {
             const tenNumber = this.getNumberName(remainingInput / 10)
