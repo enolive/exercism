@@ -39,8 +39,10 @@ describe('say', () => {
         expect(say.inEnglish(90)).toBe('ninety')
     })
 
-    it('twenty-two', () => {
+    it('numbers between 20 and 99', () => {
         expect(say.inEnglish(22)).toBe('twenty-two')
+        expect(say.inEnglish(42)).toBe('forty-two')
+        expect(say.inEnglish(99)).toBe('ninety-nine')
     })
 
     xit('one hundred', () => {

@@ -19,11 +19,12 @@ export default class Say {
             result = result.concat(tenNumber.ty + 'ty')
             input -= tenNumber.value * 10
         }
+
         if (input >= 13) {
             const [teenNumber] = numbers
                 .filter((n) => n.value === input % 10)
             result = result.concat(teenNumber.teen + 'teen')
-            input = 0
+            input -= teenNumber.value + 10
         }
 
         if (input > 0) {
