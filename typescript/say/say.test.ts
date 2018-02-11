@@ -67,11 +67,11 @@ describe('say', () => {
         expect(say.inEnglish(4000)).toBe('four thousand')
     })
 
-    xit('one thousand two hundred thirty-four', () => {
+    it('one thousand two hundred thirty-four', () => {
         expect(say.inEnglish(1234)).toBe('one thousand two hundred thirty-four')
     })
 
-    xit('one million', () => {
+    it('one million', () => {
         expect(say.inEnglish(1000000)).toBe('one million')
     })
 

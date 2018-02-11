@@ -19,6 +19,7 @@ export default class Say {
         let remainingInput = input
         let translation = {remainingInput, result}
 
+        translation = this.apply(translation, 1000000, 'million')
         translation = this.apply(translation, 1000, 'thousand')
         translation = this.apply(translation, 100, 'hundred')
         remainingInput = translation.remainingInput
