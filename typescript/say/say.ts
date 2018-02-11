@@ -18,6 +18,12 @@ export default class Say {
         let result: string[] = []
         let remainingInput = input
 
+        if (remainingInput >= 1000) {
+            const thousandNumber = this.getNumberName(remainingInput / 1000)
+            result = result.concat(`${thousandNumber.name} thousand`)
+            remainingInput -= thousandNumber.value * 1000
+        }
+
         if (remainingInput >= 100) {
             const hundredNumber = this.getNumberName(remainingInput / 100)
             result = result.concat(hundredNumber.name + ' hundred')

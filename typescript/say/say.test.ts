@@ -62,8 +62,9 @@ describe('say', () => {
         expect(say.inEnglish(897)).toBe('eight hundred ninety-seven')
     })
 
-    xit('one thousand', () => {
+    it('numbers that are multiples of 1000', () => {
         expect(say.inEnglish(1000)).toBe('one thousand')
+        expect(say.inEnglish(4000)).toBe('four thousand')
     })
 
     xit('one thousand two hundred thirty-four', () => {
