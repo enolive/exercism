@@ -16,6 +16,13 @@ export default class Say {
 
     inEnglish(input: number) {
         let result: string[] = []
+        if (input >= 100) {
+            const [hundredNumber] = this.numberNames
+                .filter((n) => n.value === Math.floor(input / 100))
+            result = result.concat(hundredNumber.name + ' hundred')
+            input -= hundredNumber.value * 100
+        }
+
         if (input >= 20) {
             const [tenNumber] = this.numberNames
                 .filter((n) => n.value === Math.floor(input / 10))

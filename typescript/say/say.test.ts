@@ -51,8 +51,10 @@ describe('say', () => {
         expect(say.inEnglish(99)).toBe('ninety-nine')
     })
 
-    xit('one hundred', () => {
+    it('numbers that are multiples of 100', () => {
         expect(say.inEnglish(100)).toBe('one hundred')
+        expect(say.inEnglish(200)).toBe('two hundred')
+        expect(say.inEnglish(300)).toBe('three hundred')
     })
 
     xit('one hundred twenty-three', () => {
