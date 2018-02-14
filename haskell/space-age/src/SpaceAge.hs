@@ -8,9 +8,14 @@ data Planet = Mercury
             | Saturn
             | Uranus
             | Neptune
-            deriving (Eq)
+            deriving (Enum)
+
+timesEarth :: Planet -> Float
+timesEarth planet = case planet of
+    Earth -> 1
+    Mercury -> 0.2408467
 
 ageOn :: Planet -> Float -> Float
-ageOn planet seconds
-    | planet == Earth = seconds / 365.25 / 24 / 60 / 60
-    | otherwise = 42.0
+ageOn planet seconds =
+    let yearOnEarth seconds = seconds / 365.25 / 24 / 60 / 60
+    in yearOnEarth seconds / timesEarth planet
