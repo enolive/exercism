@@ -5,9 +5,10 @@ module LeapYear
 isDivisibleBy :: Integer -> Integer -> Bool
 isDivisibleBy number divisor = number `mod` divisor == 0
 
+isNotDivisibleBy :: Integer -> Integer -> Bool
+isNotDivisibleBy number divisor = not $ isDivisibleBy number divisor
+
 isLeapYear :: Integer -> Bool
 isLeapYear year
   | year `isDivisibleBy` 400 = True
-  | year `isDivisibleBy` 100 = False
-  | year `isDivisibleBy` 4 = True
-  | otherwise = False
+  | otherwise = year `isDivisibleBy` 4 && year `isNotDivisibleBy` 100
