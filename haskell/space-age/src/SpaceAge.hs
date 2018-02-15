@@ -12,10 +12,10 @@ data Planet = Mercury
 ageOn :: Planet -> (Float -> Float)
 ageOn planet =
     let earthYearInSeconds = 31557600
-    in (/ (earthYearInSeconds * earthYears planet))
+    in (/ (earthYearInSeconds * orbitalRelativeToEarth planet))
 
-earthYears :: Planet -> Float
-earthYears planet = case planet of
+orbitalRelativeToEarth :: Planet -> Float
+orbitalRelativeToEarth planet = case planet of
     Earth -> 1
     Mercury -> 0.2408467
     Venus -> 0.61519726
