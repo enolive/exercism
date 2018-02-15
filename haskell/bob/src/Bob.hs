@@ -4,7 +4,10 @@ import Data.List (isInfixOf)
 
 responseFor :: String -> String
 responseFor statement
-    | "?" `isInfixOf` statement = "Sure."
+    | isQuestion && isShouting = "Calm down, I know what I'm doing!"
+    | isQuestion = "Sure."
     | isShouting = "Whoa, chill out!"
     | otherwise = "Whatever."
-    where isShouting = statement == map toUpper statement
+    where
+    isShouting = statement == map toUpper statement
+    isQuestion = "?" `isInfixOf` statement
