@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 243bf3f35e1a08b6da314edcf6a519d3b4a50d81e748cfb10536f8f7027cf312
+-- hash: 28eeca242dc2ccc4bbe4f744ef52484835e308674b4f58d9be607da0bc046d39
 
 name:           pangram
 version:        1.4.0.6
@@ -14,6 +14,7 @@ library
       src
   build-depends:
       base
+    , unordered-containers
   exposed-modules:
       Pangram
   other-modules:
