@@ -41,12 +41,12 @@ cases = [ Case { description = "zero steps for one"
                , number      = 1000000
                , expected    = Just 152
                }
---        , Case { description = "zero is an error"
---               , number      = 0
---               , expected    = Nothing
---               }
---        , Case { description = "negative value is an error"
---               , number      = -15
---               , expected    = Nothing
---               }
+        , Case { description = "zero is an error"
+               , number      = 0
+               , expected    = Nothing
+               }
+        , Case { description = "negative value is an error"
+               , number      = -15
+               , expected    = Nothing
+               }
         ]
