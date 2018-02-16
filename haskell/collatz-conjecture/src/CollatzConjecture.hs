@@ -2,15 +2,19 @@ module CollatzConjecture
   ( collatz
   ) where
 
-collatzRec :: Integer -> Integer -> Integer
-collatzRec n steps
-  | n == 1 = steps
-  | even n = continueWith $ n `div` 2
-  | odd n = continueWith $ n * 3 + 1
-  where
-    continueWith n = collatzRec n $ steps + 1
+import Control.Monad.State.Strict (State, evalState, get, put)
 
 collatz :: Integer -> Maybe Integer
 collatz n
   | n <= 0 = Nothing
-  | otherwise = Just $ collatzRec n 0
+  | otherwise = Just $ evalState (countSteps n) 0
+
+countSteps :: Integer -> State Integer Integer
+countSteps 1 = get
+countSteps n = do
+  acc <- get
+  put (acc + 1)
+  countSteps $
+    if even n
+      then n `div` 2
+      else n * 3 + 1

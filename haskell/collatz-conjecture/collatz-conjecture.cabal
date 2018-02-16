@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 88986e336e3de192f69837ebfcf54149ce46a8ba46d9f2e023da75d59692339b
+-- hash: c50668e70de7b8c0dde80cbaec96375935941ce9036851943926dc12c962ccdf
 
 name:           collatz-conjecture
 version:        1.2.0.2
@@ -14,6 +14,7 @@ library
       src
   build-depends:
       base
+    , mtl
   exposed-modules:
       CollatzConjecture
   other-modules:
