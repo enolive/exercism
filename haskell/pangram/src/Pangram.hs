@@ -3,12 +3,10 @@ module Pangram
   ) where
 
 import Data.Char (toLower, isLetter)
-import Data.HashSet (fromList)
+import Data.HashSet (fromList, isSubsetOf)
 
 isPangram :: String -> Bool
-isPangram text
-  | length letters == length alphabet = True
-  | otherwise = False
+isPangram text = alphabet `isSubsetOf` letters
   where
     letters = fromList [toLower c | c <- text, isLetter c]
-    alphabet = ['a' .. 'z']
+    alphabet = fromList ['a' .. 'z']

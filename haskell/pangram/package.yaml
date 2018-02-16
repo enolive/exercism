@@ -8,8 +8,7 @@ library:
   exposed-modules: Pangram
   source-dirs: src
   dependencies:
-    - unordered-containers
-
+    - hashmap
 tests:
   test:
     main: Tests.hs
