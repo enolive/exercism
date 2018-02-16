@@ -1,5 +1,5 @@
 module Bob (responseFor) where
-import Data.Char (toUpper)
+import Data.Char (toUpper, isLetter)
 import Data.List (isInfixOf)
 
 responseFor :: String -> String
@@ -10,5 +10,5 @@ responseFor statement
     | otherwise = "Whatever."
     where
     isForcefulQuestion = isQuestion && isShouting
-    isShouting = statement == map toUpper statement
+    isShouting = any isLetter statement && statement == map toUpper statement
     isQuestion = "?" `isInfixOf` statement
