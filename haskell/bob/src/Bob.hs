@@ -1,6 +1,7 @@
 module Bob (responseFor) where
-import Data.Char (toUpper, isLetter)
+import Data.Char (toUpper, isLetter, isSpace)
 import Data.List (isSuffixOf)
+import Data.Text (unpack, strip, pack)
 
 responseFor :: String -> String
 responseFor statement
@@ -10,7 +11,8 @@ responseFor statement
     | isShouting = "Whoa, chill out!"
     | otherwise = "Whatever."
     where
-    isSilence = statement == ""
+    trimmed = (unpack . strip . pack) statement
+    isSilence = all isSpace trimmed
     isForcefulQuestion = isQuestion && isShouting
-    isShouting = any isLetter statement && statement == map toUpper statement
-    isQuestion = "?" `isSuffixOf` statement
+    isShouting = any isLetter trimmed && trimmed == map toUpper trimmed
+    isQuestion = "?" `isSuffixOf` trimmed

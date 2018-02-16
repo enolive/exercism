@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 74b719a2fa7ac0080058a66ca6b9fcaa3ad8c10755509c267d8dc1ba215470c6
+-- hash: 8c1be128f122fc2373743ade627f1d51c374cb1432d835a7c7e968c83f7b7362
 
 name:           bob
 version:        1.2.0.5
@@ -14,6 +14,7 @@ library
       src
   build-depends:
       base
+    , text
   exposed-modules:
       Bob
   other-modules:
