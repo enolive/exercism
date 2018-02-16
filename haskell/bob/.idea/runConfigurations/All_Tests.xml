@@ -1,6 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="All Tests" type="Cabal Test Configuration" factoryName="Cabal Test">
-    <option name="PROGRAM_ARGUMENTS" value="" />
-    <method />
-  </configuration>
-</component>
