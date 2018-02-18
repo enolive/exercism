@@ -1,10 +1,15 @@
 module DNA (toRNA) where
 
 toRNA :: String -> Maybe String
-toRNA xs = Just [transform x | x <- xs]
+toRNA xs
+  | '\NUL' `elem` rnaSequence = Nothing
+  | otherwise = Just rnaSequence
   where
-    transform :: Char -> Char
-    transform 'C' = 'G'
-    transform 'G' = 'C'
-    transform 'T' = 'A'
-    transform 'A' = 'U'
+    rnaSequence = [rna x | x <- xs]
+    rna x =
+      case x of
+        'C' -> 'G'
+        'G' -> 'C'
+        'T' -> 'A'
+        'A' -> 'U'
+        _ -> '\NUL'
