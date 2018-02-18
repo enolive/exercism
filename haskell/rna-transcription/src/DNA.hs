@@ -1,10 +1,10 @@
 module DNA (toRNA) where
 
 toRNA :: String -> Maybe String
-toRNA xs = Just $ transform xs
+toRNA xs = Just [transform x | x <- xs]
   where
-  transform :: String -> String
-  transform "C" = "G"
-  transform "G" = "C"
-  transform "T" = "A"
-  transform "A" = "U"
+    transform :: Char -> Char
+    transform 'C' = 'G'
+    transform 'G' = 'C'
+    transform 'T' = 'A'
+    transform 'A' = 'U'
