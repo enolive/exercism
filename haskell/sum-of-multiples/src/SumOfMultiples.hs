@@ -2,10 +2,9 @@ module SumOfMultiples
   ( sumOfMultiples
   ) where
 
-import Data.List (nub)
 import qualified Data.Set as Set
 
 sumOfMultiples :: [Integer] -> Integer -> Integer
 sumOfMultiples factors limit = sum $ foldl Set.union Set.empty $ fmap multiplesOf factors
   where
-    multiplesOf n = Set.fromList $ takeWhile (< limit) $ fmap (n *) [1..]
+    multiplesOf n = Set.fromList $ takeWhile (< limit) $ fmap (n *) [1 ..]
