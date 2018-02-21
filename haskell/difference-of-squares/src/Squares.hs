@@ -5,7 +5,7 @@ module Squares
   ) where
 
 difference :: Integral a => a -> a
-difference n = error "You need to implement this function."
+difference n = squareOfSums n - sumOfSquares n
 
 squareOfSums :: Integral a => a -> a
 squareOfSums n = squared $ sumUpTo n
