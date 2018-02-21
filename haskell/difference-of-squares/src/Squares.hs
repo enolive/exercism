@@ -8,7 +8,9 @@ difference :: Integral a => a -> a
 difference n = error "You need to implement this function."
 
 squareOfSums :: Integral a => a -> a
-squareOfSums n = sum [1 .. n] ^ 2
+squareOfSums n = squared $ sumUpTo n
+  where squared = flip (^) 2
+        sumUpTo n = n * (n + 1) `div` 2
 
 sumOfSquares :: Integral a => a -> a
 sumOfSquares n = error "You need to implement this function."
