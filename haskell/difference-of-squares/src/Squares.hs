@@ -4,8 +4,10 @@ module Squares
   , sumOfSquares
   ) where
 
+import Control.Monad (liftM2)
+
 difference :: Integral a => a -> a
-difference n = squareOfSums n - sumOfSquares n
+difference = liftM2 (-) squareOfSums sumOfSquares
 
 squareOfSums :: Integral a => a -> a
 squareOfSums = squared . sumUpTo
