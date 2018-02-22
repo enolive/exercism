@@ -1,7 +1,7 @@
 module Grains (square, total) where
 
 square :: Integer -> Maybe Integer
-square n = error "You need to implement this function."
+square n = Just $ 2 ^ (n - 1)
 
 total :: Integer
 total = error "You need to implement this function."
