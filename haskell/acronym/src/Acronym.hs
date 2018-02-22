@@ -2,26 +2,21 @@ module Acronym
   ( abbreviate
   ) where
 
-import Control.Applicative
-import Data.Char (isLower, isUpper, toUpper)
+import Data.Char
 
 abbreviate :: String -> String
-abbreviate sentence = (toUpper . getLetter) <$> filter startsWord indexedSentence
+abbreviate xs = abbreviate' clearSentence []
   where
-    indexedSentence = zip sentence [0 ..]
-    startsWord = startsWordIn sentence
+    clearSentence = replaceHyphenBySpace <$> ' ' : xs
+    replaceHyphenBySpace '-' = ' '
+    replaceHyphenBySpace c = c
 
-getLetter :: (Char, Int) -> Char
-getLetter (letter, index) = letter
-
-startsWordIn :: String -> (Char, Int) -> Bool
-startsWordIn xs (current, index)
-  | index == 0 = True
-  | previous `elem` [' ', '-'] = True
-  | isUpper current && isLower previous = True
-  | otherwise = False
+abbreviate' :: String -> String -> String
+abbreviate' [current] acc = acc
+abbreviate' (previous:current:xs) acc
+  | isLower previous && isUpper current = abbreviateNext $ appendToAcc current
+  | isSpace previous = abbreviateNext $ appendToAcc current
+  | otherwise = abbreviateNext acc
   where
-    previous = letterAt $ index - 1
-    letterAt index
-      | index >= length xs = '\NUL'
-      | otherwise = xs !! index
+    abbreviateNext = abbreviate' (current : xs)
+    appendToAcc c = acc ++ [toUpper c]
