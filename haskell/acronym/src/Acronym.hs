@@ -2,19 +2,25 @@ module Acronym
   ( abbreviate
   ) where
 
-import Data.Char (toUpper, isLower, isUpper)
+import Data.Char (isLower, isUpper, toUpper)
 
 abbreviate :: String -> String
-abbreviate xs = map (toUpper . getLetter) $ filter startsWord indexed
+abbreviate sentence = fmap (toUpper . getLetter) $ filter startsWord indexedSentence
   where
-    indexed = zip xs [0 ..]
-    startsWord (current, index)
-      | index == 0 = True
-      | previous index `elem` [' ', '-'] = True
-      | isUpper current && isLower(previous index) = True
-      | otherwise = False
-    previous index = letterAt $ index - 1
+    indexedSentence = zip sentence [0 ..]
+    startsWord = startsWordIn sentence
+
+getLetter :: (Char, Int) -> Char
+getLetter (letter, index) = letter
+
+startsWordIn :: String -> (Char, Int) -> Bool
+startsWordIn xs (current, index)
+  | index == 0 = True
+  | previous `elem` [' ', '-'] = True
+  | isUpper current && isLower previous = True
+  | otherwise = False
+  where
+    previous = letterAt $ index - 1
     letterAt index
       | index >= length xs = '\NUL'
-      | otherwise = xs!!index
-    getLetter (letter, index) = letter
+      | otherwise = xs !! index
