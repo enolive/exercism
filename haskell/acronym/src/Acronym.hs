@@ -10,6 +10,6 @@ abbreviate xs = concatMap tryMakeAbbr pairPreviousWithCurrent
     pairPreviousWithCurrent = zip (' ':xs) xs
     tryMakeAbbr (previous, current)
       | isSpaceOrHyphen previous = [toUpper current]
-      | isLower previous && isUpper current = [toUpper current]
+      | isLower previous && isUpper current = [current]
       | otherwise = []
     isSpaceOrHyphen c = c `elem` [' ', '-']
