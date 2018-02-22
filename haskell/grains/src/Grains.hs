@@ -1,4 +1,7 @@
-module Grains (square, total) where
+module Grains
+  ( square
+  , total
+  ) where
 
 square :: Integer -> Maybe Integer
 square n
@@ -6,4 +9,6 @@ square n
   | otherwise = Just $ 2 ^ (n - 1)
 
 total :: Integer
-total = maybe 0 sum $ mapM square [1 .. 64]
+total = geometricSumUpTo 64
+  where
+    geometricSumUpTo n = 2 ^ n - 1
