@@ -2,10 +2,11 @@ module Acronym
   ( abbreviate
   ) where
 
+import Control.Applicative
 import Data.Char (isLower, isUpper, toUpper)
 
 abbreviate :: String -> String
-abbreviate sentence = fmap (toUpper . getLetter) $ filter startsWord indexedSentence
+abbreviate sentence = (toUpper . getLetter) <$> filter startsWord indexedSentence
   where
     indexedSentence = zip sentence [0 ..]
     startsWord = startsWordIn sentence
