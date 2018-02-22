@@ -5,18 +5,11 @@ module Acronym
 import Data.Char
 
 abbreviate :: String -> String
-abbreviate xs = abbreviate' clearSentence []
+abbreviate xs = concatMap tryMakeAbbr pairPreviousWithCurrent
   where
-    clearSentence = replaceHyphenBySpace <$> ' ' : xs
-    replaceHyphenBySpace '-' = ' '
-    replaceHyphenBySpace c = c
-
-abbreviate' :: String -> String -> String
-abbreviate' [current] acc = acc
-abbreviate' (previous:current:xs) acc
-  | isLower previous && isUpper current = abbreviateNext $ appendToAcc current
-  | isSpace previous = abbreviateNext $ appendToAcc current
-  | otherwise = abbreviateNext acc
-  where
-    abbreviateNext = abbreviate' (current : xs)
-    appendToAcc c = acc ++ [toUpper c]
+    pairPreviousWithCurrent = zip (' ':xs) xs
+    tryMakeAbbr (previous, current)
+      | isSpaceOrHyphen previous = [toUpper current]
+      | isLower previous && isUpper current = [toUpper current]
+      | otherwise = []
+    isSpaceOrHyphen c = c `elem` [' ', '-']
