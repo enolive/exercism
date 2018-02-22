@@ -2,7 +2,7 @@ module Acronym
   ( abbreviate
   ) where
 
-import Data.Char
+import Data.Char (isLower, isUpper, toUpper)
 
 abbreviate :: String -> String
 abbreviate xs = concatMap tryMakeAbbr pairPreviousWithCurrent
