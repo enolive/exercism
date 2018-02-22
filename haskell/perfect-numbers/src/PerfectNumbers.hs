@@ -16,4 +16,5 @@ classify n
   | sumAliquot < n = Just Deficient
   | sumAliquot > n = Just Abundant
   where
-    sumAliquot = sum [x| x <- [1 .. n `div` 2], n `rem` x == 0]
+    sumAliquot = sum factors
+    factors = [x| x <- [1 .. n `div` 2], n `rem` x == 0]
