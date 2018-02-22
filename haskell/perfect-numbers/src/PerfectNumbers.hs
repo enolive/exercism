@@ -16,5 +16,4 @@ classify n
   | sumAliquot < n = Just Deficient
   | sumAliquot > n = Just Abundant
   where
-    sumAliquot = sum $ filter dividesInput $ takeWhile (< n) [1 ..]
-    dividesInput quot = n `rem` quot == 0
+    sumAliquot = sum [x| x <- [1 .. n `div` 2], n `rem` x == 0]
