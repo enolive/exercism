@@ -9,6 +9,6 @@ square n
   | otherwise = Just $ 2 ^ (n - 1)
 
 total :: Integer
-total = geometricSumUpTo 64
+total = geometricSum 2 64
   where
-    geometricSumUpTo n = 2 ^ n - 1
+    geometricSum q n = q ^ n - 1
