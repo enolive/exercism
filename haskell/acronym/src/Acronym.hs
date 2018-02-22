@@ -2,8 +2,10 @@ module Acronym
   ( abbreviate
   ) where
 
+import Data.Char (toUpper)
+
 abbreviate :: String -> String
-abbreviate xs = map getLetter $ filter startsWord indexed
+abbreviate xs = map (toUpper . getLetter) $ filter startsWord indexed
   where
     indexed = zip xs [0 ..]
     startsWord (letter, index)
