@@ -1,7 +1,9 @@
 module Grains (square, total) where
 
 square :: Integer -> Maybe Integer
-square n = Just $ 2 ^ (n - 1)
+square n
+  | n `notElem` [1 .. 64] = Nothing
+  | otherwise = Just $ 2 ^ (n - 1)
 
 total :: Integer
 total = error "You need to implement this function."
