@@ -11,10 +11,10 @@ data Classification
 
 classify :: Int -> Maybe Classification
 classify n =
-  case compare (sumAliquot n) n of
+  case compare sumAliquot n of
     EQ -> Just Perfect
     GT -> Just Abundant
     LT -> Just Deficient
   where
-    sumAliquot n = sum $ filter (divides n) $ takeWhile (< n) [1 ..]
-    divides n quot = n `rem` quot == 0
+    sumAliquot = sum $ filter dividesInput $ takeWhile (< n) [1 ..]
+    dividesInput quot = n `rem` quot == 0
