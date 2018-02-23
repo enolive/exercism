@@ -3,7 +3,6 @@ module Hamming
   ) where
 
 distance :: String -> String -> Maybe Int
-distance xs ys = Just $ length $ filter areDifferent $ zip xs ys
-  where
-    areDifferent :: (Char, Char) -> Bool
-    areDifferent (x, y) = x /= y
+distance xs ys
+  | length xs /= length ys = Nothing
+  | otherwise = Just $ length $ filter (uncurry (/=)) $ zip xs ys
