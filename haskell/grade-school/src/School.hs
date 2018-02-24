@@ -6,10 +6,11 @@ module School
   , sorted
   ) where
 
-import Data.Map (Map)
-import qualified Data.Map as Map
-import Data.Set (Set)
-import qualified Data.Set as Set
+import           Data.Map   (Map)
+import qualified Data.Map   as Map
+import           Data.Maybe (fromMaybe)
+import           Data.Set   (Set)
+import qualified Data.Set   as Set
 
 type GradeNumber = Int
 
@@ -22,24 +23,18 @@ newtype School = School
   }
 
 add :: GradeNumber -> Student -> School -> School
-add gradeNum student school = School { allGrades = addToMap $ allGrades school }
+add gradeNum student school = School {allGrades = addToMap $ allGrades school}
   where
-    addToMap = Map.insertWith addStudents gradeNum $ single student
+    addToMap = Map.alter (addStudent student) gradeNum
+    addStudent student formerStudents = Just $ Set.insert student $ fromMaybe Set.empty formerStudents
 
 empty :: School
 empty = School { allGrades = Map.empty }
 
 grade :: GradeNumber -> School -> [Student]
 grade gradeNum school = maybe [] sortedStudents $ Map.lookup gradeNum $ allGrades school
+  where
+    sortedStudents = Set.toAscList
 
 sorted :: School -> [(GradeNumber, [Student])]
 sorted school = [(gradeNum, grade gradeNum school) | gradeNum <- Map.keys $ allGrades school]
-
-addStudents :: Students -> Students -> Students
-addStudents student students = Set.union students student
-
-sortedStudents :: Students -> [Student]
-sortedStudents = Set.toAscList
-
-single :: Student -> Students
-single = Set.singleton
