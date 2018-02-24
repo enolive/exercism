@@ -18,22 +18,22 @@ type Student = String
 type Students = Set Student
 
 newtype School = School
-  { grades :: Map GradeNumber Students
+  { allGrades :: Map GradeNumber Students
   }
 
 add :: GradeNumber -> Student -> School -> School
-add gradeNum student school = School $ addToMap $ grades school
+add gradeNum student school = School { allGrades = addToMap $ allGrades school }
   where
     addToMap = Map.insertWith addStudents gradeNum $ single student
 
 empty :: School
-empty = School Map.empty
+empty = School { allGrades = Map.empty }
 
 grade :: GradeNumber -> School -> [Student]
-grade gradeNum school = maybe [] sortedStudents $ Map.lookup gradeNum $ grades school
+grade gradeNum school = maybe [] sortedStudents $ Map.lookup gradeNum $ allGrades school
 
 sorted :: School -> [(GradeNumber, [Student])]
-sorted school = [(gradeNum, grade gradeNum school) | gradeNum <- Map.keys $ grades school]
+sorted school = [(gradeNum, grade gradeNum school) | gradeNum <- Map.keys $ allGrades school]
 
 addStudents :: Students -> Students -> Students
 addStudents student students = Set.union students student
