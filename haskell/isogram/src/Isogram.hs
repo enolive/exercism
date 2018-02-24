@@ -2,12 +2,11 @@ module Isogram
   ( isIsogram
   ) where
 
-import           Data.Char (isLetter, toLower)
-import           Data.Map  (Map)
-import qualified Data.Map  as Map
+import Data.Char (isLetter, toLower)
+import Data.List (nub)
 
 isIsogram :: String -> Bool
-isIsogram xs = all (== 1) $ (Map.elems . letterCount) xs
+isIsogram = (nub >>= (==)) . letters
 
-letterCount :: String -> Map Char Int
-letterCount xs = Map.fromListWith (+) [(toLower letter, 1) | letter <- xs, isLetter letter]
+letters :: String -> String
+letters = map toLower . filter isLetter
