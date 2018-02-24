@@ -1,4 +1,10 @@
 module Isogram (isIsogram) where
 
+import Data.Map (Map)
+import qualified Data.Map as Map
+
 isIsogram :: String -> Bool
-isIsogram xs = True
+isIsogram xs = all (== 1) $ (Map.elems . letterCount) xs
+
+letterCount :: String -> Map Char Int
+letterCount xs = Map.fromListWith (+) [(letter, 1) | letter <- xs]
