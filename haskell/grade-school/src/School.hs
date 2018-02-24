@@ -6,26 +6,27 @@ module School
   , sorted
   ) where
 
+import Data.List (sort)
 import Data.Map (Map)
 import qualified Data.Map as Map
-import Data.List (sort)
 import Data.Maybe
+import Data.Set (Set)
+import qualified Data.Set as Set
 
 newtype School = School
-  { grades :: Map Int [String]
+  { grades :: Map Int (Set String)
   }
 
 add :: Int -> String -> School -> School
-add gradeNum student school = School $ Map.insertWith (++) gradeNum [student] $ grades school
+add gradeNum student school = School $ addToMap $ grades school
+  where
+    addToMap = Map.insertWith Set.union gradeNum (Set.singleton student)
 
 empty :: School
 empty = School Map.empty
 
 grade :: Int -> School -> [String]
-grade gradeNum school = sort $ fromMaybe [] $ Map.lookup gradeNum $ grades school
+grade gradeNum school = maybe [] Set.toAscList $ Map.lookup gradeNum $ grades school
 
 sorted :: School -> [(Int, [String])]
 sorted school = [(gradeNum, grade gradeNum school) | gradeNum <- Map.keys $ grades school]
-  where
-    sortByName :: [(Int, [String])] -> [(Int, [String])]
-    sortByName list = [(grade, sort students) | (grade, students) <- list]
