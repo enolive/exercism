@@ -14,11 +14,13 @@ import Data.Set (Set)
 import qualified Data.Set as Set
 
 type GradeNumber = Int
+type Student = String
+type Students = Set Student
 newtype School = School
-  { grades :: Map GradeNumber (Set String)
+  { grades :: Map GradeNumber Students
   }
 
-add :: GradeNumber -> String -> School -> School
+add :: GradeNumber -> Student -> School -> School
 add gradeNum student school = School $ addToMap $ grades school
   where
     addToMap = Map.insertWith Set.union gradeNum (Set.singleton student)
@@ -26,8 +28,8 @@ add gradeNum student school = School $ addToMap $ grades school
 empty :: School
 empty = School Map.empty
 
-grade :: GradeNumber -> School -> [String]
+grade :: GradeNumber -> School -> [Student]
 grade gradeNum school = maybe [] Set.toAscList $ Map.lookup gradeNum $ grades school
 
-sorted :: School -> [(GradeNumber, [String])]
+sorted :: School -> [(GradeNumber, [Student])]
 sorted school = [(gradeNum, grade gradeNum school) | gradeNum <- Map.keys $ grades school]
