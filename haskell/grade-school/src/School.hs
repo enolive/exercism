@@ -25,7 +25,9 @@ newtype School = School
 add :: GradeNumber -> Student -> School -> School
 add gradeNum student school = School {allGrades = addToMap $ allGrades school}
   where
+    addToMap :: Map GradeNumber Students -> Map GradeNumber Students
     addToMap = Map.alter (addStudent student) gradeNum
+    addStudent :: Student -> Maybe Students -> Maybe Students
     addStudent student formerStudents = Just $ Set.insert student $ fromMaybe Set.empty formerStudents
 
 empty :: School
@@ -34,6 +36,7 @@ empty = School { allGrades = Map.empty }
 grade :: GradeNumber -> School -> [Student]
 grade gradeNum school = maybe [] sortedStudents $ Map.lookup gradeNum $ allGrades school
   where
+    sortedStudents :: Students -> [Student]
     sortedStudents = Set.toAscList
 
 sorted :: School -> [(GradeNumber, [Student])]
