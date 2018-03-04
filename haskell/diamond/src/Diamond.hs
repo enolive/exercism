@@ -5,11 +5,15 @@ module Diamond
 diamond :: Char -> Maybe [String]
 diamond 'A' = Just ["A"]
 diamond 'B' = Just [" A ", "B B", " A "]
-diamond 'C' = Just $ mirror [
-  mirror $ spaces (2 - 0) ++ "A" ++ spaces 0,
-  mirror $ spaces (2 - 1) ++ "B" ++ spaces 1,
-  mirror $ spaces (2 - 2) ++ "C" ++ spaces 2]
+diamond 'C' = Just $ mirror upperHalf
 
+upperHalf = [
+              mirror $ makeLine 2 (0, 'A'),
+              mirror $ makeLine 2 (1, 'B'),
+              mirror $ makeLine 2 (2, 'C')]
+makeLine length (index, character) = spaces (length - index) ++ [character] ++ spaces index
+
+spaces :: Int -> String
 spaces n = replicate n ' '
 
 mirror :: [a] -> [a]
