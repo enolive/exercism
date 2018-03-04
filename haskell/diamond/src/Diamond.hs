@@ -17,7 +17,7 @@ makeLine length index character =
   mirror $ spaces (length - index) ++ [character] ++ spaces index
 
 spaces :: Int -> String
-spaces n = replicate n ' '
+spaces = flip replicate ' '
 
 mirror :: [a] -> [a]
 mirror = (reverse . init) >>= flip (++)
