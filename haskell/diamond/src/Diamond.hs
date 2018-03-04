@@ -10,5 +10,7 @@ diamond 'C' = Just $ mirror [
   " B B ",
   "C   C"]
 
-mirror xs = (++) xs (mirrored xs)
-  where mirrored xs = reverse $ take 2 xs
+mirror :: [String] -> [String]
+mirror = mirrored >>= flip (++)
+  where
+    mirrored = reverse . init
