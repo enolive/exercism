@@ -5,11 +5,11 @@ module Diamond
 import Data.Char (ord)
 
 diamond :: Char -> Maybe [String]
-diamond 'A' = Just ["A"]
-diamond 'B' = Just [" A ", "B B", " A "]
-diamond 'C' = Just $ mirror $ upperHalf 'C'
+diamond c = (mirror . upperHalf) <$> Just c
 
-upperHalf endChar = map (mirror . makeLine (distanceFromA endChar)) $ zip [0..] ['A'..endChar]
+upperHalf endChar = zipWith (curry line) [0 ..] ['A' .. endChar]
+  where
+    line = mirror . makeLine (distanceFromA endChar)
 
 distanceFromA c = ord c - ord 'A'
 
