@@ -73,8 +73,16 @@ cases =
            , input       = "(223) 056-7890"
            , expected    = Nothing
            }
+    , Case { description = "invalid if exchange code starts with 0 with country code present"
+           , input       = "+1 (223) 056-7890"
+           , expected    = Nothing
+           }
     , Case { description = "invalid if exchange code starts with 1"
            , input       = "(223) 156-7890"
+           , expected    = Nothing
+           }
+    , Case { description = "invalid if exchange code starts with 1 with country code present"
+           , input       = "+1 (223) 156-7890"
            , expected    = Nothing
            }
     ]
