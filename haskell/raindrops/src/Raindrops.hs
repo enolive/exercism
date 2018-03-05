@@ -5,7 +5,7 @@ convert n
   | null resultList = show n
   | otherwise = resultList
   where
-    resultList = concatMap snd $ filter (\ (appliesTo, _) -> appliesTo n) rules
+    resultList = concatMap snd $ filter (`fst` n) rules
 
 rules :: [(Int -> Bool, String)]
 rules = [
