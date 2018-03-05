@@ -4,4 +4,7 @@ discard :: (a -> Bool) -> [a] -> [a]
 discard p xs = error "You need to implement this function."
 
 keep :: (a -> Bool) -> [a] -> [a]
-keep p xs = []
+keep _ [] = []
+keep p (x:xs)
+  | p x = x : keep p xs
+  | otherwise = keep p xs
