@@ -2,19 +2,20 @@ module Diamond
   ( diamond
   ) where
 
-import Data.Char (ord)
+import Data.Char (ord, chr)
 
 diamond :: Char -> Maybe [String]
 diamond c = (mirror . makeUpperHalf) <$> Just c
 
 makeUpperHalf :: Char -> [String]
-makeUpperHalf endChar = zipWith (makeLine distanceFromA) [0 ..] ['A' .. endChar]
+makeUpperHalf endChar = map (makeLine size) [0..size]
   where
-    distanceFromA = ord endChar - ord 'A'
+    size = ord endChar - ord 'A'
 
-makeLine :: Int -> Int -> Char -> String
-makeLine length index character =
-  mirror $ spaces (length - index) ++ [character] ++ spaces index
+makeLine :: Int -> Int -> String
+makeLine size index = mirror $ spaces (size - index) ++ [character] ++ spaces index
+  where
+    character = chr $ ord 'A' + index
 
 spaces :: Int -> String
 spaces = flip replicate ' '
