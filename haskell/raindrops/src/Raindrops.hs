@@ -1,6 +1,8 @@
 module Raindrops (convert) where
 
 convert :: Int -> String
-convert 1 = "1"
-convert 3 = "Pling"
-convert 5 = "Plang"
+convert n
+ | n `mod` 3 == 0 = "Pling"
+ | n == 5 = "Plang"
+ | n == 7 = "Plong"
+ | otherwise = "1"
