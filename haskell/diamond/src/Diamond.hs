@@ -5,15 +5,15 @@ module Diamond
 import Data.Char (ord, chr)
 
 diamond :: Char -> Maybe [String]
-diamond c = (mirror . makeUpperHalf) <$> Just c
+diamond c = (mirror . top) <$> Just c
 
-makeUpperHalf :: Char -> [String]
-makeUpperHalf endChar = map (makeLine size) [0..size]
+top :: Char -> [String]
+top endChar = map (row size) [0..size]
   where
     size = ord endChar - ord 'A'
 
-makeLine :: Int -> Int -> String
-makeLine size index = mirror $ spaces (size - index) ++ [character] ++ spaces index
+row :: Int -> Int -> String
+row size index = mirror $ spaces (size - index) ++ [character] ++ spaces index
   where
     character = chr $ ord 'A' + index
 
