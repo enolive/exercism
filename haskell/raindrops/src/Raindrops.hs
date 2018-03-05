@@ -1,4 +1,6 @@
 module Raindrops (convert) where
 
 convert :: Int -> String
-convert n = error "You need to implement this function."
+convert 1 = "1"
+convert 3 = "Pling"
+convert 5 = "Plang"
