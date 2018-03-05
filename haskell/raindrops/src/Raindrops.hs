@@ -1,11 +1,14 @@
 module Raindrops (convert) where
 
 convert :: Int -> String
-convert n
-  | null resultList = show n
-  | otherwise = resultList
-  where
-    resultList = concatMap snd $ filter (`fst` n) rules
+convert input =
+  [result | (appliesTo, result) <- rules, appliesTo input]
+  `concatOrIfEmpty`
+  show input
+
+concatOrIfEmpty :: [String] -> String -> String
+concatOrIfEmpty [] defaultValue = defaultValue
+concatOrIfEmpty list _ = concat list
 
 rules :: [(Int -> Bool, String)]
 rules = [
@@ -15,4 +18,4 @@ rules = [
   ]
 
 divisibleBy :: Int -> Int -> Bool
-divisibleBy d n = n `mod` d == 0
+divisibleBy divisor input = input `mod` divisor == 0
