@@ -2,7 +2,10 @@ module Raindrops (convert) where
 
 convert :: Int -> String
 convert n
- | n `mod` 3 == 0 = "Pling"
+ | n `divisibleBy` 3 = "Pling"
  | n == 5 = "Plang"
  | n == 7 = "Plong"
- | otherwise = "1"
+ | otherwise = show n
+
+divisibleBy :: Int -> Int -> Bool
+divisibleBy n d = n `mod` d == 0
