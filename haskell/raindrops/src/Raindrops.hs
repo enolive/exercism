@@ -5,14 +5,14 @@ convert n
   | null resultList = show n
   | otherwise = resultList
   where
-    resultList = concatMap snd $ filter (\ (d, _) -> divisibleBy n d) rules
+    resultList = concatMap snd $ filter (\ (appliesTo, _) -> appliesTo n) rules
 
-rules :: [(Int, String)]
+rules :: [(Int -> Bool, String)]
 rules = [
-  (3, "Pling"),
-  (5, "Plang"),
-  (7, "Plong")
+  (divisibleBy 3, "Pling"),
+  (divisibleBy 5, "Plang"),
+  (divisibleBy 7, "Plong")
   ]
 
 divisibleBy :: Int -> Int -> Bool
-divisibleBy n d = n `mod` d == 0
+divisibleBy d n = n `mod` d == 0
