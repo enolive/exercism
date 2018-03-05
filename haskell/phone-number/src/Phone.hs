@@ -1,4 +1,10 @@
 module Phone (number) where
 
 number :: String -> Maybe String
-number xs = error "You need to implement this function."
+number xs = clean <$> Just xs
+
+clean :: String -> String
+clean = filter (not . isPunctuation)
+
+isPunctuation :: Char -> Bool
+isPunctuation c = c `elem` "() -."
