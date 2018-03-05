@@ -8,16 +8,10 @@ import Data.Map (Map)
 import qualified Data.Map as Map
 
 transform :: Map Int String -> Map Char Int
-transform = Map.fromList . transformList . Map.toList
+transform = Map.fromList . Map.foldlWithKey transform' []
 
-transformList :: [(Int, String)] -> [(Char, Int)]
-transformList = concatMap (lowerCaseKey . splitKey . flipPair)
+transform' :: [(Char, Int)] -> Int -> String -> [(Char, Int)]
+transform' list points chars = list ++ map (`makeScore` points) chars
 
-flipPair :: (a, b) -> (b, a)
-flipPair (a, b) = (b, a)
-
-lowerCaseKey :: [(Char, b)] -> [(Char, b)]
-lowerCaseKey = map (first toLower)
-
-splitKey :: ([a], b) -> [(a, b)]
-splitKey (list, v) = map (\key -> (key, v)) list
+makeScore :: Char -> Int -> (Char, Int)
+makeScore char points = (toLower char, points)
