@@ -2,16 +2,15 @@ module ETL
   ( transform
   ) where
 
-import Control.Arrow (first)
 import Data.Char (toLower)
 import Data.Map (Map)
 import qualified Data.Map as Map
 
-transform :: Map Int String -> Map Char Int
+transform :: Map a String -> Map Char a
 transform = Map.fromList . Map.foldlWithKey transform' []
 
-transform' :: [(Char, Int)] -> Int -> String -> [(Char, Int)]
+transform' :: [(Char, a)] -> a -> String -> [(Char, a)]
 transform' list points chars = list ++ map (`makeScore` points) chars
 
-makeScore :: Char -> Int -> (Char, Int)
+makeScore :: Char -> a -> (Char, a)
 makeScore char points = (toLower char, points)
