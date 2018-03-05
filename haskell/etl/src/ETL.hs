@@ -17,4 +17,4 @@ flipPair :: (a, b) -> (b, a)
 flipPair (a, b) = (b, a)
 
 splitKey :: ([a], b) -> [(a, b)]
-splitKey (characters, count) = map (\c -> (c, count)) characters
+splitKey (list, v) = map (\key -> (key, v)) list
