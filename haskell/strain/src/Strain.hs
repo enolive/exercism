@@ -1,8 +1,15 @@
-module Strain (keep, discard) where
+module Strain
+  ( keep
+  , discard
+  ) where
 
 discard :: (a -> Bool) -> [a] -> [a]
 discard p xs = error "You need to implement this function."
 
 keep :: (a -> Bool) -> [a] -> [a]
-keep p = foldr (\ current acc -> if p current then current : acc else acc) []
+keep predicate = foldr (keepIf predicate) []
 
+keepIf :: (a -> Bool) -> a -> [a] -> [a]
+keepIf predicate current acc
+  | predicate current = current : acc
+  | otherwise = acc
