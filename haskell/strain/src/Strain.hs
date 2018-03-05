@@ -10,6 +10,6 @@ keep :: (a -> Bool) -> [a] -> [a]
 keep predicate = foldr (appendIf predicate) []
 
 appendIf :: (a -> Bool) -> a -> [a] -> [a]
-appendIf predicate current acc
-  | predicate current = current : acc
-  | otherwise = acc
+appendIf predicate current
+  | predicate current = (current:)
+  | otherwise = id
