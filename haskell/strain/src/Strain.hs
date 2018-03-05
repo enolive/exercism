@@ -7,9 +7,9 @@ discard :: (a -> Bool) -> [a] -> [a]
 discard p = keep (not . p)
 
 keep :: (a -> Bool) -> [a] -> [a]
-keep predicate = foldr (appendIf predicate) []
+keep predicate = foldr (prependIf predicate) []
 
-appendIf :: (a -> Bool) -> a -> [a] -> [a]
-appendIf predicate current
+prependIf :: (a -> Bool) -> a -> [a] -> [a]
+prependIf predicate current
   | predicate current = (current:)
   | otherwise = id
