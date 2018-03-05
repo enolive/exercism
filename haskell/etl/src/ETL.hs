@@ -1,4 +1,6 @@
-module ETL (transform) where
+module ETL
+  ( transform
+  ) where
 
 import Control.Arrow (first)
 import Data.Char (toLower)
@@ -6,8 +8,13 @@ import Data.Map (Map)
 import qualified Data.Map as Map
 
 transform :: Map Int String -> Map Char Int
-transform legacyData = Map.fromList $ transformList $ Map.toList legacyData
+transform = Map.fromList . transformList . Map.toList
 
-transformList xs = map (first toLower) $ swapPairs xs >>= splitCharacters
-swapPairs xs = map (\ (count, characters) -> (characters, count)) xs
-splitCharacters (characters, count) = [(character, count) | character <- characters]
+transformList :: [(Int, String)] -> [(Char, Int)]
+transformList xs = map (first toLower) $ map flipPair xs >>= splitKey
+
+flipPair :: (a, b) -> (b, a)
+flipPair (a, b) = (b, a)
+
+splitKey :: ([a], b) -> [(a, b)]
+splitKey (characters, count) = map (\c -> (c, count)) characters
