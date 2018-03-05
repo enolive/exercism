@@ -33,6 +33,7 @@ exchangeCode cleaned
   | hasCountryCode cleaned = (!! 4) cleaned
   | otherwise = (!! 3) cleaned
 
+hasCountryCode :: String -> Bool
 hasCountryCode cleaned = length cleaned == 11
 
 clean :: String -> String
