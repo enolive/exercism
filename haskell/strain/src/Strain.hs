@@ -4,7 +4,7 @@ module Strain
   ) where
 
 discard :: (a -> Bool) -> [a] -> [a]
-discard p xs = error "You need to implement this function."
+discard p = keep (not . p)
 
 keep :: (a -> Bool) -> [a] -> [a]
 keep predicate = foldr (keepIf predicate) []
