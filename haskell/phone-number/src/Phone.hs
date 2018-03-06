@@ -21,10 +21,13 @@ stripCountryCode xs
 
 validateArea :: String -> Maybe String
 validateArea xs
-  | head xs `elem` ['2'..'9'] = Just xs
+  | isValidSubCode $ head xs = Just xs
   | otherwise = Nothing
 
 validateExchange :: String -> Maybe String
 validateExchange xs
-  | xs !! 3 `elem` "01" = Nothing
-  | otherwise = Just xs
+  | isValidSubCode $ xs !! 3 = Just xs
+  | otherwise = Nothing
+
+isValidSubCode :: Char -> Bool
+isValidSubCode c = c `elem` ['2'..'9']
