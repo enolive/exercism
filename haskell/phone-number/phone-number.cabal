@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: cc1002d0313d34717a592aef234f14870d4aaf0d38df7f913ff08db286dcb2c3
+-- hash: 9a0127bf63ff33ec59d4f27b381d8228a37de64382271fad308e27d06c34999c
 
 name:           phone-number
 version:        1.4.0.5
@@ -14,6 +14,7 @@ library
       src
   build-depends:
       base
+    , regex-posix
   exposed-modules:
       Phone
   other-modules:

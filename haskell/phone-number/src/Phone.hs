@@ -11,7 +11,10 @@ stripPunctuation xs
   | any (not . isDigit) cleaned = Nothing
   | otherwise = Just cleaned
   where
-    cleaned = filter (`notElem` "+() -.") xs
+    cleaned = cleanNumber xs
+
+cleanNumber :: String -> String
+cleanNumber = filter (`notElem` "+() -.")
 
 stripCountryCode :: String -> Maybe String
 stripCountryCode xs
