@@ -3,31 +3,21 @@ module Phone (number) where
 import Data.Char (isDigit)
 
 number :: String -> Maybe String
-number xs = stripPunctuation xs >>= stripCountryCode >>= validateArea >>= validateExchange
-
-stripPunctuation :: String -> Maybe String
-stripPunctuation xs
-  | length cleaned < 10 || length cleaned > 11 = Nothing
-  | any (not . isDigit) cleaned = Nothing
-  | otherwise = Just cleaned
+number xs
+  | isValid cleanNumber = Just cleanNumber
+  | otherwise = Nothing
   where
-    cleaned = filter (`notElem` "+() -.") xs
+    cleanNumber = (stripCountryCode . filter isDigit) xs
 
-stripCountryCode :: String -> Maybe String
+stripCountryCode :: String -> String
 stripCountryCode xs
-  | length xs < 11 = Just xs
-  | head xs == '1' = Just $ tail xs
-  | otherwise = Nothing
+  | length xs == 11 && head xs == '1' = tail xs
+  | otherwise = xs
 
-validateArea :: String -> Maybe String
-validateArea xs
-  | isValidSubCode $ head xs = Just xs
-  | otherwise = Nothing
-
-validateExchange :: String -> Maybe String
-validateExchange xs
-  | isValidSubCode $ xs !! 3 = Just xs
-  | otherwise = Nothing
-
-isValidSubCode :: Char -> Bool
-isValidSubCode c = c `elem` ['2'..'9']
+isValid :: String -> Bool
+isValid phone = validLength && validArea && validExchange
+  where
+    validLength = length phone == 10
+    validArea = validSubCode $ head phone
+    validExchange = validSubCode $ phone !! 3
+    validSubCode = (`elem` ['2'..'9'])
