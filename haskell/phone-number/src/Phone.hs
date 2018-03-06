@@ -3,41 +3,28 @@ module Phone (number) where
 import Data.Char (isDigit)
 
 number :: String -> Maybe String
-number xs
-  | inValid cleaned = Nothing
-  | hasCountryCode cleaned = Just $ tail cleaned
+number xs = stripPunctuation xs >>= stripCountryCode >>= validateArea >>= validateExchange
+
+stripPunctuation :: String -> Maybe String
+stripPunctuation xs
+  | length cleaned < 10 || length cleaned > 11 = Nothing
+  | any (not . isDigit) cleaned = Nothing
   | otherwise = Just cleaned
   where
-    cleaned = clean xs
+    cleaned = filter (`notElem` "+() -.") xs
 
-inValid cleaned
-  | length cleaned `notElem` [10, 11] = True
-  | any (not . isDigit) cleaned = True
-  | countryCode cleaned /= '1' = True
-  | areaCode cleaned `elem` "01" = True
-  | exchangeCode cleaned `elem` "01" = True
-  | otherwise = False
+stripCountryCode :: String -> Maybe String
+stripCountryCode xs
+  | length xs < 11 = Just xs
+  | head xs == '1' = Just $ tail xs
+  | otherwise = Nothing
 
-countryCode :: String -> Char
-countryCode cleaned
-  | hasCountryCode cleaned = head cleaned
-  | otherwise = '1'
+validateArea :: String -> Maybe String
+validateArea xs
+  | head xs `elem` ['2'..'9'] = Just xs
+  | otherwise = Nothing
 
-areaCode :: String -> Char
-areaCode cleaned
-  | hasCountryCode cleaned = (!! 1) cleaned
-  | otherwise = head cleaned
-
-exchangeCode :: String -> Char
-exchangeCode cleaned
-  | hasCountryCode cleaned = (!! 4) cleaned
-  | otherwise = (!! 3) cleaned
-
-hasCountryCode :: String -> Bool
-hasCountryCode cleaned = length cleaned == 11
-
-clean :: String -> String
-clean = filter (not . isPunctuation)
-
-isPunctuation :: Char -> Bool
-isPunctuation c = c `elem` "+() -."
+validateExchange :: String -> Maybe String
+validateExchange xs
+  | xs !! 3 `elem` "01" = Nothing
+  | otherwise = Just xs
