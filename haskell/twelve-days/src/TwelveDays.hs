@@ -15,7 +15,13 @@ dailyPresents = [
   ("third", "three French Hens"),
   ("fourth", "four Calling Birds"),
   ("fifth", "five Gold Rings"),
-  ("sixth", "six Geese-a-Laying")
+  ("sixth", "six Geese-a-Laying"),
+  ("seventh", "seven Swans-a-Swimming"),
+  ("eighth", "eight Maids-a-Milking"),
+  ("ninth", "nine Ladies Dancing"),
+  ("tenth", "ten Lords-a-Leaping"),
+  ("eleventh", "eleven Pipers Piping"),
+  ("twelfth", "twelve Drummers Drumming")
   ]
 
 presentList :: Int -> String
