@@ -3,14 +3,20 @@ module RunLength (decode, encode) where
 import Data.Char (isDigit, digitToInt)
 
 decode :: String -> String
-decode = decode' 0 []
-
-decode' :: Int -> String -> String -> String
-decode' _ acc [] = acc
-decode' howMany acc (x:xs)
-  | isDigit x = decode' (10 * howMany + digitToInt x) acc xs
-  | howMany == 0 = decode' 0 (acc ++ [x]) xs
-  | otherwise = decode' 0 (acc ++ replicate howMany x) xs
+decode [] = []
+decode xs = replicate howMany current ++ decode rest
+  where
+    howMany = if null digits then 1 else read digits
+    rest = tail characters
+    current = head characters
+    characters = drop (length digits) xs
+    digits = takeWhile isDigit xs
 
 encode :: String -> String
-encode "" = ""
+encode [] = []
+encode xs = showHowMany ++ [current] ++ encode differentCharacters
+  where
+    showHowMany = if howMany == 1 then "" else show howMany
+    howMany = length xs - length differentCharacters
+    differentCharacters = dropWhile (== current) xs
+    current = head xs
