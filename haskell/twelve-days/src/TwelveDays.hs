@@ -6,19 +6,22 @@ import Data.List (intercalate)
 import Text.Printf (printf)
 
 day :: Int -> (String, String)
-day n = case n of
-  1 -> ("first", "a Partridge in a Pear Tree")
-  2 -> ("second", "two Turtle Doves")
-  3 -> ("third", "three French Hens")
-  4 -> ("fourth", "four Calling Birds")
-  5 -> ("fifth", "five Gold Rings")
-  6 -> ("sixth", "six Geese-a-Laying")
-  7 -> ("seventh", "seven Swans-a-Swimming")
-  8 -> ("eighth", "eight Maids-a-Milking")
-  9 -> ("ninth", "nine Ladies Dancing")
-  10 -> ("tenth", "ten Lords-a-Leaping")
-  11 -> ("eleventh", "eleven Pipers Piping")
-  12 -> ("twelfth", "twelve Drummers Drumming")
+day n = days !! (n - 1)
+  where
+    days =
+      [ ("first", "a Partridge in a Pear Tree")
+      , ("second", "two Turtle Doves")
+      , ("third", "three French Hens")
+      , ("fourth", "four Calling Birds")
+      , ("fifth", "five Gold Rings")
+      , ("sixth", "six Geese-a-Laying")
+      , ("seventh", "seven Swans-a-Swimming")
+      , ("eighth", "eight Maids-a-Milking")
+      , ("ninth", "nine Ladies Dancing")
+      , ("tenth", "ten Lords-a-Leaping")
+      , ("eleventh", "eleven Pipers Piping")
+      , ("twelfth", "twelve Drummers Drumming")
+      ]
 
 recite :: Int -> Int -> [String]
 recite start stop = verse <$> [start .. stop]
