@@ -3,7 +3,7 @@ module RunLength (decode, encode) where
 import Data.Char (isDigit, digitToInt)
 
 decode :: String -> String
-decode xs = decode' 0 [] xs
+decode = decode' 0 []
 
 decode' :: Int -> String -> String -> String
 decode' _ acc [] = acc
