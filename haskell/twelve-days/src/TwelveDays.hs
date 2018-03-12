@@ -17,12 +17,6 @@ days = [
   ("fifth", "five Gold Rings")
   ]
 
-nth :: Int -> String
-nth n = fst (days !! (n - 1))
-
-present :: Int -> String
-present n = snd (days !! (n - 1))
-
 presentList :: Int -> String
 presentList = joinWithCommas . reverse . map present . enumFromTo 1
 
@@ -30,3 +24,11 @@ joinWithCommas :: [String] -> String
 joinWithCommas [x] = x
 joinWithCommas xs = intercalate ", " (init xs) ++ ", and " ++ last xs
 
+nth :: Int -> String
+nth = fst . day
+
+present :: Int -> String
+present = snd . day
+
+day :: Int -> (String, String)
+day n = days !! (n - 1)
