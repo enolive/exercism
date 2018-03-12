@@ -6,7 +6,7 @@ isbn input = validLength && validCheckSum
   where
     validLength = length cleanInput == 10
     validCheckSum = sum digitValues `mod` 11 == 0
-    digitValues = zipWith (*) allDigits $ reverse [1 .. 10]
+    digitValues = zipWith (*) allDigits [10,9..1]
     allDigits = numberDigits ++ [checkDigit]
     numberDigits = (map digitToInt . filter isDigit) $ init cleanInput
     checkDigit
