@@ -1,5 +1,7 @@
 module TwelveDays (recite) where
 
+import Data.List (intercalate)
+
 recite :: Int -> Int -> [String]
 recite start stop = [verse start]
 
@@ -15,9 +17,9 @@ day n = case n of
 
 presentList :: Int -> String
 presentList 1 = present 1
-presentList 2 = present 2 ++ ", and " ++ present 1
-presentList 3 = present 3 ++ ", " ++ present 2 ++ ", and " ++ present 1
-presentList 4 = present 4 ++ ", " ++ present 3 ++ ", " ++ present 2 ++ ", and " ++ present 1
+presentList 2 = intercalate ", " [present 2] ++ ", and " ++ present 1
+presentList 3 = intercalate ", " [present 3, present 2] ++ ", and " ++ present 1
+presentList 4 = intercalate ", " [present 4, present 3, present 2] ++ ", and " ++ present 1
 
 present :: Int -> String
 present 1 = "a Partridge in a Pear Tree"
