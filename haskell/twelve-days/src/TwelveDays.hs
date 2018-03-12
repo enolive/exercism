@@ -8,13 +8,14 @@ recite start stop = [verse start]
 verse :: Int -> String
 verse n = "On the " ++ nth n ++ " day of Christmas my true love gave to me, " ++ presentList n ++ "."
 
-days :: [(String, String)]
-days = [
+dailyPresents :: [(String, String)]
+dailyPresents = [
   ("first", "a Partridge in a Pear Tree"),
   ("second", "two Turtle Doves"),
   ("third", "three French Hens"),
   ("fourth", "four Calling Birds"),
-  ("fifth", "five Gold Rings")
+  ("fifth", "five Gold Rings"),
+  ("sixth", "six Geese-a-Laying")
   ]
 
 presentList :: Int -> String
@@ -25,10 +26,10 @@ joinWithCommas [x] = x
 joinWithCommas xs = intercalate ", " (init xs) ++ ", and " ++ last xs
 
 nth :: Int -> String
-nth = fst . day
+nth = fst . daily
 
 present :: Int -> String
-present = snd . day
+present = snd . daily
 
-day :: Int -> (String, String)
-day n = days !! (n - 1)
+daily :: Int -> (String, String)
+daily n = dailyPresents !! (n - 1)
