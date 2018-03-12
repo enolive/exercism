@@ -16,8 +16,11 @@ day n = case n of
   4 -> "fourth"
 
 presentList :: Int -> String
-presentList 1 = present 1
-presentList n = intercalate ", " ((reverse . map present) [2..n]) ++ ", and " ++ present 1
+presentList = joinWithCommas . reverse . map present . enumFromTo 1
+
+joinWithCommas :: [String] -> String
+joinWithCommas [x] = x
+joinWithCommas xs = intercalate ", " (init xs) ++ ", and " ++ last xs
 
 present :: Int -> String
 present 1 = "a Partridge in a Pear Tree"
