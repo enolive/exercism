@@ -6,11 +6,11 @@ import Data.List (group, groupBy)
 decode :: String -> String
 decode = concatMap decodeGroup . groupByCount
   where
-    groupByCount = reverse . map toGroup . groupBy includeDigits . reverse
+    groupByCount = reverse . map toGroup . groupBy includeFollowingDigits . reverse
     decodeGroup (char, count) = replicate count char
     toGroup [char] = (char, 1)
     toGroup (char:reversedCount) = (char, (read . reverse) reversedCount)
-    includeDigits _ = isDigit
+    includeFollowingDigits _ = isDigit
 
 encode :: String -> String
 encode = concatMap encodeGroup . group
