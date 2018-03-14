@@ -7,15 +7,16 @@ decode :: String -> String
 decode = concatMap (uncurry replicate) . foldPairs
 
 foldPairs :: String -> [(Int, Char)]
-foldPairs = snd . foldl buildPairs (Nothing, []) . groupBy allNumbers
+foldPairs = snd . foldl listToPairs (Nothing, []) . groupBy allNumbers
 
-buildPairs :: (Maybe String, [(Int, Char)]) -> String -> (Maybe String, [(Int, Char)])
-buildPairs (Just previousNumber, list) group
+listToPairs :: (Maybe String, [(Int, Char)]) -> String -> (Maybe String, [(Int, Char)])
+listToPairs (Just previousNumber, list) group
   = (Nothing, list ++ [(read previousNumber, head group)])
-buildPairs (Nothing, list) group
+listToPairs (Nothing, list) group
   | (isDigit . head) group = (Just group, list)
   | otherwise = (Nothing, list ++ [(1, head group)])
 
+allNumbers :: Char -> Char -> Bool
 allNumbers a b = isDigit a && isDigit b
 
 encode :: String -> String
