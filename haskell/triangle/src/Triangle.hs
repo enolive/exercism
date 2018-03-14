@@ -18,6 +18,7 @@ data TriangleType
 triangleType :: (Num a, Ord a) => a -> a -> a -> TriangleType
 triangleType a b c = triangleType' [a, b, c]
 
+triangleType' :: (Num a, Ord a) => [a] -> TriangleType
 triangleType' sides
   | (not . valid) sides = Illegal
   | otherwise =
@@ -26,9 +27,7 @@ triangleType' sides
       2 -> Isosceles
       3 -> Scalene
   where
-    valid = return (&&) `ap` greaterThanZero `ap` appliesToTriangleInequality
+    valid = return (&&) `ap` greaterThanZero `ap` (applyToTriangleInequality . sort)
     greaterThanZero = all (> 0)
-    appliesToTriangleInequality sides =
-      let [a, b, c] = sort sides
-      in a + b > c
+    applyToTriangleInequality [a, b, c] = a + b > c
     numberOfUnique = Set.size . Set.fromList
