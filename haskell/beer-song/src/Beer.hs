@@ -2,14 +2,20 @@ module Beer
   ( song
   ) where
 
-line 1 =
-  "99 bottles of beer on the wall, 99 bottles of beer.\n\
-        \Take one down and pass it around, 98 bottles of beer on the wall.\n\
-        \\n"
+import Data.List (intercalate)
+
+verse 1 =
+  firstLine ++ secondLine
+  where
+    firstLine = num ++
+                  " bottles of beer on the wall, " ++
+                  num ++ " bottles of beer.\n"
+    secondLine = "Take one down and pass it around, 98 bottles of beer on the wall.\n\n"
+    num = show 99
 
 song :: String
 song =
-  line 1 ++
+  verse 1 ++
   "98 bottles of beer on the wall, 98 bottles of beer.\n\
        \Take one down and pass it around, 97 bottles of beer on the wall.\n\
        \\n\
