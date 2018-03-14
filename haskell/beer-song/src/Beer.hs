@@ -5,19 +5,21 @@ module Beer
 import Control.Monad (liftM2)
 import Data.Char (toUpper)
 import Data.List (intercalate)
-import Text.Printf (printf)
+
+song :: String
+song = (interlines . map verse) [99,98 .. 0]
 
 verse :: Int -> String
-verse remaining = unlines [firstLine, secondLine]
+verse remaining = interlines [firstLine, secondLine, ""]
   where
     firstLine = upperCaseFirst $ beersOnTheWall remaining ++ ", " ++ beers remaining ++ "."
-    secondLine
-      | remaining == 0 = "Go to the store and buy some more, " ++ beersOnTheWall (99 :: Int) ++ "."
-      | otherwise = "Take " ++ oneOrIt ++ " down and pass it around, " ++ beersOnTheWall (remaining - 1) ++ "."
+    secondLine = case remaining of
+      0 -> "Go to the store and buy some more, " ++ beersOnTheWall (99 :: Int) ++ "."
+      _ -> "Take " ++ oneOrIt ++ " down and pass it around, " ++ beersOnTheWall (remaining - 1) ++ "."
     upperCaseFirst = liftM2 (:) (toUpper . head) tail
-    oneOrIt
-      | remaining == 1 = "it"
-      | otherwise = "one"
+    oneOrIt = case remaining of
+      1 -> "it"
+      _ -> "one"
 
 beersOnTheWall :: Int -> String
 beersOnTheWall n = beers n ++ " on the wall"
@@ -25,10 +27,11 @@ beersOnTheWall n = beers n ++ " on the wall"
 beers :: Int -> String
 beers n = howMany n ++ " of beer"
   where
-    howMany n
-      | n == 0 = "no more bottles"
-      | n == 1 = "1 bottle"
-      | otherwise = printf "%d bottles" n
+    howMany n =
+      case n of
+        0 -> "no more bottles"
+        1 -> "1 bottle"
+        _ -> show n ++ " bottles"
 
-song :: String
-song = (intercalate "\n" . map verse) [99,98 .. 0]
+interlines :: [String] -> String
+interlines =  intercalate "\n"
