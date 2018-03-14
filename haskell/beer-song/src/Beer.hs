@@ -1,10 +1,16 @@
-module Beer (song) where
+module Beer
+  ( song
+  ) where
+
+line 1 =
+  "99 bottles of beer on the wall, 99 bottles of beer.\n\
+        \Take one down and pass it around, 98 bottles of beer on the wall.\n\
+        \\n"
 
 song :: String
-song = "99 bottles of beer on the wall, 99 bottles of beer.\n\
-       \Take one down and pass it around, 98 bottles of beer on the wall.\n\
-       \\n\
-       \98 bottles of beer on the wall, 98 bottles of beer.\n\
+song =
+  line 1 ++
+  "98 bottles of beer on the wall, 98 bottles of beer.\n\
        \Take one down and pass it around, 97 bottles of beer on the wall.\n\
        \\n\
        \97 bottles of beer on the wall, 97 bottles of beer.\n\
@@ -300,4 +306,3 @@ song = "99 bottles of beer on the wall, 99 bottles of beer.\n\
        \\n\
        \No more bottles of beer on the wall, no more bottles of beer.\n\
        \Go to the store and buy some more, 99 bottles of beer on the wall.\n"
-
