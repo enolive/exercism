@@ -80,4 +80,8 @@ specs = describe "triangleType" $ for_ cases test
               , (0, 0, 0)
               , Illegal
               )
+            , ( "triangles with at least one side zero are illegal"
+              , (0, 1, 2)
+              , Illegal
+              )
             ]
