@@ -7,19 +7,27 @@ import Data.Char (toUpper)
 import Data.List (intercalate)
 
 song :: String
-song = (interlines . map verse) [99,98 .. 0]
+song = (interlines . map verse) $ maxBeers `downTo` 0
 
 verse :: Int -> String
 verse remaining = interlines [firstLine, secondLine, ""]
   where
     firstLine = upperCaseFirst $ beersOnTheWall remaining ++ ", " ++ beers remaining ++ "."
-    secondLine = case remaining of
-      0 -> "Go to the store and buy some more, " ++ beersOnTheWall (99 :: Int) ++ "."
-      _ -> "Take " ++ oneOrIt ++ " down and pass it around, " ++ beersOnTheWall (remaining - 1) ++ "."
+    secondLine =
+      case remaining of
+        0 -> "Go to the store and buy some more, " ++ beersOnTheWall maxBeers ++ "."
+        _ -> "Take " ++ oneOrIt ++ " down and pass it around, " ++ beersOnTheWall (remaining - 1) ++ "."
     upperCaseFirst = liftM2 (:) (toUpper . head) tail
-    oneOrIt = case remaining of
-      1 -> "it"
-      _ -> "one"
+    oneOrIt =
+      case remaining of
+        1 -> "it"
+        _ -> "one"
+
+downTo :: Int -> Int -> [Int]
+downTo start = enumFromThenTo start (start - 1)
+
+maxBeers :: Int
+maxBeers = 99
 
 beersOnTheWall :: Int -> String
 beersOnTheWall n = beers n ++ " on the wall"
@@ -34,4 +42,4 @@ beers n = howMany n ++ " of beer"
         _ -> show n ++ " bottles"
 
 interlines :: [String] -> String
-interlines =  intercalate "\n"
+interlines = intercalate "\n"
