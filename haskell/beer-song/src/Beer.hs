@@ -4,9 +4,10 @@ module Beer
 
 verse 1 = unlines [firstLine, secondLine, ""]
   where
-    firstLine = num ++ " bottles of beer on the wall, " ++ num ++ " bottles of beer."
-    secondLine = "Take one down and pass it around, 98 bottles of beer on the wall."
-    num = show 99
+    firstLine = currentCount ++ " bottles of beer on the wall, " ++ currentCount ++ " bottles of beer."
+    secondLine = "Take one down and pass it around, " ++ previousCount ++" bottles of beer on the wall."
+    currentCount = show 99
+    previousCount = show $ 99 - 1
 
 song :: String
 song =
