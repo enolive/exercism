@@ -2,6 +2,7 @@ module Beer
   ( song
   ) where
 
+import Control.Monad (liftM2)
 import Data.Char (toUpper)
 import Data.List (intercalate)
 import Text.Printf (printf)
@@ -13,7 +14,7 @@ verse remaining = unlines [firstLine, secondLine]
     secondLine
       | remaining == 0 = "Go to the store and buy some more, " ++ beersOnTheWall (99 :: Int) ++ "."
       | otherwise = "Take " ++ oneOrIt ++ " down and pass it around, " ++ beersOnTheWall (remaining - 1) ++ "."
-    upperCaseFirst s = (:) ((toUpper . head) s) (tail s)
+    upperCaseFirst = liftM2 (:) (toUpper . head) tail
     oneOrIt
       | remaining == 1 = "it"
       | otherwise = "one"
