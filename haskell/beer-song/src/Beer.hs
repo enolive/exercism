@@ -8,10 +8,12 @@ verse :: Int -> String
 verse n = unlines [firstLine, secondLine, ""]
   where
     firstLine = beersOnTheWall n ++ ", " ++ beers n ++ "."
-    secondLine = "Take one down and pass it around, " ++ beersOnTheWall (n - 1) ++ "."
+    secondLine = takeOne n ++ " and pass it around, " ++ beersOnTheWall (n - 1) ++ "."
     beersOnTheWall n = beers n ++ " on the wall"
     beers n = howMany n ++ " of beer"
+    takeOne n = "Take one down"
     howMany n
+      | n == 0 = "no more bottles"
       | n == 1 = "1 bottle"
       | otherwise = printf "%d bottles" n
 
