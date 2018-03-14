@@ -4,13 +4,10 @@ import Data.Char (isDigit)
 import Data.List (group, groupBy)
 
 decode :: String -> String
-decode = concatMap decodePair . makePairs
+decode = concatMap (uncurry replicate) . foldPairs
 
-decodePair :: (Int, Char) -> String
-decodePair (count, char) = replicate count char
-
-makePairs :: String -> [(Int, Char)]
-makePairs = snd . foldl buildPairs (Nothing, []) . groupBy allNumbers
+foldPairs :: String -> [(Int, Char)]
+foldPairs = snd . foldl buildPairs (Nothing, []) . groupBy allNumbers
 
 buildPairs :: (Maybe String, [(Int, Char)]) -> String -> (Maybe String, [(Int, Char)])
 buildPairs (Just previousNumber, list) group
