@@ -9,16 +9,16 @@ verse n = unlines [firstLine, secondLine, ""]
   where
     firstLine = beersOnTheWall n ++ ", " ++ beers n ++ "."
     secondLine = "Take one down and pass it around, " ++ beersOnTheWall (n - 1) ++ "."
-    beers = printf "%d bottles of beer"
     beersOnTheWall n = beers n ++ " on the wall"
+    beers n = howMany n ++ " of beer"
+    howMany n
+      | n == 1 = "1 bottle"
+      | otherwise = printf "%d bottles" n
 
 song :: String
 song =
-  concatMap verse [99,98 .. 3] ++
-  "2 bottles of beer on the wall, 2 bottles of beer.\n\
-       \Take one down and pass it around, 1 bottle of beer on the wall.\n\
-       \\n\
-       \1 bottle of beer on the wall, 1 bottle of beer.\n\
+  concatMap verse [99,98 .. 2] ++
+  "1 bottle of beer on the wall, 1 bottle of beer.\n\
        \Take it down and pass it around, no more bottles of beer on the wall.\n\
        \\n\
        \No more bottles of beer on the wall, no more bottles of beer.\n\
