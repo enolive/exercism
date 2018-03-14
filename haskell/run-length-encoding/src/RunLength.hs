@@ -3,13 +3,18 @@ module RunLength (decode, encode) where
 import Data.Char (isDigit)
 import Data.List (group, groupBy)
 
-decode :: String -> String
-decode = concatMap (uncurry replicate) . foldPairs
+type DecodeTuple = (Int, Char)
 
-foldPairs :: String -> [(Int, Char)]
+decode :: String -> String
+decode = concatMap decodePair . foldPairs
+
+decodePair :: DecodeTuple -> String
+decodePair = uncurry replicate
+
+foldPairs :: String -> [DecodeTuple]
 foldPairs = snd . foldl listToPairs (Nothing, []) . groupBy allNumbers
 
-listToPairs :: (Maybe String, [(Int, Char)]) -> String -> (Maybe String, [(Int, Char)])
+listToPairs :: (Maybe String, [DecodeTuple]) -> String -> (Maybe String, [DecodeTuple])
 listToPairs (Just previousNumber, list) group
   = (Nothing, list ++ [(read previousNumber, head group)])
 listToPairs (Nothing, list) group
