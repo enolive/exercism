@@ -8,7 +8,9 @@ verse :: Int -> String
 verse remaining = unlines [firstLine, secondLine, ""]
   where
     firstLine = beersOnTheWall remaining ++ ", " ++ beers remaining ++ "."
-    secondLine = "Take " ++ oneOrIt ++ " down and pass it around, " ++ beersOnTheWall (remaining - 1) ++ "."
+    secondLine
+      | remaining == 0 = "Go to the store and buy some more, " ++ beersOnTheWall (99 :: Int) ++ "."
+      | otherwise = "Take " ++ oneOrIt ++ " down and pass it around, " ++ beersOnTheWall (remaining - 1) ++ "."
     beersOnTheWall n = beers n ++ " on the wall"
     beers n = howMany n ++ " of beer"
     oneOrIt
