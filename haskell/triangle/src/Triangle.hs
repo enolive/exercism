@@ -26,7 +26,9 @@ triangleType' sides
       2 -> Isosceles
       3 -> Scalene
   where
-    valid = return (&&) `ap` greaterThanZero `ap` (appliesToTriangleInequality . sort)
+    valid = return (&&) `ap` greaterThanZero `ap` appliesToTriangleInequality
     greaterThanZero = all (> 0)
-    appliesToTriangleInequality [a, b, c] = a + b > c
+    appliesToTriangleInequality sides =
+      let [a, b, c] = sort sides
+      in a + b > c
     numberOfUnique = Set.size . Set.fromList
