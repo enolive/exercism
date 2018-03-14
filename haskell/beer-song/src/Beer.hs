@@ -2,15 +2,10 @@ module Beer
   ( song
   ) where
 
-import Data.List (intercalate)
-
-verse 1 =
-  firstLine ++ secondLine
+verse 1 = unlines [firstLine, secondLine, ""]
   where
-    firstLine = num ++
-                  " bottles of beer on the wall, " ++
-                  num ++ " bottles of beer.\n"
-    secondLine = "Take one down and pass it around, 98 bottles of beer on the wall.\n\n"
+    firstLine = num ++ " bottles of beer on the wall, " ++ num ++ " bottles of beer."
+    secondLine = "Take one down and pass it around, 98 bottles of beer on the wall."
     num = show 99
 
 song :: String
