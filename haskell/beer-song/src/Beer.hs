@@ -5,20 +5,19 @@ module Beer
 import Text.Printf (printf)
 
 verse :: Int -> String
-verse 1 = unlines [firstLine, secondLine, ""]
+verse n = unlines [firstLine, secondLine, ""]
   where
-    firstLine = printf "%d bottles of beer on the wall, %d bottles of beer." currentCount currentCount
+    firstLine = current ++ " on the wall, " ++ current ++ "."
     secondLine = printf "Take one down and pass it around, %d bottles of beer on the wall." nextCount
-    currentCount = 100 - 1 :: Int
-    nextCount = currentCount - 1 :: Int
+    current = printf "%d bottles of beer" currentCount
+    currentCount = 100 - n
+    nextCount = currentCount - 1
 
 song :: String
 song =
   verse 1 ++
-  "98 bottles of beer on the wall, 98 bottles of beer.\n\
-       \Take one down and pass it around, 97 bottles of beer on the wall.\n\
-       \\n\
-       \97 bottles of beer on the wall, 97 bottles of beer.\n\
+  verse 2 ++
+       "97 bottles of beer on the wall, 97 bottles of beer.\n\
        \Take one down and pass it around, 96 bottles of beer on the wall.\n\
        \\n\
        \96 bottles of beer on the wall, 96 bottles of beer.\n\
