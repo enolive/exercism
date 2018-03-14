@@ -7,9 +7,10 @@ import Text.Printf (printf)
 verse :: Int -> String
 verse n = unlines [firstLine, secondLine, ""]
   where
-    firstLine = current ++ " on the wall, " ++ current ++ "."
-    secondLine = printf "Take one down and pass it around, %d bottles of beer on the wall." nextCount
-    current = printf "%d bottles of beer" currentCount
+    firstLine = beersOnTheWall currentCount ++ ", " ++ beers currentCount ++ "."
+    secondLine = "Take one down and pass it around, " ++ beersOnTheWall nextCount ++ "."
+    beers = printf "%d bottles of beer"
+    beersOnTheWall n = beers n ++ " on the wall"
     currentCount = 100 - n
     nextCount = currentCount - 1
 
@@ -17,10 +18,8 @@ song :: String
 song =
   verse 1 ++
   verse 2 ++
-       "97 bottles of beer on the wall, 97 bottles of beer.\n\
-       \Take one down and pass it around, 96 bottles of beer on the wall.\n\
-       \\n\
-       \96 bottles of beer on the wall, 96 bottles of beer.\n\
+  verse 3 ++
+  "96 bottles of beer on the wall, 96 bottles of beer.\n\
        \Take one down and pass it around, 95 bottles of beer on the wall.\n\
        \\n\
        \95 bottles of beer on the wall, 95 bottles of beer.\n\
