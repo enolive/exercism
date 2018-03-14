@@ -15,13 +15,14 @@ data TriangleType
 
 triangleType :: (Num a, Ord a) => a -> a -> a -> TriangleType
 triangleType a b c
-  | not greaterThanZero || not hasTriangleInequality = Illegal
+  | not isValid = Illegal
   | otherwise =
-    case (Set.size . Set.fromList) sides of
+    case numberOfUniqueSides of
       1 -> Equilateral
       2 -> Isosceles
       3 -> Scalene
   where
+    isValid = greaterThanZero && hasTriangleInequality
+    greaterThanZero = all (> 0) [a, b, c]
     hasTriangleInequality = a + b > c && b + c > a && a + c > b
-    greaterThanZero = all (> 0) sides
-    sides = [a, b, c]
+    numberOfUniqueSides = (Set.size . Set.fromList) [a, b, c]
