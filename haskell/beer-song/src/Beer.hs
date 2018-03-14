@@ -2,12 +2,15 @@ module Beer
   ( song
   ) where
 
+import Text.Printf (printf)
+
+verse :: Int -> String
 verse 1 = unlines [firstLine, secondLine, ""]
   where
-    firstLine = currentCount ++ " bottles of beer on the wall, " ++ currentCount ++ " bottles of beer."
-    secondLine = "Take one down and pass it around, " ++ previousCount ++" bottles of beer on the wall."
-    currentCount = show 99
-    previousCount = show $ 99 - 1
+    firstLine = printf "%d bottles of beer on the wall, %d bottles of beer." currentCount currentCount
+    secondLine = printf "Take one down and pass it around, %d bottles of beer on the wall." nextCount
+    currentCount = 100 - 1 :: Int
+    nextCount = currentCount - 1 :: Int
 
 song :: String
 song =
