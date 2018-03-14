@@ -3,6 +3,7 @@ module Triangle
   , triangleType
   ) where
 
+import Data.List (sort)
 import Data.Set ()
 import qualified Data.Set as Set
 
@@ -14,15 +15,19 @@ data TriangleType
   deriving (Eq, Show)
 
 triangleType :: (Num a, Ord a) => a -> a -> a -> TriangleType
-triangleType a b c
-  | not isValid = Illegal
+triangleType a b c = triangleType' [a, b, c]
+
+triangleType' sides
+  | (not . valid) sides = Illegal
   | otherwise =
-    case numberOfUniqueSides of
+    case numberOfUnique sides of
       1 -> Equilateral
       2 -> Isosceles
       3 -> Scalene
   where
-    isValid = greaterThanZero && hasTriangleInequality
-    greaterThanZero = all (> 0) [a, b, c]
-    hasTriangleInequality = a + b > c && b + c > a && a + c > b
-    numberOfUniqueSides = (Set.size . Set.fromList) [a, b, c]
+    valid sides = greaterThanZero sides && appliesToTriangleInequality sides
+    greaterThanZero = all (> 0)
+    appliesToTriangleInequality sides =
+      let [a, b, c] = sort sides
+      in a + b > c
+    numberOfUnique = Set.size . Set.fromList
