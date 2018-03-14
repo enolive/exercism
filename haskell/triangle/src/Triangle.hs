@@ -3,10 +3,10 @@ module Triangle
   , triangleType
   ) where
 
+import Control.Monad (ap)
 import Data.List (sort)
 import Data.Set ()
 import qualified Data.Set as Set
-import Control.Monad (liftM2)
 
 data TriangleType
   = Equilateral
@@ -26,7 +26,7 @@ triangleType' sides
       2 -> Isosceles
       3 -> Scalene
   where
-    valid = liftM2 (&&) greaterThanZero (appliesToTriangleInequality . sort)
+    valid = return (&&) `ap` greaterThanZero `ap` (appliesToTriangleInequality . sort)
     greaterThanZero = all (> 0)
     appliesToTriangleInequality [a, b, c] = a + b > c
     numberOfUnique = Set.size . Set.fromList
