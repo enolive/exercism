@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f6f15add31068117a693921e810222801cb73e4319f9b28a63677553e3726e51
+-- hash: 5c28b4b76e3c0827837979c2729eb2c81263a5d7a3d9aabf219833fcfb7a2d40
 
 name:           triangle
 version:        0.1.0.2
@@ -14,6 +14,7 @@ library
       src
   build-depends:
       base
+    , containers
   exposed-modules:
       Triangle
   other-modules:
