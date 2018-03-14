@@ -4,16 +4,25 @@ import Data.Char (isDigit)
 import Data.List (group, groupBy)
 
 decode :: String -> String
-decode = concatMap decodeGroup . groupByCount
-  where
-    groupByCount = reverse . map toGroup . groupBy includeFollowingDigits . reverse
-    decodeGroup (char, count) = replicate count char
-    toGroup [char] = (char, 1)
-    toGroup (char:reversedCount) = (char, (read . reverse) reversedCount)
-    includeFollowingDigits _ = isDigit
+decode = concatMap decodePair . makePairs
+
+decodePair :: (Int, Char) -> String
+decodePair (count, char) = replicate count char
+
+makePairs :: String -> [(Int, Char)]
+makePairs = snd . foldl buildPairs (Nothing, []) . groupBy allNumbers
+
+buildPairs :: (Maybe String, [(Int, Char)]) -> String -> (Maybe String, [(Int, Char)])
+buildPairs (Just previousNumber, list) group
+  = (Nothing, list ++ [(read previousNumber, head group)])
+buildPairs (Nothing, list) group
+  | (isDigit . head) group = (Just group, list)
+  | otherwise = (Nothing, list ++ [(1, head group)])
+
+allNumbers a b = isDigit a && isDigit b
 
 encode :: String -> String
 encode = concatMap encodeGroup . group
   where
     encodeGroup [char] = [char]
-    encodeGroup g = show (length g) ++ [head g]
+    encodeGroup g@(char:_) = show (length g) ++ [char]
