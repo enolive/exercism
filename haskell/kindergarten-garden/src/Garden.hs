@@ -17,15 +17,11 @@ data Plant
   deriving (Eq, Show)
 
 defaultGarden :: String -> Map String [Plant]
-defaultGarden plants = Map.fromList [("Alice", plantsForAlice plants), ("Bob", plantsForBob plants)]
+defaultGarden plants = Map.fromList $ zipWith (plantsForStudent plants) ["Alice", "Bob"] [0..]
 
-plantsForAlice plants = map translate forAlice
-  where
-    forAlice = (concatMap (take 2 . drop 0) . lines) plants
+plantsForStudent plants student index = (student, plantsFor index plants)
 
-plantsForBob plants = map translate forBob
-  where
-    forBob = (concatMap (take 2 . drop 2) . lines) plants
+plantsFor n = map translate . concatMap (take 2 . drop (n * 2)) . lines
 
 translate plant =
   case plant of
