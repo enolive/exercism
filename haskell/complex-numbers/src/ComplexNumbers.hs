@@ -27,6 +27,9 @@ conjugate (Complex a b) = Complex a (-b)
 abs :: Floating a => Complex a -> a
 abs (Complex a b) = sqrt (a^2 + b^2)
 
+reciprocal :: Fractional a => Complex a -> Complex a
+reciprocal (Complex a b) = Complex (a/(a^2 + b^2)) (-b/(a^2 + b^2))
+
 -- binary operators ------------------------------------------------------------
 mul :: Num a => Complex a -> Complex a -> Complex a
 mul (Complex a b) (Complex c d) = Complex (a * c - b * d) (b * c + a * d)
@@ -38,4 +41,4 @@ sub :: Num a => Complex a -> Complex a -> Complex a
 sub (Complex a b) (Complex c d) = Complex (a - c) (b - d)
 
 div :: Fractional a => Complex a -> Complex a -> Complex a
-div (Complex a b) (Complex c d) = Complex ((a * c + b * d)/(c^2 + d^2)) ((b * c - a * d)/(c^2 + d^2))
+div a b = mul a $ reciprocal b
