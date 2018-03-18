@@ -1,7 +1,9 @@
 module Scrabble (scoreLetter, scoreWord) where
 
 scoreLetter :: Char -> Integer
-scoreLetter letter = error "You need to implement this function."
+scoreLetter 'a' = 1
+scoreLetter 'Z' = 10
+scoreLetter _ = 0
 
 scoreWord :: String -> Integer
-scoreWord word = error "You need to implement this function."
+scoreWord = sum . map scoreLetter
