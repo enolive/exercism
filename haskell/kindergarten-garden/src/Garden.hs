@@ -5,6 +5,7 @@ module Garden
   , lookupPlants
   ) where
 
+import Data.List (sort)
 import Data.Map (Map)
 import qualified Data.Map as Map
 import Data.Maybe (fromMaybe)
@@ -17,22 +18,25 @@ data Plant
   deriving (Eq, Show)
 
 defaultGarden :: String -> Map String [Plant]
-defaultGarden plants = Map.fromList $ zipWith (plantsForStudent plants) ["Alice", "Bob"] [0..]
+defaultGarden = garden defaultStudents
+  where
+    defaultStudents =
+      ["Alice", "Bob", "Charlie", "David", "Eve", "Fred", "Ginny", "Harriet", "Ileana", "Joseph", "Kincaid", "Larry"]
 
-plantsForStudent plants student index = (student, plantsFor index plants)
+garden :: [String] -> String -> Map String [Plant]
+garden students plants = Map.fromList $ zip sortedStudents studentPlants
+  where
+    sortedStudents = sort students
+    studentPlants = map forStudent [0 ..]
+    forStudent n = map translate $ concatMap (take 2 . drop (n * 2)) $ lines plants
 
-plantsFor n = map translate . concatMap (take 2 . drop (n * 2)) . lines
+lookupPlants :: String -> Map String [Plant] -> [Plant]
+lookupPlants student garden = fromMaybe [] $ Map.lookup student garden
 
+translate :: Char -> Plant
 translate plant =
   case plant of
     'V' -> Violets
     'C' -> Clover
     'R' -> Radishes
     'G' -> Grass
-
-
-garden :: [String] -> String -> Map String [Plant]
-garden students plants = error "You need to implement this function."
-
-lookupPlants :: String -> Map String [Plant] -> [Plant]
-lookupPlants student garden = fromMaybe [] $ Map.lookup student garden
