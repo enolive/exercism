@@ -38,4 +38,4 @@ sub :: Num a => Complex a -> Complex a -> Complex a
 sub = error "You need to implement this function"
 
 div :: Fractional a => Complex a -> Complex a -> Complex a
-div = error "You need to implement this function"
+div (Complex a b) (Complex c d) = Complex ((a * c + b * d)/(c^2 + d^2)) ((b * c - a * d)/(c^2 + d^2))
