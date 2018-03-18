@@ -28,8 +28,8 @@ garden students plants = Map.fromList $ zip sortedStudents studentPlants
   where
     sortedStudents = sort students
     studentPlants = map forStudent [1 ..]
-    forStudent n = map translate $ concatMap (take 2 . drop (former n)) $ lines plants
-    former n = (n - 1) * 2
+    forStudent n = (map translate . concatMap (takeFor n) . lines) plants
+    takeFor n = take 2 . drop ((n - 1) * 2)
 
 lookupPlants :: String -> Map String [Plant] -> [Plant]
 lookupPlants student garden = fromMaybe [] $ Map.lookup student garden
