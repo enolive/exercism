@@ -29,7 +29,7 @@ abs (Complex a b) = sqrt (a^2 + b^2)
 
 -- binary operators ------------------------------------------------------------
 mul :: Num a => Complex a -> Complex a -> Complex a
-mul = error "You need to implement this function"
+mul (Complex a b) (Complex c d) = Complex (a * c - b * d) (b * c + a * d)
 
 add :: Num a => Complex a -> Complex a -> Complex a
 add = error "You need to implement this function"
