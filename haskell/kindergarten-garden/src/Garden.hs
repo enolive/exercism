@@ -18,9 +18,18 @@ data Plant
 
 defaultGarden :: String -> Map String [Plant]
 defaultGarden plants = Map.fromList [("Alice", plantList plants)]
+
+plantList plants = map translate forAlice
   where
-    plantList "RC\nGG" = [Radishes, Clover, Grass, Grass]
-    plantList "VC\nRC" = [Violets, Clover, Radishes, Clover]
+    forAlice = (concatMap (take 2 . drop 0) . lines) plants
+
+translate plant =
+  case plant of
+    'V' -> Violets
+    'C' -> Clover
+    'R' -> Radishes
+    'G' -> Grass
+
 
 garden :: [String] -> String -> Map String [Plant]
 garden students plants = error "You need to implement this function."
