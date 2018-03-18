@@ -7,9 +7,12 @@ import Data.Char (toLower)
 
 scoreLetter :: Char -> Integer
 scoreLetter l
-  | lower `elem` "aeiorstu" = 1
-  | lower `elem` "fy" = 4
+  | lower `elem` "aeioulnrst" = 1
+  | lower `elem` "dg" = 2
+  | lower `elem` "bcmp" = 3
+  | lower `elem` "fhvwy" = 4
   | lower `elem` "k" = 5
+  | lower `elem` "jx" = 8
   | lower `elem` "qz" = 10
   | otherwise = 0
   where
