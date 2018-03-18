@@ -1,11 +1,16 @@
-module Scrabble (scoreLetter, scoreWord) where
+module Scrabble
+  ( scoreLetter
+  , scoreWord
+  ) where
 
 import Data.Char (toLower)
 
 scoreLetter :: Char -> Integer
-scoreLetter 'a' = 1
-scoreLetter 'Z' = 10
-scoreLetter _ = 0
+scoreLetter l =
+  case toLower l of
+    'a' -> 1
+    'z' -> 10
+    _ -> 0
 
 scoreWord :: String -> Integer
-scoreWord = sum . map (scoreLetter . toLower)
+scoreWord = sum . map scoreLetter
