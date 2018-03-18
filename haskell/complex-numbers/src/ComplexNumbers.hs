@@ -13,7 +13,10 @@ module ComplexNumbers
 import Prelude hiding (div, abs)
 
 -- Data definition -------------------------------------------------------------
-data Complex a = Complex a a deriving(Eq, Show)
+data Complex a = Complex {
+  real :: a,
+  imaginary :: a
+} deriving(Eq, Show)
 
 complex :: (a, a) -> Complex a
 complex (real, imaginary) = Complex real imaginary
@@ -24,12 +27,6 @@ conjugate = error "You need to implement this function"
 
 abs :: Floating a => Complex a -> a
 abs = error "You need to implement this function"
-
-real :: Num a => Complex a -> a
-real (Complex r _) = r
-
-imaginary :: Num a => Complex a -> a
-imaginary = error "You need to implement this function"
 
 -- binary operators ------------------------------------------------------------
 mul :: Num a => Complex a -> Complex a -> Complex a
