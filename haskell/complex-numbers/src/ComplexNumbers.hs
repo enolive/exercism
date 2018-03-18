@@ -22,10 +22,10 @@ complex (real, imaginary) = Complex real imaginary
 
 -- unary operators -------------------------------------------------------------
 conjugate :: Num a => Complex a -> Complex a
-conjugate (Complex r i) = Complex r (-i)
+conjugate (Complex a b) = Complex a (-b)
 
 abs :: Floating a => Complex a -> a
-abs = error "You need to implement this function"
+abs (Complex a b) = sqrt (a^2 + b^2)
 
 -- binary operators ------------------------------------------------------------
 mul :: Num a => Complex a -> Complex a -> Complex a
