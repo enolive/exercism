@@ -35,7 +35,7 @@ add :: Num a => Complex a -> Complex a -> Complex a
 add (Complex a b) (Complex c d) = Complex (a + c) (b + d)
 
 sub :: Num a => Complex a -> Complex a -> Complex a
-sub = error "You need to implement this function"
+sub (Complex a b) (Complex c d) = Complex (a - c) (b - d)
 
 div :: Fractional a => Complex a -> Complex a -> Complex a
 div (Complex a b) (Complex c d) = Complex ((a * c + b * d)/(c^2 + d^2)) ((b * c - a * d)/(c^2 + d^2))
