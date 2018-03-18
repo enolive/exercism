@@ -30,13 +30,13 @@ groups :: String -> [[Plant]]
 groups plants =
   case lines plants of
     [[], []] -> []
-    [x1:x2:xs, y1:y2:ys] -> map translate [x1, x2, y1, y2] : groups (unlines [xs, ys])
+    [x1:x2:xs, y1:y2:ys] -> map toPlant [x1, x2, y1, y2] : groups (unlines [xs, ys])
 
 lookupPlants :: String -> Map String [Plant] -> [Plant]
 lookupPlants student garden = fromMaybe [] $ Map.lookup student garden
 
-translate :: Char -> Plant
-translate plant =
+toPlant :: Char -> Plant
+toPlant plant =
   case plant of
     'V' -> Violets
     'C' -> Clover
