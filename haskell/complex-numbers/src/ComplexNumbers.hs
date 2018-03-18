@@ -22,7 +22,7 @@ complex (real, imaginary) = Complex real imaginary
 
 -- unary operators -------------------------------------------------------------
 conjugate :: Num a => Complex a -> Complex a
-conjugate = error "You need to implement this function"
+conjugate (Complex r i) = Complex r (-i)
 
 abs :: Floating a => Complex a -> a
 abs = error "You need to implement this function"
