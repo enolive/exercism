@@ -1,22 +1,21 @@
 module ComplexNumbers
-(Complex,
- conjugate,
- abs,
- real,
- imaginary,
- mul,
- add,
- sub,
- div,
- complex) where
+  ( Complex(..)
+  , conjugate
+  , abs
+  , mul
+  , add
+  , sub
+  , div
+  , complex
+  ) where
 
-import Prelude hiding (div, abs)
+import Prelude hiding (abs, div)
 
 -- Data definition -------------------------------------------------------------
-data Complex a = Complex {
-  real :: a,
-  imaginary :: a
-} deriving(Eq, Show)
+data Complex a = Complex
+  { real :: a
+  , imaginary :: a
+  } deriving (Eq, Show)
 
 complex :: (a, a) -> Complex a
 complex (real, imaginary) = Complex real imaginary
