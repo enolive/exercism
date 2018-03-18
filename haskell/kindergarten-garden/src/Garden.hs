@@ -24,12 +24,13 @@ defaultGarden = garden defaultStudents
       ["Alice", "Bob", "Charlie", "David", "Eve", "Fred", "Ginny", "Harriet", "Ileana", "Joseph", "Kincaid", "Larry"]
 
 garden :: [String] -> String -> Map String [Plant]
-garden students plants = Map.fromList $ zip sortedStudents studentPlants
-  where
-    sortedStudents = sort students
-    studentPlants = map forStudent [1 ..]
-    forStudent n = (map translate . concatMap (takeFor n) . lines) plants
-    takeFor n = take 2 . drop ((n - 1) * 2)
+garden students plants = Map.fromList $ zip (sort students) (groups plants)
+
+groups :: String -> [[Plant]]
+groups plants =
+  case lines plants of
+    [[], []] -> []
+    [x1:x2:xs, y1:y2:ys] -> map translate [x1, x2, y1, y2] : groups (unlines [xs, ys])
 
 lookupPlants :: String -> Map String [Plant] -> [Plant]
 lookupPlants student garden = fromMaybe [] $ Map.lookup student garden
