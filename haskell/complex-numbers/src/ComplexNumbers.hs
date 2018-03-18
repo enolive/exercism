@@ -32,7 +32,7 @@ mul :: Num a => Complex a -> Complex a -> Complex a
 mul (Complex a b) (Complex c d) = Complex (a * c - b * d) (b * c + a * d)
 
 add :: Num a => Complex a -> Complex a -> Complex a
-add = error "You need to implement this function"
+add (Complex a b) (Complex c d) = Complex (a + c) (b + d)
 
 sub :: Num a => Complex a -> Complex a -> Complex a
 sub = error "You need to implement this function"
