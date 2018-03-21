@@ -30,4 +30,7 @@ turnLeft :: Bearing -> Bearing
 turnLeft direction = error "You need to implement this function."
 
 turnRight :: Bearing -> Bearing
-turnRight direction = error "You need to implement this function."
+turnRight North = East
+turnRight East = South
+turnRight South = West
+turnRight West = North
