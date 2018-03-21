@@ -1,29 +1,27 @@
 module Robot
-    ( Bearing(East,North,South,West)
-    , bearing
-    , coordinates
-    , mkRobot
-    , simulate
-    , turnLeft
-    , turnRight
-    ) where
+  ( Bearing(East, North, South, West)
+  , bearing
+  , coordinates
+  , mkRobot
+  , simulate
+  , turnLeft
+  , turnRight
+  ) where
 
-data Bearing = North
-             | East
-             | South
-             | West
-             deriving (Eq, Show)
+data Bearing
+  = North
+  | East
+  | South
+  | West
+  deriving (Eq, Show)
 
-data Robot = Dummy
-
-bearing :: Robot -> Bearing
-bearing robot = error "You need to implement this function."
-
-coordinates :: Robot -> (Integer, Integer)
-coordinates robot = error "You need to implement this function."
+data Robot = Robot
+  { bearing :: Bearing
+  , coordinates :: (Integer, Integer)
+  }
 
 mkRobot :: Bearing -> (Integer, Integer) -> Robot
-mkRobot direction coordinates = error "You need to implement this function."
+mkRobot direction coordinates = Robot {bearing = direction, coordinates = coordinates}
 
 simulate :: Robot -> String -> Robot
 simulate robot instructions = error "You need to implement this function."
