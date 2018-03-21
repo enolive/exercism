@@ -24,10 +24,32 @@ mkRobot :: Bearing -> (Integer, Integer) -> Robot
 mkRobot direction coordinates = Robot {bearing = direction, coordinates = coordinates}
 
 simulate :: Robot -> String -> Robot
-simulate robot instructions = error "You need to implement this function."
+simulate robot [] = robot
+simulate robot (command:commandList) = (simulate . chooseCommand command) robot commandList
+
+chooseCommand :: Char -> Robot -> Robot
+chooseCommand 'A' = advance
+chooseCommand 'L' = changeBearing turnLeft
+chooseCommand 'R' = changeBearing turnRight
+
+changeBearing :: (Bearing -> Bearing) -> Robot -> Robot
+changeBearing f Robot {bearing = dir, coordinates = location} = mkRobot (f dir) location
+
+advance :: Robot -> Robot
+advance (Robot dir (x, y)) = mkRobot dir newCoordinates
+  where
+    newCoordinates =
+      case dir of
+        North -> (x, y + 1)
+        South -> (x, y - 1)
+        East -> (x + 1, y)
+        West -> (x - 1, y)
 
 turnLeft :: Bearing -> Bearing
-turnLeft direction = error "You need to implement this function."
+turnLeft North = West
+turnLeft West = South
+turnLeft South = East
+turnLeft East = North
 
 turnRight :: Bearing -> Bearing
 turnRight North = East
