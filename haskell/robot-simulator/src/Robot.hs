@@ -35,7 +35,7 @@ changeBearing :: (Bearing -> Bearing) -> Robot -> Robot
 changeBearing f Robot {bearing = dir, coordinates = location} = mkRobot (f dir) location
 
 advance :: Robot -> Robot
-advance (Robot dir (x, y)) = mkRobot dir newCoordinates
+advance Robot {bearing = dir, coordinates = (x, y)} = mkRobot dir newCoordinates
   where
     newCoordinates =
       case dir of
