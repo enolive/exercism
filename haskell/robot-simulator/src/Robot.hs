@@ -24,12 +24,12 @@ mkRobot :: Bearing -> (Integer, Integer) -> Robot
 mkRobot direction coordinates = Robot {bearing = direction, coordinates = coordinates}
 
 simulate :: Robot -> String -> Robot
-simulate = foldl (flip performCommand)
+simulate = foldl (flip move)
 
-performCommand :: Char -> Robot -> Robot
-performCommand 'A' = advance
-performCommand 'L' = changeBearing turnLeft
-performCommand 'R' = changeBearing turnRight
+move :: Char -> Robot -> Robot
+move 'A' = advance
+move 'L' = changeBearing turnLeft
+move 'R' = changeBearing turnRight
 
 changeBearing :: (Bearing -> Bearing) -> Robot -> Robot
 changeBearing f Robot {bearing = dir, coordinates = location} = mkRobot (f dir) location
