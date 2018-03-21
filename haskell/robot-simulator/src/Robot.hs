@@ -25,12 +25,12 @@ mkRobot direction coordinates = Robot {bearing = direction, coordinates = coordi
 
 simulate :: Robot -> String -> Robot
 simulate robot [] = robot
-simulate robot (command:commandList) = (simulate . chooseCommand command) robot commandList
+simulate robot (command:commandList) = (simulate . perform command) robot commandList
 
-chooseCommand :: Char -> Robot -> Robot
-chooseCommand 'A' = advance
-chooseCommand 'L' = changeBearing turnLeft
-chooseCommand 'R' = changeBearing turnRight
+perform :: Char -> Robot -> Robot
+perform 'A' = advance
+perform 'L' = changeBearing turnLeft
+perform 'R' = changeBearing turnRight
 
 changeBearing :: (Bearing -> Bearing) -> Robot -> Robot
 changeBearing f Robot {bearing = dir, coordinates = location} = mkRobot (f dir) location
