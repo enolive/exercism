@@ -5,14 +5,12 @@ module SecretHandshake
 import Data.Bits (testBit)
 
 handshake :: Int -> [String]
-handshake number = (reverseIfNecessary number . concatMap bitMeaning) $ bitsFor number
+handshake number
+  | testBit number 4 = reverse list
+  | otherwise = list
   where
+    list = concatMap bitMeaning $ bitsFor number
     bitMeaning = toList . bitToString
-
-reverseIfNecessary :: Int -> [a] -> [a]
-reverseIfNecessary number input
-  | testBit number 4 = reverse input
-  | otherwise = input
 
 bitsFor :: Int -> [Int]
 bitsFor number = filter (testBit number) [0 .. 3]
