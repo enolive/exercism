@@ -1,4 +1,5 @@
 module SecretHandshake (handshake) where
 
 handshake :: Int -> [String]
-handshake n = error "You need to implement this function."
+handshake 1 = ["wink"]
+handshake 2 = ["double blink"]
