@@ -3,7 +3,11 @@ module ProteinTranslation(proteins) where
 import Data.List (unfoldr)
 
 proteins :: String -> Maybe [String]
-proteins p = Just [protein p]
+proteins p
+  | (not . null) protein' = Just [protein']
+  | otherwise = Just []
+  where
+    protein' = protein p
 
 protein :: String -> String
 protein "AUG" = "Methionine"
@@ -20,6 +24,9 @@ protein "UAC" = "Tyrosine"
 protein "UGU" = "Cysteine"
 protein "UGC" = "Cysteine"
 protein "UGG" = "Tryptophan"
+protein "UAA" = []
+protein "UAG" = []
+protein "UGA" = []
 
 chunks :: Int -> [a] -> [[a]]
 chunks n = takeWhile (not . null) . unfoldr (Just . splitAt n)
