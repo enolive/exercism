@@ -6,23 +6,15 @@ proteins :: String -> Maybe [String]
 proteins = Just . takeWhile (not . null) . map protein . chunks 3
 
 protein :: String -> String
-protein "AUG" = "Methionine"
-protein "UUU" = "Phenylalanine"
-protein "UUC" = "Phenylalanine"
-protein "UUA" = "Leucine"
-protein "UUG" = "Leucine"
-protein "UCU" = "Serine"
-protein "UCC" = "Serine"
-protein "UCA" = "Serine"
-protein "UCG" = "Serine"
-protein "UAU" = "Tyrosine"
-protein "UAC" = "Tyrosine"
-protein "UGU" = "Cysteine"
-protein "UGC" = "Cysteine"
-protein "UGG" = "Tryptophan"
-protein "UAA" = []
-protein "UAG" = []
-protein "UGA" = []
+protein chunk
+  | chunk == "AUG" = "Methionine"
+  | chunk == "UGG" = "Tryptophan"
+  | chunk `elem` ["UUU", "UUC"] = "Phenylalanine"
+  | chunk `elem` ["UUA", "UUG"] = "Leucine"
+  | chunk `elem` ["UCU", "UCC", "UCA", "UCG"] = "Serine"
+  | chunk `elem` ["UAU", "UAC"] = "Tyrosine"
+  | chunk `elem` ["UGU", "UGC"] = "Cysteine"
+  | chunk `elem` ["UAA", "UAG", "UGA"] = []
 
 chunks :: Int -> [a] -> [[a]]
 chunks n = takeWhile (not . null) . unfoldr (Just . splitAt n)
