@@ -3,11 +3,7 @@ module ProteinTranslation(proteins) where
 import Data.List (unfoldr)
 
 proteins :: String -> Maybe [String]
-proteins p
-  | (not . null) protein' = Just [protein']
-  | otherwise = Just []
-  where
-    protein' = protein p
+proteins = Just . takeWhile (not . null) . map protein . chunks 3
 
 protein :: String -> String
 protein "AUG" = "Methionine"
