@@ -1,4 +1,6 @@
-module ProteinTranslation(proteins) where
+module ProteinTranslation
+  ( proteins
+  ) where
 
 import Data.List (unfoldr)
 
