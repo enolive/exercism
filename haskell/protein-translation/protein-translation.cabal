@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e4f2500ed45b144400f4428991a0b81c80b980084fbd9c5945e24faefd333371
+-- hash: 9824bec5564d6913b055ffacc23ec83e30c6fee69edd2ff7c85a6b921f0a4983
 
 name:           protein-translation
 version:        1.1.0.1
@@ -14,6 +14,7 @@ library
       src
   build-depends:
       base
+    , split
   exposed-modules:
       ProteinTranslation
   other-modules:
