@@ -1,4 +1,7 @@
 module ProteinTranslation(proteins) where
 
 proteins :: String -> Maybe [String]
-proteins = error "You need to implement this function!"
+proteins p = Just [protein p]
+
+protein "AUG" = "Methionine"
+protein "UUU" = "Phenylalanine"
