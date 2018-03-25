@@ -1,13 +1,18 @@
-module Anagram (anagramsFor) where
+module Anagram
+  ( anagramsFor
+  ) where
 
-import Data.List (sort)
+import Control.Monad (ap)
 import Data.Char (toLower)
+import Data.Function (on)
+import Data.List (sort)
 
 anagramsFor :: String -> [String] -> [String]
 anagramsFor word = filter (isAnagramOf word)
 
 isAnagramOf :: String -> String -> Bool
-isAnagramOf word candidate = lowerWord /= lowerCandidate && sort lowerWord == sort lowerCandidate
+isAnagramOf word = return (&&) `ap` (not . equalIgnoringCase word) `ap` (sameLettersAs word)
   where
-    lowerWord = map toLower word
-    lowerCandidate = map toLower candidate
+    equalIgnoringCase = (==) `on` lower
+    sameLettersAs = (==) `on` sort . lower
+    lower = map toLower
