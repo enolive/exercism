@@ -37,7 +37,7 @@
     <orderEntry type="library" name="hspec-2.4.4" level="project" />
     <orderEntry type="library" name="hspec-core-2.4.4" level="project" />
     <orderEntry type="library" name="hspec-discover-2.4.4" level="project" />
-    <orderEntry type="library" name="primitive-0.6.2.0" level="project" />
-    <orderEntry type="library" name="stm-2.4.4.1" level="project" />
+    <orderEntry type="library" name="primitive-0.6.3.0" level="project" />
+    <orderEntry type="library" name="stm-2.4.5.0" level="project" />
   </component>
 </module>
