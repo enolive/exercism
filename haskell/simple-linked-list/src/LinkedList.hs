@@ -11,12 +11,12 @@ module LinkedList
   ) where
 
 import Data.List (unfoldr)
-import Data.Maybe (fromJust, fromMaybe, isNothing)
 
 data LinkedList a = Nil | Item a (LinkedList a) deriving (Eq, Show)
 
 datum :: LinkedList a -> a
 datum (Item x _) = x
+datum Nil = error "nil has no entry"
 
 fromList :: [a] -> LinkedList a
 fromList = foldr new nil
