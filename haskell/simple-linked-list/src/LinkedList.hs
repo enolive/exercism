@@ -39,4 +39,5 @@ reverseLinkedList :: LinkedList a -> LinkedList a
 reverseLinkedList linkedList = error "You need to implement this function."
 
 toList :: LinkedList a -> [a]
-toList linkedList = error "You need to implement this function."
+toList LinkedList { rest = Nothing } = []
+toList linkedList = [datum linkedList] ++ (toList . next) linkedList
