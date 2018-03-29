@@ -13,28 +13,27 @@ module LinkedList
 import Data.List (unfoldr)
 import Data.Maybe (fromJust, fromMaybe, isNothing)
 
-data LinkedList a = LinkedList
-  { rest :: Maybe (LinkedList a)
-  , current :: Maybe a
-  } deriving (Eq, Show)
+data LinkedList a = Nil | Item a (LinkedList a) deriving (Eq, Show)
 
 datum :: LinkedList a -> a
-datum = fromJust . current
+datum (Item x _) = x
 
 fromList :: [a] -> LinkedList a
 fromList = foldr new nil
 
 isNil :: LinkedList a -> Bool
-isNil = isNothing . rest
+isNil Nil = True
+isNil _ = False
 
 new :: a -> LinkedList a -> LinkedList a
-new x linkedList = LinkedList {current = Just x, rest = Just linkedList}
+new = Item
 
 next :: LinkedList a -> LinkedList a
-next = fromMaybe nil . rest
+next Nil = Nil
+next (Item _ linkedList) = linkedList
 
 nil :: LinkedList a
-nil = LinkedList {current = Nothing, rest = Nothing}
+nil = Nil
 
 reverseLinkedList :: LinkedList a -> LinkedList a
 reverseLinkedList = fromList . reverse . toList
@@ -42,6 +41,5 @@ reverseLinkedList = fromList . reverse . toList
 toList :: LinkedList a -> [a]
 toList = unfoldr getElem
   where
-    getElem linkedList
-      | isNil linkedList = Nothing
-      | otherwise = Just (datum linkedList, next linkedList)
+    getElem Nil = Nothing
+    getElem (Item a linkedList) = Just (a, linkedList)
