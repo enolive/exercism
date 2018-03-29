@@ -20,10 +20,11 @@ foldr f z xs = error "You need to implement this function."
 
 length :: [a] -> Int
 length [] = 0
-length (x:xs) = 1 + length xs
+length (_:xs) = 1 + length xs
 
 reverse :: [a] -> [a]
-reverse xs = error "You need to implement this function."
+reverse [] = []
+reverse (x:xs) = reverse xs ++ [x]
 
 map :: (a -> b) -> [a] -> [b]
 map f xs = error "You need to implement this function."
@@ -32,7 +33,8 @@ filter :: (a -> Bool) -> [a] -> [a]
 filter p xs = error "You need to implement this function."
 
 (++) :: [a] -> [a] -> [a]
-xs ++ ys = error "You need to implement this function."
+[] ++ ys = ys
+(x:xs) ++ (ys) = x : xs ++ ys
 
 concat :: [[a]] -> [a]
 concat xss = error "You need to implement this function."
