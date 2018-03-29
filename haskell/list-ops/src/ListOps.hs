@@ -27,7 +27,8 @@ reverse [] = []
 reverse (x:xs) = reverse xs ++ [x]
 
 map :: (a -> b) -> [a] -> [b]
-map f xs = error "You need to implement this function."
+map _ [] = []
+map f (x:xs) = f x : map f xs
 
 filter :: (a -> Bool) -> [a] -> [a]
 filter p xs = error "You need to implement this function."
