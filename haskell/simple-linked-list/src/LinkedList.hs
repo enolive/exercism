@@ -10,25 +10,30 @@ module LinkedList
     , toList
     ) where
 
-data LinkedList a = Dummy deriving (Eq, Show)
+import Data.Maybe
+
+data LinkedList a = LinkedList {
+  rest :: Maybe (LinkedList a),
+  current :: Maybe a
+} deriving (Eq, Show)
 
 datum :: LinkedList a -> a
-datum linkedList = error "You need to implement this function."
+datum = fromJust . current
 
 fromList :: [a] -> LinkedList a
 fromList xs = error "You need to implement this function."
 
 isNil :: LinkedList a -> Bool
-isNil linkedList = error "You need to implement this function."
+isNil = isNothing . rest
 
 new :: a -> LinkedList a -> LinkedList a
-new x linkedList = error "You need to implement this function."
+new x linkedList = LinkedList { current = Just x, rest = Just linkedList }
 
 next :: LinkedList a -> LinkedList a
-next linkedList = error "You need to implement this function."
+next = fromMaybe nil . rest
 
 nil :: LinkedList a
-nil = error "You need to implement this function."
+nil = LinkedList { current = Nothing, rest = Nothing }
 
 reverseLinkedList :: LinkedList a -> LinkedList a
 reverseLinkedList linkedList = error "You need to implement this function."
