@@ -31,7 +31,10 @@ map _ [] = []
 map f (x:xs) = f x : map f xs
 
 filter :: (a -> Bool) -> [a] -> [a]
-filter p xs = error "You need to implement this function."
+filter _ [] = []
+filter p (x:xs)
+  | p x = x : filter p xs
+  | otherwise = filter p xs
 
 (++) :: [a] -> [a] -> [a]
 [] ++ ys = ys
