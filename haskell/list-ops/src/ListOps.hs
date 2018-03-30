@@ -20,7 +20,11 @@ foldl' f z (x:xs) = foldl f z' xs
     !z' = f z x
 
 foldr :: (a -> b -> b) -> b -> [a] -> b
-foldr f z xs = error "You need to implement this function."
+foldr _ z [] = z
+foldr f z list = foldr f z' list'
+  where
+    list' = tail list
+    z' = (f . head) list z
 
 length :: [a] -> Int
 length [] = 0
