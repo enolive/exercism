@@ -1,3 +1,5 @@
+{-# LANGUAGE BangPatterns #-}
+
 module ListOps
   ( length
   , reverse
@@ -9,11 +11,13 @@ module ListOps
   , concat
   ) where
 
-import Prelude hiding
-  ( length, reverse, map, filter, foldr, (++), concat )
+import Prelude hiding ((++), concat, filter, foldr, length, map, reverse)
 
 foldl' :: (b -> a -> b) -> b -> [a] -> b
-foldl' f z xs = error "You need to implement this function."
+foldl' _ z [] = z
+foldl' f z (x:xs) = foldl f z' xs
+  where
+    !z' = f z x
 
 foldr :: (a -> b -> b) -> b -> [a] -> b
 foldr f z xs = error "You need to implement this function."
