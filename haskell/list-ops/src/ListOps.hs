@@ -21,14 +21,10 @@ foldl' f z (x:xs) = foldl f z' xs
 
 foldr :: (a -> b -> b) -> b -> [a] -> b
 foldr _ z [] = z
-foldr f z list = foldr f z' list'
-  where
-    list' = tail list
-    z' = (f . head) list z
+foldr f z (x:xs) = f x $ foldr f z xs
 
 length :: [a] -> Int
-length [] = 0
-length (_:xs) = 1 + length xs
+length = foldr (\ _ -> (+) 1) 0
 
 reverse :: [a] -> [a]
 reverse [] = []
@@ -46,7 +42,7 @@ filter p (x:xs)
 
 (++) :: [a] -> [a] -> [a]
 [] ++ ys = ys
-(x:xs) ++ (ys) = x : xs ++ ys
+(x:xs) ++ ys = x : xs ++ ys
 
 concat :: [[a]] -> [a]
 concat xss = error "You need to implement this function."
