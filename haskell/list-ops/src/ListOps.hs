@@ -45,4 +45,4 @@ filter p (x:xs)
 (x:xs) ++ ys = x : xs ++ ys
 
 concat :: [[a]] -> [a]
-concat xss = error "You need to implement this function."
+concat = foldr (++) []
