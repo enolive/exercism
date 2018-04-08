@@ -27,7 +27,7 @@ data Schedule
   | Teenth
 
 meetupDay :: Schedule -> Weekday -> Integer -> Int -> Day
-meetupDay schedule weekday year month = (pick . filter (isDayOfWeek weekday)) $ daysOfMonth year month
+meetupDay schedule weekday year = pick . filter (isDayOfWeek weekday) . daysOfMonth year
   where
     pick =
       case schedule of
