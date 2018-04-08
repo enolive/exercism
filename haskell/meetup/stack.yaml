@@ -1,0 +1,5 @@
+ghc-options:
+  $locals: -Wall
+packages:
+- .
+resolver: lts-11.4
