@@ -22,10 +22,10 @@ data Schedule = First
 meetupDay :: Schedule -> Weekday -> Integer -> Int -> Day
 meetupDay schedule weekday year month = fromGregorian year month $ day schedule
   where
-    day Teenth = getDay 0 [13..19]
+    day Teenth = getDay 0 [13 .. 19]
     day First = getDay 0 [1 .. 31]
     day Second = getDay 1 [1 .. 31]
-    getDay dropWeeks daysInMonth = (!! dropWeeks) $ filter (matches weekday year month) daysInMonth
+    getDay dropWeeks = (!! dropWeeks) . filter (matches weekday year month)
 
 getWeekDay :: Int -> Weekday
 getWeekDay 1 = Monday
