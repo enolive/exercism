@@ -25,6 +25,7 @@ meetupDay schedule weekday year month = fromGregorian year month $ day schedule
     day Teenth = getDay 0 [13 .. 19]
     day First = getDay 0 [1 .. 31]
     day Second = getDay 1 [1 .. 31]
+    day Third = getDay 2 [1 .. 31]
     getDay dropWeeks = (!! dropWeeks) . filter (matches weekday year month)
 
 getWeekDay :: Int -> Weekday
