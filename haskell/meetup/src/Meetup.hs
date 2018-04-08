@@ -4,7 +4,8 @@ module Meetup
   , meetupDay
   ) where
 
-import Data.Time.Calendar (Day, fromGregorian, gregorianMonthLength)
+import Data.Maybe (mapMaybe)
+import Data.Time.Calendar (Day, fromGregorianValid, toGregorian)
 import Data.Time.Calendar.WeekDate (toWeekDate)
 
 data Weekday
@@ -15,7 +16,7 @@ data Weekday
   | Friday
   | Saturday
   | Sunday
-  deriving (Show, Eq)
+  deriving (Show, Eq, Enum)
 
 data Schedule
   = First
@@ -26,31 +27,29 @@ data Schedule
   | Teenth
 
 meetupDay :: Schedule -> Weekday -> Integer -> Int -> Day
-meetupDay schedule weekday year month = fromGregorian year month $ day schedule
+meetupDay schedule weekday year month = (pick . filter (isDayOfWeek weekday)) $ daysOfMonth year month
   where
-    day Teenth = findDay head [13 .. 19]
-    day First = findDay head daysOfMonth
-    day Second = findDay (!! 1) daysOfMonth
-    day Third = findDay (!! 2) daysOfMonth
-    day Fourth = findDay (!! 3) daysOfMonth
-    day Last = findDay last daysOfMonth
-    daysOfMonth = [1..gregorianMonthLength year month]
-    findDay f = f . daysForWeekday
-    daysForWeekday = filter (matches weekday year month)
+    pick =
+      case schedule of
+        First -> head
+        Second -> (!! 1)
+        Third -> (!! 2)
+        Fourth -> (!! 3)
+        Last -> last
+        Teenth -> head . filter isTeen
 
-matches :: Weekday -> Integer -> Int -> Int -> Bool
-matches expectedWeekDay year month dayOfMonth = getWeekDay weekDay == expectedWeekDay
-  where
-    (_, _, weekDay) = toWeekDate $ fromGregorian year month dayOfMonth
+daysOfMonth :: Integer -> Int -> [Day]
+daysOfMonth year month = mapMaybe (fromGregorianValid year month) [1 .. 31]
 
-getWeekDay :: Int -> Weekday
-getWeekDay dayNumber =
-  case dayNumber of
-    1 -> Monday
-    2 -> Tuesday
-    3 -> Wednesday
-    4 -> Thursday
-    5 -> Friday
-    6 -> Saturday
-    7 -> Sunday
-    _ -> error "invalid day"
+isTeen :: Day -> Bool
+isTeen day =
+  let (_, _, dayOfMonth) = toGregorian day
+  in dayOfMonth `elem` [13 .. 19]
+
+isDayOfWeek :: Weekday -> Day -> Bool
+isDayOfWeek weekday day = dayOfWeek day == weekday
+
+dayOfWeek :: Day -> Weekday
+dayOfWeek day =
+  let (_, _, weekDay) = toWeekDate day
+  in toEnum (weekDay - 1)
