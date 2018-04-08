@@ -20,6 +20,9 @@ data Schedule = First
               | Teenth
 
 meetupDay :: Schedule -> Weekday -> Integer -> Int -> Day
+meetupDay First weekday year month = fromGregorian year month day
+  where
+    day = head $ filter (matches weekday year month) [1..31]
 meetupDay Teenth weekday year month = fromGregorian year month day
   where
     day = head $ filter (matches weekday year month) [13..19]
