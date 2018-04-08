@@ -23,10 +23,9 @@ meetupDay :: Schedule -> Weekday -> Integer -> Int -> Day
 meetupDay First weekday year month = fromGregorian year month day
   where
     day = head $ filter (matches weekday year month) [1..31]
-meetupDay Teenth weekday year month = fromGregorian year month day
+meetupDay schedule weekday year month = fromGregorian year month $ day schedule
   where
-    day = head $ filter (matches weekday year month) [13..19]
-meetupDay schedule weekday year month = fromGregorian year month 1
+    day Teenth = head $ filter (matches weekday year month) [13..19]
 
 getWeekDay 1 = Monday
 getWeekDay 2 = Tuesday
