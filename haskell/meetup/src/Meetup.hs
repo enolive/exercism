@@ -4,7 +4,7 @@ module Meetup
   , meetupDay
   ) where
 
-import Data.Time.Calendar (Day, fromGregorian)
+import Data.Time.Calendar (Day, fromGregorian, gregorianMonthLength)
 import Data.Time.Calendar.WeekDate (toWeekDate)
 
 data Weekday
@@ -29,11 +29,12 @@ meetupDay :: Schedule -> Weekday -> Integer -> Int -> Day
 meetupDay schedule weekday year month = fromGregorian year month $ day schedule
   where
     day Teenth = findDay head [13 .. 19]
-    day First = findDay head [1 .. 31]
-    day Second = findDay (!! 1) [1 .. 31]
-    day Third = findDay (!! 2) [1 .. 31]
-    day Fourth = findDay (!! 3) [1 .. 31]
-    day Last = findDay last [1 .. 31]
+    day First = findDay head daysOfMonth
+    day Second = findDay (!! 1) daysOfMonth
+    day Third = findDay (!! 2) daysOfMonth
+    day Fourth = findDay (!! 3) daysOfMonth
+    day Last = findDay last daysOfMonth
+    daysOfMonth = [1..gregorianMonthLength year month]
     findDay f = f . daysForWeekday
     daysForWeekday = filter (matches weekday year month)
 
