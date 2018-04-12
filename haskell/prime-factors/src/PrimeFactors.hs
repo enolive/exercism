@@ -18,6 +18,6 @@ nextFactor :: Acc -> Maybe (Integer, Acc)
 nextFactor Acc {limit = 1} = Nothing
 nextFactor acc@Acc {..}
   | modulo == 0 = Just (current, acc {limit = newLimit})
-  | otherwise = nextFactor acc {current = current + 1}
+  | otherwise = nextFactor acc {current = succ current}
   where
     (newLimit, modulo) = limit `divMod` current
