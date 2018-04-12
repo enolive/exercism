@@ -1,14 +1,14 @@
 module PrimeFactors (primeFactors) where
 import Data.List (unfoldr)
 
-type CurrentAndLimit = (Integer, Integer)
+data CurrentAndLimit = CurrentAndLimit Integer Integer
 
 primeFactors :: Integer -> [Integer]
-primeFactors n = unfoldr getNextFactor (2, n)
+primeFactors n = unfoldr getNextFactor $ CurrentAndLimit 2 n
 
 getNextFactor :: CurrentAndLimit -> Maybe (Integer, CurrentAndLimit)
-getNextFactor (_, 1) = Nothing
-getNextFactor (current, n) = Just (next, (next, n `div` next))
+getNextFactor (CurrentAndLimit _ 1) = Nothing
+getNextFactor (CurrentAndLimit current n) = Just (next, CurrentAndLimit next (n `div` next))
   where
     next = (head . filter (n `isDivisibleBy`)) [current..]
 
