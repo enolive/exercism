@@ -16,9 +16,8 @@ primeFactors n = unfoldr nextFactor Acc {current = 2, limit = n}
 
 nextFactor :: Acc -> Maybe (Integer, Acc)
 nextFactor Acc {limit = 1} = Nothing
-nextFactor Acc {..} = Just (next, Acc {current = next, limit = limit `div` next})
+nextFactor acc@Acc {..}
+  | modulo == 0 = Just (current, acc {limit = newLimit})
+  | otherwise = nextFactor acc {current = current + 1}
   where
-    next = (head . filter (limit `isDivisibleBy`)) [current ..]
-
-isDivisibleBy :: Integer -> Integer -> Bool
-isDivisibleBy n d = n `mod` d == 0
+    (newLimit, modulo) = limit `divMod` current
