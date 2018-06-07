@@ -1,7 +1,5 @@
 class ReverseString {
-
     String reverse(String inputString) {
-        return "";
+        return new StringBuilder(inputString).reverse().toString();
     }
-  
 }
