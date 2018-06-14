@@ -1,7 +1,19 @@
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.IntArrayData;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
@@ -35,7 +47,6 @@ public class ArmstrongNumbersTest {
         assertTrue(armstrongNumbers.isArmstrongNumber(input));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void threeDigitNumberIsNotArmstrongNumber() {
         int input = 100;
@@ -43,7 +54,6 @@ public class ArmstrongNumbersTest {
         assertFalse(armstrongNumbers.isArmstrongNumber(input));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void fourDigitNumberIsArmstrongNumber() {
         int input = 9474;
@@ -51,7 +61,6 @@ public class ArmstrongNumbersTest {
         assertTrue(armstrongNumbers.isArmstrongNumber(input));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void fourDigitNumberIsNotArmstrongNumber() {
         int input = 9475;
@@ -59,7 +68,6 @@ public class ArmstrongNumbersTest {
         assertFalse(armstrongNumbers.isArmstrongNumber(input));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void sevenDigitNumberIsArmstrongNumber() {
         int input = 9926315;
@@ -67,7 +75,6 @@ public class ArmstrongNumbersTest {
         assertTrue(armstrongNumbers.isArmstrongNumber(input));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void sevenDigitNumberIsNotArmstrongNumber() {
         int input = 9926314;
