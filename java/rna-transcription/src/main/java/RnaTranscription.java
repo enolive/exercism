@@ -1,8 +1,12 @@
 class RnaTranscription {
     String transcribe(String dnaStrand) {
-        if (dnaStrand == "C") {
-            return "G";
+        switch (dnaStrand) {
+            case "G":
+                return "C";
+            case "C":
+                return "G";
+            default:
+                return "";
         }
-        return "";
     }
 }
