@@ -7,6 +7,8 @@ class RnaTranscription {
                 return "G";
             case "T":
                 return "A";
+            case "A":
+                return "U";
             default:
                 return "";
         }
