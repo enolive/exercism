@@ -24,7 +24,6 @@ public class PangramCheckerTest {
         assertTrue(pangramChecker.isPangram("abcdefghijklmnopqrstuvwxyz"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void pangramWithOnlyLowerCaseLettersIsRecognizedAsPangram() {
         assertTrue(pangramChecker.isPangram("the quick brown fox jumps over the lazy dog"));
