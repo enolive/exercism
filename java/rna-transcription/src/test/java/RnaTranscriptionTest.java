@@ -37,7 +37,6 @@ public class RnaTranscriptionTest {
         Assert.assertEquals("U", rnaTranscription.transcribe("A"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testRnaTranscription() {
         Assert.assertEquals("UGCACCAGAAUU", rnaTranscription.transcribe("ACGTGGTCTTAA"));

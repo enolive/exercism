@@ -1,16 +1,24 @@
+import io.vavr.collection.CharSeq;
+
+import java.text.MessageFormat;
+
 class RnaTranscription {
     String transcribe(String dnaStrand) {
-        switch (dnaStrand) {
-            case "G":
-                return "C";
-            case "C":
-                return "G";
-            case "T":
-                return "A";
-            case "A":
-                return "U";
+        return CharSeq.of(dnaStrand).map(this::transcribeSymbol).mkString();
+    }
+
+    private char transcribeSymbol(char symbol) {
+        switch (symbol) {
+            case 'G':
+                return 'C';
+            case 'C':
+                return 'G';
+            case 'T':
+                return 'A';
+            case 'A':
+                return 'U';
             default:
-                return "";
+                throw new IllegalArgumentException(MessageFormat.format("Unknown symbol {0}.", symbol));
         }
     }
 }
