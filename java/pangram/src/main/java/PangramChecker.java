@@ -1,5 +1,12 @@
+import io.vavr.collection.CharSeq;
+
+import java.util.function.Function;
+
 class PangramChecker {
     boolean isPangram(String input) {
-        return false;
+        return CharSeq
+                .of(input)
+                .groupBy(Function.identity())
+                .size() == 26;
     }
 }
