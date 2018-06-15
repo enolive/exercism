@@ -1,11 +1,18 @@
-import com.google.common.base.Strings;
+import io.vavr.control.Option;
 
 import java.text.MessageFormat;
 
-public class Twofer {
-    public String twofer(String name) {
-        String personName =  Strings.isNullOrEmpty(name) ? "you" : name ;
-        return MessageFormat.format("One for {0}, one for me.", personName);
+class Twofer {
+    String twofer(String name) {
+        return Option
+                .of(name)
+                .filter(s -> !s.isEmpty())
+                .orElse(Option.of("you"))
+                .map(this::formatMessage)
+                .get();
     }
 
+    private String formatMessage(String name) {
+        return MessageFormat.format("One for {0}, one for me.", name);
+    }
 }
