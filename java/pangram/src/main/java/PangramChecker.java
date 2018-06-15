@@ -7,6 +7,7 @@ class PangramChecker {
         return CharSeq
                 .of(input)
                 .filter(Character::isLetter)
+                .map(Character::toLowerCase)
                 .groupBy(Function.identity())
                 .size() == 26;
     }
