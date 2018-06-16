@@ -71,13 +71,11 @@ public class HammingTest {
         assertEquals(4, new Hamming("GATACA", "GCATAA").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testLargeDistanceInOffByOneStrand() {
         assertEquals(9, new Hamming("GGACGGATTCTG", "AGGACGGATTCT").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testValidatesFirstStrandNotLonger() {
         expectedException.expect(IllegalArgumentException.class);

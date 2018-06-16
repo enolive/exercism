@@ -6,8 +6,15 @@ class Hamming {
     private final CharSeq right;
 
     Hamming(String leftStrand, String rightStrand) {
+        requireEqualLength(leftStrand, rightStrand);
         left = CharSeq.of(leftStrand);
         right = CharSeq.of(rightStrand);
+    }
+
+    private void requireEqualLength(String leftStrand, String rightStrand) {
+        if (leftStrand.length() != rightStrand.length()) {
+            throw new IllegalArgumentException("leftStrand and rightStrand must be of equal length.");
+        }
     }
 
     int getHammingDistance() {
