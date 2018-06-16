@@ -4,6 +4,7 @@ import io.vavr.collection.CharSeq;
 class Acronym {
 
     private final CharSeq phrase;
+    private final CharSeq whitespaces = CharSeq.of(' ', '-');
 
     Acronym(String phrase) {
         this.phrase = CharSeq.of(phrase);
@@ -11,17 +12,17 @@ class Acronym {
 
     String get() {
         return phrase.zip(phrase.prepend(' '))
-                .filter(this::previousIsWhitespaceOrHyphen)
-                .map(this::upperCase)
+                .filter(this::previousIsWhitespace)
+                .map(this::currentToUpperCase)
                 .mkString();
     }
 
-    private char upperCase(Tuple2<Character, Character> currentPrevious) {
+    private char currentToUpperCase(Tuple2<Character, Character> currentPrevious) {
         return currentPrevious.map1(Character::toUpperCase)._1;
     }
 
-    private boolean previousIsWhitespaceOrHyphen(Tuple2<Character, Character> currentPrevious) {
-        return currentPrevious.map2(previous -> CharSeq.of(' ', '-').contains(previous))._2;
+    private boolean previousIsWhitespace(Tuple2<Character, Character> currentPrevious) {
+        return currentPrevious.map2(whitespaces::contains)._2;
     }
 
 }
