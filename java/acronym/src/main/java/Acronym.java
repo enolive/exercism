@@ -1,5 +1,11 @@
+import io.vavr.API;
 import io.vavr.Tuple2;
 import io.vavr.collection.CharSeq;
+
+import static io.vavr.API.$;
+import static io.vavr.API.Case;
+import static io.vavr.API.Match;
+import static io.vavr.Patterns.$Tuple2;
 
 class Acronym {
 
@@ -10,8 +16,7 @@ class Acronym {
     }
 
     String get() {
-        return phrase
-                .zip(phrase.prepend(' '))
+        return phrase.zip(phrase.prepend(' '))
                 .filter(this::previousIsWhitespace)
                 .map(this::upperCase)
                 .mkString();
@@ -22,7 +27,10 @@ class Acronym {
     }
 
     private boolean previousIsWhitespace(Tuple2<Character, Character> l) {
-        return l._2 == ' ';
+        return Match(l).of(
+                Case($Tuple2($(), $(' ')), true),
+                Case($(), false)
+        );
     }
 
 }
