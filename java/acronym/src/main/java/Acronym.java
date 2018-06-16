@@ -9,12 +9,11 @@ class Acronym {
     }
 
     String get() {
-        var acronym = phrase
+        return phrase
                 .zip(phrase.prepend(' '))
                 .filter(l -> l._2 == ' ')
                 .map(l -> Character.toUpperCase(l._1))
                 .mkString();
-        return acronym;
     }
 
 }
