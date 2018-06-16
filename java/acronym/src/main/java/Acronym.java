@@ -1,3 +1,4 @@
+import io.vavr.Tuple2;
 import io.vavr.collection.CharSeq;
 
 class Acronym {
@@ -11,9 +12,17 @@ class Acronym {
     String get() {
         return phrase
                 .zip(phrase.prepend(' '))
-                .filter(l -> l._2 == ' ')
-                .map(l -> Character.toUpperCase(l._1))
+                .filter(this::previousIsWhitespace)
+                .map(this::upperCase)
                 .mkString();
+    }
+
+    private char upperCase(Tuple2<Character, Character> l) {
+        return Character.toUpperCase(l._1);
+    }
+
+    private boolean previousIsWhitespace(Tuple2<Character, Character> l) {
+        return l._2 == ' ';
     }
 
 }
