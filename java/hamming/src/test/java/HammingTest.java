@@ -84,7 +84,6 @@ public class HammingTest {
         new Hamming("AATG", "AAA");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testValidatesSecondStrandNotLonger() {
         expectedException.expect(IllegalArgumentException.class);
