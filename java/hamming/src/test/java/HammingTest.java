@@ -31,49 +31,41 @@ public class HammingTest {
         assertEquals(1, new Hamming("A", "G").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCompleteDistanceInSmallStrand() {
         assertEquals(2, new Hamming("AG", "CT").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSmallDistanceInSmallStrand() {
         assertEquals(1, new Hamming("AT", "CT").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSmallDistanceInMediumStrand() {
         assertEquals(1, new Hamming("GGACG", "GGTCG").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSmallDistanceInLongStrand() {
         assertEquals(2, new Hamming("ACCAGGG", "ACTATGG").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testNonUniqueCharacterInFirstStrand() {
         assertEquals(1, new Hamming("AAG", "AAA").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testNonUniqueCharacterInSecondStrand() {
         assertEquals(1, new Hamming("AAA", "AAG").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSameNucleotidesInDifferentPositions() {
         assertEquals(2, new Hamming("TAG", "GAT").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testLargeDistanceInPermutedStrand() {
         assertEquals(4, new Hamming("GATACA", "GCATAA").getHammingDistance());

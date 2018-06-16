@@ -1,18 +1,28 @@
+import io.vavr.collection.CharSeq;
+
 class Hamming {
 
-    private final String leftStrand;
-    private final String rightStrand;
+    private final CharSeq left;
+    private final CharSeq right;
 
     Hamming(String leftStrand, String rightStrand) {
-        this.leftStrand = leftStrand;
-        this.rightStrand = rightStrand;
+        left = CharSeq.of(leftStrand);
+        right = CharSeq.of(rightStrand);
     }
 
     int getHammingDistance() {
-        if (!leftStrand.equals(rightStrand)) {
-            return 1;
-        }
-        return 0;
+        return left
+                .zipWith(right, this::areEqual)
+                .filter(this::notEqual)
+                .length();
+    }
+
+    private boolean notEqual(Boolean i) {
+        return !i;
+    }
+
+    private boolean areEqual(char a, char b) {
+        return a == b;
     }
 
 }
