@@ -14,7 +14,6 @@ public class SpaceAgeTest {
         assertEquals(31.69, age.onEarth(), MAXIMUM_DELTA);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void ageOnMercury() {
         SpaceAge age = new SpaceAge(2134835688);
