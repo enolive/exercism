@@ -16,19 +16,16 @@ public class HammingTest {
         assertEquals(0, new Hamming("", "").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testNoDistanceBetweenShortIdenticalStrands() {
         assertEquals(0, new Hamming("A", "A").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testNoDistanceBetweenLongIdenticalStrands() {
         assertEquals(0, new Hamming("GGACTGA", "GGACTGA").getHammingDistance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCompleteDistanceInSingleNucleotideStrand() {
         assertEquals(1, new Hamming("A", "G").getHammingDistance());
