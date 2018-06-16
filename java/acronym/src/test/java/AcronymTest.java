@@ -12,7 +12,6 @@ public class AcronymTest {
         assertEquals(expected, new Acronym(phrase).get());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void lowercaseWords() {
         String phrase = "Ruby on Rails";
