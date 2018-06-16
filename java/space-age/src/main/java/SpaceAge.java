@@ -6,10 +6,6 @@ class SpaceAge {
         this.seconds = seconds;
     }
 
-    double getSeconds() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
-    }
-
     double onEarth() {
         return Planet.EARTH.toYears(seconds);
     }
@@ -19,33 +15,38 @@ class SpaceAge {
     }
 
     double onVenus() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return Planet.VENUS.toYears(seconds);
     }
 
     double onMars() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return Planet.MARS.toYears(seconds);
     }
 
     double onJupiter() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return Planet.JUPITER.toYears(seconds);
     }
 
     double onSaturn() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return Planet.SATURN.toYears(seconds);
     }
 
     double onUranus() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return Planet.URANUS.toYears(seconds);
     }
 
     double onNeptune() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return Planet.NEPTUNE.toYears(seconds);
     }
 
     private enum Planet {
         EARTH(365.25 * 24 * 60 * 60),
-        MERCURY(EARTH.yearInSeconds * 0.2408467)
-        ;
+        MERCURY(EARTH.yearInSeconds * 0.2408467),
+        VENUS(EARTH.yearInSeconds * 0.61519726),
+        MARS(EARTH.yearInSeconds * 1.8808158),
+        JUPITER(EARTH.yearInSeconds * 11.862615),
+        SATURN(EARTH.yearInSeconds * 29.447498),
+        URANUS(EARTH.yearInSeconds * 84.016846),
+        NEPTUNE(EARTH.yearInSeconds * 164.79132);
 
         private double yearInSeconds;
 
