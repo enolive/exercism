@@ -32,7 +32,6 @@ public class RaindropConverterTest {
         assertEquals("Pling", raindropConverter.convert(6));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void noSoundFor2Cubed() {
         assertEquals("8", raindropConverter.convert(8));

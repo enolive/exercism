@@ -10,7 +10,7 @@ class RaindropConverter {
         if (isDivisibleBy(number, 7)) {
             return "Plong";
         }
-        return "1";
+        return Integer.toString(number);
     }
 
     private boolean isDivisibleBy(int input, int divisor) {
