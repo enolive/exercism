@@ -7,6 +7,9 @@ class RaindropConverter {
         if (number == 5) {
             return "Plang";
         }
+        if (number == 7) {
+            return "Plong";
+        }
         return "1";
     }
 

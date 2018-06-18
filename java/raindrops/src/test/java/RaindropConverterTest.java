@@ -22,7 +22,6 @@ public class RaindropConverterTest {
         assertEquals("Plang", raindropConverter.convert(5));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void soundFor7IsPlong() {
         assertEquals("Plong", raindropConverter.convert(7));
