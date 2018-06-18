@@ -7,7 +7,7 @@ class Scrabble {
     private final CharSeq word;
 
     Scrabble(String word) {
-        this.word = CharSeq.of(word);
+        this.word = CharSeq.of(word).toLowerCase();
     }
 
     int getScore() {
