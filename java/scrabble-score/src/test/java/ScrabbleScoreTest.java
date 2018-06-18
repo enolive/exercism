@@ -43,7 +43,6 @@ public class ScrabbleScoreTest {
         assertEquals(6, scrabble.getScore());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAMediumValuableWord() {
         scrabble = new Scrabble("quirky");

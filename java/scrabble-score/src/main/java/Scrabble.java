@@ -29,9 +29,10 @@ class Scrabble {
 //        Q, Z                               10
 
         return Match(character).of(
-                Case($(isIn('a', 'e', 'o', 'r', 's', 't')), 1),
-                Case($('f'), 4),
-                Case($('z'), 10)
+                Case($(isIn('a', 'e', 'i', 'o', 'u', 'r', 's', 't')), 1),
+                Case($(isIn('f', 'y')), 4),
+                Case($('k'), 5),
+                Case($(isIn('q', 'z')), 10)
         );
     }
 
