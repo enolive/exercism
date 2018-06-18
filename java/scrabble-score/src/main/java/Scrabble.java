@@ -1,7 +1,6 @@
-import io.vavr.API;
 import io.vavr.collection.CharSeq;
 
-import static io.vavr.API.$;
+import static io.vavr.API.*;
 
 class Scrabble {
 
@@ -16,8 +15,8 @@ class Scrabble {
     }
 
     private int getScore(Character character) {
-        return API.Match(character).of(
-                API.Case($('a'), 1)
+        return Match(character).of(
+                Case($('a'), 1)
         );
     }
 
