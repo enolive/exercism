@@ -18,7 +18,7 @@ class Scrabble {
                 .intValue();
     }
 
-    private int getScore(Character character) {
+    private int getScore(char character) {
         return Match(character).of(
                 Case($(isIn('a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't')), 1),
                 Case($(isIn('d', 'g')), 2),
