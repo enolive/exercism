@@ -20,8 +20,9 @@ class Scrabble {
 
     private int getScore(Character character) {
         return Match(character).of(
-                Case($(isIn('a', 't')), 1),
-                Case($('f'), 4)
+                Case($(isIn('a', 'o', 't')), 1),
+                Case($('f'), 4),
+                Case($('z'), 10)
         );
     }
 
