@@ -1,7 +1,7 @@
 class RaindropConverter {
 
     String convert(int number) {
-        if (isDivisibleBy(number % 3, 0)) {
+        if (isDivisibleBy(number, 3)) {
             return "Pling";
         }
         if (isDivisibleBy(number, 5)) {
@@ -14,7 +14,7 @@ class RaindropConverter {
     }
 
     private boolean isDivisibleBy(int input, int divisor) {
-        return input == divisor;
+        return input % divisor == 0;
     }
 
 }
