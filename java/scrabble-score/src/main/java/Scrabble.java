@@ -1,6 +1,7 @@
 import io.vavr.collection.CharSeq;
 
 import static io.vavr.API.*;
+import static io.vavr.Predicates.isIn;
 
 class Scrabble {
 
@@ -11,12 +12,15 @@ class Scrabble {
     }
 
     int getScore() {
-        return getScore(word.head());
+        return word
+                .map(this::getScore)
+                .sum()
+                .intValue();
     }
 
     private int getScore(Character character) {
         return Match(character).of(
-                Case($('a'), 1),
+                Case($(isIn('a', 't')), 1),
                 Case($('f'), 4)
         );
     }
