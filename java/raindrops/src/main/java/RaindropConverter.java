@@ -13,17 +13,20 @@ class RaindropConverter {
     );
 
     String convert(int number) {
-        return Option
-                .of(getResultFromRules(number))
-                .filter(result -> !result.isEmpty())
+        return getResultFromRules(number)
+                .filter(this::resultNotEmpty)
                 .getOrElse(() -> Integer.toString(number));
     }
 
-    private String getResultFromRules(int number) {
-        return rules
+    private Option<String> getResultFromRules(int number) {
+        return Option.of(rules
                 .filter(r -> r._1.apply(number))
                 .map(r -> r._2)
-                .mkString();
+                .mkString());
+    }
+
+    private boolean resultNotEmpty(String result) {
+        return !result.isEmpty();
     }
 
     private Function1<Integer, Boolean> numbersDivisibleBy(int divisor) {

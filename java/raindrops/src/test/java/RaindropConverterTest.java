@@ -62,43 +62,36 @@ public class RaindropConverterTest {
         assertEquals("PlingPlong", raindropConverter.convert(21));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void soundFor25IsPlangAsItHasFactor5() {
         assertEquals("Plang", raindropConverter.convert(25));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void soundFor27IsPlingAsItHasFactor3() {
         assertEquals("Pling", raindropConverter.convert(27));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void soundFor35IsPlangPlongAsItHasFactors5And7() {
         assertEquals("PlangPlong", raindropConverter.convert(35));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void soundFor49IsPlongAsItHasFactor7() {
         assertEquals("Plong", raindropConverter.convert(49));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void noSoundFor52() {
         assertEquals("52", raindropConverter.convert(52));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void soundFor105IsPlingPlangPlongAsItHasFactors3And5And7() {
         assertEquals("PlingPlangPlong", raindropConverter.convert(105));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void soundFor3125IsPlangAsItHasFactor5() {
         assertEquals("Plang", raindropConverter.convert(3125));
