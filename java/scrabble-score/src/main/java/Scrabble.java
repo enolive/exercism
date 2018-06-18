@@ -19,8 +19,17 @@ class Scrabble {
     }
 
     private int getScore(Character character) {
+//        Letter                           Value
+//        A, E, I, O, U, L, N, R, S, T       1
+//        D, G                               2
+//        B, C, M, P                         3
+//        F, H, V, W, Y                      4
+//        K                                  5
+//        J, X                               8
+//        Q, Z                               10
+
         return Match(character).of(
-                Case($(isIn('a', 'o', 't')), 1),
+                Case($(isIn('a', 'e', 'o', 'r', 's', 't')), 1),
                 Case($('f'), 4),
                 Case($('z'), 10)
         );

@@ -37,7 +37,6 @@ public class ScrabbleScoreTest {
         assertEquals(12, scrabble.getScore());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAMediumWord() {
         scrabble = new Scrabble("street");
