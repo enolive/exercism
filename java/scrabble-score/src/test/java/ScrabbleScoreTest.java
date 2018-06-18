@@ -55,21 +55,18 @@ public class ScrabbleScoreTest {
         assertEquals(41, scrabble.getScore());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAEnglishLikeWord() {
         scrabble = new Scrabble("pinata");
         assertEquals(8, scrabble.getScore());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAnEmptyInput() {
         scrabble = new Scrabble("");
         assertEquals(0, scrabble.getScore());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testEntireAlphabetAvailable() {
         scrabble = new Scrabble("abcdefghijklmnopqrstuvwxyz");
