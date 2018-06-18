@@ -1,21 +1,20 @@
-import io.vavr.Function1;
-import io.vavr.Tuple;
-import io.vavr.Tuple2;
-import io.vavr.collection.List;
-
 class RaindropConverter {
 
     String convert(int number) {
-        if (number % 3 == 0) {
+        if (isDivisibleBy(number % 3, 0)) {
             return "Pling";
         }
-        if (number == 5) {
+        if (isDivisibleBy(number, 5)) {
             return "Plang";
         }
-        if (number == 7) {
+        if (isDivisibleBy(number, 7)) {
             return "Plong";
         }
         return "1";
+    }
+
+    private boolean isDivisibleBy(int input, int divisor) {
+        return input == divisor;
     }
 
 }
