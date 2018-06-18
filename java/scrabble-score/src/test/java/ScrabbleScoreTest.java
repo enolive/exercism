@@ -49,7 +49,6 @@ public class ScrabbleScoreTest {
         assertEquals(22, scrabble.getScore());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testALongMixCaseWord() {
         scrabble = new Scrabble("OxyphenButazone");
