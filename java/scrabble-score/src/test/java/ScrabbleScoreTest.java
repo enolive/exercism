@@ -19,7 +19,6 @@ public class ScrabbleScoreTest {
         assertEquals(1, scrabble.getScore());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAValuableLetter() {
         scrabble = new Scrabble("f");

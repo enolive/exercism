@@ -16,7 +16,8 @@ class Scrabble {
 
     private int getScore(Character character) {
         return Match(character).of(
-                Case($('a'), 1)
+                Case($('a'), 1),
+                Case($('f'), 4)
         );
     }
 
