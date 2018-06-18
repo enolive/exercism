@@ -27,7 +27,6 @@ public class RaindropConverterTest {
         assertEquals("Plong", raindropConverter.convert(7));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void soundFor6IsPlingAsItHasFactor3() {
         assertEquals("Pling", raindropConverter.convert(6));
