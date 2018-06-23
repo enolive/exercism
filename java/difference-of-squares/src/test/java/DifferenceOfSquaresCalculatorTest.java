@@ -20,7 +20,6 @@ public class DifferenceOfSquaresCalculatorTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSquareOfSumUpToFive() {
         int expected = 225;
