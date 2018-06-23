@@ -1,5 +1,4 @@
 import io.vavr.Function1;
-import io.vavr.collection.Stream;
 
 class DifferenceOfSquaresCalculator {
 
@@ -23,10 +22,11 @@ class DifferenceOfSquaresCalculator {
     }
 
     int computeSumOfSquaresTo(int input) {
-        return Stream.rangeClosed(1, input)
-                .map(DifferenceOfSquaresCalculator::squared)
-                .sum()
-                .intValue();
+        return squarePyramidalNumber(input);
+    }
+
+    private static int squarePyramidalNumber(int input) {
+        return input * (input + 1) * (2 * input + 1) / 6;
     }
 
 }
