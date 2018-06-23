@@ -11,7 +11,10 @@ class DifferenceOfSquaresCalculator {
     }
 
     int computeSumOfSquaresTo(int input) {
-        return 1;
+        return Stream.rangeClosed(1, input)
+                .map(DifferenceOfSquaresCalculator::squared)
+                .sum()
+                .intValue();
     }
 
     int computeDifferenceOfSquares(int input) {
