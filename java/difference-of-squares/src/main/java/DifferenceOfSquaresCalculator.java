@@ -3,16 +3,15 @@ import io.vavr.collection.Stream;
 class DifferenceOfSquaresCalculator {
 
     int computeSquareOfSumTo(int input) {
-        if (true) return squared(Stream.rangeClosed(1, input).sum().intValue());
-        return 1;
+        return squared(Stream.rangeClosed(1, input).sum().intValue());
     }
 
-    private int squared(int value) {
+    private static int squared(int value) {
         return value * value;
     }
 
     int computeSumOfSquaresTo(int input) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return 1;
     }
 
     int computeDifferenceOfSquares(int input) {
