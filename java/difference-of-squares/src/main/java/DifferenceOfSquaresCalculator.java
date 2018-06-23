@@ -3,7 +3,11 @@ import io.vavr.collection.Stream;
 class DifferenceOfSquaresCalculator {
 
     int computeSquareOfSumTo(int input) {
-        return squared(Stream.rangeClosed(1, input).sum().intValue());
+        return squared(sumUpTo(input));
+    }
+
+    private int sumUpTo(int input) {
+        return input * (input + 1) / 2;
     }
 
     private static int squared(int value) {
