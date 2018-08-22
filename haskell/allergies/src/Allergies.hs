@@ -24,10 +24,10 @@ matchesScore :: Int -> Int -> Bool
 matchesScore total single = total .&. single /= 0
 
 allergenScores :: [(Int, Allergen)]
-allergenScores = zip bits allAllergens
+allergenScores = zip bitScores allAllergens
   where
+    bitScores = map (2^) [0..]
     allAllergens = [(minBound :: Allergen) ..]
-    bits = map (2^) [0..]
 
 isAllergicTo :: Allergen -> Int -> Bool
 isAllergicTo allergen score = allergen `elem` allergies score
