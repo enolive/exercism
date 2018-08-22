@@ -15,19 +15,13 @@ data Allergen
   | Chocolate
   | Pollen
   | Cats
-  deriving (Eq, Show, Bounded, Enum)
+  deriving (Eq, Show, Enum, Bounded)
 
 allergies :: Int -> [Allergen]
-allergies total = [allergen | (single, allergen) <- allergenScores, matchesScore total single]
+allergies total = filter (`isAllergicTo` total) allAllergens
 
-matchesScore :: Int -> Int -> Bool
-matchesScore total single = total .&. single /= 0
-
-allergenScores :: [(Int, Allergen)]
-allergenScores = zip bitScores allAllergens
-  where
-    bitScores = map (2^) [0..]
-    allAllergens = [(minBound :: Allergen) ..]
+allAllergens :: [Allergen]
+allAllergens = [(minBound :: Allergen) ..]
 
 isAllergicTo :: Allergen -> Int -> Bool
-isAllergicTo allergen score = allergen `elem` allergies score
+isAllergicTo allergen score = (testBit score . fromEnum) allergen
