@@ -11,11 +11,14 @@ data Error
   deriving (Show, Eq)
 
 largestProduct :: Int -> String -> Either Error Integer
-largestProduct size digits = toInteger . highest . products . slidingWindow . toDigits <$> Right digits
+largestProduct size digits = largestProduct' size <$> Right digits
+
+largestProduct' :: Int -> String -> Integer
+largestProduct' size = toInteger . getLargest . createProducts . slidingWindow . toDigits
   where
     toDigits = map digitToInt
-    products = map product
-    highest = foldl max 0
+    createProducts = map product
+    getLargest = foldl max 0
     slidingWindow = window size
 
 window :: Int -> [a] -> [[a]]
