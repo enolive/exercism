@@ -12,24 +12,22 @@ data Error
   deriving (Show, Eq)
 
 largestProduct :: Int -> String -> Either Error Integer
-largestProduct size digits = toInteger . largestProduct' size <$> validatedInput
-  where
-    validatedInput = validateDigits =<< validateSize size digits
+largestProduct size digits = largestProduct' <$> validateSize size digits <*> validateDigits digits
 
-validateSize :: Int -> String -> Either Error String
+validateSize :: Int -> String -> Either Error Int
 validateSize size digits
   | size `notElem` [0 .. length digits] = Left InvalidSpan
-  | otherwise = Right digits
+  | otherwise = Right size
 
 validateDigits :: String -> Either Error [Int]
 validateDigits xs
-  | invalidDigits /= [] = (InvalidDigit . head) `first` Left invalidDigits
+  | (not . null) invalidDigits = (InvalidDigit . head) `first` Left invalidDigits
   | otherwise = map digitToInt <$> Right xs
   where
     invalidDigits = filter (not . isDigit) xs
 
-largestProduct' :: Int -> [Int] -> Int
-largestProduct' size = getLargest . createProducts . window size
+largestProduct' :: Int -> [Int] -> Integer
+largestProduct' size = toInteger . getLargest . createProducts . window size
   where
     getLargest []      = 1
     getLargest numbers = foldl max 0 numbers
