@@ -3,7 +3,8 @@ module Series
   , largestProduct
   ) where
 
-import           Data.Char (digitToInt, isDigit)
+import           Data.Bifunctor (first)
+import           Data.Char      (digitToInt, isDigit)
 
 data Error
   = InvalidSpan
@@ -11,9 +12,9 @@ data Error
   deriving (Show, Eq)
 
 largestProduct :: Int -> String -> Either Error Integer
-largestProduct size digits = toInteger . largestProduct' size <$> validateInput
+largestProduct size digits = toInteger . largestProduct' size <$> validatedInput
   where
-    validateInput = validateSize size digits >>= validateDigits
+    validatedInput = validateDigits =<< validateSize size digits
 
 validateSize :: Int -> String -> Either Error String
 validateSize size digits
@@ -22,7 +23,7 @@ validateSize size digits
 
 validateDigits :: String -> Either Error [Int]
 validateDigits xs
-  | invalidDigits /= [] = Left $ InvalidDigit $ head invalidDigits
+  | invalidDigits /= [] = (InvalidDigit . head) `first` Left invalidDigits
   | otherwise = map digitToInt <$> Right xs
   where
     invalidDigits = filter (not . isDigit) xs
@@ -30,7 +31,7 @@ validateDigits xs
 largestProduct' :: Int -> [Int] -> Int
 largestProduct' size = getLargest . createProducts . window size
   where
-    getLargest [] = 1
+    getLargest []      = 1
     getLargest numbers = foldl max 0 numbers
     createProducts = map product
 
