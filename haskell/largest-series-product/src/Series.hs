@@ -1,6 +1,8 @@
 module Series (Error(..), largestProduct) where
 
+import Data.Char (digitToInt)
+
 data Error = InvalidSpan | InvalidDigit Char deriving (Show, Eq)
 
 largestProduct :: Int -> String -> Either Error Integer
-largestProduct size digits = error "You need to implement this function."
+largestProduct size digits = toInteger . product . map digitToInt <$> Right digits
