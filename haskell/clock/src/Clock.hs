@@ -7,6 +7,7 @@ newtype Clock = Clock Integer deriving (Show, Eq)
 instance Num Clock where
   Clock x + Clock y = Clock (x + y)
   fromInteger = Clock
+  negate (Clock x) = Clock (24 * 60 - x)
 
 clockHour :: Clock -> Int
 clockHour (Clock x) = fromInteger x `div` 60
