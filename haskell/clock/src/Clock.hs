@@ -9,15 +9,18 @@ instance Num Clock where
   fromInteger = Clock
 
 clockHour :: Clock -> Int
-clockHour clock = error "You need to implement this function."
+clockHour (Clock x) = fromInteger x `div` 60
 
 clockMin :: Clock -> Int
-clockMin clock = error "You need to implement this function."
+clockMin (Clock x) = fromInteger x `mod` 60
 
 fromHourMin :: Int -> Int -> Clock
-fromHourMin hour min = error "You need to implement this function."
+fromHourMin hour min = fromIntegral totalMins
+  where
+    totalMins = hour * 60 + min
 
 toString :: Clock -> String
-toString (Clock x) = printf "%02d:%02d" hours mins
+toString clock@(Clock x) = printf "%02d:%02d" hours mins
   where
-    (hours, mins) = x `divMod` 60
+    hours = clockHour clock
+    mins = clockMin clock
