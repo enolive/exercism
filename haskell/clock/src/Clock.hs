@@ -9,8 +9,11 @@ instance Show Clock where
 
 instance Num Clock where
   Clock x + Clock y = mkClock (x + y)
+  Clock x * Clock y = mkClock (x * y)
   fromInteger = mkClock
   negate (Clock x) = mkClock (minsPerDay - x)
+  abs (Clock x) = mkClock (abs x)
+  signum (Clock x) = mkClock (signum x)
 
 mkClock :: Integer -> Clock
 mkClock x = Clock (x `mod` minsPerDay)
