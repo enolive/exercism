@@ -1,19 +1,22 @@
-module Clock (clockHour, clockMin, fromHourMin, toString) where
+module Clock (fromHourMin, toString) where
 
 import Text.Printf (printf)
 
-newtype Clock = Clock Integer deriving (Show, Eq)
+newtype Clock = Clock Integer deriving (Eq)
+
+instance Show Clock where
+  show = toString
 
 instance Num Clock where
-  Clock x + Clock y = Clock (x + y)
-  fromInteger = Clock
-  negate (Clock x) = Clock (24 * 60 - x)
+  Clock x + Clock y = mkClock (x + y)
+  fromInteger = mkClock
+  negate (Clock x) = mkClock (minsPerDay - x)
 
-clockHour :: Clock -> Int
-clockHour (Clock x) = fromInteger x `div` 60
+mkClock :: Integer -> Clock
+mkClock x = Clock (x `mod` minsPerDay)
 
-clockMin :: Clock -> Int
-clockMin (Clock x) = fromInteger x `mod` 60
+minsPerDay :: Integer
+minsPerDay = 24 * 60
 
 fromHourMin :: Int -> Int -> Clock
 fromHourMin hour min = fromIntegral totalMins
@@ -23,5 +26,4 @@ fromHourMin hour min = fromIntegral totalMins
 toString :: Clock -> String
 toString clock@(Clock x) = printf "%02d:%02d" hours mins
   where
-    hours = clockHour clock
-    mins = clockMin clock
+    (hours, mins) = x `divMod` 60
