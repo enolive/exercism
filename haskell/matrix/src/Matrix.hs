@@ -15,19 +15,21 @@ module Matrix
   ) where
 
 import           Control.Arrow ((&&&))
+import qualified Data.List     as List (transpose)
 import           Data.Vector   (Vector)
-import qualified Data.Vector   as Vector (fromList)
+import qualified Data.Vector   as Vector (fromList, toList)
 
+
+newtype Test a = Test a
 newtype Matrix a = Matrix
   { allRows :: [[a]]
   } deriving (Eq, Show)
 
 cols :: Matrix a -> Int
-cols Matrix {allRows = []} = 0
-cols Matrix {..}           = (minimum . map length) allRows
+cols = rows . transpose
 
 column :: Int -> Matrix a -> Vector a
-column x Matrix {..} = (Vector.fromList . map (!! x)) allRows
+column x = row x . transpose
 
 flatten :: Matrix a -> Vector a
 flatten matrix = error "You need to implement this function."
@@ -54,4 +56,4 @@ shape :: Matrix a -> (Int, Int)
 shape = rows &&& cols
 
 transpose :: Matrix a -> Matrix a
-transpose matrix = error "You need to implement this function."
+transpose Matrix {..} = (Matrix . List.transpose) allRows
