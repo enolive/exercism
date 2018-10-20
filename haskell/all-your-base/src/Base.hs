@@ -9,16 +9,28 @@ data Error a
   | InvalidDigit a
   deriving (Show, Eq)
 
-rebase :: Integral a => a -> a -> [a] -> Either (Error a) [a]
-rebase inputBase outputBase inputDigits
-  | invalidBase inputBase = Left InvalidInputBase
-  | invalidBase outputBase = Left InvalidOutputBase
+validateInputBase :: Integral a => a -> Either (Error a) a
+validateInputBase = validateBase InvalidInputBase
+
+validateOutputBase :: Integral a => a -> Either (Error a) a
+validateOutputBase = validateBase InvalidOutputBase
+
+validateBase :: Integral a => Error a -> a -> Either (Error a) a
+validateBase err base
+  | base < 2 = Left err
+  | otherwise = Right base
+
+validateDigits :: Integral a => [a] -> a -> Either (Error a) [a]
+validateDigits digits inputBase
   | (not . null) invalidDigits = (Left . InvalidDigit . head) invalidDigits
-  | otherwise = (Right . rebase' inputBase outputBase) inputDigits
+  | otherwise = Right digits
   where
-    invalidBase base = base < 2
-    invalidDigits = filter (invalidDigit inputBase) inputDigits
+    invalidDigits = filter (invalidDigit inputBase) digits
     invalidDigit base digit = digit `notElem` [0 .. base - 1]
+
+rebase :: Integral a => a -> a -> [a] -> Either (Error a) [a]
+rebase inputBase outputBase inputDigits =
+  rebase' <$> validateInputBase inputBase <*> validateOutputBase outputBase <*> validateDigits inputDigits inputBase
 
 rebase' :: Integral a => a -> a -> [a] -> [a]
 rebase' inputBase outputBase = fromBase10 outputBase . toBase10 inputBase
