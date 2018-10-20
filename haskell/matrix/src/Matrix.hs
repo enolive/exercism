@@ -33,7 +33,7 @@ flatten :: Matrix a -> Vector a
 flatten matrix = error "You need to implement this function."
 
 fromList :: [[a]] -> Matrix a
-fromList xss = error "You need to implement this function."
+fromList = Matrix
 
 fromString :: Read a => String -> Matrix a
 fromString xs = Matrix allRows
