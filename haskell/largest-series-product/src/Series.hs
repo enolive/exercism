@@ -30,7 +30,7 @@ largestProduct' :: Int -> [Int] -> Integer
 largestProduct' size = toInteger . getLargest . createProducts . window size
   where
     getLargest []      = 1
-    getLargest numbers = foldl max 0 numbers
+    getLargest numbers = maximum numbers
     createProducts = map product
 
 window :: Int -> [a] -> [[a]]
