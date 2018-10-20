@@ -17,43 +17,61 @@ module Matrix
 import           Control.Arrow ((&&&))
 import qualified Data.List     as List (transpose)
 import           Data.Vector   (Vector)
-import qualified Data.Vector   as Vector (fromList, toList)
+import qualified Data.Vector   as Vector
 
+type RowNum = Int
 
-newtype Test a = Test a
+type ColNum = Int
+
+type Dimensions = (RowNum, ColNum)
+
+newtype Test a =
+  Test a
+
 newtype Matrix a = Matrix
-  { allRows :: [[a]]
+  { contentRows :: Vector (Vector a)
   } deriving (Eq, Show)
 
 cols :: Matrix a -> Int
-cols = rows . transpose
+cols Matrix{..}
+  | Vector.null contentRows = 0
+  | otherwise = (Vector.length . Vector.head) contentRows
 
 column :: Int -> Matrix a -> Vector a
-column x = row x . transpose
+column x Matrix{..} = fmap (Vector.! x) contentRows
 
 flatten :: Matrix a -> Vector a
-flatten matrix = error "You need to implement this function."
+flatten Matrix {..} = (Vector.concat . Vector.toList) contentRows
 
 fromList :: [[a]] -> Matrix a
-fromList = Matrix
+fromList xss = Matrix content
+  where
+    content = (Vector.fromList . map Vector.fromList) xss
 
 fromString :: Read a => String -> Matrix a
-fromString xs = Matrix allRows
+fromString xs = fromList list
   where
     splitted = (map words . lines) xs
-    allRows = map (map read) splitted
+    list = map (map read) splitted
 
-reshape :: (Int, Int) -> Matrix a -> Matrix a
-reshape dimensions matrix = error "You need to implement this function."
+reshape :: Dimensions -> Matrix a -> Matrix a
+reshape (height, width) matrix = Matrix {contentRows = reshapedRows}
+  where
+    reshapedRows = Vector.generate width rowSlice
+    flattened = flatten matrix
+    rowSlice rowNum = Vector.slice (rowNum * height) height flattened
 
 row :: Int -> Matrix a -> Vector a
-row x Matrix {..} = Vector.fromList $ allRows !! x
+row x Matrix {..} = contentRows Vector.! x
 
 rows :: Matrix a -> Int
-rows Matrix {..} = length allRows
+rows Matrix {..} = Vector.length contentRows
 
-shape :: Matrix a -> (Int, Int)
+shape :: Matrix a -> Dimensions
 shape = rows &&& cols
 
 transpose :: Matrix a -> Matrix a
-transpose Matrix {..} = (Matrix . List.transpose) allRows
+transpose matrix = Matrix transposed
+  where
+    transposed = Vector.generate (cols matrix) createRow
+    createRow rowNum = column rowNum matrix
