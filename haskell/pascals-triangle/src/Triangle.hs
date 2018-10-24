@@ -3,13 +3,10 @@ module Triangle
   ) where
 
 rows :: Int -> [[Integer]]
-rows n
-  | n <= 0 = []
-  | otherwise = map row [1 .. n]
+rows n = take n triangle
 
-row :: Int -> [Integer]
-row 1 = [1]
-row n = (addNumbers . row) (n - 1)
+triangle :: [[Integer]]
+triangle = [1] : map addNumbers triangle
 
 addNumbers :: [Integer] -> [Integer]
 addNumbers xs = zipWith (+) xs' (reverse xs')
