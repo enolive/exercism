@@ -6,14 +6,16 @@ module Triplet
 
 import           Data.List (sort)
 
-isPythagorean :: (Int, Int, Int) -> Bool
+type Triplet = (Int, Int, Int)
+
+isPythagorean :: Triplet -> Bool
 isPythagorean (a, b, c) = a ^ 2 + b ^ 2 == c ^ 2
 
-mkTriplet :: Int -> Int -> Int -> (Int, Int, Int)
+mkTriplet :: Int -> Int -> Int -> Triplet
 mkTriplet a b c = (a', b', c')
   where
     [a', b', c'] = sort [a, b, c]
 
-pythagoreanTriplets :: Int -> Int -> [(Int, Int, Int)]
+pythagoreanTriplets :: Int -> Int -> [Triplet]
 pythagoreanTriplets minFactor maxFactor =
   [(a, b, c) | a <- [minFactor .. maxFactor], b <- [a .. maxFactor], c <- [b .. maxFactor], isPythagorean (a, b, c)]
