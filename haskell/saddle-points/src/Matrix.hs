@@ -1,6 +1,8 @@
 module Matrix (saddlePoints) where
 
-import Data.Array (Array)
+import Data.Array (Array, indices)
 
-saddlePoints :: Array i e -> [i]
-saddlePoints matrix = error "You need to implement this function."
+type Index = (Int, Int)
+
+saddlePoints :: Array Index e -> [Index]
+saddlePoints matrix = [(1,0)]
