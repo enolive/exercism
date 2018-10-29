@@ -2,13 +2,12 @@ module Matrix
   ( saddlePoints
   ) where
 
-import           Data.Array (Array, bounds, (!))
+import           Data.Array (Array, bounds, indices, range, (!))
 
 type Index = (Int, Int)
 
 saddlePoints :: Ord e => Array Index e -> [Index]
-saddlePoints matrix =
-  [(a, b) | a <- [minX .. maxX], b <- [minY .. maxY], matrix ! (a, b) == maxRow a, matrix ! (a, b) == minCol b]
+saddlePoints matrix = [index | index@(a, b) <- indices matrix, matrix ! index == maxRow a, matrix ! index == minCol b]
   where
     ((minX, minY), (maxX, maxY)) = bounds matrix
     maxRow a = maximum [matrix ! (a, y) | y <- [minY .. maxY]]
