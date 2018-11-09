@@ -5,7 +5,10 @@ module Series
 import           Data.Char (digitToInt)
 
 slices :: Int -> String -> [[Int]]
-slices n = map (map digitToInt) . slidingWindow n
+slices n = map digits . slidingWindow n
+
+digits :: String -> [Int]
+digits = map digitToInt
 
 slidingWindow :: Int -> [a] -> [[a]]
 slidingWindow 0 [] = [[]]
