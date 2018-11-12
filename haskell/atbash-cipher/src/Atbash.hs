@@ -8,12 +8,16 @@ import           Data.List       (intercalate)
 import           Data.List.Split (chunksOf)
 import           Data.Map        (Map)
 import qualified Data.Map        as Map
+import           Data.Maybe      (mapMaybe)
 
 decode :: String -> String
-decode = map translate . removeSpaces
+decode = mapMaybe translate . removeSpaces
 
 encode :: String -> String
-encode = insertSpaces 5 . map (translate . toLower) . filter isAlphaNum
+encode = insertSpaces 5 . mapMaybe (translate . toLower)
+
+translate :: Char -> Maybe Char
+translate = (`Map.lookup` cipher)
 
 removeSpaces :: String -> String
 removeSpaces = concat . words
@@ -21,10 +25,8 @@ removeSpaces = concat . words
 insertSpaces :: Integer -> String -> String
 insertSpaces n = unwords . chunksOf 5
 
-translate :: Char -> Char
-translate k = Map.findWithDefault k k cipher
-
 cipher :: Map Char Char
-cipher = Map.fromList . zip alphabet . reverse $ alphabet
+cipher = Map.fromList . zip (alphabet ++ numbers) $ (reverse alphabet ++ numbers)
   where
     alphabet = ['a' .. 'z']
+    numbers = ['0' .. '9']
