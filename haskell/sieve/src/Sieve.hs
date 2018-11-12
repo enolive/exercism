@@ -10,14 +10,11 @@ import           Data.Set (Set)
 import qualified Data.Set as Set
 
 primesUpTo :: Integer -> [Integer]
-primesUpTo n = filter (not . (`Set.member` sieve')) [2 .. n]
-  where
-    sieve' = sieve 2 n Set.empty
+primesUpTo n = sieveUpTo [2 .. n] n
 
-sieve :: Integer -> Integer -> Set Integer -> Set Integer
-sieve current limit set
-  | current > limit = set
-  | current `Set.member` set = sieve (current + 1) limit set
-  | otherwise = sieve (current + 1) limit set'
+sieveUpTo [] _ = []
+sieveUpTo (prime:xs) n = prime : sieveUpTo xs' n
   where
-    set' = Set.union set . Set.fromList . takeWhile (<= limit) $ [x * current | x <- [2 ..]]
+    xs' = xs `without` multiples
+    multiples = Set.fromList . takeWhile (<= n) $ [x * prime | x <- [2 .. n]]
+    xs `without` set = Set.toList . (Set.\\ set) . Set.fromList $ xs
