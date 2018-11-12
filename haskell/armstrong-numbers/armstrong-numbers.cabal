@@ -1,13 +1,14 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fb8691e89f646ca79a12958af95dc69bf2f06b7c78a393730051c765193a4835
+-- hash: 6fe523cfa47da135bdd6f756c22ffd4a479025eb8f00e8719d4fd54d57050e96
 
 name:           armstrong-numbers
 version:        1.0.0.1
 build-type:     Simple
-cabal-version:  >= 1.10
 
 library
   exposed-modules:

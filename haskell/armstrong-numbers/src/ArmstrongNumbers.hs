@@ -1,5 +1,8 @@
 module ArmstrongNumbers (armstrong) where
 
+import Data.List (unfoldr)
+import Data.Tuple (swap)
+
 armstrong :: Integral a => a -> Bool
 armstrong num = (sum . map (^ exponent)) digits' == num
   where
@@ -7,7 +10,7 @@ armstrong num = (sum . map (^ exponent)) digits' == num
     exponent = length digits'
 
 digits :: Integral a => a -> [a]
-digits 0 = []
-digits n = current : digits remaining
+digits = unfoldr tryExtractDigit
   where
-    (remaining, current) = n `divMod` 10
+    tryExtractDigit 0 = Nothing
+    tryExtractDigit n = (Just . swap . (`divMod` 10)) n
